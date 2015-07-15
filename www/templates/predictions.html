@@ -1,0 +1,16 @@
+<ion-view>
+    <ion-content>
+
+        <button class="button button-stable" ng-click="addPrediction()">
+            Add New Prediction
+        </button>
+
+        <div class="card" ng-repeat="prediction in predictions">
+            <div class="item item-text-wrap">
+                <h2>{{prediction.title}}</h2>
+                <h4>{{prediction.value}}</h4>
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
