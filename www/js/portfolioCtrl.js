@@ -1,4 +1,4 @@
-angular.module('app.portfolioCtrl', [])
+angular.module('app.controllers.portfolio', [])
 
     .controller('PortfolioCtrl', function($scope) {
 

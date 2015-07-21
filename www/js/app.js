@@ -1,10 +1,10 @@
 
 angular.module('app', [
   'ionic',
-  'app.predictionsCtrl',
-  'app.portfolioCtrl',
-  'app.menuCtrl',
-  'app.predictionsService'
+  'app.controllers.predictions',
+  'app.controllers.portfolio',
+  'app.controllers.menu',
+  'app.services.predictions'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {

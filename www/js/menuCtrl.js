@@ -1,4 +1,4 @@
-angular.module('app.menuCtrl', [])
+angular.module('app.controllers.menu', [])
 
     .controller('MenuCtrl', function($scope) {
 

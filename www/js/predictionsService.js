@@ -1,4 +1,4 @@
-angular.module('app.predictionsService', [])
+angular.module('app.services.predictions', [])
     .factory('PredictionsService', function(){
 
         var predictions = [
@@ -7,7 +7,7 @@ angular.module('app.predictionsService', [])
             { title: "Prediction C", value: "3" },
             { title: "Prediction D", value: "4" },
             { title: "Prediction E", value: "5" }
-        ]
+        ];
 
         var serviceFunctions = {
 

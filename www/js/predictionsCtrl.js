@@ -1,4 +1,4 @@
-angular.module('app.predictionsCtrl', [])
+angular.module('app.controllers.predictions', [])
 
     .controller('PredictionsCtrl', function($scope, PredictionsService) {
         $scope.predictions = PredictionsService.getPredictions();
@@ -10,7 +10,7 @@ angular.module('app.predictionsCtrl', [])
             var newPrediction = {
                 title: "New Prediction " + val,
                 value: val
-            }
+            };
             PredictionsService.addPrediction(newPrediction);
-        }
+        };
     });
