@@ -1,14 +1,43 @@
+
+
 <ion-view>
-    <ion-content>
+    <ion-content style="background-color: #e5e5e5">
 
-        <button class="button button-stable" ng-click="addPrediction()">
-            Add New Prediction
-        </button>
-
-        <div class="card" ng-repeat="prediction in predictions">
-            <div class="item item-text-wrap">
-                <h2>{{prediction.title}}</h2>
-                <h4>{{prediction.value}}</h4>
+        <div class="card" ng-repeat="pred in predictions">
+            <div class="item">
+                <div class="predCardUpper">
+                    <div class="predCardImageContainer">
+                        <img class="predCardImage" ng-src="img/{{pred.img}}.png">
+                    </div>
+                    <div class="predCardImageTitle">
+                        <label class="predCardTitle"><b>{{pred.title}}</b></label>
+                    </div>
+                </div>
+                <div class="predCardLower">
+                    <div class="predCardStat">
+                        <label style="font-size: 22px"><b>${{pred.price}}</b></label>
+                    </div>
+                    <div class="predCardStat" style="margin-left: 10px;">
+                        <label class="ion-arrow-up-a" style="color: #689F38;" ng-show="pred.changeType === 'pos'">
+                            ${{pred.change}}
+                        </label>
+                        <label style="color: #455A64;" ng-show="pred.changeType === 'none'">
+                            {{pred.change}}
+                        </label>
+                        <label class="ion-arrow-down-a" style="color: #D32F2F;" ng-show="pred.changeType === 'neg'">
+                            ${{pred.change}}
+                        </label>
+                    </div>
+                    <div class="predCardStat" style="width: 30%; float: right;">
+                        <label>Prob: {{pred.probability}}%</label>
+                    </div>
+                    <div class="predCardStat" style="width: 50%;">
+                        <label>Highest Buy: ${{pred.highestBuy}}</label>
+                    </div>
+                    <div class="predCardStat" style="width: 50%;">
+                        <label>Lowest Sell: ${{pred.lowestSell}}</label>
+                    </div>
+                </div>
             </div>
         </div>
 

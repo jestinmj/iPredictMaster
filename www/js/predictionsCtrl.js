@@ -12,5 +12,5 @@ angular.module('app.controllers.predictions', [])
                 value: val
             };
             PredictionsService.addPrediction(newPrediction);
-        };
+        }
     });

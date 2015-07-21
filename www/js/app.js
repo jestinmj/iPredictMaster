@@ -3,6 +3,7 @@ angular.module('app', [
   'ionic',
   'app.controllers.predictions',
   'app.controllers.portfolio',
+  'app.controllers.login',
   'app.controllers.menu',
   'app.services.predictions'
 ])
@@ -15,6 +16,16 @@ angular.module('app', [
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'MenuCtrl'
+  })
+
+  .state('app.login', {
+    url: '/login',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/login.html',
+        controller: 'LoginCtrl'
+      }
+    }
   })
 
   .state('app.predictions', {
