@@ -1,6 +1,7 @@
 
 angular.module('app', [
   'ionic',
+  'chart.js',
   'app.controllers.predictions',
   'app.controllers.portfolio',
   'app.controllers.login',

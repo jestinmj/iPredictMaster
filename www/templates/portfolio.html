@@ -1,5 +1,87 @@
-<ion-view>
+
+<style>
+    .portfolio_tiles{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    .custom_col{
+        position: relative;
+    }
+    
+    .customSpan{
+        font-style: italic;
+        font-size: 4vw;
+    }
+
+    #line{
+        margin: 2%;
+    }
+
+</style>
+
+<ion-view title="Portfolio">
     <ion-content>
-        Portfolio
+        <div class="container">
+            <div class="row" id="profile_overview">
+                <div class="col custom_col">
+                    <div class="card portfolio_tiles">
+                        <div class="item item-divider">
+                            <span class="customSpan">Rank</span>
+                        </div>
+                        <div class="item item-text-wrap">
+                           <span class="customSpan">1</span>
+                        </div>
+                        <div class="item item-divider">
+                            <span class="customSpan">2<i class="ion-arrow-up-a"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card portfolio_tiles">
+                        <div class="item item-divider">
+                            <span class="customSpan">Worth</span>
+                        </div>
+                        <div class="item item-text-wrap">
+                            <span class="customSpan">$20.05</span>
+                        </div>
+                        <div class="item item-divider">
+                            <span class="customSpan">$0.07<i class="ion-arrow-up-a"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card portfolio_tiles">
+                        <div class="item item-divider">
+                            <span class="customSpan">Cash</span>
+                        </div>
+                        <div class="item item-text-wrap">
+                            <span class="customSpan">$12.74</span>
+                        </div>
+                        <div class="item item-divider">
+                            <span class="customSpan">NC</span>
+                        </div>
+                    </div></div>
+                <div class="col">
+                    <div class="card portfolio_tiles">
+                        <div class="item item-divider">
+                            <span  class="customSpan">Portfolio</span>
+                        </div>
+                        <div class="item item-text-wrap">
+                            <span  class="customSpan">$7.39</span>
+                        </div>
+                        <div class="item item-divider">
+                            <span>$0.07<i class="ion-arrow-up-a"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <canvas id="line" class="chart chart-line" data="data" labels="labels" click="onClick">
+            </canvas>
+            <div class="card"></div>
+        </div>
     </ion-content>
 </ion-view>
+
