@@ -1,5 +1,46 @@
 <ion-view>
   <ion-content>
-    Login
+    <div ng-controller="LoginCtrl">
+      <div class="mainColumn">
+
+        <div class ="loginTitleDiv">
+          <img class ="loginTitle" ng-src="img/login_logo.png">
+        </div>
+
+
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Username</span>
+          <input type="text" placeholder="Username"/>
+        </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Password</span>
+          <input type="password" placeholder="Password"/>
+        </label>
+        <li class="item item-checkbox">
+          <label class="checkbox">
+            <input type="checkbox"/>
+          </label>
+          Remember me
+        </li>
+
+
+        <button class="button button-stable" ng-click="login()">
+          Login
+        </button>
+        <button class="button button-stable" ng-click="register()">
+          Register
+        </button>
+
+        <a id="link" ng-href="/{{'123'}}">Forgot password?</a>
+        <div class ="viewContracts">
+          <button class="button button-stable" style="width: 100%" ng-click="viewContracts()">
+            View Contracts
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
   </ion-content>
 </ion-view>
