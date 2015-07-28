@@ -6,7 +6,8 @@ angular.module('app', [
   'app.controllers.portfolio',
   'app.controllers.login',
   'app.controllers.menu',
-  'app.services.predictions'
+  'app.services.predictions',
+  'app.service.login'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
