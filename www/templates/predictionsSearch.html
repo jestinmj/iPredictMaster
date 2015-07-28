@@ -1,0 +1,104 @@
+<style>
+
+    .toggleContainer {
+        width: 90%;
+        margin-left: 5%;
+        height: 40px;
+        margin-top: 20px;
+    }
+
+    .toggleButton {
+        width: 45%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        height: 40px;
+        float: left;
+        border-radius: 20px;
+        text-align: center;
+        border: 2px solid #1976D2;
+        cursor: pointer;
+    }
+
+    .toggleButton h4 {
+        margin-top: 8px;
+        margin-bottom: 8px;
+        color: #1976D2;
+    }
+
+    .selectedButton {
+        background-color: #1976D2;
+    }
+
+    .selectedButton h4 {
+        color: #fafafa;
+    }
+
+    #cancelButton {
+        color: #fafafa;
+        display: block;
+        margin: auto;
+    }
+
+
+</style>
+
+
+<ion-modal-view style="height: 100%;">
+
+    <div style="height: 60px;">
+        <!--<div class="list list-inset">-->
+            <!--<label class="item item-input" style="border-radius: 30px">-->
+                <!--<i class="icon ion-search placeholder-icon"></i>-->
+                <!--<input type="text" placeholder="Search" ng-model="predic.searchInput" ng-change="updateSearch()">-->
+            <!--</label>-->
+        <!--</div>-->
+
+
+        <div class="toggleContainer">
+            <div class="toggleButton"
+                 ng-class="predic.selectedToggle === 'browse' ? 'selectedButton' : ''"
+                 ng-click="changeSelectedPredToggle('browse')">
+                <h4>BROWSE</h4>
+            </div>
+            <div class="toggleButton"
+                 ng-class="predic.selectedToggle === 'sortBy' ? 'selectedButton' : ''"
+                 ng-click="changeSelectedPredToggle('sortBy')">
+                <h4>SORT</h4>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 85%; position: relative;">
+        <ion-content scroll="true" style="margin-bottom: 80px">
+
+            <div class="list" ng-show="predic.selectedToggle === 'browse'">
+                <div class="item item-button-right" ng-repeat="category in browseOptions">
+                    <h3>{{category.title}}</h3>
+                    <button class="button button-clear">
+                        <i class="icon ion-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="list" ng-show="predic.selectedToggle === 'sortBy'">
+                <div class="item item-button-right" ng-repeat="sortOption in sortByOptions">
+                    <h3>{{sortOption.title}}</h3>
+                    <button class="button button-clear">
+                        <i class="icon ion-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </ion-content>
+    </div>
+
+    <div class="bar bar-footer" style="z-index: 10000; background-color: #1976D2">
+        <button class="button button-clear" id="cancelButton" ng-click="closeModal()">
+            CANCEL
+        </button>
+    </div>
+
+
+
+
+</ion-modal-view>

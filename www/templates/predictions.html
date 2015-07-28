@@ -1,9 +1,16 @@
 
+<style>
+    #filterButton {
+        color: #fafafa;
+        display: block;
+        margin: auto;
+    }
+</style>
 
 <ion-view>
-    <ion-content style="background-color: #e5e5e5">
+    <ion-content style="background-color: #e5e5e5; bottom: 44px;">
 
-        <div class="card" ng-repeat="pred in predictions">
+        <div class="card" style="margin: 10px;" ng-repeat="pred in predictions">
             <div class="item">
                 <div class="predCardUpper">
                     <div class="predCardImageContainer">
@@ -42,4 +49,10 @@
         </div>
 
     </ion-content>
+
+    <div class="bar bar-footer" style="z-index: 10000; background-color: #1976D2">
+        <button class="button button-clear" id="filterButton" ng-click="openModal()">
+            FILTER
+        </button>
+    </div>
 </ion-view>
