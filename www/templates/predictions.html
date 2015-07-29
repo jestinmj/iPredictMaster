@@ -5,12 +5,24 @@
         display: block;
         margin: auto;
     }
+
+    #searchBar {
+        /*border-radius: 60px;*/
+        background-color: rgba(0,0,0,0);
+    }
 </style>
 
-<ion-view>
+<ion-view title="Predictions">
     <ion-content style="background-color: #e5e5e5; bottom: 44px;">
 
-        <div class="card" style="margin: 10px;" ng-repeat="pred in predictions">
+        <div class="list list-inset card" id="searchBar">
+            <form class="item item-input" ng-submit="searchPredictions()">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="text" placeholder="Search" ng-model="predic.searchInput" ng-change="searchPredictions()">
+            </form>
+        </div>
+
+        <div class="card" style="margin: 10px;" ng-repeat="pred in filteredPredictions">
             <div class="item">
                 <div class="predCardUpper">
                     <div class="predCardImageContainer">
