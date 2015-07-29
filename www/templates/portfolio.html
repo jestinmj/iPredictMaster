@@ -1,5 +1,6 @@
 
 <style>
+
     .portfolio_tiles{
         margin: 0;
         width: 100%;
@@ -14,11 +15,41 @@
     .customSpan{
         font-style: italic;
         font-size: 4vw;
+
     }
+
+    .well{
+        min-height: 20px;
+        background-color: #cccccc;
+        margin-top: 2%;
+        margin-bottom: 2%;
+        border-radius: 10px;
+        stroke-opacity: 50;
+    }
+
+    .tile-value{
+        padding: 5%;
+    }
+
+
+    #tile-title{
+        padding: 5%;
+        background-color: #007aff;
+    }
+
+    #rank-num, #worth-num, #port-num{
+        background-color: #33cd5f;
+    }
+
+
 
     #line{
         margin: 2%;
+
+        padding: 5%;
     }
+
+    
 
 </style>
 
@@ -28,72 +59,80 @@
             <div class="row" id="profile_overview">
                 <div class="col custom_col">
                     <div class="card portfolio_tiles">
-                        <div class="item item-divider">
-                            <span class="customSpan">Rank</span>
+                        <div class="item item-divider" id="tile-title">
+                            <span class="customSpan ">Rank</span>
                         </div>
-                        <div class="item item-text-wrap">
-                           <span class="customSpan">1</span>
+                        <div class="item item-text-wrap tile-value">
+                           <span class="customSpan ">1</span>
                         </div>
-                        <div class="item item-divider">
-                            <span class="customSpan">2<i class="ion-arrow-up-a"></i></span>
+                        <div class="item item-divider tile-value" id="rank-num">
+                            <span class="customSpan"><i class="ion-arrow-up-a"></i>2</span>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card portfolio_tiles">
-                        <div class="item item-divider">
-                            <span class="customSpan">Worth</span>
+                    <div class="card portfolio_tiles ">
+                        <div class="item item-divider" id="tile-title">
+                            <span class="customSpan ">Worth</span>
                         </div>
-                        <div class="item item-text-wrap">
+                        <div class="item item-text-wrap tile-value">
                             <span class="customSpan">$20.05</span>
                         </div>
-                        <div class="item item-divider">
-                            <span class="customSpan">$0.07<i class="ion-arrow-up-a"></i></span>
+                        <div class="item item-divider tile-value" id="worth-num">
+                            <span class="customSpan"><i class="ion-arrow-up-a"></i>$0.07</span>
                         </div>
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card portfolio_tiles">
-                        <div class="item item-divider">
+                    <div class="card portfolio_tiles ">
+                        <div class="item item-divider" id="tile-title">
                             <span class="customSpan">Cash</span>
                         </div>
-                        <div class="item item-text-wrap">
+                        <div class="item item-text-wrap tile-value">
                             <span class="customSpan">$12.74</span>
                         </div>
-                        <div class="item item-divider">
+                        <div class="item item-divider tile-value">
                             <span class="customSpan">NC</span>
                         </div>
                     </div></div>
                 <div class="col">
-                    <div class="card portfolio_tiles">
-                        <div class="item item-divider">
+                    <div class="card portfolio_tiles ">
+                        <div class="item item-divider" id="tile-title">
                             <span  class="customSpan">Portfolio</span>
                         </div>
-                        <div class="item item-text-wrap">
+                        <div class="item item-text-wrap tile-value">
                             <span  class="customSpan">$7.39</span>
                         </div>
-                        <div class="item item-divider">
-                            <span>$0.07<i class="ion-arrow-up-a"></i></span>
+                        <div class="item item-divider tile-value" id="port-num">
+                            <span class="customSpan"><i class="ion-arrow-up-a"></i>$0.07</span>
                         </div>
                     </div>
                 </div>
             </div>
+
             <canvas id="line" class="chart chart-line" data="data" labels="labels" click="onClick">
             </canvas>
+
             <div class="card stockCard" style="text-align: center">
-                <div class="item item-divider">
+                <div class="item item-divider ">
                     <span class="customSpan">Stock I Own</span>
+                    <i class="ion-chevron-up" style="float:right;" ng-click="toggleOwnStock()"></i>
                 </div>
-                <div class="item item-text-wrap">
-                    <span>Some Stocks </span>
+                <div class="item item-text-wrap tile-value" ng-show="block.ownStock">
+                    <div class="well"><span>Some Stocks</span></div>
+                    <div class="well"><span>Some Stocks</span></div>
+                    <div class="well"><span>Some Stocks</span></div>
                 </div>
             </div>
             <div class="card stockCard" style="text-align: center">
                 <div class="item item-divider">
                     <span class="customSpan">Stock I Shorted</span>
+                    <i class="ion-chevron-up" style="float:right;" ng-click="toggleShortStock()"></i>
                 </div>
-                <div class="item item-text-wrap">
-                    <span>Some Stocks </span>
+                <div class="item item-text-wrap" ng-show="block.shortStock">
+                    <div class="well"><span>Some Stocks</span></div>
+                    <div class="well"><span>Some Stocks</span></div>
+                    <div class="well"><span>Some Stocks</span></div>
                 </div>
             </div>
         </div>
