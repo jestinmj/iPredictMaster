@@ -19,13 +19,17 @@
     }
 
     .well{
-        min-height: 20px;
         background-color: #cccccc;
-        margin-top: 2%;
-        margin-bottom: 2%;
-        border-radius: 10px;
         stroke-opacity: 50;
     }
+
+    .lightWell{
+        margin-top:2px;
+        background-color: #ffffff;
+        stroke-opacity: 50;
+        border-radius: 10px;
+    }
+
 
     .tile-value{
         padding: 5%;
@@ -63,10 +67,10 @@
                             <span class="customSpan ">Rank</span>
                         </div>
                         <div class="item item-text-wrap tile-value">
-                           <span class="customSpan ">1</span>
+                           <span class="customSpan ">{{portfolio.myRank}}</span>
                         </div>
                         <div class="item item-divider tile-value" id="rank-num">
-                            <span class="customSpan"><i class="ion-arrow-up-a"></i>2</span>
+                            <span class="customSpan"><i class="ion-arrow-up-a"></i>{{portfolio.changeInRank}}</span>
                         </div>
                     </div>
                 </div>
@@ -76,10 +80,10 @@
                             <span class="customSpan ">Worth</span>
                         </div>
                         <div class="item item-text-wrap tile-value">
-                            <span class="customSpan">$20.05</span>
+                            <span class="customSpan">${{portfolio.myWorth}}</span>
                         </div>
                         <div class="item item-divider tile-value" id="worth-num">
-                            <span class="customSpan"><i class="ion-arrow-up-a"></i>$0.07</span>
+                            <span class="customSpan"><iclass="ion-arrow-up-a"></i>${{portfolio.changeInWorth}}</span>
                         </div>
                     </div>
                 </div>
@@ -89,10 +93,10 @@
                             <span class="customSpan">Cash</span>
                         </div>
                         <div class="item item-text-wrap tile-value">
-                            <span class="customSpan">$12.74</span>
+                            <span class="customSpan">${{portfolio.myWallet}}</span>
                         </div>
                         <div class="item item-divider tile-value">
-                            <span class="customSpan">NC</span>
+                            <span class="customSpan">{{portfolio.changeInWallet}}</span>
                         </div>
                     </div></div>
                 <div class="col">
@@ -101,10 +105,12 @@
                             <span  class="customSpan">Portfolio</span>
                         </div>
                         <div class="item item-text-wrap tile-value">
-                            <span  class="customSpan">$7.39</span>
+                            <span  class="customSpan">${{portfolio.myPortfolio}}</span>
                         </div>
                         <div class="item item-divider tile-value" id="port-num">
-                            <span class="customSpan"><i class="ion-arrow-up-a"></i>$0.07</span>
+                            <span class="customSpan">
+                                <i class="ion-arrow-up-a"></i>${{portfolio.changeInPortfolio}}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -118,10 +124,14 @@
                     <span class="customSpan">Stock I Own</span>
                     <i class="ion-chevron-up" style="float:right;" ng-click="toggleOwnStock()"></i>
                 </div>
-                <div class="item item-text-wrap tile-value" ng-show="block.ownStock">
-                    <div class="well"><span>Some Stocks</span></div>
-                    <div class="well"><span>Some Stocks</span></div>
-                    <div class="well"><span>Some Stocks</span></div>
+                <div class="item item-text-wrap tile-value well" ng-show="block.ownStock">
+                    <div ng-repeat="stock in myStocks">
+                        <span>
+                            <div class="lightWell">
+                                {{stock}}
+                            </div>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="card stockCard" style="text-align: center">
@@ -129,10 +139,14 @@
                     <span class="customSpan">Stock I Shorted</span>
                     <i class="ion-chevron-up" style="float:right;" ng-click="toggleShortStock()"></i>
                 </div>
-                <div class="item item-text-wrap" ng-show="block.shortStock">
-                    <div class="well"><span>Some Stocks</span></div>
-                    <div class="well"><span>Some Stocks</span></div>
-                    <div class="well"><span>Some Stocks</span></div>
+                <div class="item item-text-wrap well" ng-show="block.shortStock">
+                    <div ng-repeat="short in myShorts">
+                        <span>
+                            <div class="lightWell">
+                                {{short}}
+                            </div>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
