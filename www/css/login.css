@@ -52,26 +52,57 @@
 	border-radius: 15px 15px 15px 15px;
 }
 
-.L_button{
+.L_btn{
+
+	border-radius: 5px 5px 5px  5px;
 	background: #428BCA;
-    color: #fff;
-    font-family: Sans-serif;
-    font-size: 20px;
-    height: 60px;
-    width: 550px;
-    line-height: 60px;
-    margin: 25px 25px;
-    text-align: center;
-    border: 0;
-    margin-top: 80px;
-    margin-left: 150px;
+	color: #fff;
+	font-family: Sans-serif;
+	font-size: 20px;
+	height: 60%;
+	width:70%;
+	line-height: 60px;
+	margin: 25px 25px;
+	text-align: center;
+	border: 0;
+
 
 }
 
-.R_button {}
+.btn_place{
+
+	margin-top: 0%;
+	margin-left: 20%;
+
+}
+
+.btn_place2{
+
+	margin-top: 0%;
+	margin-left: 20%;
+
+}
+
+.R_btn {
+
+	border-radius: 5px 5px 5px  5px;
+	background: #428BCA;
+	color: #fff;
+	font-family: Sans-serif;
+	font-size: 20px;
+	height: 60%;
+	width:70%;
+	line-height: 60px;
+	margin: 25px 25px;
+	text-align: center;
+	border: 0;
+
+}
 
 .checkbox{
 	margin-top: 30px;
+	margin-left: -12px;
+
 
 }
 
@@ -83,4 +114,12 @@
 .link2{
 	display: inline-block;
 	float:right;
+}
+
+.links{
+	margin-top:50px;
+}
+
+.remove-border{
+	border:5px solid white;
 }
