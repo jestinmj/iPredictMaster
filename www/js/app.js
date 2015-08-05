@@ -6,6 +6,7 @@ angular.module('app', [
   'app.controllers.portfolio',
   'app.controllers.login',
   'app.controllers.menu',
+  'app.controllers.contract',
   'app.services.predictions',
   'app.services.login'
 ])
@@ -46,6 +47,16 @@ angular.module('app', [
       'menuContent': {
         templateUrl: 'templates/portfolio.html',
         controller: 'PortfolioCtrl'
+      }
+    }
+  })
+
+  .state('app.contract', {
+    url: '/contract',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/contract.html',
+        controller: 'ContractCtrl'
       }
     }
   });

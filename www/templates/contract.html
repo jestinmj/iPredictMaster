@@ -1,0 +1,70 @@
+<style>
+    .contractProfile {
+        width: 100%;
+        height: 250px;
+        background-color: #fafafa;
+    }
+
+    .contractImg {
+        border-radius: 50%;
+        display:block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .customSpan{
+        margin-top: 3%;
+        font-style: italic;
+        font-size: 4vw;
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+        text-align: center;
+
+    }
+
+    .col{
+        background-color: #fafafa;
+        margin:2%;
+        border-radius: 2%;
+        width-min: 20%;
+        hight-min:20%;
+    }
+    
+    .contractInfo{
+        background-color: #d3d3d3;
+        margin:0px;
+    }
+    
+
+</style>
+
+<ion-view>
+    <ion-content>
+        <div class="contractProfile">
+            <img class="contractImg"src="img/test1.png">
+            <div>
+                <span class="customSpan">TEXT TEXT TEXT TEXT</span>
+            </div>
+            <div>
+                <span class="customSpan" style="font-size: 3vw">TEXT TEXT TEXT TEXT</span>
+            </div>
+        </div>
+        <div class="contractInfo">
+            <span class =customSpan>Contract Information</span>
+            <div class="row">
+                <div class="col">
+                    <span class="customSpan">
+                        Last Trade Price
+                    </span>
+                </div>
+                <div class="col">
+                    <span class="customSpan">
+                        Last Trade Time
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </ion-content>
+</ion-view>
