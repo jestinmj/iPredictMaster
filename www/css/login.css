@@ -28,12 +28,19 @@
 	
 }
 
+.warningSection{
+	color: black;
+	border-color: red;
+	background-color: pink;
+}
+
 .loginTitleDiv{
 	position: relative;
 }
 
 .user{
 	margin-bottom: 20px;
+	border-color: red;
 }
 
 .pass{
