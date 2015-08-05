@@ -1,4 +1,3 @@
-
 <style>
 
     .portfolio_tiles{
@@ -15,7 +14,6 @@
     .customSpan{
         font-style: italic;
         font-size: 4vw;
-
     }
 
     .well{
@@ -30,11 +28,9 @@
         border-radius: 10px;
     }
 
-
     .tile-value{
         padding: 5%;
     }
-
 
     #tile-title{
         padding: 5%;
@@ -45,15 +41,10 @@
         background-color: #33cd5f;
     }
 
-
-
     #line{
         margin: 2%;
-
-        padding: 5%;
+        padding-right: 5%;
     }
-
-    
 
 </style>
 
@@ -115,16 +106,22 @@
                     </div>
                 </div>
             </div>
-
-            <canvas id="line" class="chart chart-line" data="data" labels="labels" click="onClick">
-            </canvas>
-
+            <div class="card stockCard">
+                <div class="item item-divider">
+                    <div>
+                        <span class="customSpan">My Performance</span>
+                        <i class="ion-chevron-up" style="float:right;" ng-click="togglePerformanceGraph()"></i>
+                    </div>
+                    <canvas id="line" class="chart chart-line" data="data" labels="labels" click="onClick" ng-show="toggle.graph">
+                    </canvas>
+                </div>
+            </div>
             <div class="card stockCard" style="text-align: center">
                 <div class="item item-divider ">
                     <span class="customSpan">Stock I Own</span>
                     <i class="ion-chevron-up" style="float:right;" ng-click="toggleOwnStock()"></i>
                 </div>
-                <div class="item item-text-wrap tile-value well" ng-show="block.ownStock">
+                <div class="item item-text-wrap tile-value well" ng-show="toggle.ownStock">
                     <div ng-repeat="stock in myStocks">
                         <span>
                             <div class="lightWell">
@@ -139,7 +136,7 @@
                     <span class="customSpan">Stock I Shorted</span>
                     <i class="ion-chevron-up" style="float:right;" ng-click="toggleShortStock()"></i>
                 </div>
-                <div class="item item-text-wrap well" ng-show="block.shortStock">
+                <div class="item item-text-wrap well" ng-show="toggle.shortStock">
                     <div ng-repeat="short in myShorts">
                         <span>
                             <div class="lightWell">

@@ -2,9 +2,10 @@ angular.module('app.controllers.portfolio', ["chart.js"])
 
     .controller('PortfolioCtrl', function($scope) {
 
-        $scope.block={
+        $scope.toggle={
             ownStock:true,
-            shortStock: true
+            shortStock: true,
+            graph: true
         };
 
         $scope.portfolio={
@@ -32,12 +33,15 @@ angular.module('app.controllers.portfolio', ["chart.js"])
         };
 
         $scope.toggleOwnStock = function() {
-            $scope.block.ownStock = !$scope.block.ownStock;
+            $scope.toggle.ownStock = !$scope.toggle.ownStock;
         };
 
         $scope.toggleShortStock = function(){
-            $scope.block.shortStock = !$scope.block.shortStock;
+            $scope.toggle.shortStock = !$scope.toggle.shortStock;
         };
 
+        $scope.togglePerformanceGraph = function(){
+            $scope.toggle.graph = !$scope.toggle.graph;
+        };
 
     });
