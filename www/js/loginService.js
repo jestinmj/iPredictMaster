@@ -23,7 +23,7 @@ angular.module('app.services.login', [])
             toggleState: function(){
                 IsLoginHidden = !IsLoginHidden;
                 IsRegisterHidden = !IsRegisterHidden;
-                console.log("Toggled State to IsLoginHidden=" + IsLoginHidden + ", IsRegisterHidden=" + IsRegisterHidden);
+                //console.log("Toggled State to IsLoginHidden=" + IsLoginHidden + ", IsRegisterHidden=" + IsRegisterHidden);
             },
 
             // Check if the given email is valid
@@ -84,22 +84,22 @@ angular.module('app.services.login', [])
 
                 if( password.length < PASSWORD_MAXCHARACTERS ){
                     rules += "    - Password must be at least " + PASSWORD_MAXCHARACTERS + " characters in length. \n";
-                    console.log("Failed length");
+                    //console.log("Failed length");
                 }
                 
-                var caps = $scope.countCaps(password);//password.split("[A-Z]");
-                var nums = $scope.countNumbers(password);//password.match(/(\d+)/g);
+                var caps = 0;//$scope.countCaps(password);//password.split("[A-Z]");
+                var nums = 0;//$scope.countNumbers(password);//password.match(/(\d+)/g);
 
                 if( caps < PASSWORD_MAXCAPITALLETTERS ){
                     rules += "    - Must have more than " + PASSWORD_MAXCAPITALLETTERS + " capital letters. \n";
-                    console.log("Failed Caps: " + caps);
+                    //console.log("Failed Caps: " + caps);
                 }
 
                 
                 if( nums < PASSWORD_MAXNUMBERS){
                     rules += "    - Must have more than " + PASSWORD_MAXNUMBERS + " numbers.";
                 }
-                console.log("Failed numbers: " + nums );
+                //console.log("Failed numbers: " + nums );
                 
                 
                 return rules;

@@ -9,7 +9,6 @@ angular.module('app.controllers.login', [])
         // TODO
         // Get Email working
         $scope.details_email = '';
-        $scope.details_emailconfirm = ''; // Need to add this!
         $scope.details_acceptTerms = false;
         $scope.details_passwordconfirm = ""; // Modify login.html to use this!
 
@@ -20,24 +19,23 @@ angular.module('app.controllers.login', [])
         // place to display errors
 
 		$scope.login = function(){
-            console.log("Logging in...")
-            console.log("Username: " + $scope.details_username);
-            console.log("Password: " + $scope.details_password);
-            console.log("Rememberme: " + $scope.details_rememberme);
+            //console.log("Logging in...")
+            //console.log("Username: " + $scope.details_username);
+            //console.log("Password: " + $scope.details_password);
+            //console.log("Rememberme: " + $scope.details_rememberme);
         };
 
         $scope.register = function(scope, element){
-        	console.log("Registering...");
-            console.log("Username: " + $scope.details_username);
-            console.log("Password: " + $scope.details_password);
-            console.log("Password Confirmation: " + $scope.details_passwordconfirm);
-            console.log("Email: " + $scope.details_email);
-            console.log("Terms: " + $scope.details_acceptTerms);
+        	//console.log("Registering...");
+            //console.log("Username: " + $scope.details_username);
+            //console.log("Password: " + $scope.details_password);
+            //console.log("Password Confirmation: " + $scope.details_passwordconfirm);
+            //console.log("Email: " + $scope.details_email);
+            //console.log("Terms: " + $scope.details_acceptTerms);
 
             var INVALID_ACCEPT_TERMS = 0;
             var INVALID_PASSWORDS_UNMATCH = 1;
             var INVALID_EMAIL_WRONG = 2;
-            var INVALID_EMAILS_UNMATCH = 3;
             var INVALID_USERNAME = 4;
             var INVALID_PASSWORDS_INVALID = 5;
             var invalid = [];
@@ -54,7 +52,7 @@ angular.module('app.controllers.login', [])
                 // Invalid Username
                 invalid.push(INVALID_USERNAME);
                 var x = angular.element(document.querySelector('#user'));
-                console.log(x);
+                //console.log(x);
                 //x[0].css.backgroundColor = "red";
             }
 
@@ -73,20 +71,12 @@ angular.module('app.controllers.login', [])
                 // Email is not acceptable
                 invalid.push(INVALID_EMAIL_WRONG);
             }
-            else if( $scope.checkEmailValidity($scope.details_emailconfirm) == false){
-                // Email Confirmation is not acceptable
-                invalid.push(INVALID_EMAIL_WRONG);
-            }
-            else if( $scope.details_password != $scope.details_passwordconfirm ){
-                // Email is not acceptable
-                invalid.push(INVALID_EMAIL_WRONG);
-            }
 
             // Check if we have a valid registration!
             if( invalid.length > 0 ){
 
                 // FAILED REGISTRATION!
-                console.log("Invalid: " + invalid.length);
+                //console.log("Invalid: " + invalid.length);
                 $scope.showWarning = true;
                 $scope.warningMessage = "WARNING! There are errors in your form!";
 
@@ -105,9 +95,6 @@ angular.module('app.controllers.login', [])
                     else if( invalid[i] == INVALID_PASSWORDS_UNMATCH ){
                         warning = "The passwords do not match!";
                     }
-                    else if( invalid[i] == INVALID_EMAIL_WRONG ){
-                        warning = "The emails do not match!";
-                    }
                     else if( invalid[i] == INVALID_USERNAME ){
                         warning = "That username is already being used!";
                     }
@@ -119,7 +106,7 @@ angular.module('app.controllers.login', [])
 
                     $scope.warningMessage += (i+1) + ". " + warning;
                 }
-                console.log("Final Warning: " + $scope.warningMessage);
+                //console.log("Final Warning: " + $scope.warningMessage);
 
 
                 // Undo passwords and acceptance
