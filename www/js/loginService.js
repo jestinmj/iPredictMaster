@@ -1,20 +1,22 @@
 angular.module('app.services.login', [])
     .factory('LoginService', function(){
-
+        var IsLoginHidden = false;
+        var IsRegisterHidden = true;
 
         var serviceFunctions = {
 
-            login: function(){
-                console.log("Login button pressed");
-
+            inLoginState: function(){
+                return !IsLoginHidden;
             },
 
-            register: function(){
-                console.log("Register button pressed");                
+            inRegisterState: function(){
+                return !IsRegisterHidden;
             },
 
-            viewContracts: function(){
-                console.log("View Contracts button pressed");
+            toggleState: function(){
+                IsLoginHidden = !IsLoginHidden;
+                IsRegisterHidden = !IsRegisterHidden;
+                console.log("Toggled State to IsLoginHidden=" + IsLoginHidden + ", IsRegisterHidden=" + IsRegisterHidden);
             }
 
         };
