@@ -1,0 +1,121 @@
+<style>
+
+    .portfolio_tiles{
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    .custom_col{
+        position: relative;
+    }
+
+    .customSpan{
+        font-style: italic;
+        font-size: 4vw;
+    }
+
+    .well{
+        background-color: #cccccc;
+        stroke-opacity: 50;
+    }
+
+    .lightWell{
+        margin-top:2px;
+        background-color: #ffffff;
+        stroke-opacity: 50;
+        border-radius: 10px;
+    }
+
+    .tile-value{
+        padding: 5%;
+    }
+
+    #tile-title{
+        padding: 5%;
+        background-color: #007aff;
+    }
+
+    #rank-num, #worth-num, #port-num{
+        background-color: #33cd5f;
+    }
+
+    #line{
+        margin: 2%;
+        padding-right: 5%;
+    }
+
+</style>
+
+<ion-view title="About Us">
+    <ion-content>
+        <div class="container">
+            <div class="card">
+
+                <div class="item item-body">
+                    <img style="height:50%;width:100%" src="img/iPredict_logo.jpg">
+                    <p>
+                        Established in 2008, iPredict ran as a political prediction market during the eight weeks prior to the election that year.
+                        It proved more accurate than three quarters of all political polls published in the run up to the election, confirming the effectiveness of money prediction markets.
+
+                        Since then, iPredict has accumulated over 4000 traders and has launched more than 7000 contracts, covering a wide variety of topics,
+                        from monthly gold prices, to the discovery of extraterrestrial life..
+
+                        So put your money where your mouth is and begin trading today!
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span class="customSpan">People</span>
+                    <div class="row">
+                        <div class="col custom_col">
+                            <a class="item item-avatar">
+                                <img src="img/iPredict_logo.jpg">
+                                <h2>Staff 1</h2>
+                                <p>Position</p>
+                            </a>
+                        </div>
+                        <div class="col custom_col">
+                            <a class="item item-avatar" href="#">
+                                <img src="img/iPredict_logo.jpg">
+                                <h2>Staff 2</h2>
+                                <p>Position</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col custom_col">
+                            <a class="item item-avatar">
+                                <img src="img/iPredict_logo.jpg">
+                                <h2>Staff 3</h2>
+                                <p>Position</p>
+                            </a>
+                        </div>
+                        <div class="col custom_col">
+                            <a class="item item-avatar" href="#">
+                                <img src="img/iPredict_logo.jpg">
+                                <h2>Staff 4</h2>
+                                <p>Position</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <span class="customSpan">Contact Us</span>
+                    <label class="item item-input">
+                        <input type="text" placeholder="Name">
+                    </label>
+                    <label class="item item-input">
+                        <input type="text" placeholder="Message">
+                    </label>
+                    <button class="button button-block button-stable">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

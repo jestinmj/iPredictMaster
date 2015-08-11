@@ -6,6 +6,7 @@ angular.module('app', [
   'app.controllers.portfolio',
   'app.controllers.login',
   'app.controllers.menu',
+  'app.controllers.aboutUs',
   'app.services.predictions',
   'app.services.login'
 ])
@@ -48,7 +49,17 @@ angular.module('app', [
         controller: 'PortfolioCtrl'
       }
     }
-  });
+  })
+  .state('app.aboutUs', {
+      url: '/aboutUs',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/aboutUs.html',
+              controller: 'AboutUsCtrl'
+          }
+      }
+  })
+  ;
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/predictions');
