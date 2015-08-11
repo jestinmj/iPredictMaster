@@ -1,0 +1,26 @@
+
+.mainColumn {
+	vertical-align: middle;
+	margin-left: 20%;
+	margin-right: 20%;
+	background-color: red;
+}
+
+.viewContracts{
+	width: 100%;
+}
+
+.loginTitle {
+	min-width: 25%;
+	width: 25%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+.loginTitleDiv{
+	position: relative;
+}
+
+link{}
