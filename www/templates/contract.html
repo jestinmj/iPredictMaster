@@ -130,8 +130,9 @@
                 <span class="customSpan">{{contractDetails.description}}</span>
             </div>
             <div>
-                <span class="customSpan"> Stock History</span>
-                <span class="customSpan" style="margin:2%; height: 300px; background-color: #fafafa"> Graph </span>
+                <span class="customSpan" style="margin:0px; background-color: #fafafa"> Stock History </span>
+                <canvas id="line" class="chart chart-line" data="data" labels="labels" style="background-color: #fafafa; margin 2%;">
+                </canvas>
             </div>
             <div>
                 <span class="customSpan">Current Orders</span>

@@ -6,11 +6,8 @@ angular.module('app', [
   'app.controllers.portfolio',
   'app.controllers.login',
   'app.controllers.menu',
-<<<<<<< HEAD
   'app.controllers.contract',
-=======
   'app.controllers.aboutUs',
->>>>>>> master
   'app.services.predictions',
   'app.services.login'
 ])
@@ -54,7 +51,6 @@ angular.module('app', [
       }
     }
   })
-<<<<<<< HEAD
 
   .state('app.contract', {
     url: '/contract',
@@ -64,8 +60,8 @@ angular.module('app', [
         controller: 'ContractCtrl'
       }
     }
-  });
-=======
+  })
+
   .state('app.aboutUs', {
       url: '/aboutUs',
       views: {
@@ -74,9 +70,7 @@ angular.module('app', [
               controller: 'AboutUsCtrl'
           }
       }
-  })
-  ;
->>>>>>> master
+  });
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/predictions');
