@@ -60,10 +60,13 @@ angular.module('app.controllers.login', [])
             if( $scope.checkPasswordValidity($scope.details_password) == false){
                 // Passwords are not equal
                 invalid.push(INVALID_PASSWORDS_INVALID);
+                console.log("Invalid Password: " + $scope.details_password);
             }
-            else if( $scope.details_password != $scope.details_passwordconfirm ){
+            if( $scope.details_password != $scope.details_passwordconfirm ){
                 // Passwords are not equal
                 invalid.push(INVALID_PASSWORDS_UNMATCH);
+
+                console.log("Unmatching Passwords: " + $scope.details_password + " " + $scope.details_passwordconfirm);
             }
 
             // Check emails
@@ -88,23 +91,26 @@ angular.module('app.controllers.login', [])
                         $scope.warningMessage += '\n';
                     }
 
-                    var warning;
+                    // Warning message for THIS error
+                    var warning = "";
                     if( invalid[i] == INVALID_ACCEPT_TERMS ){
                         warning = "You must accept the terms and conditions before continuing!"; 
                     }
-                    else if( invalid[i] == INVALID_PASSWORDS_UNMATCH ){
+                    if( invalid[i] == INVALID_PASSWORDS_UNMATCH ){
                         warning = "The passwords do not match!";
                     }
-                    else if( invalid[i] == INVALID_USERNAME ){
+                    if( invalid[i] == INVALID_USERNAME ){
                         warning = "That username is already being used!";
                     }
-                    else if( invalid[i] == INVALID_PASSWORDS_INVALID ){
+                    if( invalid[i] == INVALID_PASSWORDS_INVALID ){
                         warning = "Password must reach these requirements:\n";
                         var rules = $scope.getRulesForPasswordAsString();
                         warning += rules;
                     }
 
-                    $scope.warningMessage += (i+1) + ". " + warning;
+                    if( warning != "" ){
+                        $scope.warningMessage += (i+1) + ". " + warning;
+                    }
                 }
                 //console.log("Final Warning: " + $scope.warningMessage);
 
@@ -143,7 +149,15 @@ angular.module('app.controllers.login', [])
             return LoginService.checkPasswordValidity(pass);
         };
 
-        $scope.changeStateButtonPressed = function(){
+        $scope.changeToLogin = function(){
+            LoginService.toggleState();
+        };
+
+        $scope.changeToRegister = function(){
+            LoginService.toggleState();
+        };
+
+        $scope.changeToForgotPassword = function(){
             LoginService.toggleState();
         };
 

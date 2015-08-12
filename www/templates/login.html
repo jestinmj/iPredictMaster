@@ -37,13 +37,17 @@
               </button>
           </div>
           <div class="links">
-          <div  class="link1">
-            <a style="font-size: 1vw;" ng-click="">Forgot password?</a>
-          </div>
+              <div class="btn_place_account">
+                  <button class="I_forgot_my_password_button" ng-click="changeToForgotPassword()">
+                    Forgot password?
+                  </button>
+              </div>
 
-          <div  class="link2">
-            <a style="font-size: 1vw;" ng-click="changeStateButtonPressed()">I don't have an account?</a>
-          </div>
+              <div class="btn_place_account">
+                  <button class="I_dont_have_an_account_button" ng-click="changeToRegister()">
+                    I don't have an account
+                  </button>
+              </div>
             </div>
         </div>
       </div>
@@ -88,7 +92,7 @@
             <div class="passconfirm">
               <label class="item item-input item-floating-label">
                 <span class="input-label">Password Confirmation</span>
-                <input type="password" placeholder="Password Confirmation" ng-model="details_password"/>
+                <input type="password" placeholder="Password Confirmation" ng-model="details_passwordconfirm"/>
               </label>
             </div>
 
@@ -105,10 +109,11 @@
                   Register
                 </button>
             </div>
-            <div>
-              <a style="font-size: 1vw;" ng-click="changeStateButtonPressed()">I already have an account?</a>
+            <div class="btn_place_account">
+                <button class="Already_have_an_account_button" ng-click="changeToLogin()">
+                  I already have an account
+                </button>
             </div>
-
           </div>
       </div>
     </div>
