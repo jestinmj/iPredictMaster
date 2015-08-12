@@ -25,7 +25,8 @@ angular.module('app', [
     views: {
       'menuContent': {
         templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl'
+        controller: 'LoginCtrl',
+        cache: false
       }
     }
   })

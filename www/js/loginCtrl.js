@@ -2,21 +2,23 @@ angular.module('app.controllers.login', [])
 
     .controller('LoginCtrl', function($scope, LoginService) {
 
-        $scope.details_username = ''; // Add ng-model="details_username" to textfield
-        $scope.details_password = ''; // Add ng-model="details_passworde" to textfield
+        $scope.showWarning = false;
+        $scope.warningMessage = '';
+
+        // Login
         $scope.details_rememberme = false; // Add ng-model="details_rememberme" to checkbox
 
-        // TODO
-        // Get Email working
+        // Login & Register
+        $scope.details_username = ''; // Add ng-model="details_username" to textfield
+        $scope.details_password = ''; // Add ng-model="details_passworde" to textfield
+
+        // Register
         $scope.details_email = '';
         $scope.details_acceptTerms = false;
         $scope.details_passwordconfirm = ""; // Modify login.html to use this!
 
-        $scope.showWarning = false;
-        $scope.warningMessage = '';
-        // Add information on registration
-        // password restrictions
-        // place to display errors
+        // I Forgot my password
+        $scope.details_forgotmypassword_email = '';
 
 		$scope.login = function(){
             //console.log("Logging in...")
@@ -150,26 +152,46 @@ angular.module('app.controllers.login', [])
         };
 
         $scope.changeToLogin = function(){
-            LoginService.toggleState();
+            LoginService.toggleLoginState();
         };
 
         $scope.changeToRegister = function(){
-            LoginService.toggleState();
+            LoginService.toggleRegisterState();
         };
 
         $scope.changeToForgotPassword = function(){
-            LoginService.toggleState();
+            LoginService.toggleForgotPasswordState();
+        };
+
+        $scope.retrievePassword = function(){
+            // User has asked to retrieve their password by going
+            //    to "I forgot my password" and have types in their password
+            //    then pressed "send"
+
+                        
+            // Email given to retriev password
+            var email = $scope.details_forgotmypassword_email;
+
+
+            if( !checkEmailValidity(email) ){
+                $scope.warningMessage = "WARNING! There are errors in your form!" + '\n';
+                $scope.warningMessage += "Please enter a valid email!";
+                $scope.showWarning = true;
+            }
         };
 
         // Function that returns true/false if we are currently logging in.
         $scope.isLoggingIn = function(){
-        	//Add to div that we want to show on start: "isLoggingIn()"
         	return LoginService.inLoginState();
         };
 
         // Function that returns true/false if we are currently registating
         $scope.isRegistering = function(){
-        	//Add to div that we want to HIDE on start: ng-hide="isRegistering())"
         	return LoginService.inRegisterState();
+        }
+
+        // Function that returns true/false if we are currently getting our password
+        $scope.isRetreivingPassword = function(){
+            return LoginService.inForgotPasswordState();
         }
     });

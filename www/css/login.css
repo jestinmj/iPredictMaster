@@ -15,13 +15,40 @@
 	margin-top:5%;
 }
 
+.forgotPasswordColumn {
+	vertical-align: middle;
+	margin-left: 20%;
+	margin-right: 20%;
+
+	margin-top:5%;
+}
+
+.register_importantNotice {
+	vertical-align: left;
+	color: black;
+	margin-top:5%;
+	margin-bottom:5%;
+}
+
+.info_Info {
+	vertical-align: left;
+	color: #7e7e7e;
+	margin-bottom:5%;
+}
+
+.info_Header {
+	vertical-align: middle;
+	color:#7e7e7e;
+	font-weight: bold;
+}
+
 .viewContracts{
 	width: 100%;
 }
 
 .loginTitle {
-	min-width: 25%;
-	width: 25%;
+	min-width: 200px;
+	width: 40%;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
@@ -38,17 +65,14 @@
 	position: relative;
 }
 
-.user{
+
+.email{
 	margin-bottom: 20px;
-	border-color: red;
+
 }
 
-.pass{
-	margin-top: 50px;
-}
 
 .temp{
-	margin-top: 50px;
 	border-radius: 15px 15px 15px 15px;
 }
 
@@ -101,7 +125,7 @@
 }
 
 .checkbox{
-	margin-top: 30px;
+	margin-bottom: 30px;
 	margin-left: -12px;
 
 
@@ -129,7 +153,7 @@
 {
 	border-radius: 5px 5px 5px  5px;
 	background: white;
-	color: blue;
+	color: #428BCA;
 	font-family: Sans-serif;
 	font-size: 2vw;
 	min-width: 60%;
@@ -144,9 +168,9 @@
 {
 	border-radius: 5px 5px 5px  5px;
 	background: white;
-	color: blue;
+	color: #428BCA;
 	font-family: Sans-serif;
-	font-size: 2vw;
+	font-size: calc(vmax);
 	min-width: 60%;
 	height: 20%;
 	line-height: 60px;
@@ -159,13 +183,28 @@
 {
 	border-radius: 5px 5px 5px  5px;
 	background: white;
-	color: blue;
+	color: #428BCA;
 	font-family: Sans-serif;
-	font-size: 2vw;
+	font-size: calc(vmax);
 	min-width: 60%;
 	height: 20%;
 	line-height: 60px;
 	
 	text-align: left;
+	border: 0;
+}
+
+.iforgotMyPassword_SendButton
+{
+	border-radius: 5px 5px 5px  5px;
+	background: #428BCA;
+	color: #fff;
+	font-family: Sans-serif;
+	font-size: 20px;
+	height: 60%;
+	width:100%;
+	line-height: 60px;
+	
+	text-align: center;
 	border: 0;
 }
