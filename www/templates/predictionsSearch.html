@@ -46,13 +46,6 @@
 <ion-modal-view style="height: 100%;">
 
     <div style="height: 60px;">
-        <!--<div class="list list-inset">-->
-            <!--<label class="item item-input" style="border-radius: 30px">-->
-                <!--<i class="icon ion-search placeholder-icon"></i>-->
-                <!--<input type="text" placeholder="Search" ng-model="predic.searchInput" ng-change="updateSearch()">-->
-            <!--</label>-->
-        <!--</div>-->
-
 
         <div class="toggleContainer">
             <div class="toggleButton"
@@ -68,20 +61,26 @@
         </div>
     </div>
 
-    <div style="height: 85%; position: relative;">
+    <div style="height: 95%; position: relative;">
         <ion-content scroll="true" style="margin-bottom: 80px">
 
             <div class="list" ng-show="predic.selectedToggle === 'browse'">
-                <div class="item item-button-right" ng-repeat="category in browseOptions">
-                    <h3>{{category.title}}</h3>
+                <div class="item item-button-right"
+                     ng-repeat="category in browseOptions"
+                     ng-click="toggleFilterSelector($index)">
+                    <h3 ng-show="!filterIsSelected($index)">{{category.title}}</h3>
+                    <h3 ng-show="filterIsSelected($index)"><b>{{category.title}}</b></h3>
                     <button class="button button-clear">
-                        <i class="icon ion-chevron-right"></i>
+                        <i class="icon ion-ios-checkmark-outline" ng-show="!filterIsSelected($index)"></i>
+                        <i class="icon ion-ios-checkmark" ng-show="filterIsSelected($index)"></i>
                     </button>
                 </div>
             </div>
 
             <div class="list" ng-show="predic.selectedToggle === 'sortBy'">
-                <div class="item item-button-right" ng-repeat="sortOption in sortByOptions">
+                <div class="item item-button-right"
+                     ng-repeat="sortOption in sortByOptions"
+                     ng-click="sortBy($index)">
                     <h3>{{sortOption.title}}</h3>
                     <button class="button button-clear">
                         <i class="icon ion-chevron-right"></i>
@@ -93,8 +92,8 @@
     </div>
 
     <div class="bar bar-footer" style="z-index: 10000; background-color: #1976D2">
-        <button class="button button-clear" id="cancelButton" ng-click="closeModal()">
-            CANCEL
+        <button class="button button-clear" id="cancelButton" ng-click="refilterPredictions()">
+            CLOSE
         </button>
     </div>
 
