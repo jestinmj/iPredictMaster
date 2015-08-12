@@ -60,9 +60,9 @@
 	font-family: Sans-serif;
 	font-size: 20px;
 	height: 60%;
-	width:70%;
+	width:100%;
 	line-height: 60px;
-	margin: 25px 25px;
+	
 	text-align: center;
 	border: 0;
 
@@ -72,14 +72,15 @@
 .btn_place{
 
 	margin-top: 0%;
-	margin-left: 20%;
+	
 
 }
 
 .btn_place2{
 
 	margin-top: 0%;
-	margin-left: 20%;
+	margin-bottom: 20px;
+	
 
 }
 
@@ -91,9 +92,9 @@
 	font-family: Sans-serif;
 	font-size: 20px;
 	height: 60%;
-	width:70%;
+	width:100%;
 	line-height: 60px;
-	margin: 25px 25px;
+	
 	text-align: center;
 	border: 0;
 
@@ -122,4 +123,49 @@
 
 .remove-border{
 	border:5px solid white;
+}
+
+.Already_have_an_account_button
+{
+	border-radius: 5px 5px 5px  5px;
+	background: white;
+	color: blue;
+	font-family: Sans-serif;
+	font-size: 2vw;
+	min-width: 60%;
+	height: 20%;
+	line-height: 60px;
+	
+	text-align: left;
+	border: 0;
+}
+
+.I_forgot_my_password_button
+{
+	border-radius: 5px 5px 5px  5px;
+	background: white;
+	color: blue;
+	font-family: Sans-serif;
+	font-size: 2vw;
+	min-width: 60%;
+	height: 20%;
+	line-height: 60px;
+	
+	text-align: left;
+	border: 0;
+}
+
+.I_dont_have_an_account_button
+{
+	border-radius: 5px 5px 5px  5px;
+	background: white;
+	color: blue;
+	font-family: Sans-serif;
+	font-size: 2vw;
+	min-width: 60%;
+	height: 20%;
+	line-height: 60px;
+	
+	text-align: left;
+	border: 0;
 }
