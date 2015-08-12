@@ -4,26 +4,45 @@ angular.module('app.services.login', [])
         var PASSWORD_MAXCAPITALLETTERS = 2;
         var PASSWORD_MAXNUMBERS = 2;
 
-        var IsLoginHidden = false;
-        var IsRegisterHidden = true;
+        // Possible states for the page to be in
+        var STATES_LOGIN = 1;
+        var STATES_REGISTER = 2;
+        var STATES_FORGOTPASSWORD = 3;
+
+        // Which state the page is currently in ( login/register/forgotpassword )
+        var state = STATES_LOGIN;
 
         var serviceFunctions = {
 
             // Checks if we are currently in the login state
             inLoginState: function(){
-                return !IsLoginHidden;
+                return (state === STATES_LOGIN);
+            },
+
+            reset: function(){
+                console.log("RESET");
             },
 
             // Checks if we are currently registering
             inRegisterState: function(){
-                return !IsRegisterHidden;
+                return (state === STATES_REGISTER);
             },
 
-            // Swap between login and register
-            toggleState: function(){
-                IsLoginHidden = !IsLoginHidden;
-                IsRegisterHidden = !IsRegisterHidden;
-                //console.log("Toggled State to IsLoginHidden=" + IsLoginHidden + ", IsRegisterHidden=" + IsRegisterHidden);
+            // Checks if we are currently registering
+            inForgotPasswordState: function(){
+                return (state === STATES_FORGOTPASSWORD);
+            },
+
+            toggleRegisterState: function(){
+                state = STATES_REGISTER;
+            },
+
+            toggleLoginState: function(){
+                state = STATES_LOGIN;
+            },
+
+            toggleForgotPasswordState: function(){
+                state = STATES_FORGOTPASSWORD;
             },
 
             // Check if the given email is valid

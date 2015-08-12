@@ -2,21 +2,23 @@ angular.module('app.controllers.login', [])
 
     .controller('LoginCtrl', function($scope, LoginService) {
 
-        $scope.details_username = ''; // Add ng-model="details_username" to textfield
-        $scope.details_password = ''; // Add ng-model="details_passworde" to textfield
+        $scope.showWarning = false;
+        $scope.warningMessage = '';
+
+        // Login
         $scope.details_rememberme = false; // Add ng-model="details_rememberme" to checkbox
 
-        // TODO
-        // Get Email working
+        // Login & Register
+        $scope.details_username = ''; // Add ng-model="details_username" to textfield
+        $scope.details_password = ''; // Add ng-model="details_passworde" to textfield
+
+        // Register
         $scope.details_email = '';
         $scope.details_acceptTerms = false;
         $scope.details_passwordconfirm = ""; // Modify login.html to use this!
 
-        $scope.showWarning = false;
-        $scope.warningMessage = '';
-        // Add information on registration
-        // password restrictions
-        // place to display errors
+        // I Forgot my password
+        $scope.details_forgotmypassword_email = '';
 
 		$scope.login = function(){
             //console.log("Logging in...")
@@ -60,10 +62,13 @@ angular.module('app.controllers.login', [])
             if( $scope.checkPasswordValidity($scope.details_password) == false){
                 // Passwords are not equal
                 invalid.push(INVALID_PASSWORDS_INVALID);
+                console.log("Invalid Password: " + $scope.details_password);
             }
-            else if( $scope.details_password != $scope.details_passwordconfirm ){
+            if( $scope.details_password != $scope.details_passwordconfirm ){
                 // Passwords are not equal
                 invalid.push(INVALID_PASSWORDS_UNMATCH);
+
+                console.log("Unmatching Passwords: " + $scope.details_password + " " + $scope.details_passwordconfirm);
             }
 
             // Check emails
@@ -88,23 +93,26 @@ angular.module('app.controllers.login', [])
                         $scope.warningMessage += '\n';
                     }
 
-                    var warning;
+                    // Warning message for THIS error
+                    var warning = "";
                     if( invalid[i] == INVALID_ACCEPT_TERMS ){
                         warning = "You must accept the terms and conditions before continuing!"; 
                     }
-                    else if( invalid[i] == INVALID_PASSWORDS_UNMATCH ){
+                    if( invalid[i] == INVALID_PASSWORDS_UNMATCH ){
                         warning = "The passwords do not match!";
                     }
-                    else if( invalid[i] == INVALID_USERNAME ){
+                    if( invalid[i] == INVALID_USERNAME ){
                         warning = "That username is already being used!";
                     }
-                    else if( invalid[i] == INVALID_PASSWORDS_INVALID ){
+                    if( invalid[i] == INVALID_PASSWORDS_INVALID ){
                         warning = "Password must reach these requirements:\n";
                         var rules = $scope.getRulesForPasswordAsString();
                         warning += rules;
                     }
 
-                    $scope.warningMessage += (i+1) + ". " + warning;
+                    if( warning != "" ){
+                        $scope.warningMessage += (i+1) + ". " + warning;
+                    }
                 }
                 //console.log("Final Warning: " + $scope.warningMessage);
 
@@ -143,19 +151,47 @@ angular.module('app.controllers.login', [])
             return LoginService.checkPasswordValidity(pass);
         };
 
-        $scope.changeStateButtonPressed = function(){
-            LoginService.toggleState();
+        $scope.changeToLogin = function(){
+            LoginService.toggleLoginState();
+        };
+
+        $scope.changeToRegister = function(){
+            LoginService.toggleRegisterState();
+        };
+
+        $scope.changeToForgotPassword = function(){
+            LoginService.toggleForgotPasswordState();
+        };
+
+        $scope.retrievePassword = function(){
+            // User has asked to retrieve their password by going
+            //    to "I forgot my password" and have types in their password
+            //    then pressed "send"
+
+                        
+            // Email given to retriev password
+            var email = $scope.details_forgotmypassword_email;
+
+
+            if( !checkEmailValidity(email) ){
+                $scope.warningMessage = "WARNING! There are errors in your form!" + '\n';
+                $scope.warningMessage += "Please enter a valid email!";
+                $scope.showWarning = true;
+            }
         };
 
         // Function that returns true/false if we are currently logging in.
         $scope.isLoggingIn = function(){
-        	//Add to div that we want to show on start: "isLoggingIn()"
         	return LoginService.inLoginState();
         };
 
         // Function that returns true/false if we are currently registating
         $scope.isRegistering = function(){
-        	//Add to div that we want to HIDE on start: ng-hide="isRegistering())"
         	return LoginService.inRegisterState();
+        }
+
+        // Function that returns true/false if we are currently getting our password
+        $scope.isRetreivingPassword = function(){
+            return LoginService.inForgotPasswordState();
         }
     });
