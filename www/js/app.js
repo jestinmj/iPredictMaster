@@ -9,8 +9,11 @@ angular.module('app', [
   'app.controllers.contract',
   'app.controllers.aboutUs',
   'app.controllers.rankings',
+  'app.controllers.termsOfService',
+  'app.controllers.trade',
   'app.services.predictions',
   'app.services.login'
+
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -72,6 +75,25 @@ angular.module('app', [
         controller: 'RankingsCtrl'
        }
      }
+  })
+
+  .state('app.trade', {
+      url: '/trade',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/trade.html',
+              controller: 'TradeCtrl'
+          }
+      }
+  })
+  .state('app.termsOfService', {
+      url: '/termsOfService',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/termsOfService.html',
+              controller: 'TermsOfServiceCtrl'
+          }
+      }
   })
 
   .state('app.aboutUs', {
