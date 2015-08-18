@@ -8,6 +8,7 @@ angular.module('app', [
   'app.controllers.menu',
   'app.controllers.contract',
   'app.controllers.aboutUs',
+  'app.controllers.rankings',
   'app.services.predictions',
   'app.services.login'
 ])
@@ -61,6 +62,16 @@ angular.module('app', [
         controller: 'ContractCtrl'
       }
     }
+  })
+
+  .state('app.rankings', {
+     url: '/rankings',
+     views: {
+        'menuContent': {
+        templateUrl: 'templates/rankings.html',
+        controller: 'RankingsCtrl'
+       }
+     }
   })
 
   .state('app.aboutUs', {

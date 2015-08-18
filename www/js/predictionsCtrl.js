@@ -1,6 +1,6 @@
 angular.module('app.controllers.predictions', ['ionic'])
 
-    .controller('PredictionsCtrl', function($scope, $ionicModal, PredictionsService) {
+    .controller('PredictionsCtrl', function($scope, $ionicModal, PredictionsService, $http, $rootScope) {
 
         $scope.predic = {
             searchInput: "",
@@ -49,6 +49,13 @@ angular.module('app.controllers.predictions', ['ionic'])
             { title: "All" }
         ];
 
+        $scope.categories = [];
+
+        $scope.allPredictions = [];
+        $scope.filteredPredictions = [];
+        $scope.refinedPredictions = [];
+        $scope.predictionsLoaded = false;
+
 
         $scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
 
@@ -57,6 +64,33 @@ angular.module('app.controllers.predictions', ['ionic'])
             $scope.predic.selectedToggle = changeTo;
         };
 
+        $scope.sortBy = function(index){
+            console.log($scope.sortByOptions[index].title);
+            $scope.closeModal();
+        };
+
+        $scope.filterIsSelected = function(index){
+            if ($scope.predic.selectedFilters.indexOf(index) !== -1){
+                return true;
+            }
+            return false;
+        };
+
+        $scope.toggleFilterSelector = function(index){
+            var indexOfVal = $scope.predic.selectedFilters.indexOf(index);
+
+            if (indexOfVal === -1){
+                $scope.predic.selectedFilters.push(index);
+            }
+            else {
+                $scope.predic.selectedFilters.splice(indexOfVal, 1);
+            }
+        };
+
+        $scope.refilterPredictions = function(){
+            $scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
+            $scope.closeModal();
+        };
 
         $scope.sortBy = function(index){
             console.log($scope.sortByOptions[index].title);
@@ -88,54 +122,178 @@ angular.module('app.controllers.predictions', ['ionic'])
         };
 
 
-        $scope.addPrediction = function(){
-            var val = parseInt(Math.random() * 100);
+        //$scope.addPrediction = function() {
+        //    var val = parseInt(Math.random() * 100);
+        //
+        //    var newPrediction = {
+        //        title: "New Prediction " + val,
+        //        value: val
+        //    };
+        //    PredictionsService.addPrediction(newPrediction);
+        //}
 
-            var newPrediction = {
-                title: "New Prediction " + val,
-                value: val
-            };
-            PredictionsService.addPrediction(newPrediction);
-        };
+
+
+        //$scope.searchPredictions = function(){
+        //    if ($scope.predic.searchInput === ""){
+        //        $scope.filteredPredictions = $scope.allPredictions.splice(0, 10);
+        //        $scope.setupStocksForCards();
+        //        return;
+        //    }
+        //
+        //    //var searchTerms = $scope.predic.searchInput.toLowerCase().split(" ");
+        //    var searchTerm = $scope.predic.searchInput.toLowerCase();
+        //
+        //    //var predictionsToSearch = [];
+        //    //for (var i = 0; i < $scope.filteredPredictions.length; i++){
+        //    //    predictionsToSearch.push($scope.filteredPredictions[i].title.toLowerCase().split(" "));
+        //    //}
+        //    var predictionsToSearch = [];
+        //    for (var i = 0; i < $scope.filteredPredictions.length; i++){
+        //        predictionsToSearch.push($scope.filteredPredictions[i].title.toLowerCase());
+        //    }
+        //
+        //    //var foundBySearch = [];
+        //    //for (var i = 0; i < predictionsToSearch.length; i++){
+        //    //    for (var j = 0; j < searchTerms.length; j++){
+        //    //        for (var k = 0; k < predictionsToSearch[i].length; k++){
+        //    //            if (predictionsToSearch[i][k].indexOf(searchTerms[j]) !== -1){
+        //    //                foundBySearch.push($scope.filteredPredictions[i]);
+        //    //                break; break;
+        //    //            }
+        //    //        }
+        //    //    }
+        //    //}
+        //    var foundBySearch = [];
+        //    for (var i = 0; i < predictionsToSearch.length; i++){
+        //        if (predictionsToSearch[i].indexOf(searchTerm) !== -1){
+        //            foundBySearch.push($scope.filteredPredictions[i]);
+        //        }
+        //    }
+        //
+        //    $scope.filteredPredictions = foundBySearch;
+        //};
+
 
         $scope.searchPredictions = function(){
             if ($scope.predic.searchInput === ""){
-                $scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
+                $scope.filteredPredictions = $scope.allPredictions.slice(0, 10);
+                $scope.setupPredictionsForCards();
                 return;
             }
 
-            //var searchTerms = $scope.predic.searchInput.toLowerCase().split(" ");
             var searchTerm = $scope.predic.searchInput.toLowerCase();
 
-            //var predictionsToSearch = [];
-            //for (var i = 0; i < $scope.filteredPredictions.length; i++){
-            //    predictionsToSearch.push($scope.filteredPredictions[i].title.toLowerCase().split(" "));
-            //}
-            var predictionsToSearch = [];
-            for (var i = 0; i < $scope.filteredPredictions.length; i++){
-                predictionsToSearch.push($scope.filteredPredictions[i].title.toLowerCase());
+            var predictionTitlesToSearch = [];
+            for (var i = 0; i < $scope.allPredictions.length; i++){
+                predictionTitlesToSearch.push($scope.allPredictions[i].contractDetails.shortDesc.toLowerCase());
             }
 
-            //var foundBySearch = [];
-            //for (var i = 0; i < predictionsToSearch.length; i++){
-            //    for (var j = 0; j < searchTerms.length; j++){
-            //        for (var k = 0; k < predictionsToSearch[i].length; k++){
-            //            if (predictionsToSearch[i][k].indexOf(searchTerms[j]) !== -1){
-            //                foundBySearch.push($scope.filteredPredictions[i]);
-            //                break; break;
-            //            }
-            //        }
-            //    }
-            //}
             var foundBySearch = [];
-            for (var i = 0; i < predictionsToSearch.length; i++){
-                if (predictionsToSearch[i].indexOf(searchTerm) !== -1){
-                    foundBySearch.push($scope.filteredPredictions[i]);
+            for (var i = 0; i < predictionTitlesToSearch.length; i++){
+                if (predictionTitlesToSearch[i].indexOf(searchTerm) !== -1){
+                    foundBySearch.push($scope.allPredictions[i]);
                 }
             }
 
             $scope.filteredPredictions = foundBySearch;
+            $scope.setupPredictionsForCards();
         };
+
+        $scope.loadMorePredictionCards = function(){
+            var listLength = $scope.refinedPredictions.length;
+            for (var i = listLength; i < (listLength + 10); i++){
+                $scope.filteredPredictions.push($scope.allPredictions[i]);
+            }
+            $scope.setupPredictionsForCards();
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+        };
+
+
+
+
+        $scope.setupPredictionsForCards = function(){
+            var getChangeType = function(change){
+                change = parseFloat(change);
+                if (change < 0){ return "neg"; }
+                else if (change > 0){ return "pos"; }
+                else { return "none"; }
+            };
+
+            var calculateChangePercentage = function(price, change){
+                price = parseFloat(price);
+                change = parseFloat(change);
+                var initialPrice = price - change;
+                return Math.abs(price / (initialPrice / 100) - 100).toFixed(2);
+            };
+
+            $scope.refinedPredictions = [];
+            for (var i = 0; i < $scope.filteredPredictions.length; i++){
+                var stock = $scope.filteredPredictions[i];
+                var stats = {
+                    title: stock.contractDetails.shortDesc,
+                    price: parseFloat(stock.bid).toFixed(2),
+                    change: parseFloat(stock.todaysChange).toFixed(2),
+                    changeType: getChangeType(stock.todaysChange),
+                    probability: parseFloat((stock.bid) * 100).toFixed(1),
+                    highestBuy: stock.bid,
+                    lowestSell: stock.ask,
+                    category : 0,
+                    img: stock.contractDetails.imageName,
+                    imgPlaceholder: "test1"
+                }
+
+                if (stats.title.length > 70){
+                    stats.title = stats.title.substr(0, 70) + "...";
+                }
+
+                var changePercent = calculateChangePercentage(stats.price, stock.todaysChange);
+                stats.change = Math.abs(parseFloat(stats.change)) + " (" + changePercent + "%)";
+                if (stats.change === "0 (0.00%)"){ stats.change = "NC (0.00%)" }
+
+                $scope.refinedPredictions.push(stats);
+            }
+        };
+
+        //$scope.searchPredictions = function(){
+        //    if ($scope.predic.searchInput === ""){
+        //        $scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
+        //        return;
+        //    }
+        //
+        //    //var searchTerms = $scope.predic.searchInput.toLowerCase().split(" ");
+        //    var searchTerm = $scope.predic.searchInput.toLowerCase();
+        //
+        //    //var predictionsToSearch = [];
+        //    //for (var i = 0; i < $scope.filteredPredictions.length; i++){
+        //    //    predictionsToSearch.push($scope.filteredPredictions[i].title.toLowerCase().split(" "));
+        //    //}
+        //    var predictionsToSearch = [];
+        //    console.log($scope.filteredPredictions[0]);
+        //    for (var i = 0; i < $scope.filteredPredictions.length; i++){
+        //        predictionsToSearch.push($scope.filteredPredictions[i].contractDetails.shortDesc.toLowerCase());
+        //    }
+        //
+        //    //var foundBySearch = [];
+        //    //for (var i = 0; i < predictionsToSearch.length; i++){
+        //    //    for (var j = 0; j < searchTerms.length; j++){
+        //    //        for (var k = 0; k < predictionsToSearch[i].length; k++){
+        //    //            if (predictionsToSearch[i][k].indexOf(searchTerms[j]) !== -1){
+        //    //                foundBySearch.push($scope.filteredPredictions[i]);
+        //    //                break; break;
+        //    //            }
+        //    //        }
+        //    //    }
+        //    //}
+        //    var foundBySearch = [];
+        //    for (var i = 0; i < predictionsToSearch.length; i++){
+        //        if (predictionsToSearch[i].indexOf(searchTerm) !== -1){
+        //            foundBySearch.push($scope.filteredPredictions[i]);
+        //        }
+        //    }
+        //
+        //    $scope.filteredPredictions = foundBySearch;
+        //};
 
 
 
@@ -163,4 +321,22 @@ angular.module('app.controllers.predictions', ['ionic'])
         $scope.$on('modal.removed', function() {
             // Execute action
         });
+
+
+
+        $rootScope.$on("predictionsUpdated", function(){
+            $scope.allPredictions = PredictionsService.getPredictions();
+            $scope.filteredPredictions = $scope.allPredictions.slice(0, 10);
+            $scope.setupPredictionsForCards();
+            $scope.predictionsLoaded = true;
+        });
+
+        $rootScope.$on("categoriesUpdated", function(){
+            $scope.categories = PredictionsService.getCategories();
+        });
+
+
+        PredictionsService.requestAllPredictions();
+        PredictionsService.requestAllCategories();
+
     });

@@ -7,7 +7,14 @@
     }
 
     #searchBar {
-        /*border-radius: 60px;*/
+        background-color: rgba(0,0,0,0);
+        margin: 10px;
+    }
+
+    .spinner svg {
+        width: 100%;
+        height: 50px;
+        margin-top: 100px;
         background-color: rgba(0,0,0,0);
     }
 </style>
@@ -15,50 +22,66 @@
 <ion-view title="Predictions">
     <ion-content style="background-color: #e5e5e5; bottom: 44px;">
 
-        <div class="list list-inset card" id="searchBar">
+        <div class="card" id="searchBar">
             <form class="item item-input" ng-submit="searchPredictions()">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" placeholder="Search" ng-model="predic.searchInput" ng-change="searchPredictions()">
+                <input type="text" placeholder="Search" ng-model="predic.searchInput" ng-submit="searchPredictions()">
             </form>
         </div>
 
-        <div class="card" style="margin: 10px;" ng-repeat="pred in filteredPredictions">
-            <div class="item">
-                <div class="predCardUpper">
-                    <div class="predCardImageContainer">
-                        <img class="predCardImage" ng-src="img/{{pred.img}}.png">
+        <ion-spinner class="predictionsLoading" ng-hide="predictionsLoaded"></ion-spinner>
+
+        <ion-list>
+
+            <div class="card" style="margin: 10px;" ng-repeat="pred in refinedPredictions">
+                <div class="item">
+
+                    <div class="predCardUpper">
+                        <div class="predCardImageContainer">
+                            <img class="predCardImage" ng-src="img/{{pred.imgPlaceholder}}.png">
+                        </div>
+                        <div class="predCardImageTitle">
+                            <label class="predCardTitle"><b>{{pred.title}}</b></label>
+                        </div>
                     </div>
-                    <div class="predCardImageTitle">
-                        <label class="predCardTitle"><b>{{pred.title}}</b></label>
+
+                    <div class="predCardLower">
+                        <div class="predCardStat">
+                            <label style="font-size: 22px"><b>${{pred.price}}</b></label>
+                        </div>
+                        <div class="predCardStat" style="margin-left: 10px;">
+                            <label class="ion-arrow-up-a" style="color: #689F38;" ng-show="pred.changeType === 'pos'">
+                                ${{pred.change}}
+                            </label>
+                            <label style="color: #455A64;" ng-show="pred.changeType === 'none'">
+                                {{pred.change}}
+                            </label>
+                            <label class="ion-arrow-down-a" style="color: #D32F2F;" ng-show="pred.changeType === 'neg'">
+                                ${{pred.change}}
+                            </label>
+                        </div>
+                        <div class="predCardStat" style="width: 30%; float: right;">
+                            <label>Prob: {{pred.probability}}%</label>
+                        </div>
+                        <div class="predCardStat" style="width: 50%;">
+                            <label>Highest Buy: ${{pred.highestBuy}}</label>
+                        </div>
+                        <div class="predCardStat" style="width: 50%;">
+                            <label>Lowest Sell: ${{pred.lowestSell}}</label>
+                        </div>
                     </div>
-                </div>
-                <div class="predCardLower">
-                    <div class="predCardStat">
-                        <label style="font-size: 22px"><b>${{pred.price}}</b></label>
-                    </div>
-                    <div class="predCardStat" style="margin-left: 10px;">
-                        <label class="ion-arrow-up-a" style="color: #689F38;" ng-show="pred.changeType === 'pos'">
-                            ${{pred.change}}
-                        </label>
-                        <label style="color: #455A64;" ng-show="pred.changeType === 'none'">
-                            {{pred.change}}
-                        </label>
-                        <label class="ion-arrow-down-a" style="color: #D32F2F;" ng-show="pred.changeType === 'neg'">
-                            ${{pred.change}}
-                        </label>
-                    </div>
-                    <div class="predCardStat" style="width: 30%; float: right;">
-                        <label>Prob: {{pred.probability}}%</label>
-                    </div>
-                    <div class="predCardStat" style="width: 50%;">
-                        <label>Highest Buy: ${{pred.highestBuy}}</label>
-                    </div>
-                    <div class="predCardStat" style="width: 50%;">
-                        <label>Lowest Sell: ${{pred.lowestSell}}</label>
-                    </div>
+
                 </div>
             </div>
-        </div>
+
+        </ion-list>
+
+        <ion-infinite-scroll
+                ng-if="predictionsLoaded"
+                on-infinite="loadMorePredictionCards()"
+                distance="1%">
+        </ion-infinite-scroll>
+
 
     </ion-content>
 

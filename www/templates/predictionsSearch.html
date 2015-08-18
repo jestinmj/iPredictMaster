@@ -66,10 +66,10 @@
 
             <div class="list" ng-show="predic.selectedToggle === 'browse'">
                 <div class="item item-button-right"
-                     ng-repeat="category in browseOptions"
+                     ng-repeat="category in categories"
                      ng-click="toggleFilterSelector($index)">
-                    <h3 ng-show="!filterIsSelected($index)">{{category.title}}</h3>
-                    <h3 ng-show="filterIsSelected($index)"><b>{{category.title}}</b></h3>
+                    <h3 ng-show="!filterIsSelected($index)">{{category.name}}</h3>
+                    <h3 ng-show="filterIsSelected($index)"><b>{{category.name}}</b></h3>
                     <button class="button button-clear">
                         <i class="icon ion-ios-checkmark-outline" ng-show="!filterIsSelected($index)"></i>
                         <i class="icon ion-ios-checkmark" ng-show="filterIsSelected($index)"></i>

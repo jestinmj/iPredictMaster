@@ -1,12 +1,5 @@
 <style>
 
-    .portfolio_tiles{
-        margin: 0;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-    }
-
     .custom_col{
         position: relative;
     }
@@ -14,36 +7,6 @@
     .customSpan{
         font-style: italic;
         font-size: 4vw;
-    }
-
-    .well{
-        background-color: #cccccc;
-        stroke-opacity: 50;
-    }
-
-    .lightWell{
-        margin-top:2px;
-        background-color: #ffffff;
-        stroke-opacity: 50;
-        border-radius: 10px;
-    }
-
-    .tile-value{
-        padding: 5%;
-    }
-
-    #tile-title{
-        padding: 5%;
-        background-color: #007aff;
-    }
-
-    #rank-num, #worth-num, #port-num{
-        background-color: #33cd5f;
-    }
-
-    #line{
-        margin: 2%;
-        padding-right: 5%;
     }
 
 </style>
@@ -105,12 +68,12 @@
                 <div class="card">
                     <span class="customSpan">Contact Us</span>
                     <label class="item item-input">
-                        <input type="text" placeholder="Name">
+                        <input type="text" ng-model="subName" placeholder="Name">
                     </label>
                     <label class="item item-input">
-                        <input type="text" placeholder="Message">
+                        <input type="text" ng-model="subMsg" placeholder="Message">
                     </label>
-                    <button class="button button-block button-stable">
+                    <button class="button button-block button-stable" ng-click="onClickSubmit()">
                         Submit
                     </button>
                 </div>

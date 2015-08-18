@@ -1,0 +1,98 @@
+<style>
+
+    .mod{
+        margin-top: 0px;
+        margin-bottom: 0px;
+        width: 100%;
+    }
+    .customSpan{
+        font-style: italic;
+        font-size: 4vw;
+    }
+
+    .example-animate-container {
+        background:white;
+        border:1px solid black;
+        list-style:none;
+        margin:0;
+        padding:0 10px;
+    }
+
+    .animate-repeat {
+        line-height:40px;
+        list-style:none;
+        box-sizing:border-box;
+    }
+
+    .animate-repeat.ng-move,
+    .animate-repeat.ng-enter,
+    .animate-repeat.ng-leave {
+        -webkit-transition:all linear 0.5s;
+        transition:all linear 0.5s;
+    }
+
+    .animate-repeat.ng-leave.ng-leave-active,
+    .animate-repeat.ng-move,
+    .animate-repeat.ng-enter {
+        opacity:0;
+        max-height:0;
+    }
+
+    .animate-repeat.ng-leave,
+    .animate-repeat.ng-move.ng-move-active,
+    .animate-repeat.ng-enter.ng-enter-active {
+        opacity:1;
+        max-height:40px;
+    }
+
+</style>
+
+<ion-view title="Rankings">
+    <ion-content>
+        <div class="container">
+            <div class="card">
+
+                <span class="customSpan"> Top {{traders.length}} Traders & Their Current Rankings</span>
+                <ng-md-icon icon="trending_up" style="fill: #abcdef" size="20"></ng-md-icon>
+                <input type="search" ng-model="q" placeholder="Filter Traders..." aria-label="filter traders" />
+                <ul class="example-animate-container">
+
+                    <li class="animate-repeat" ng-repeat="trader in traders | filter:q as results" >
+
+                        <div class="row">
+
+                            <div class="card mod">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row">
+                                            [{{$index + 1}}] {{trader.name}}
+                                        </div>
+                                        <div class="row">
+                                            Amount: +{{trader.amount}}%
+                                        </div>
+                                    </div>
+
+                                    <div class="col">
+                                        <div class="row">
+                                            Prev Rank: {{trader.prevRank}}
+                                        </div>
+                                        <div class="row">
+                                            Country: {{trader.country}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="animate-repeat" ng-if="results.length == 0">
+                        <strong>No results found...</strong>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+

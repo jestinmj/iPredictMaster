@@ -1,9 +1,9 @@
 /**
  * Created by Jestin on 05-08-2015.
  */
-angular.module('app.controllers.aboutUs', ["chart.js"])
+angular.module('app.controllers.aboutUs', ["ionic"])
 
-    .controller('AboutUsCtrl', function($scope) {
+    .controller('AboutUsCtrl', function($scope, $ionicPopup, $timeout) {
 
         $scope.toggle={
             ownStock:true,
@@ -20,5 +20,12 @@ angular.module('app.controllers.aboutUs', ["chart.js"])
             changeInWallet:"NC",
             myPortfolio:7.39,
             changeInPortfolio:0.07
+        };
+
+        $scope.onClickSubmit=function(){
+            var alertPopup = $ionicPopup.alert({
+                title: 'Messsage Sent!!',
+                subTitle: 'Will get back to you soon <i class="icon ion-person-stalker"></i>'
+            });
         };
     });
