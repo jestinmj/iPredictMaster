@@ -1,8 +1,11 @@
 angular.module('app.services.login', [])
     .factory('LoginService', function(){
-        var PASSWORD_MAXCHARACTERS = 8;
-        var PASSWORD_MAXCAPITALLETTERS = 2;
-        var PASSWORD_MAXNUMBERS = 2;
+
+        // Password requirements
+        var PASSWORD_MAXCHARACTERS = 15;
+        var PASSWORD_MINCHARACTERS = 6;
+        var PASSWORD_MINLETTERS = 1;
+        var PASSWORD_MINNUMBERS = 1;
 
         // Possible states for the page to be in
         var STATES_LOGIN = 1;
@@ -19,10 +22,6 @@ angular.module('app.services.login', [])
                 return (state === STATES_LOGIN);
             },
 
-            reset: function(){
-                console.log("RESET");
-            },
-
             // Checks if we are currently registering
             inRegisterState: function(){
                 return (state === STATES_REGISTER);
@@ -33,14 +32,17 @@ angular.module('app.services.login', [])
                 return (state === STATES_FORGOTPASSWORD);
             },
 
+            // Displays the Register section
             toggleRegisterState: function(){
                 state = STATES_REGISTER;
             },
 
+            // Displays the Login section
             toggleLoginState: function(){
                 state = STATES_LOGIN;
             },
 
+            // Displays the I Forgot my password section
             toggleForgotPasswordState: function(){
                 state = STATES_FORGOTPASSWORD;
             },
@@ -75,87 +77,42 @@ angular.module('app.services.login', [])
                 return true;
             },
 
-            // Check if the given email is valid
-            checkPasswordValidity: function(password){
-                if( password == undefined ){
-                    return false;
-                }
-
-                if( password.length < PASSWORD_MAXCHARACTERS ){
-                    return false;
-                }
-
-                // Must have at least 2 capital letters
-                if( (password.split("/[A-Z]/").length-1) < PASSWORD_MAXCAPITALLETTERS ){
-                    return false;
-                }
-
-                // Must have at least 2 numbers
-                if( password.split("[0-9]").length-1 < PASSWORD_MAXNUMBERS ){
-                    return false;
-                }
-
-                return true;
-            },
-
+            //
+            // Checks the given password against our requirements
+            // Password is between 6-15 characters
+            // Contains 1 alpha-character
+            // Contains 1 number
+            //
             getPasswordRuleString: function(password){
+                
                 var rules = "";
 
-                if( password.length < PASSWORD_MAXCHARACTERS ){
-                    rules += "    - Password must be at least " + PASSWORD_MAXCHARACTERS + " characters in length. \n";
-                    //console.log("Failed length");
+                // Check password is within length requirements
+                if( password == undefined || password == ""){
+                    rules += "    - Password enter a password. \n";
+                }                
+                else if( password.length < PASSWORD_MINCHARACTERS ){
+                    rules += "    - Password must be at least " + PASSWORD_MINCHARACTERS + " characters in length. \n";
                 }
-                
-                var caps = 0;//$scope.countCaps(password);//password.split("[A-Z]");
-                var nums = 0;//$scope.countNumbers(password);//password.match(/(\d+)/g);
-
-                if( caps < PASSWORD_MAXCAPITALLETTERS ){
-                    rules += "    - Must have more than " + PASSWORD_MAXCAPITALLETTERS + " capital letters. \n";
-                    //console.log("Failed Caps: " + caps);
+                else if( password.length > PASSWORD_MAXCHARACTERS ){
+                    rules += "    - Password must be not exceed " + PASSWORD_MAXCHARACTERS + " characters in length. \n";
                 }
 
-                
-                if( nums < PASSWORD_MAXNUMBERS){
-                    rules += "    - Must have more than " + PASSWORD_MAXNUMBERS + " numbers.";
+                // Must have at least 1 letters in the password
+                var letters = password.replace(/[^A-Z]/gi, "");
+                var letterslength = letters.length-1;
+                if( letterslength < PASSWORD_MINLETTERS ){
+                    rules += "    - Password must contain at least " + PASSWORD_MINLETTERS + " letter. \n";
                 }
-                //console.log("Failed numbers: " + nums );
-                
+
+                // Must have at least 1 numbers in the password
+                var numbers = password.replace(/[^0-9]/gi, "");
+                var numberslength = numbers.length-1;
+                if( numberslength < PASSWORD_MINNUMBERS ){
+                    rules += "    - Password must contain at least " + PASSWORD_MINNUMBERS + " number. \n";
+                }                
                 
                 return rules;
-            },
-
-            countNumbers: function(sentence){
-                var count = 0;
-                for( var i = 0; i < sentence; i++){
-                    if( $scope.isInt(sentence[i]) ){
-                        count++;
-                    }
-                }
-                return count;
-            },
-            countCaps: function(sentence){
-                var count = 0;
-                for( var i = 0; i < sentence; i++){
-                    if( $scope.isLetter(sentence[i]) ){
-                        count++;
-                    }
-                }
-                return count;
-            },
-            isInt: function(value){
-                var x;
-                if (isNaN(value)) {
-                    return false;
-                }
-                x = parseFloat(value);
-                return (x | 0) === x;
-            },
-            isLetter: function(value){
-                var x = value.charCodeAt(0);
-                if( ((code >= 97) && (code <= 122)) ){
-                    return true;
-                }
-                return false;
             }
         }
 
