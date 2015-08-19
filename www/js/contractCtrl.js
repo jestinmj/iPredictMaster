@@ -5,15 +5,18 @@ angular.module('app.controllers.contract', ["chart.js"])
         $scope.contractDetails={
             title:"Title",
             subtitle:"Subtitle",
-            lastTradePrice:1.02,
-            lastTradeTime:18.02,
-            todaysVolume:1.00,
-            averageDailyVolume:2,
-            todaysChange:0.00,
-            status:"Live",
-            startDate:"00/00/00",
-            endDate:"99/99/99",
             description: "Contract Description"
+        };
+
+        $scope.infoCol={
+            content :[{title:"Last trade price", content:"$"+1.02},
+        {title:"Last trade time",content:"$"+18.02},
+        {title:"Todays Volume",content:1},
+        {title:"Average Daily Volume",content:2},
+        {title:"Todays Change",content:0},
+        {title:"status",content:"Live"},
+        {title:"Start Date",content:"00/00/00"},
+        {title:"End Date",content:"99/99/99"}]
         };
 
         $scope.topBuyOrders = ["1: $0.3591","2: $0.4534","1: $3.3934","1: $1.9832"];

@@ -79,54 +79,13 @@
             </div>
         </div>
 
-        <div class="details">
+        <div class="details" style="background-color: #fafafa;">
             <span class =customSpan style="margin-top:0px;">Contract information</span>
-            <div class="row">
-                <div class="col">
-                    <span class="customSpan">Last Trade Price</span>
-                    <span class="customSpan">${{contractDetails.lastTradePrice}}</span>
+            <div ng-repeat="card in infoCol.content">
+                <div class="customCol" style="height:10%; width: 50%; float: left">
+                    <span class="customSpan">{{card.title}}</span>
+                    <span class="customSpan">{{card.content}}</span>
                 </div>
-                <div class="col">
-                    <span class="customSpan">Last Trade Time</span>
-                    <span class="customSpan">${{contractDetails.lastTradeTime}}</span>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <span class="customSpan">Todays Volume</span>
-                    <span class="customSpan">{{contractDetails.todaysVolume}}</span>
-                </div>
-                <div class="col">
-                    <span class="customSpan">Average Daily Volume</span>
-                    <span class="customSpan">{{contractDetails.averageDailyVolume}}</span>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <span class="customSpan">Todays Change</span>
-                    <span class="customSpan">{{contractDetails.todaysChange}}</span>
-                </div>
-                <div class="col">
-                    <span class="customSpan">Status</span>
-                    <span class="customSpan">{{contractDetails.status}}</span>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <span class="customSpan">Start Date</span>
-                    <span class="customSpan">{{contractDetails.startDate}}</span>
-                </div>
-                <div class="col">
-                    <span class="customSpan">End Date</span>
-                    <span class="customSpan">{{contractDetails.endDate}}</span>
-                </div>
-            </div>
-            <div class="col">
-                <span class="customSpan">Long Description</span>
-                <span class="customSpan">{{contractDetails.description}}</span>
             </div>
             <div>
                 <span class="customSpan" style="margin:0px; background-color: #fafafa"> Stock History </span>
