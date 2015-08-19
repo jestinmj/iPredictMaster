@@ -1,83 +1,95 @@
 
-.loginColumn {
+.remember_me
+{
+	font-size: calc(vmax); 
+	color:#7e7e7e;
+}
+
+.loginColumn 
+{
 	vertical-align: middle;
 	margin-left: 20%;
 	margin-right: 20%;
-	
 	margin-top:5%;
 }
 
-.registerColumn {
+.registerColumn 
+{
 	vertical-align: middle;
 	margin-left: 20%;
 	margin-right: 20%;
-
 	margin-top:5%;
 }
 
-.forgotPasswordColumn {
+.forgotPasswordColumn 
+{
 	vertical-align: middle;
 	margin-left: 20%;
 	margin-right: 20%;
-
 	margin-top:5%;
 }
 
-.register_importantNotice {
+.register_importantNotice 
+{
 	vertical-align: left;
 	color: black;
-	margin-top:20%;
+	margin-top:5%;
 	margin-bottom:5%;
+	color: #7e7e7e;
 }
 
-.info_Info {
+.info_Info 
+{
 	vertical-align: left;
 	color: #7e7e7e;
 	margin-bottom:5%;
 }
 
-.info_Header {
+.info_Header 
+{
 	vertical-align: middle;
 	color:#7e7e7e;
 	font-weight: bold;
 }
 
-.viewContracts{
+.viewContracts
+{
 	width: 100%;
 }
 
-.loginTitle {
+.loginTitle 
+{
 	min-width: 200px;
 	width: 40%;
 	display: block;
 	margin-left: auto;
-	margin-right: auto;
-	
+	margin-right: auto;	
 }
 
-.warningSection{
+.warningSection
+{
 	color: black;
 	border-color: red;
 	background-color: pink;
 }
 
-.loginTitleDiv{
+.loginTitleDiv
+{
 	position: relative;
 }
 
-
-.email{
+.email
+{
 	margin-bottom: 20px;
-
 }
 
-
-.temp{
+.main_div
+{
 	border-radius: 15px 15px 15px 15px;
 }
 
-.L_btn{
-
+.Login_btn
+{
 	border-radius: 5px 5px 5px  5px;
 	background: #428BCA;
 	color: #fff;
@@ -86,30 +98,16 @@
 	height: 60%;
 	width:100%;
 	line-height: 60px;
-	
 	text-align: center;
-	border: 0;
-
-
 }
 
-.btn_place{
-
-	margin-top: 0%;
-	
-
-}
-
-.btn_place2{
-
-	margin-top: 0%;
+.Register_div
+{
 	margin-bottom: 20px;
-	
-
 }
 
-.R_btn {
-
+.Register_btn
+{
 	border-radius: 5px 5px 5px  5px;
 	background: #428BCA;
 	color: #fff;
@@ -118,82 +116,64 @@
 	height: 60%;
 	width:100%;
 	line-height: 60px;
-	
 	text-align: center;
-	border: 0;
-
 }
 
-.checkbox{
+.checkbox
+{
 	margin-bottom: 30px;
 	margin-left: -12px;
-
-
 }
 
-.link1{
-	display: inline-block;
-	float:left;
+.forgot_pass_div
+{		
+	width:80%;
+	margin-top:5%;
+	float: center;
 }
 
-.link1{
-	display: inline-block;
-	float:left;
+.sign_up_div
+{
+	width:50%;
+	margin-top:5%;
+	float: center;
 }
 
-.link2{
-	display: inline-block;
-	float:right;
-}
-
-.links{
-	margin-top:50px;
-}
-
-.remove-border{
+.remove-border
+{
 	border:5px solid white;
 }
 
-.Already_have_an_account_button
+.have_account
 {
-	background: white;
+	padding: 50px 50px 50px 0px;
 	color: #428BCA;
 	font-family: Sans-serif;
 	font-size: 1vmax;
 	line-height: 20px;
-
-	border: 0;
+	text-align: center;
+	margin-top: 10%;
 
 }
 
-.I_forgot_my_password_button
+.forgot_pass
 {
-	border-radius: 5px 5px 5px  5px;
-	background: white;
+	padding: 50px 50px 50px 0px;
 	color: #428BCA;
 	font-family: Sans-serif;
-	font-size: calc(vmax);
-	min-width: 60%;
-	height: 20%;
-	line-height: 60px;
-	
-	text-align: left;
-	border: 0;
+	font-size: 1vmax;
+	line-height: 20px;
+	text-align: center;	
 }
 
-.I_dont_have_an_account_button
+.sign_up
 {
-	border-radius: 5px 5px 5px  5px;
-	background: white;
+	padding: 50px 50px 50px 0px;
 	color: #428BCA;
 	font-family: Sans-serif;
-	font-size: calc(vmax);
-	min-width: 60%;
-	height: 20%;
-	line-height: 60px;
-	
-	text-align: left;
-	border: 0;
+	font-size: 1vmax;
+	line-height: 20px;
+	text-align: center;
 }
 
 .iforgotMyPassword_SendButton
@@ -206,7 +186,13 @@
 	height: 60%;
 	width:100%;
 	line-height: 60px;
-	
 	text-align: center;
-	border: 0;
+	border: 1;
+}
+
+.Terms_note
+{
+
+	font-size: 1vw;
+	color:#7e7e7e;
 }
