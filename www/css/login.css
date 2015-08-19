@@ -26,7 +26,7 @@
 .register_importantNotice {
 	vertical-align: left;
 	color: black;
-	margin-top:5%;
+	margin-top:20%;
 	margin-bottom:5%;
 }
 
@@ -136,6 +136,11 @@
 	float:left;
 }
 
+.link1{
+	display: inline-block;
+	float:left;
+}
+
 .link2{
 	display: inline-block;
 	float:right;
@@ -151,17 +156,14 @@
 
 .Already_have_an_account_button
 {
-	border-radius: 5px 5px 5px  5px;
 	background: white;
 	color: #428BCA;
 	font-family: Sans-serif;
-	font-size: 2vw;
-	min-width: 60%;
-	height: 20%;
-	line-height: 60px;
-	
-	text-align: left;
+	font-size: 1vmax;
+	line-height: 20px;
+
 	border: 0;
+
 }
 
 .I_forgot_my_password_button

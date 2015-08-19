@@ -8,7 +8,7 @@
           <img class ="loginTitle" src="img/ipredictLogoStroke.png">
         </div>
         <div style="font-weight:bold; color:#7e7e7e; margin-top:50px">Login to your iPredict account</div>
-        <div class="warningSection">
+        <div class="warningSection" ng-show="showWarning">
           <a editable-text="warningMessage">{{ warningMessage }}</a>
         </div>
         <div class="temp">
@@ -99,8 +99,8 @@
             </div>
 
             <div class="checkbox">
-              <ion-checkbox style="font-size: 1vw;" class="remove-border" type="checkbox" ng-model="details_acceptTerms"/>
-                <p style="font-size: 1vw;color:#7e7e7e"> I agree to the Terms and Conditions.</p>
+              <ion-checkbox class="remove-border" type="checkbox" ng-model="details_acceptTerms"/>
+                <p style="font-size: 0.75vmax;color:#7e7e7e"> I agree to the Terms and Conditions.</p>
               </ion-checkbox>
             </div>
             <div class="btn_place2">
@@ -148,6 +148,12 @@
                 Send
               </button>
           </div>
+          <div class="btn_place_account">
+                <button class="Already_have_an_account_button" ng-click="changeToLogin()">
+                  Go back to login
+                </button>
+          </div>
+
         </div>
     </div>
 
