@@ -1,9 +1,50 @@
 <style>
 
+    .customSpan{
+        font-style: italic;
+        font-size: 4vw;
+        text-align-last: center;
+    }
+
 </style>
 
-<ion-view>
+<ion-view title="Buy/Sell Trade">
     <ion-content>
+
+        <div ng-show="true">
+            <span class="customSpan"> Step 1: Determine Outcome</span>
+            <p> </p>
+            <p>
+                Kim Jong-Un to cease being leader of North Korea before 2020.
+                Is this outcome more likely than 35.4%?
+            </p>
+            <div class="row">
+                <div class="col">
+                    <button ng-click="flipMode()">Agree</button>
+                    <button ng-click="flipMode()">Disagree</button>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="true" class="container" ng-app="showApp" ng-controller="TradeCtrl">
+            <span class="customSpan"> Step 2: Choose number of stocks</span>
+
+            <div class="row">
+                <button ng-click="flipMode()">CONFIRM</button>
+                <!--<div ng-repeat="thing in things">-->
+                    <!--<div ng-show="thing.shown">-->
+                        <!--<h3>{{thing.id}}</h3>-->
+
+                    <!--</div>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+
+        <div ng-show="true">
+            <span class="customSpan"> Congratulations</span>
+
+        </div>
 
     </ion-content>
 </ion-view>
