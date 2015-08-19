@@ -58,7 +58,7 @@ angular.module('app', [
   })
 
   .state('app.contract', {
-    url: '/contract',
+    url: '/contract/:id',
     views: {
       'menuContent': {
         templateUrl: 'templates/contract.html',

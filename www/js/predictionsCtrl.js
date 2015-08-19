@@ -1,6 +1,6 @@
 angular.module('app.controllers.predictions', ['ionic'])
 
-    .controller('PredictionsCtrl', function($scope, $ionicModal, PredictionsService, $http, $rootScope) {
+    .controller('PredictionsCtrl', function($scope, $ionicModal, PredictionsService, $http, $rootScope, $state) {
 
         $scope.predic = {
             searchInput: "",
@@ -122,59 +122,6 @@ angular.module('app.controllers.predictions', ['ionic'])
         };
 
 
-        //$scope.addPrediction = function() {
-        //    var val = parseInt(Math.random() * 100);
-        //
-        //    var newPrediction = {
-        //        title: "New Prediction " + val,
-        //        value: val
-        //    };
-        //    PredictionsService.addPrediction(newPrediction);
-        //}
-
-
-
-        //$scope.searchPredictions = function(){
-        //    if ($scope.predic.searchInput === ""){
-        //        $scope.filteredPredictions = $scope.allPredictions.splice(0, 10);
-        //        $scope.setupStocksForCards();
-        //        return;
-        //    }
-        //
-        //    //var searchTerms = $scope.predic.searchInput.toLowerCase().split(" ");
-        //    var searchTerm = $scope.predic.searchInput.toLowerCase();
-        //
-        //    //var predictionsToSearch = [];
-        //    //for (var i = 0; i < $scope.filteredPredictions.length; i++){
-        //    //    predictionsToSearch.push($scope.filteredPredictions[i].title.toLowerCase().split(" "));
-        //    //}
-        //    var predictionsToSearch = [];
-        //    for (var i = 0; i < $scope.filteredPredictions.length; i++){
-        //        predictionsToSearch.push($scope.filteredPredictions[i].title.toLowerCase());
-        //    }
-        //
-        //    //var foundBySearch = [];
-        //    //for (var i = 0; i < predictionsToSearch.length; i++){
-        //    //    for (var j = 0; j < searchTerms.length; j++){
-        //    //        for (var k = 0; k < predictionsToSearch[i].length; k++){
-        //    //            if (predictionsToSearch[i][k].indexOf(searchTerms[j]) !== -1){
-        //    //                foundBySearch.push($scope.filteredPredictions[i]);
-        //    //                break; break;
-        //    //            }
-        //    //        }
-        //    //    }
-        //    //}
-        //    var foundBySearch = [];
-        //    for (var i = 0; i < predictionsToSearch.length; i++){
-        //        if (predictionsToSearch[i].indexOf(searchTerm) !== -1){
-        //            foundBySearch.push($scope.filteredPredictions[i]);
-        //        }
-        //    }
-        //
-        //    $scope.filteredPredictions = foundBySearch;
-        //};
-
-
         $scope.searchPredictions = function(){
             if ($scope.predic.searchInput === ""){
                 $scope.filteredPredictions = $scope.allPredictions.slice(0, 10);
@@ -231,6 +178,7 @@ angular.module('app.controllers.predictions', ['ionic'])
             for (var i = 0; i < $scope.filteredPredictions.length; i++){
                 var stock = $scope.filteredPredictions[i];
                 var stats = {
+                    id: stock.name,
                     title: stock.contractDetails.shortDesc,
                     price: parseFloat(stock.bid).toFixed(2),
                     change: parseFloat(stock.todaysChange).toFixed(2),
@@ -255,45 +203,10 @@ angular.module('app.controllers.predictions', ['ionic'])
             }
         };
 
-        //$scope.searchPredictions = function(){
-        //    if ($scope.predic.searchInput === ""){
-        //        $scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
-        //        return;
-        //    }
-        //
-        //    //var searchTerms = $scope.predic.searchInput.toLowerCase().split(" ");
-        //    var searchTerm = $scope.predic.searchInput.toLowerCase();
-        //
-        //    //var predictionsToSearch = [];
-        //    //for (var i = 0; i < $scope.filteredPredictions.length; i++){
-        //    //    predictionsToSearch.push($scope.filteredPredictions[i].title.toLowerCase().split(" "));
-        //    //}
-        //    var predictionsToSearch = [];
-        //    console.log($scope.filteredPredictions[0]);
-        //    for (var i = 0; i < $scope.filteredPredictions.length; i++){
-        //        predictionsToSearch.push($scope.filteredPredictions[i].contractDetails.shortDesc.toLowerCase());
-        //    }
-        //
-        //    //var foundBySearch = [];
-        //    //for (var i = 0; i < predictionsToSearch.length; i++){
-        //    //    for (var j = 0; j < searchTerms.length; j++){
-        //    //        for (var k = 0; k < predictionsToSearch[i].length; k++){
-        //    //            if (predictionsToSearch[i][k].indexOf(searchTerms[j]) !== -1){
-        //    //                foundBySearch.push($scope.filteredPredictions[i]);
-        //    //                break; break;
-        //    //            }
-        //    //        }
-        //    //    }
-        //    //}
-        //    var foundBySearch = [];
-        //    for (var i = 0; i < predictionsToSearch.length; i++){
-        //        if (predictionsToSearch[i].indexOf(searchTerm) !== -1){
-        //            foundBySearch.push($scope.filteredPredictions[i]);
-        //        }
-        //    }
-        //
-        //    $scope.filteredPredictions = foundBySearch;
-        //};
+
+        $scope.openContract = function(contractId){
+            $state.go('app.contract', {id: contractId});
+        };
 
 
 
