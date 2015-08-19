@@ -33,12 +33,14 @@
 
         <ion-list>
 
-            <div class="card" style="margin: 10px;" ng-repeat="pred in refinedPredictions">
+            <div class="card" style="margin: 10px;"
+                 ng-repeat="pred in refinedPredictions"
+                 ng-click="openContract(pred.id)">
                 <div class="item">
 
                     <div class="predCardUpper">
                         <div class="predCardImageContainer">
-                            <img class="predCardImage" ng-src="img/{{pred.imgPlaceholder}}.png">
+                            <img class="predCardImage" ng-src="{{'https://www.ipredict.co.nz/files/' + pred.img}}">
                         </div>
                         <div class="predCardImageTitle">
                             <label class="predCardTitle"><b>{{pred.title}}</b></label>
@@ -64,10 +66,10 @@
                             <label>Prob: {{pred.probability}}%</label>
                         </div>
                         <div class="predCardStat" style="width: 50%;">
-                            <label>Highest Buy: ${{pred.highestBuy}}</label>
+                            <label style="display: block; text-align: center;">Highest Buy: ${{pred.highestBuy}}</label>
                         </div>
                         <div class="predCardStat" style="width: 50%;">
-                            <label>Lowest Sell: ${{pred.lowestSell}}</label>
+                            <label style="display: block; text-align: center;">Lowest Sell: ${{pred.lowestSell}}</label>
                         </div>
                     </div>
 

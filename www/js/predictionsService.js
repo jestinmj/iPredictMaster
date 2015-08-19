@@ -1,75 +1,6 @@
 angular.module('app.services.predictions', [])
     .factory('PredictionsService', function($http, $rootScope){
 
-
-        //var predictions = [
-        //    {
-        //        img: "test1",
-        //        title: "New Zealand flag to be changed by 2018",
-        //        price: "0.25",
-        //        change: "0.15 (29.14%)",
-        //        changeType: "pos",
-        //        probability: "25.0",
-        //        highestBuy: "0.2500",
-        //        lowestSell: "0.2689",
-        //        category: 0
-        //    },
-        //    {
-        //        img: "test2",
-        //        title: "Colin Craig to be leader of the Conservative Party on 1 August 2016.",
-        //        price: "0.55",
-        //        change: "0.18 (-24.64%)",
-        //        changeType: "neg",
-        //        probability: "55.0",
-        //        highestBuy: "0.4500",
-        //        lowestSell: "0.7503",
-        //        category: 0
-        //    },
-        //    {
-        //        img: "test1",
-        //        title: "Average Auckland house price to be MORE than $820,000 in August 2015",
-        //        price: "0.95",
-        //        change: "NC (0.00%)",
-        //        changeType: "none",
-        //        probability: "95.0",
-        //        highestBuy: "0.9478",
-        //        lowestSell: "0.9500",
-        //        category: 0
-        //    },
-        //    {
-        //        img: "test2",
-        //        title: "New Zealand flag to be changed by 2017",
-        //        price: "0.25",
-        //        change: "0.15 (29.14%)",
-        //        changeType: "pos",
-        //        probability: "25.0",
-        //        highestBuy: "0.2500",
-        //        lowestSell: "0.2689",
-        //        category: 1
-        //    },
-        //    {
-        //        img: "test2",
-        //        title: "New Zealand flag to be changed by 2016",
-        //        price: "0.25",
-        //        change: "0.15 (29.14%)",
-        //        changeType: "pos",
-        //        probability: "25.0",
-        //        highestBuy: "0.2500",
-        //        lowestSell: "0.2689",
-        //        category: 1
-        //    },
-        //    {
-        //        img: "test1",
-        //        title: "Colin Craig to be leader of the Conservative Party on 1 August 2015.",
-        //        price: "0.55",
-        //        change: "0.18 (-24.64%)",
-        //        changeType: "neg",
-        //        probability: "55.0",
-        //        highestBuy: "0.4500",
-        //        lowestSell: "0.7503",
-        //        category: 1
-        //    }
-        //];
         var allPredictions = [];
         var predictionsPricing = [];
         var categories = [];
@@ -107,9 +38,7 @@ angular.module('app.services.predictions', [])
                     + predictionCode
                 )
                     .success(function (data) {
-                        allPredictions.push(parseXML(data).stock.claims.claim);
-                        console.log(allPredictions[0])
-                        $rootScope.$broadcast("predictionsUpdated");
+
                     })
                     .error(function (data) {
                         console.log(data);
@@ -117,24 +46,6 @@ angular.module('app.services.predictions', [])
             },
 
             requestAllPredictions: function(){
-                //var promises = [];
-                //for (var i = 0; i < predictionsPricing.length; i++) {
-                //    promises.push(
-                //        $http.get(
-                //            "https://www.ipredict.co.nz/app.php?do=api&action=stock&results=extended&stock=" +
-                //            predictionsPricing[i]._stock
-                //        )
-                //            .success(function (data) {
-                //                allPredictions = parseXML(data).stock.claims.claim;
-                //            })
-                //            .error(function (data) {
-                //                console.log(data);
-                //            })
-                //    );
-                //}
-                //$q.all(promises).then(function(){
-                //    return allPredictions;
-                //});
                 return $http.get(
                     "https://www.ipredict.co.nz/app.php?do=api&action=stock&allstock=true"
                 )
@@ -178,6 +89,16 @@ angular.module('app.services.predictions', [])
 
             getAllPredictions: function(){
                 return allPredictions;
+            },
+
+            getSinglePrediction: function(name){
+                console.log(name);
+                for (var i = 0; i < allPredictions.length; i++){
+                    console.log(allPredictions[i].name);
+                    if (allPredictions[i].name === name){
+                        return allPredictions[i];
+                    }
+                }
             },
 
             getFilteredPredictions: function(filters){
