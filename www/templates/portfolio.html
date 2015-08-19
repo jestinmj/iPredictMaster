@@ -14,20 +14,14 @@
     .customSpan{
         font-style: italic;
         font-size: 4vw;
+        height:4%;
     }
 
     .well{
         background-color: #cccccc;
         stroke-opacity: 50;
     }
-
-    .lightWell{
-        margin-top:2px;
-        background-color: #ffffff;
-        stroke-opacity: 50;
-        border-radius: 10px;
-    }
-
+    
     .tile-value{
         padding: 5%;
     }
@@ -44,6 +38,13 @@
     #line{
         margin: 2%;
         padding-right: 5%;
+    }
+
+    .inner{
+        float: left;
+    }
+    .outer{
+
     }
 
 </style>
@@ -121,11 +122,14 @@
                 </div>
                 <div class="item item-text-wrap tile-value well" ng-show="toggle.ownStock">
                     <div ng-repeat="stock in myStocks">
-                        <span>
-                            <div class="lightWell">
-                                {{stock}}
+                        <div class="card portfolio_tiles" style="max-height:5%; margin:2%">
+                            <div class="outer">
+                                <div class="inner" style="text-align:left ;width: 50%;">{{stock.title}}</div>
+                                <div class="inner" style="width: 10%">{{stock.amount}}</div>
+                                <div class="inner" style="width: 20%">{{stock.value}}</div>
+                                <div class="inner" style="width: 20%">{{stock.profit}}</div>
                             </div>
-                        </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -136,11 +140,14 @@
                 </div>
                 <div class="item item-text-wrap well" ng-show="toggle.shortStock">
                     <div ng-repeat="short in myShorts">
-                        <span>
-                            <div class="lightWell">
-                                {{short}}
+                        <div class="card portfolio_tiles" style="max-height:5%; margin:2%">
+                            <div class="outer">
+                                <div class="inner" style="text-align:left; width: 50%;">{{short.title}}</div>
+                                <div class="inner" style="width: 10%;">{{short.amount}}</div>
+                                <div class="inner" style="width: 20%;">{{short.value}}</div>
+                                <div class="inner" style="width: 20%;">{{short.profit}}</div>
                             </div>
-                        </span>
+                        </div>
                     </div>
                 </div>
             </div>
