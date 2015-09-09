@@ -7,8 +7,8 @@
         <div class ="loginTitleDiv">
           <img class ="loginTitle" src="img/ipredictLogoStroke.png">
         </div>
-        <div class="warningSection" ng-show="showWarning">
-          <a editable-text="warningMessage">{{ warningMessage }}</a>
+        <div class="warningSection_div" ng-show="showWarning">
+          <pre class="warningSection">{{ warningMessage }}</pre>
         </div>
         <div class="main_div">
           <div>
@@ -37,17 +37,17 @@
               </button>
           </div>
 
-           <div class="sign_up_div">
-                  <button class="sign_up" ng-click="changeToRegister()">
-                   Sign Up
-                  </button>
-              </div>
-          
-              <div class="forgot_pass_div">
-                  <button class="forgot_pass" ng-click="changeToForgotPassword()">
-                    Forgot password?
-                  </button>
-              </div>
+          <div class="sign_up_div">
+              <button class="sign_up" ng-click="changeToRegister()">
+               Sign Up
+              </button>
+          </div>
+        
+          <div class="forgot_pass_div">
+            <button class="forgot_pass" ng-click="changeToForgotPassword()">
+              Forgot password?
+            </button>
+          </div>
 
              
             
@@ -65,8 +65,8 @@
 
           <div class="info_Header">Create An Account</div>
 
-          <div class="warningSection" ng-show="showWarning">
-            <pre>{{ warningMessage }}</pre>
+          <div class="warningSection_div" ng-show="showWarning">
+            <pre class="warningSection">{{ warningMessage }}</pre>
           </div>
 
 
