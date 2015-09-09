@@ -4,8 +4,17 @@ angular.module('app.controllers.deposit_withdrawal', [])
 
         $scope.view = {
             deposit: true,
-            withdrawal: true
-        }
+            withdrawal: true,
+            card_input: true,
+            payment_method: true
+        };
+
+        $scope.card = {
+            name: "",
+            number: "",
+            date: "",
+            ccv: ""
+        };
 
         $scope.deposit_amount = null;
         $scope.withdrawal_amount = null;
@@ -38,5 +47,10 @@ angular.module('app.controllers.deposit_withdrawal', [])
                 console.log("Withdrawal $" + amount);
             }
         };
+
+        $scope.toggle_payment_method = function(bool){
+            $scope.view.payment_method = bool;
+        }
+
 
     });
