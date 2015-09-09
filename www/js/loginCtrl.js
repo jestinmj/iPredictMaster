@@ -2,6 +2,9 @@ angular.module('app.controllers.login', [])
 
     .controller('LoginCtrl', function($scope, LoginService) {
 
+        $scope.pageTitle = "Login";
+
+
         $scope.showWarning = false;
         $scope.warningMessage = '';
 
@@ -187,6 +190,7 @@ angular.module('app.controllers.login', [])
             LoginService.toggleRegisterState();
             $scope.showWarning = false;
             $scope.warningMessage = "";
+            $scope.pageTitle = "Register";
         };
 
         //

@@ -1,4 +1,4 @@
-<ion-view title="Login">
+<ion-view title="{{pageTitle}}">
   <ion-content>
 
     <div ng-controller="LoginCtrl">
@@ -71,7 +71,7 @@
 
 
 
-          <div class="main_div">
+          <div class="main_div" ng-model="$pageTitle">
 
 
             <div>
@@ -97,7 +97,7 @@
 
              <div class="Remember_me_div">
               <ion-checkbox style="border:0px solid white" type="checkbox" ng-model="details_acceptTerms"/>
-                <p style="font-size: 1vmax; color:#7e7e7e;border-width: 0"> I agree to the Terms and Conditions.</p>
+                <div style="font-size: 1vmax; color:#7e7e7e;border-width: 100%, border:opx"> I agree to the Terms & Conditions.</div>
               </ion-checkbox>
             </div>
             <div class="btn_place2">
