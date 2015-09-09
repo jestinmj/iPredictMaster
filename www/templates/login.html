@@ -7,49 +7,50 @@
         <div class ="loginTitleDiv">
           <img class ="loginTitle" src="img/ipredictLogoStroke.png">
         </div>
-        <div style="font-weight:bold; color:#7e7e7e; margin-top:50px">Login to your iPredict account</div>
         <div class="warningSection" ng-show="showWarning">
           <a editable-text="warningMessage">{{ warningMessage }}</a>
         </div>
-        <div class="temp">
+        <div class="main_div">
           <div>
             <label class="item item-input item-floating-label" >
-              <span class="input-label">Trading Name</span>
+             
               <input type="text" placeholder="Trading Name" ng-model="details_username"/>
             </label>
           </div>
           <div >
             <label class="item item-input item-floating-label">
-              <span class="input-label">Password</span>
+              
               <input type="password" placeholder="Password" ng-model="details_password"/>
             </label>
           </div>
 
-          <div class="checkbox">
-            <ion-checkbox class="remove-border" type="checkbox" ng-model="details_acceptTerms"/>
+          <div class="Remember_me_div">
+            <ion-checkbox style="border:0px solid white" type="checkbox" ng-model="details_acceptTerms"/>
 
-            <p style="font-size: calc(vmax); color:#7e7e7e"> Remember me </p>
+            <p class="Remember_me" > Remember me </p>
             </ion-checkbox>
            </div>
 
-          <div class="btn_place">
-              <button class="L_btn" ng-click="login()">
+          <div>
+              <button class="Login_btn" ng-click="login()">
                 Login
               </button>
           </div>
-          <div class="links">
-              <div class="link1">
-                  <button class="I_forgot_my_password_button" ng-click="changeToForgotPassword()">
+
+           <div class="sign_up_div">
+                  <button class="sign_up" ng-click="changeToRegister()">
+                   Sign Up
+                  </button>
+              </div>
+          
+              <div class="forgot_pass_div">
+                  <button class="forgot_pass" ng-click="changeToForgotPassword()">
                     Forgot password?
                   </button>
               </div>
 
-              <div class="link2">
-                  <button class="I_dont_have_an_account_button" ng-click="changeToRegister()">
-                    I don't have an account
-                  </button>
-              </div>
-            </div>
+             
+            
         </div>
       </div>
 
@@ -70,49 +71,45 @@
 
 
 
-          <div class="temp">
+          <div class="main_div">
 
 
             <div>
               <label class="item item-input item-floating-label" >
-                <span class="input-label">Your Trading Name</span>
                 <input type="text" placeholder="Trading Name" ng-model="details_username"/>
               </label>
             </div>
             <div class="email">
               <label class="item item-input item-floating-label">
-                <span class="input-label">Email</span>
                 <input type="text" placeholder="Email" ng-model="details_email"/>
               </label>
             </div>
             <div class="pass">
               <label class="item item-input item-floating-label">
-                <span class="input-label">Password</span>
                 <input type="password" placeholder="Password" ng-model="details_password"/>
               </label>
             </div>
             <div class="passconfirm">
               <label class="item item-input item-floating-label">
-                <span class="input-label">Password Confirmation</span>
                 <input type="password" placeholder="Password Confirmation" ng-model="details_passwordconfirm"/>
               </label>
             </div>
 
-            <div class="checkbox">
-              <ion-checkbox class="remove-border" type="checkbox" ng-model="details_acceptTerms"/>
-                <p style="font-size: 0.75vmax;color:#7e7e7e"> I agree to the Terms and Conditions.</p>
+             <div class="Remember_me_div">
+              <ion-checkbox style="border:0px solid white" type="checkbox" ng-model="details_acceptTerms"/>
+                <p style="font-size: 1vmax; color:#7e7e7e;border-width: 0"> I agree to the Terms and Conditions.</p>
               </ion-checkbox>
             </div>
             <div class="btn_place2">
-                <button class="R_btn" ng-click="register()">
+                <button class="Register_btn" ng-click="register()">
                   Create Account
                 </button>
             </div>
-            <div class="btn_place_account">
-                <button class="Already_have_an_account_button" ng-click="changeToLogin()">
+            
+                <button class="have_account" ng-click="changeToLogin()">
                   I already have an account
                 </button>
-            </div>
+            
              <div class="register_importantNotice" style="color: #7e7e7e">
               <div style="font-weight: bold">Important Notice For Your Protection!</div>
               <p>1. The Website and the Markets are intended as a research and educational facility, not as an investment market or a gambling facility. The Market Provider has been authorised to act as a futures dealer and the contracts traded are treated as futures contracts under New Zealand law, in order to provide certainty as to the legal treatment of the contracts.</p>
@@ -139,7 +136,6 @@
           <div class="info_Info">Enter the email address associated with your iPredict account, then click Send to get the reset password for your account.</div>
           <div class="email">
             <label class="item item-input item-floating-label">
-                <span class="input-label">Email</span>
                   <input type="text" placeholder="Email" ng-model="details_forgotmypassword_email"/>
             </label>
           </div>
@@ -149,7 +145,7 @@
               </button>
           </div>
           <div class="btn_place_account">
-                <button class="Already_have_an_account_button" ng-click="changeToLogin()">
+                <button class="have_account" ng-click="changeToLogin()">
                   Go back to login
                 </button>
           </div>
