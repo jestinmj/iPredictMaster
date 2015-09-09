@@ -62,11 +62,23 @@
 
 }
 
+.warningSection_div
+{
+
+	border-width: 5;
+	border-color: red;
+	background-color: pink;
+	display: table;
+	width: 100%;
+}
 .warningSection
 {
 	color: black;
-	border-color: red;
 	background-color: pink;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
 }
 
 .loginTitleDiv
