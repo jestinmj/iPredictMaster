@@ -10,41 +10,28 @@
 
 <ion-view title="Buy/Sell Trade">
     <ion-content>
-
         <div ng-show="true">
             <span class="customSpan"> Step 1: Determine Outcome</span>
-            <p> </p>
             <p>
-                Kim Jong-Un to cease being leader of North Korea before 2020.
-                Is this outcome more likely than 35.4%?
+               Get trade info
             </p>
             <div class="row">
                 <div class="col">
-                    <button ng-click="flipMode()">Agree</button>
-                    <button ng-click="flipMode()">Disagree</button>
+                    <button class="button button-clear" style="width: 45%; max-height: 10%; background-color: #0c63ee; float: left; margin-right: 2.5%; margin-left: 2.5%" >
+                        <span style="color:#fafafa"> Agree </span></button>
+                    <button class="button button-clear" style="width: 45%; max-height: 10%; background-color: #0c63ee; float: left; margin-right: 2.5%; margin-left: 2.5%">
+                        <span style="color:#fafafa"> Disagree </span></button>
                 </div>
             </div>
         </div>
 
         <div ng-show="true" class="container" ng-app="showApp" ng-controller="TradeCtrl">
             <span class="customSpan"> Step 2: Choose number of stocks</span>
-
-            <div class="row">
-                <button ng-click="flipMode()">CONFIRM</button>
-                <!--<div ng-repeat="thing in things">-->
-                    <!--<div ng-show="thing.shown">-->
-                        <!--<h3>{{thing.id}}</h3>-->
-
-                    <!--</div>-->
-                <!--</div>-->
-
-            </div>
+            <label class="item item-input">
+                <input type="text" placeholder="***stock amount***" style="text-align: center">
+            </label>
+            <button class="button button-clear" style="width: 100%; max-height: 10%; background-color: #0c63ee">
+                <span style="color:#fafafa"> CONFIRM TRADE </span></button>
         </div>
-
-        <div ng-show="true">
-            <span class="customSpan"> Congratulations</span>
-
-        </div>
-
     </ion-content>
 </ion-view>

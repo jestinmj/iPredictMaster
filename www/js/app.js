@@ -11,8 +11,10 @@ angular.module('app', [
   'app.controllers.rankings',
   'app.controllers.termsOfService',
   'app.controllers.trade',
+  'app.controllers.deposit_withdrawal',
   'app.services.predictions',
   'app.services.login'
+
 
 ])
 
@@ -102,6 +104,16 @@ angular.module('app', [
           'menuContent': {
               templateUrl: 'templates/aboutUs.html',
               controller: 'AboutUsCtrl'
+          }
+      }
+  })
+
+  .state('app.deposit_withdrawal', {
+      url: '/deposit_withdrawal',
+      views: {
+          'menuContent': {
+              templateUrl: 'templates/deposit_withdrawal.html',
+              controller: 'Deposit_withdrawal'
           }
       }
   });
