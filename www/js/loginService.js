@@ -6,12 +6,9 @@ angular.module('app.services.login', [])
         var PASSWORD_MINCHARACTERS = 6;
         var PASSWORD_MINLETTERS = 1;
         var PASSWORD_MINNUMBERS = 1;
-<<<<<<< HEAD
 
         // Username
         var USERNAME_MINCHARACTERS = 3;
-=======
->>>>>>> master
 
         // Possible states for the page to be in
         var STATES_LOGIN = 1;
@@ -83,7 +80,6 @@ angular.module('app.services.login', [])
             },
 
             //
-<<<<<<< HEAD
             // Checks the given username against our requirements
             // Username must have at least 3 characters
             //
@@ -106,8 +102,6 @@ angular.module('app.services.login', [])
             },
 
             //
-=======
->>>>>>> master
             // Checks the given password against our requirements
             // Password is between 6-15 characters
             // Contains 1 alpha-character
@@ -119,7 +113,6 @@ angular.module('app.services.login', [])
 
                 // Check password is within length requirements
                 if( password == undefined || password == ""){
-<<<<<<< HEAD
                     rules += "\n    - Password enter a password.";
                 }                
                 else if( password.length < PASSWORD_MINCHARACTERS ){
@@ -127,37 +120,20 @@ angular.module('app.services.login', [])
                 }
                 else if( password.length > PASSWORD_MAXCHARACTERS ){
                     rules += "\n    - Password must be not exceed " + PASSWORD_MAXCHARACTERS + " characters in length.";
-=======
-                    rules += "    - Password enter a password. \n";
-                }                
-                else if( password.length < PASSWORD_MINCHARACTERS ){
-                    rules += "    - Password must be at least " + PASSWORD_MINCHARACTERS + " characters in length. \n";
-                }
-                else if( password.length > PASSWORD_MAXCHARACTERS ){
-                    rules += "    - Password must be not exceed " + PASSWORD_MAXCHARACTERS + " characters in length. \n";
->>>>>>> master
                 }
 
                 // Must have at least 1 letters in the password
                 var letters = password.replace(/[^A-Z]/gi, "");
                 var letterslength = letters.length-1;
                 if( letterslength < PASSWORD_MINLETTERS ){
-<<<<<<< HEAD
                     rules += "\n    - Password must contain at least " + PASSWORD_MINLETTERS + " letter.";
-=======
-                    rules += "    - Password must contain at least " + PASSWORD_MINLETTERS + " letter. \n";
->>>>>>> master
                 }
 
                 // Must have at least 1 numbers in the password
                 var numbers = password.replace(/[^0-9]/gi, "");
                 var numberslength = numbers.length-1;
                 if( numberslength < PASSWORD_MINNUMBERS ){
-<<<<<<< HEAD
                     rules += "\n    - Password must contain at least " + PASSWORD_MINNUMBERS + " number.";
-=======
-                    rules += "    - Password must contain at least " + PASSWORD_MINNUMBERS + " number. \n";
->>>>>>> master
                 }                
                 
                 return rules;

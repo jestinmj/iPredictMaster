@@ -1,49 +1,32 @@
 
-<<<<<<< HEAD
-=======
+
 .remember_me
 {
 	font-size: calc(vmax); 
 	color:#7e7e7e;
 }
->>>>>>> master
 
 .loginColumn 
 {
 	vertical-align: middle;
-<<<<<<< HEAD
 	margin-left: 10%;
 	margin-right: 10%;
-=======
-	margin-left: 20%;
-	margin-right: 20%;
->>>>>>> master
 	margin-top:5%;
 }
 
 .registerColumn 
 {
 	vertical-align: middle;
-<<<<<<< HEAD
 	margin-left: 10%;
 	margin-right: 10%;
-=======
-	margin-left: 20%;
-	margin-right: 20%;
->>>>>>> master
 	margin-top:5%;
 }
 
 .forgotPasswordColumn 
 {
 	vertical-align: middle;
-<<<<<<< HEAD
 	margin-left: 10%;
 	margin-right: 10%;
-=======
-	margin-left: 20%;
-	margin-right: 20%;
->>>>>>> master
 	margin-top:5%;
 }
 
@@ -84,7 +67,6 @@
 	width: 30%;
 	display: block;
 	margin-left: auto;
-<<<<<<< HEAD
 	margin-right: auto;
 
 }
@@ -93,14 +75,6 @@
 {
 
 	border-width: 5;
-=======
-	margin-right: auto;	
-}
-
-.warningSection
-{
-	color: black;
->>>>>>> master
 	border-color: red;
 	background-color: pink;
 	display: table;
@@ -121,13 +95,9 @@
 	position: relative;
 	margin-top: 10%;
 	margin-bottom: 10%;
-
-<<<<<<< HEAD
 	display:block;
 }
 
-=======
->>>>>>> master
 .email
 {
 	margin-bottom: 20px;
@@ -170,7 +140,6 @@
 	text-align: center;
 }
 
-<<<<<<< HEAD
 .Remember_me_div
 {
 	margin-left: -12px;
@@ -191,36 +160,10 @@
 	width:100%;
 	margin-top:3%;
 	float: center;
-=======
-.checkbox
-{
-	margin-bottom: 30px;
-	margin-left: -12px;
-}
-
-.forgot_pass_div
-{		
-	width:80%;
-	margin-top:5%;
-	float: center;
-}
-
-.sign_up_div
-{
-	width:50%;
-	margin-top:5%;
-	float: center;
-}
-
-.remove-border
-{
-	border:5px solid white;
->>>>>>> master
 }
 
 .have_account
 {
-<<<<<<< HEAD
 	padding: 10px 10px 10px 10px;
 	color: #428BCA;
 	font-family: Sans-serif;
@@ -230,21 +173,10 @@
 	background-color: white;
 	border-width: 0;
 	margin-top: 15px
-=======
-	padding: 50px 50px 50px 0px;
-	color: #428BCA;
-	font-family: Sans-serif;
-	font-size: 1vmax;
-	line-height: 20px;
-	text-align: center;
-	margin-top: 10%;
-
->>>>>>> master
 }
 
 .forgot_pass
 {
-<<<<<<< HEAD
 	padding: 10px 10px 10px 10px;
 	color: #428BCA;
 	font-family: Sans-serif;
@@ -253,19 +185,10 @@
 	text-align: left;	
 	background-color: white;
 	border-width: 0;
-=======
-	padding: 50px 50px 50px 0px;
-	color: #428BCA;
-	font-family: Sans-serif;
-	font-size: 1vmax;
-	line-height: 20px;
-	text-align: center;	
->>>>>>> master
 }
 
 .sign_up
 {
-<<<<<<< HEAD
 	padding: 10px 10px 10px 10px;
 	color: #428BCA;
 	font-family: Sans-serif;
@@ -274,14 +197,6 @@
 	text-align: center;
 	background-color: white;
 	border-width: 0;
-=======
-	padding: 50px 50px 50px 0px;
-	color: #428BCA;
-	font-family: Sans-serif;
-	font-size: 1vmax;
-	line-height: 20px;
-	text-align: center;
->>>>>>> master
 }
 
 .iforgotMyPassword_SendButton
@@ -303,14 +218,9 @@
 
 	font-size: 1vw;
 	color:#7e7e7e;
-<<<<<<< HEAD
 }
 
 .Remember_me
 {
  	color:#7e7e7e
 }
-
-=======
-}
->>>>>>> master

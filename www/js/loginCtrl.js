@@ -27,17 +27,9 @@ angular.module('app.controllers.login', [])
         // User presses the login button
         //
 		$scope.login = function(){
-<<<<<<< HEAD
             var INVALID_USERNAME_LENGTH = 0;
             var INVALID_PASSWORD_LENGTH = 1;
-=======
->>>>>>> master
 
-            //console.log("Logging in...")
-            var tradename = $scope.details_username;
-            var password = $scope.details_password;
-            var rememberme = $scope.details_rememberme;
-<<<<<<< HEAD
 
             // invalid will contain all invalid filled forms.
             var invalid = [];
@@ -93,8 +85,6 @@ angular.module('app.controllers.login', [])
                 // Acceptable details entered
                 console.log("Acceptable form");
             }
-=======
->>>>>>> master
         };
 
         // 
@@ -246,12 +236,9 @@ angular.module('app.controllers.login', [])
             LoginService.toggleLoginState();
             $scope.showWarning = false;
             $scope.warningMessage = "";
-<<<<<<< HEAD
             $scope.login = !$scope.login;
-        var title = $scope.login ? 'Login' : 'Sign Up';
-        $ionicNavBarDelegate.title(title);
-=======
->>>>>>> master
+            var title = $scope.login ? 'Login' : 'Sign Up';
+            $ionicNavBarDelegate.title(title);
         };
 
         //
@@ -262,12 +249,9 @@ angular.module('app.controllers.login', [])
             LoginService.toggleRegisterState();
             $scope.showWarning = false;
             $scope.warningMessage = "";
-<<<<<<< HEAD
-           $scope.login = !$scope.login;
-        var title = $scope.login ? 'Login' : 'Sign Up';
-        $ionicNavBarDelegate.title(title);
-=======
->>>>>>> master
+            $scope.login = !$scope.login;
+            var title = $scope.login ? 'Login' : 'Sign Up';
+            $ionicNavBarDelegate.title(title);
         };
 
         //
