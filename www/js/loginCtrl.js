@@ -20,26 +20,32 @@ angular.module('app.controllers.login', [])
         // I Forgot my password
         $scope.details_forgotmypassword_email = '';
 
+        //
+        // User presses the login button
+        //
 		$scope.login = function(){
+
             //console.log("Logging in...")
-            //console.log("Username: " + $scope.details_username);
-            //console.log("Password: " + $scope.details_password);
-            //console.log("Rememberme: " + $scope.details_rememberme);
+            var tradename = $scope.details_username;
+            var password = $scope.details_password;
+            var rememberme = $scope.details_rememberme;
         };
 
+        // 
+        // User presses the register button
+        //
         $scope.register = function(scope, element){
-        	//console.log("Registering...");
-            //console.log("Username: " + $scope.details_username);
-            //console.log("Password: " + $scope.details_password);
-            //console.log("Password Confirmation: " + $scope.details_passwordconfirm);
-            //console.log("Email: " + $scope.details_email);
-            //console.log("Terms: " + $scope.details_acceptTerms);
-
             var INVALID_ACCEPT_TERMS = 0;
             var INVALID_PASSWORDS_UNMATCH = 1;
             var INVALID_EMAIL_WRONG = 2;
             var INVALID_USERNAME = 4;
             var INVALID_PASSWORDS_INVALID = 5;
+
+
+            // Go through the process of checking this is a valid registration
+
+
+            // invalid will contain all invalid filled forms.
             var invalid = [];
 
             // Check acceptTerms
@@ -53,9 +59,6 @@ angular.module('app.controllers.login', [])
 
                 // Invalid Username
                 invalid.push(INVALID_USERNAME);
-                var x = angular.element(document.querySelector('#user'));
-                //console.log(x);
-                //x[0].css.backgroundColor = "red";
             }
 
             // Passwords
@@ -141,34 +144,68 @@ angular.module('app.controllers.login', [])
 
         // Check if the given email is valid
         $scope.checkEmailValidity = function(email){
-
             return LoginService.checkEmailValidity(email);
         };
 
+        //
         // Check if the given password is valid
+        //
         $scope.checkPasswordValidity = function(pass){
 
-            return LoginService.checkPasswordValidity(pass);
+            // Check if we have an invalid password
+            var getRules = LoginService.getPasswordRuleString(pass);
+
+            // If we haven't received any failed rules
+            //    this is a valid password.
+            if( getRules == undefined || getRules == ""){
+                console.log("Success");
+                return true;
+            }
+
+            console.log("Failed");
+
+            // We received some invalid rules about the string.
+            //    this password is invalid.
+            return false;
         };
 
+        //
+        // We want to change the view to the login page
+        // So the user is able to log in to their account
+        //
         $scope.changeToLogin = function(){
             LoginService.toggleLoginState();
+            $scope.showWarning = false;
+            $scope.warningMessage = "";
         };
 
+        //
+        // We want to change the view to the register page
+        // The user wants to register/create a new account
+        //
         $scope.changeToRegister = function(){
             LoginService.toggleRegisterState();
+            $scope.showWarning = false;
+            $scope.warningMessage = "";
         };
 
+        //
+        // Change the view to 'I Forgot My Password'
+        // The user can't remember their password and wants to reset
+        //
         $scope.changeToForgotPassword = function(){
             LoginService.toggleForgotPasswordState();
+            $scope.showWarning = false;
+            $scope.warningMessage = "";
         };
 
+        //
+        // User has asked to retrieve their password by going
+        //    to "I forgot my password" and have types in their password
+        //    then pressed "send"
+        //
         $scope.retrievePassword = function(){
-            // User has asked to retrieve their password by going
-            //    to "I forgot my password" and have types in their password
-            //    then pressed "send"
-
-                        
+           
             // Email given to retriev password
             var email = $scope.details_forgotmypassword_email;
 

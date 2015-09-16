@@ -1,0 +1,97 @@
+<style>
+    .title{
+        text-align: center;
+        margin-top: 10%;
+    }
+
+    .item-input{
+        margin-left: 5%;
+        margin-right: 5%;
+        border-radius: 10px;
+    }
+
+    .button{
+        margin-left: 5%;
+        margin-top: 2%;
+        width: 90%;
+        max-height: 10%;
+    }
+
+</style>
+
+<ion-view title="Deposit / Withdrawal ">
+    <ion-content>
+        <div ng-show="view.deposit" style="margin-top:15%;">
+            <h3 class="title"> Deposit </h3>
+            <div style="text-align: center; margin:5%;">
+                <p2>
+                    How much would you like to Deposit into your iPredict account?
+                </p2>
+            </div>
+            <label class="item item-input" >
+                <input ng-model="deposit_amount" type="number" placeholder="$0.00" style="text-align: center">
+            </label>
+            <button class="button button-clear" style="background-color: #0c63ee;" ng-click="purchase_button_press(deposit_amount)">
+                <span style="color:#fafafa"> Purchase </span>
+            </button>
+            <div style="text-align: center; margin:5%;">
+                <p2>
+                   The maximum daily deposited amount is $2,500
+                </p2>
+            </div>
+        </div>
+
+        <div ng-show="view.withdrawal">
+            <h3 class="title" style="margin-top:15%;" > Withdrawal </h3>
+            <div style="text-align: center; margin:5%;">
+                <p2>
+                    Total available funds ${{portfolio[2].attr}}
+                </p2>
+            </div>
+            <label class="item item-input" >
+                <input ng-model="withdrawal_amount" type="number" placeholder="$0.00" style="text-align: center">
+            </label>
+            <button class="button button-clear" style="background-color: #0c63ee;" ng-click="withdrawal_button_press(withdrawal_amount)">
+                <span style="color:#fafafa"> Withdrawal </span>
+            </button>
+        </div>
+
+        <div ng-show="view.card_input" style="margin-top: 15% ;">
+            <h3 class="title"> Transaction </h3>
+            <div class="toggleContainer">
+                <button class="button button-clear" style="background-color: #0c63ee; width:40%; margin: 5%; float:left;" ng-click="toggle_payment_method(true)">
+                    <h5 style="color:#fafafa"> CREDIT CARD </h5>
+                </button>
+            </div>
+            <div class="toggleContainer">
+                <button class="button button-clear" style="background-color: #0c63ee; width:40%; margin:5%; float:left;" ng-click="toggle_payment_method(false)">
+                    <h5 style="color:#fafafa"> DIRECT DEPOSIT </h5>
+                </button>
+            </div>
+
+            <span style="text-align: center; margin-left: 60%"> Deposit amount ${{deposit_amount}}</span>
+            <div class="card_details" ng-show="view.payment_method">
+                <label class="item item-input" style="margin: 5%;">
+                    <input ng-model="card.name" type="text" placeholder="Card Holder Name" style="text-align: center; width: 100%;">
+                </label>
+                <label class="item item-input" style="margin: 5%;">
+                    <input ng-model="card.number" type="text" placeholder="Card Number" style="text-align: center; width: 100%;">
+                </label>
+                <label class="item item-input" style=" width:50%; float: left">
+                    <input ng-model="card.date" type="text" placeholder="MM/YY" style="text-align: center">
+                </label>
+                <label class="item item-input" style=" width:30%; float: left">
+                    <input ng-model="card.ccv" type="text" placeholder="CCV" style="text-align: center">
+                </label>
+
+                <p1>FOOTER GOES IN HERE</p1>
+
+            </div>
+
+            <div class="manual_deposit" ng-hide="view.payment_method">
+                <p2> manual deposit</p2>
+
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

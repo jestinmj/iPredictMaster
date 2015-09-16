@@ -1,31 +1,17 @@
 <style>
 
     .portfolio_tiles{
-        margin: 0;
-        width: 100%;
+        margin: 1.5%;
+        float: left;
+        width: 22%;
         height: 100%;
         text-align: center;
     }
 
-    .custom_col{
-        position: relative;
-    }
-    
-    .customSpan{
+    .style_text {
+        text-align: center;
         font-style: italic;
         font-size: 4vw;
-    }
-
-    .well{
-        background-color: #cccccc;
-        stroke-opacity: 50;
-    }
-
-    .lightWell{
-        margin-top:2px;
-        background-color: #ffffff;
-        stroke-opacity: 50;
-        border-radius: 10px;
     }
 
     .tile-value{
@@ -37,7 +23,7 @@
         background-color: #007aff;
     }
 
-    #rank-num, #worth-num, #port-num{
+    #rank-num{
         background-color: #33cd5f;
     }
 
@@ -46,105 +32,384 @@
         padding-right: 5%;
     }
 
+    .inner{
+        float: left;
+        text-align: center;
+        font-size: 4vw;
+    }
+
+    .lower_attr{
+        margin-right: 5%;
+        width: 45%;
+        float: right;
+        font-size: 3.5vw;
+    }
+
+    .lower_attr_title{
+        margin-left: 5%;
+        width: 45%;
+        float: left;
+        font-size: 3.5vw;
+    }
+
+    .ion-chevron-up{
+        margin-top: 1%;
+        margin-right: 4%;
+    }
+
+    .subtitle{
+        height: 15px;
+    }
+
+    .stock_tile{
+        width: 100%;
+        margin:2%;
+        min-height: 40px;
+    }
+
+    .statBox {
+        width: 22%;
+        height: 90px;
+        margin: 10px 0 10px 2.4%;
+        background-color: #fafafa;
+        float: left;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+
+    .statUpper {
+        width: 100%;
+        height: 60px;
+        text-align: center;
+    }
+
+    .statUpper span {
+        display: block;
+        width: 100%;
+    }
+
+    .statLower {
+        width: 100%;
+        height: 30px;
+        background-color: green;
+        text-align: center;
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+    }
+
+    .statLower span {
+        display: block;
+        line-height: 30px;
+        color: #fafafa;
+    }
+
+    .statTitle {
+        line-height: 25px;
+    }
+
+    .statValue {
+        line-height: 35px;
+        color: #42A5F5;
+    }
+
+</style>
+
+<style>
+
+    .stockListHeader {
+        float: left;
+        height: 40px;
+        line-height: 40px;
+        color: #fafafa;
+    }
+
+    .stockListField {
+        line-height: 40px;
+        float: left;
+    }
+
+    .stockListItem {
+        width: 95%;
+        min-height: 40px;
+        margin-left: 2.5%;
+        margin-top: 10px;
+        background-color: #fafafa;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+
+    .stockSubListItem {
+        width: 100%;
+        height: 30px;
+    }
+
+    .stockSubListField {
+        width: 50%;
+        height: 100%;
+        float: left;
+    }
+
+    .tradeStockButton {
+        height: 40px;
+        width: 100%;
+    }
+
+    .tradeStockButton h5 {
+        line-height: 40px;
+        width: 50%;
+        margin: 0 0 0 25%;
+        text-align: center;
+        color: #42A5F5;
+    }
+
 </style>
 
 <ion-view title="Portfolio">
-    <ion-content>
-        <div class="container">
-            <div class="row" id="profile_overview">
-                <div class="col custom_col">
-                    <div class="card portfolio_tiles">
-                        <div class="item item-divider" id="tile-title">
-                            <span class="customSpan ">Rank</span>
-                        </div>
-                        <div class="item item-text-wrap tile-value">
-                           <span class="customSpan ">{{portfolio.myRank}}</span>
-                        </div>
-                        <div class="item item-divider tile-value" id="rank-num">
-                            <span class="customSpan"><i class="ion-arrow-up-a"></i>{{portfolio.changeInRank}}</span>
-                        </div>
+    <ion-content style="background-color: #E0E0E0;">
+        <div class="container" style="width: 100%;">
+            <div class="portfolio_info" style="width:100%; height: 110px; background-color: #e0e0e0;">
+
+                <div class="statBox">
+                    <div class="statUpper">
+                        <span class="statTitle">{{portfolio[0].title}}</span>
+                        <span class="statValue"><b>{{portfolio[0].attr}}</b></span>
+                    </div>
+                    <div class="statLower">
+                        <span class="statChange"><b>{{portfolio[0].changeInAttr}}</b></span>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card portfolio_tiles ">
-                        <div class="item item-divider" id="tile-title">
-                            <span class="customSpan ">Worth</span>
-                        </div>
-                        <div class="item item-text-wrap tile-value">
-                            <span class="customSpan">${{portfolio.myWorth}}</span>
-                        </div>
-                        <div class="item item-divider tile-value" id="worth-num">
-                            <span class="customSpan"><iclass="ion-arrow-up-a"></i>${{portfolio.changeInWorth}}</span>
-                        </div>
+                <div class="statBox">
+                    <div class="statUpper">
+                        <span class="statTitle">{{portfolio[1].title}}</span>
+                        <span class="statValue"><b>${{portfolio[1].attr}}</b></span>
+                    </div>
+                    <div class="statLower">
+                        <span class="statChange"><b>${{portfolio[1].changeInAttr}}</b></span>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card portfolio_tiles ">
-                        <div class="item item-divider" id="tile-title">
-                            <span class="customSpan">Cash</span>
-                        </div>
-                        <div class="item item-text-wrap tile-value">
-                            <span class="customSpan">${{portfolio.myWallet}}</span>
-                        </div>
-                        <div class="item item-divider tile-value">
-                            <span class="customSpan">{{portfolio.changeInWallet}}</span>
-                        </div>
-                    </div></div>
-                <div class="col">
-                    <div class="card portfolio_tiles ">
-                        <div class="item item-divider" id="tile-title">
-                            <span  class="customSpan">Portfolio</span>
-                        </div>
-                        <div class="item item-text-wrap tile-value">
-                            <span  class="customSpan">${{portfolio.myPortfolio}}</span>
-                        </div>
-                        <div class="item item-divider tile-value" id="port-num">
-                            <span class="customSpan">
-                                <i class="ion-arrow-up-a"></i>${{portfolio.changeInPortfolio}}
-                            </span>
-                        </div>
+                <div class="statBox">
+                    <div class="statUpper">
+                        <span class="statTitle">{{portfolio[2].title}}</span>
+                        <span class="statValue"><b>${{portfolio[2].attr}}</b></span>
+                    </div>
+                    <div class="statLower">
+                        <span class="statChange"><b>${{portfolio[2].changeInAttr}}</b></span>
+                    </div>
+                </div>
+                <div class="statBox">
+                    <div class="statUpper">
+                        <span class="statTitle">{{portfolio[3].title}}</span>
+                        <span class="statValue"><b>${{portfolio[3].attr}}</b></span>
+                    </div>
+                    <div class="statLower">
+                        <span class="statChange"><b>${{portfolio[3].changeInAttr}}</b></span>
                     </div>
                 </div>
             </div>
-            <div class="card stockCard">
-                <div class="item item-divider">
-                        <span class="customSpan">My Performance</span>
-                        <i class="ion-chevron-up" style="float:right;" ng-click="togglePerformanceGraph()"></i>
-                    <canvas id="line" class="chart chart-line" data="data" labels="labels" click="onClick" ng-show="toggle.graph">
+
+            <div style="width: 100%; margin-bottom: 20px; background-color: #fafafa;">
+                <div style="width: 100%; height: 50px; background-color: #42A5F5" ng-click="toggleGraph()">
+                    <span style="line-height: 50px; color: #fafafa; margin-left: 20px;"><b>MY PERFORMANCE</b></span>
+                </div>
+                <div style="width: 92.5%; margin-left: 2.5%;" ng-show="toggle.graph">
+                    <canvas style="margin-top: 20px; margin-bottom: 20px" class="chart chart-line" data="data" labels="labels" click="onClick">
                     </canvas>
                 </div>
             </div>
-            <div class="card stockCard" style="text-align: center">
-                <div class="item item-divider ">
-                    <span class="customSpan">Stock I Own</span>
-                    <i class="ion-chevron-up" style="float:right;" ng-click="toggleOwnStock()"></i>
+
+
+
+
+            <div style="width: 100%; margin-bottom: 20px;">
+                <div style="width: 100%; height: 50px; background-color: #42A5F5" ng-click="toggleOwnStock()">
+                    <span style="line-height: 50px; color: #fafafa; margin-left: 20px;"><b>STOCK I OWN</b></span>
                 </div>
-                <div class="item item-text-wrap tile-value well" ng-show="toggle.ownStock">
-                    <div ng-repeat="stock in myStocks">
-                        <span>
-                            <div class="lightWell">
-                                {{stock}}
+                <div ng-show="toggle.ownStock">
+                    <div style="width: 100%; height: 40px; background-color: #64B5F6">
+                        <span class="stockListHeader" style="width: 50%; padding-left: 10px;"> <b>Title</b> </span>
+                        <span class="stockListHeader" style="width: 15%;"> <b>Stock</b> </span>
+                        <span class="stockListHeader" style="width: 15%;"> <b>Value</b> </span>
+                        <span class="stockListHeader" style="width: 20%; text-align: right; padding-right: 10px;"> <b>Gain/Loss</b>  </span>
+                    </div>
+
+                    <div class="stockListItem" ng-repeat="stock in myStocks">
+                        <div style="width: 100%; height: 40px;" ng-click="toggleStockAttr(stock)">
+                            <div class="stockListField" style="width: 50%; padding-left: 10px;"><b>{{stock.title}}</b></div>
+                            <div class="stockListField" style="width: 15%;"><b>{{stock.amount}}</b></div>
+                            <div class="stockListField" style="width: 15%;"><b>{{stock.value}}</b></div>
+                            <div class="stockListField" style="width: 20%; text-align: right; padding-right: 10px"><b>{{stock.profit}}</b></div>
+                        </div>
+
+                        <div style="width: 100%; height: 130px;" ng-show="stock.toggle">
+                            <div class="stockSubListItem">
+                                <div class="stockSubListField">
+                                    <span style="margin-left: 10px;">Average Price</span>
+                                </div>
+                                <div class="stockSubListField" style="text-align: right;">
+                                    <span style="margin-right: 10px;">{{stock.averageCost}}</span>
+                                </div>
                             </div>
-                        </span>
+                            <div class="stockSubListItem">
+                                <div class="stockSubListField">
+                                    <span style="margin-left: 10px;">Last Price</span>
+                                </div>
+                                <div class="stockSubListField" style="text-align: right;">
+                                    <span style="margin-right: 10px;">{{stock.lastPrice}}</span>
+                                </div>
+                            </div>
+                            <div class="stockSubListItem">
+                                <div class="stockSubListField">
+                                    <span style="margin-left: 10px;">Difference</span>
+                                </div>
+                                <div class="stockSubListField" style="text-align: right;">
+                                    <span style="margin-right: 10px;">{{stock.difference}}</span>
+                                </div>
+                            </div>
+
+                            <div class="tradeStockButton" ng-click="tradeClick(stock.title)">
+                                <h5>TRADE</h5>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="card stockCard" style="text-align: center">
-                <div class="item item-divider">
-                    <span class="customSpan">Stock I Shorted</span>
-                    <i class="ion-chevron-up" style="float:right;" ng-click="toggleShortStock()"></i>
+
+            <div style="width: 100%; margin-bottom: 20px;">
+                <div style="width: 100%; height: 50px; background-color: #42A5F5" ng-click="toggleShortStock()">
+                    <span style="line-height: 50px; color: #fafafa; margin-left: 20px;"><b>STOCK I SHORTED</b></span>
                 </div>
-                <div class="item item-text-wrap well" ng-show="toggle.shortStock">
-                    <div ng-repeat="short in myShorts">
-                        <span>
-                            <div class="lightWell">
-                                {{short}}
+                <div ng-show="toggle.shortStock">
+                    <div style="width: 100%; height: 40px; background-color: #64B5F6">
+                        <span class="stockListHeader" style="width: 50%; padding-left: 10px;"> <b>Title</b> </span>
+                        <span class="stockListHeader" style="width: 15%;"> <b>Stock</b> </span>
+                        <span class="stockListHeader" style="width: 15%;"> <b>Value</b> </span>
+                        <span class="stockListHeader" style="width: 20%; text-align: right; padding-right: 10px;"> <b>Gain/Loss</b>  </span>
+                    </div>
+
+                    <div class="stockListItem" ng-repeat="stock in myShorts">
+                        <div style="width: 100%; height: 40px;" ng-click="toggleStockAttr(stock)">
+                            <div class="stockListField" style="width: 50%; padding-left: 10px;"><b>{{stock.title}}</b></div>
+                            <div class="stockListField" style="width: 15%;"><b>{{stock.amount}}</b></div>
+                            <div class="stockListField" style="width: 15%;"><b>{{stock.value}}</b></div>
+                            <div class="stockListField" style="width: 20%; text-align: right; padding-right: 10px"><b>{{stock.profit}}</b></div>
+                        </div>
+
+                        <div style="width: 100%; height: 130px;" ng-show="stock.toggle">
+                            <div class="stockSubListItem">
+                                <div class="stockSubListField">
+                                    <span style="margin-left: 10px;">Average Price</span>
+                                </div>
+                                <div class="stockSubListField" style="text-align: right;">
+                                    <span style="margin-right: 10px;">{{stock.averageCost}}</span>
+                                </div>
                             </div>
-                        </span>
+                            <div class="stockSubListItem">
+                                <div class="stockSubListField">
+                                    <span style="margin-left: 10px;">Last Price</span>
+                                </div>
+                                <div class="stockSubListField" style="text-align: right;">
+                                    <span style="margin-right: 10px;">{{stock.lastPrice}}</span>
+                                </div>
+                            </div>
+                            <div class="stockSubListItem">
+                                <div class="stockSubListField">
+                                    <span style="margin-left: 10px;">Difference</span>
+                                </div>
+                                <div class="stockSubListField" style="text-align: right;">
+                                    <span style="margin-right: 10px;">{{stock.difference}}</span>
+                                </div>
+                            </div>
+
+                            <div class="tradeStockButton" ng-click="tradeClick(stock.title)">
+                                <h5>TRADE</h5>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
+            <!--<div class="card stockCard">-->
+                <!--<div class="graph_card" style="text-align: center">-->
+                        <!--<h2 class="style_text" ng-click="togglePerformanceGraph()" style="margin: 2% min-height: 40px;">-->
+                            <!--My Performance-->
+                            <!--<i class="ion-chevron-up" style="float:right">-->
+                            <!--</i>-->
+                        <!--</h2>-->
+                    <!--&lt;!&ndash;<canvas id="line" class="chart chart-line" data="data" labels="labels" click="onClick" ng-show="toggle.graph">&ndash;&gt;-->
+                    <!--&lt;!&ndash;</canvas>&ndash;&gt;-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="card stockCard" style="text-align: center">-->
+                    <!--<h2 class="style_text" ng-click="toggleOwnStock()" style="margin: 2% min-height: 40px;">-->
+                        <!--Stock I Own-->
+                        <!--<i class="ion-chevron-up" style="float:right; " >-->
+                        <!--</i>-->
+                    <!--</h2>-->
+                <!--<div class="subtitle" style="width: 100%;">-->
+                    <!--<div class="style_text"><span style="width: 50%; float: left; font-size: 3vw"> title </span></div>-->
+                    <!--<div class="style_text"><span style="width: 12%; float: left; font-size: 3vw"> amount </span></div>-->
+                    <!--<div class="style_text"><span style="width: 18%; float: left; font-size: 3vw"> value </span></div>-->
+                    <!--<div class="style_text"><span style="width: 20%; float: left; font-size: 3vw"> profit </span></div>-->
+                <!--</div>-->
+                <!--<div class="well" ng-show="toggle.ownStock">-->
+                    <!--<div ng-repeat="stock in myStocks">-->
+                        <!--<div class="card stock_tile">-->
+                            <!--<div class="outer" style="margin: 2.5%" ng-click="toggle_stock_attr(stock)">-->
+                                <!--<div class="inner" style="text-align:left ;width: 50%;">{{stock.title}}</div>-->
+                                <!--<div class="inner" style="width: 10%">{{stock.amount}}</div>-->
+                                <!--<div class="inner" style="width: 20%">{{stock.value}}</div>-->
+                                <!--<div class="inner" style="width: 20%">{{stock.profit}}</div>-->
+                            <!--</div>-->
+                            <!--<div class="lower_attr_container" ng-show="stock.toggle">-->
+                                <!--<span class="lower_attr_title" style="text-align: left"> Average Price </span><div class="lower_attr" style="text-align: right">{{stock.averageCost}}</div>-->
+                                <!--<span class="lower_attr_title" style="text-align: left"> Last Price </span><div class="lower_attr" style="text-align: right">{{stock.lastPrice}}</div>-->
+                                <!--<span class="lower_attr_title" style="text-align: left"> Difference </span><div class="lower_attr" style="text-align: right">{{stock.difference}}</div>-->
+                                <!--<button class="button button-clear" style="width: 100%; max-height: 10%; background-color: #0c63ee" ng-click="trade_click(stock.title)"><span style="color:#fafafa"> TRADE </span></button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+
+            <!--<div class="card stockCard" style="text-align: center">-->
+                    <!--<h2 class="style_text" ng-click="toggleShortStock()" style="margin: 2% min-height: 40px">-->
+                        <!--Stock I Shorted-->
+                        <!--<i class="ion-chevron-up" style="float:right;">-->
+                        <!--</i>-->
+                    <!--</h2>-->
+                <!--<div class="subtitle" style="width: 100%;">-->
+                    <!--<div class="style_text"><span style="width: 50%; float: left; font-size: 3vw"> title </span></div>-->
+                    <!--<div class="style_text"><span style="width: 12%; float: left; font-size: 3vw"> amount </span></div>-->
+                    <!--<div class="style_text"><span style="width: 18%; float: left; font-size: 3vw"> value </span></div>-->
+                    <!--<div class="style_text"><span style="width: 20%; float: left; font-size: 3vw"> profit </span></div>-->
+                <!--</div>-->
+                <!--<div class="well" ng-show="toggle.shortStock">-->
+                    <!--<div ng-repeat="short in myShorts">-->
+                        <!--<div class="card stock_tile">-->
+                            <!--<div class="outer" style="margin: 2.5%;" ng-click="toggle_short_attr(short)">-->
+                                <!--<div class="inner" style="text-align:left; width: 50%;">{{short.title}}</div>-->
+                                <!--<div class="inner" style="width: 10%;">{{short.amount}}</div>-->
+                                <!--<div class="inner" style="width: 20%;">{{short.value}}</div>-->
+                                <!--<div class="inner" style="width: 20%;">{{short.profit}}</div>-->
+                            <!--</div>-->
+                            <!--<div class="lower_attr_container" ng-show="short.toggle">-->
+                                <!--<span class="lower_attr_title" style="text-align: left"> Average Price </span><div class="lower_attr" style="text-align: right">{{short.averageCost}}</div>-->
+                                <!--<span class="lower_attr_title" style="text-align: left"> Last Price </span><div class="lower_attr" style="text-align: right">{{short.lastPrice}}</div>-->
+                                <!--<span class="lower_attr_title" style="text-align: left"> Difference </span><div class="lower_attr" style="text-align: right">{{short.difference}}</div>-->
+                                <!--<button class="button button-clear" style="width: 100%; max-height: 10%; background-color: #0c63ee" ng-click="trade_click(short.title)"><span style="color:#fafafa"> SELL </span></button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+
         </div>
     </ion-content>
 </ion-view>
-

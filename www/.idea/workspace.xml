@@ -46,8 +46,13 @@
           <file leaf-file-name="contract.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/templates/contract.html">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
                 <state vertical-scroll-proportion="0.27331188">
                   <caret line="144" column="63" selection-start-line="144" selection-start-column="63" selection-end-line="144" selection-end-column="63" />
+=======
+                <state vertical-scroll-proportion="0.28555432">
+                  <caret line="129" column="17" selection-start-line="129" selection-start-column="17" selection-end-line="129" selection-end-column="17" />
+>>>>>>> d7ed1d7ef3ec5ae1f579264564c94399deee1c37
                   <folding>
                     <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#h5#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -65,7 +70,11 @@
           <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
                 <state vertical-scroll-proportion="0.0">
+=======
+                <state vertical-scroll-proportion="-0.0">
+>>>>>>> d7ed1d7ef3ec5ae1f579264564c94399deee1c37
                   <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
                   <folding />
                 </state>
@@ -75,7 +84,11 @@
           <file leaf-file-name="predictions.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/predictions.html">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
                 <state vertical-scroll-proportion="0.0">
+=======
+                <state vertical-scroll-proportion="-9.5">
+>>>>>>> d7ed1d7ef3ec5ae1f579264564c94399deee1c37
                   <caret line="41" column="60" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
                   <folding>
                     <element signature="n#style#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -102,7 +115,11 @@
           <file leaf-file-name="contractCtrl.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/contractCtrl.js">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
                 <state vertical-scroll-proportion="0.124087594">
+=======
+                <state vertical-scroll-proportion="0.12948857">
+>>>>>>> d7ed1d7ef3ec5ae1f579264564c94399deee1c37
                   <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
                   <folding />
                 </state>
@@ -186,7 +203,10 @@
       <sortByType />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="Scratches" />
+=======
+>>>>>>> d7ed1d7ef3ec5ae1f579264564c94399deee1c37
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -250,6 +270,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -660,6 +681,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
+<<<<<<< HEAD
+=======
+          <folding />
+>>>>>>> d7ed1d7ef3ec5ae1f579264564c94399deee1c37
         </state>
       </provider>
     </entry>
@@ -696,6 +721,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.036996737">
           <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -703,13 +729,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="41" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="41" />
+=======
+>>>>>>> d7ed1d7ef3ec5ae1f579264564c94399deee1c37
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/predictionsSearch.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
           <caret line="66" column="48" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="48" />
+=======
+          <caret line="0" column="41" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="41" />
+>>>>>>> d7ed1d7ef3ec5ae1f579264564c94399deee1c37
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/portfolio.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
+          <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+=======
+          <caret line="66" column="48" selection-start-line="66" selection-start-column="46" selection-end-line="66" selection-end-column="48" />
+          <folding>
+            <element signature="n#style#0;n#ion-modal-view#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#ion-modal-view#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#ion-modal-view#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#ion-content#0;n#div#1;n#ion-modal-view#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#2;n#ion-modal-view#0;n#!!top" expanded="false" />
+          </folding>
+>>>>>>> d7ed1d7ef3ec5ae1f579264564c94399deee1c37
         </state>
       </provider>
     </entry>
@@ -717,12 +767,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="102" column="0" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/predictions.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.0">
+=======
+        <state vertical-scroll-proportion="-9.5">
+>>>>>>> d7ed1d7ef3ec5ae1f579264564c94399deee1c37
           <caret line="41" column="60" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
           <folding>
             <element signature="n#style#0;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
@@ -753,7 +808,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/contractCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.124087594">
+=======
+        <state vertical-scroll-proportion="0.12948857">
+>>>>>>> d7ed1d7ef3ec5ae1f579264564c94399deee1c37
           <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
           <folding />
         </state>
@@ -769,8 +828,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/contract.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.27331188">
           <caret line="144" column="63" selection-start-line="144" selection-start-column="63" selection-end-line="144" selection-end-column="63" />
+=======
+        <state vertical-scroll-proportion="0.28555432">
+          <caret line="129" column="17" selection-start-line="129" selection-start-column="17" selection-end-line="129" selection-end-column="17" />
+>>>>>>> d7ed1d7ef3ec5ae1f579264564c94399deee1c37
           <folding>
             <element signature="n#style#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h5#0;n#div#1;n#ion-content#0;n#ion-view#0;n#!!top" expanded="true" />
