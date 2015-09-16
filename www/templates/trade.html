@@ -1,9 +1,37 @@
 <style>
 
+    .customSpan{
+        font-style: italic;
+        font-size: 4vw;
+        text-align-last: center;
+    }
+
 </style>
 
-<ion-view>
+<ion-view title="Buy/Sell Trade">
     <ion-content>
+        <div ng-show="true">
+            <span class="customSpan"> Step 1: Determine Outcome</span>
+            <p>
+               Get trade info
+            </p>
+            <div class="row">
+                <div class="col">
+                    <button class="button button-clear" style="width: 45%; max-height: 10%; background-color: #0c63ee; float: left; margin-right: 2.5%; margin-left: 2.5%" >
+                        <span style="color:#fafafa"> Agree </span></button>
+                    <button class="button button-clear" style="width: 45%; max-height: 10%; background-color: #0c63ee; float: left; margin-right: 2.5%; margin-left: 2.5%">
+                        <span style="color:#fafafa"> Disagree </span></button>
+                </div>
+            </div>
+        </div>
 
+        <div ng-show="true" class="container" ng-app="showApp" ng-controller="TradeCtrl">
+            <span class="customSpan"> Step 2: Choose number of stocks</span>
+            <label class="item item-input">
+                <input type="text" placeholder="***stock amount***" style="text-align: center">
+            </label>
+            <button class="button button-clear" style="width: 100%; max-height: 10%; background-color: #0c63ee">
+                <span style="color:#fafafa"> CONFIRM TRADE </span></button>
+        </div>
     </ion-content>
 </ion-view>

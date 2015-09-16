@@ -1,0 +1,163 @@
+<style>
+    .title{
+        text-align: center;
+        margin-top: 10%;
+    }
+
+    .item-input{
+        margin-left: 5%;
+        margin-right: 5%;
+        border-radius: 10px;
+    }
+
+    .button{
+        margin-left: 5%;
+        margin-top: 2%;
+        width: 90%;
+        max-height: 10%;
+    }
+
+    .button_text{
+        font-size: 3.5vw;
+        color:#fafafa;
+    }
+
+    .toggleContainer {
+        width: 90%;
+        margin-left: 5%;
+        height: 40px;
+        margin-bottom: 20px;
+    }
+
+    .toggleButton {
+        width: 45%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        height: 40px;
+        float: left;
+        border-radius: 20px;
+        text-align: center;
+        border: 2px solid #1976D2;
+        cursor: pointer;
+    }
+
+    .toggleButton h4 {
+        margin: 5%;
+        color: #1976D2;
+        width:40%;
+        float:left;
+    }
+
+    .selectedButton {
+        background-color: #0c63ee;
+        color: #fafafa;
+    }
+    .unselectedButton h5{
+        color: #0c63ee
+    }
+
+</style>
+
+<ion-view title="Deposit / Withdrawal ">
+    <ion-content>
+        <div class="init_test_page" ng-show="view.init_test">
+            <div class="toggleContainer" style="margin-top:10%">
+                <div class="toggleButton" style="background-color: #0c63ee"
+                     ng-click="init_button('deposit_page')">
+                     <h5 class="button_text"> DEPOSIT PAGE </h5>
+                </div>
+                <div class="toggleButton" style="background-color: #0c63ee"
+                     ng-click="init_button('withdrawal_page')">
+                     <h5 class="button_text"> WITHDRAWAL PAGE </h5>
+                </div>
+            </div>
+
+        </div>
+        <div ng-show="view.deposit" style="margin-top:10%;">
+            <h3 class="title"> Deposit </h3>
+            <div style="text-align: center; margin:5%;">
+                <p2>
+                    How much would you like to Deposit into your iPredict account?
+                </p2>
+            </div>
+            <label class="item item-input" >
+                <input ng-model="deposit_amount" type="number" placeholder="$0.00" style="text-align: center">
+            </label>
+            <button class="button button-clear" style="background-color: #0c63ee;" ng-click="purchase_button_press(deposit_amount)">
+                <h5 class="button_text">PURCHASE</h5>
+            </button>
+            <div style="text-align: center; margin:5%;">
+                <p2>
+                   The maximum daily deposited amount is $2,500
+                </p2>
+            </div>
+        </div>
+
+        <div ng-show="view.withdrawal">
+            <h3 class="title" style="margin-top:10%;" > Withdrawal </h3>
+            <div style="text-align: center; margin:5%;">
+                <p2>
+                    Total available funds ${{portfolio[2].attr}}
+                </p2>
+            </div>
+            <label class="item item-input" >
+                <input ng-model="withdrawal_amount" type="number" placeholder="$0.00" style="text-align: center">
+            </label>
+            <button class="button button-clear" style="background-color: #0c63ee;" ng-click="finish_transaction()">
+                 <h5 class="button_text">WITHDRAWAL</h5>
+            </button>
+        </div>
+        <div ng-show="view.payment_method" style="margin-top: 10% ;">
+            <h3 class="title"> Transaction </h3>
+                <div class="toggleContainer">
+                    <div class="toggleButton"
+                         ng-class="button_color.card === true ? 'selectedButton' : 'unselectedButton'"
+                         ng-click="payment_method('credit_card')">
+                         <h5 class="button_text"> CREDIT CARD </h5>
+                    </div>
+                    <div class="toggleButton"
+                         ng-class="button_color.deposit === true ? 'selectedButton' : 'unselectedButton'"
+                         ng-click="payment_method('direct_deposit')">
+                         <h5 class="button_text"> DIRECT DEPOSIT </h5>
+                    </div>
+                </div>
+            <div style="width: 100%; text-align: center">
+                <span> Deposit amount ${{deposit_amount}}</span>
+            </div>
+            <div class="card_details" ng-show="view.card_view">
+                <label class="item item-input" style="margin: 5%;">
+                    <input ng-model="card.name" type="text" placeholder="Card Holder Name" style="text-align: center; width: 100%;">
+                </label>
+                <label class="item item-input" style="margin: 5%;">
+                    <input ng-model="card.number" type="text" placeholder="Card Number" style="text-align: center; width: 100%;">
+                </label>
+                <label class="item item-input" style=" width:50%; float: left">
+                    <input ng-model="card.date" type="text" placeholder="MM/YY" style="text-align: center">
+                </label>
+                <label class="item item-input" style=" width:30%; float: left">
+                    <input ng-model="card.ccv" type="text" placeholder="CCV" style="text-align: center">
+                </label>
+
+                <button class="button button-clear" style="background-color: #0c63ee; width:90%; margin:5%;" ng-click="finish_transaction()">
+                    <h5 class="button_text">CONFIRM PAYMENT </h5>
+                </button>
+
+            </div>
+            <div ng-show="view.deposit_view" style="text-align: center">
+            <span class="manual_deposit" ng-hide="view.payment_method"></span>
+                <span style="text-align: center; margin:5%; white-space: pre-line">
+                    Deposit money into the following account
+                    referencing your account name
+
+                    <h3>XX-XXXX-XXXXXXX-XXX</h3>
+                    Money will be credited to your account within 1-2 days
+                    after we have received the payment
+                </span>
+
+                <button class="button button-clear" style="background-color: #0c63ee; width:90%; margin:5%;" ng-click="finish_transaction()">
+                    <h5 class="button_text"> FINISHED </h5>
+                </button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
