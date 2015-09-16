@@ -1,4 +1,7 @@
 <style>
+    @import url(http://fonts.googleapis.com/css?family=Merriweather+Sans:300);
+
+    * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
     .customSpan{
         font-style: italic;
@@ -6,32 +9,183 @@
         text-align-last: center;
     }
 
+    .style_text {
+        font-style: italic;
+        font-size: 5vw;
+    }
+
+    .toggleContainer {
+        width: 90%;
+        margin-left: 5%;
+        height: 40px;
+        margin-top: 20px;
+    }
+
+    .toggleButton {
+        width: 45%;
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+        height: 40px;
+        float: left;
+        border-radius: 20px;
+        text-align: center;
+        border: 2px solid #1976D2;
+        cursor: pointer;
+    }
+
+    .toggleButton h4 {
+        margin-top: 8px;
+        margin-bottom: 8px;
+        color: #1976D2;
+    }
+
+    .selectedButton {
+        background-color: #1976D2;
+    }
+
+    .selectedButton h4 {
+        color: #fafafa;
+    }
+
+
+    .container {
+        margin: 0 auto;
+        width: 100%;
+        background: white;
+        padding: 30px;
+    }
+
+    .counter-container .counter-plus, .counter-minus {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        background: #333;
+        color: white;
+        margin: 0;
+        padding: 5px 10px;
+        text-decoration: none;
+    }
+
+    .counter-container .counter-field {
+        margin: 0;
+        padding: 5px;
+        text-align: center;
+        width: 40px;
+    }
+
 </style>
 
 <ion-view title="Buy/Sell Trade">
     <ion-content>
-        <div ng-show="true">
-            <span class="customSpan"> Step 1: Determine Outcome</span>
-            <p>
-               Get trade info
-            </p>
-            <div class="row">
-                <div class="col">
-                    <button class="button button-clear" style="width: 45%; max-height: 10%; background-color: #0c63ee; float: left; margin-right: 2.5%; margin-left: 2.5%" >
-                        <span style="color:#fafafa"> Agree </span></button>
-                    <button class="button button-clear" style="width: 45%; max-height: 10%; background-color: #0c63ee; float: left; margin-right: 2.5%; margin-left: 2.5%">
-                        <span style="color:#fafafa"> Disagree </span></button>
-                </div>
+
+        <div class="toggleContainer">
+            <div class="toggleButton"
+                 ng-click='showOne()'>
+                <h4>TRADE</h4>
+            </div>
+            <div class="toggleButton"
+                 ng-click='showTwo()'>
+                <h4>BUY AS BUNDLE</h4>
             </div>
         </div>
 
-        <div ng-show="true" class="container" ng-app="showApp" ng-controller="TradeCtrl">
-            <span class="customSpan"> Step 2: Choose number of stocks</span>
-            <label class="item item-input">
-                <input type="text" placeholder="***stock amount***" style="text-align: center">
-            </label>
-            <button class="button button-clear" style="width: 100%; max-height: 10%; background-color: #0c63ee">
-                <span style="color:#fafafa"> CONFIRM TRADE </span></button>
+        <div class="card" ng-show="toggle.one" >
+            <span class="style_text">Stocks</span>
+            <br>
+            <br>
+            <div ng-show="true">
+                <span class="customSpan"> Step 1: Determine Outcome?</span>
+                <br>
+                <p>
+                    <br>Reserve Bank to REDUCE OCR by 25 basis points on 10 September 2015.
+                    <br>Is this outcome more likely than 92.0%?
+                </p>
+                <div class="row">
+                    <div class="col">
+                        <button class="button button-clear" ng-click="enableConfirm()" style="width: 45%; max-height: 10%; background-color: #0c63ee; float: left; margin-right: 2.5%; margin-left: 2.5%" >
+                            <span style="color:#fafafa"> Agree </span></button>
+                        <button class="button button-clear" ng-click="enableConfirm()" style="width: 45%; max-height: 10%; background-color: #0c63ee; float: left; margin-right: 2.5%; margin-left: 2.5%">
+                            <span style="color:#fafafa"> Disagree </span></button>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <span class="customSpan"> Step 2: Buy or Sell ?</span>
+                <br>
+                <div class="list">
+
+                    <label class="item item-radio">
+                        <input type="radio" name="group" checked="checked">
+                        <div class="item-content">
+                            Buy
+                        </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+                    <label class="item item-radio">
+                        <input type="radio" name="group">
+                        <div class="item-content">
+                            Sell
+                        </div>
+                        <i class="radio-icon ion-checkmark"></i>
+                    </label>
+
+                </div>
+            </div>
+            <div ng-show="true">
+                <span class="customSpan"> Step 3: Choose number of stocks</span>
+
+                <!--<div ng-app>-->
+                    <!---->
+                    <!--&lt;!&ndash;<label class="item item-input">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<input type="text" placeholder="****Number of Stocks****" style="text-align: center">&ndash;&gt;-->
+                    <!--&lt;!&ndash;</label>&ndash;&gt;-->
+                <!--</div>-->
+                <div class="container">
+
+                    <div counter value="quantityTrade" min="1" step="1" editable></div>
+
+                </div>
+
+                <button class="button button-clear" ng-disabled="toggle.confirmButtonDisabled" style="width: 100%; max-height: 10%; background-color: #0c63ee">
+                    <span style="color:#fafafa"> CONFIRM TRADE </span></button>
+            </div>
+
         </div>
+
+        <div class="card" ng-show="toggle.two">
+            <span class="style_text">Buy as a Bundle</span>
+           <br>
+            <div ng-show="true">
+                <br>
+                <span class="customSpan"> Step 1: Choose Number of Bundles</span>
+                 <p>
+                    How many bundles would you like to buy?
+                </p>
+
+                <div class="container">
+                    <div counter value="quantityBundle" min="1" step="1" editable></div>
+                </div>
+                <div class="row">
+                    <p>
+                    Bundle Contents:
+                    <br>OCR.10SEP15.U25
+                    <br>OCR.10SEP15.U50
+                    <br>OCR.10SEP15.D25
+                    <br>OCR.10SEP15.D50
+                    <br>OCR.10SEP15.NC
+                    <br>OCR.10SEP15.OTH
+                </div>
+            </div>
+            <div ng-show="true" >
+                <span class="customSpan"> Step 2: Confirm Bundle Order?</span>
+                <br>
+                <br>
+                <button class="button button-clear" style="width: 100%; max-height: 10%; background-color: #0c63ee">
+                    <span style="color:#fafafa"> CONFIRM BUNDLE </span></button>
+            </div>
+        </div>
+
     </ion-content>
 </ion-view>
