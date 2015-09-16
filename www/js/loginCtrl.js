@@ -1,8 +1,8 @@
 angular.module('app.controllers.login', [])
 
-    .controller('LoginCtrl', function($scope, LoginService) {
+    .controller('LoginCtrl', function($scope,$ionicNavBarDelegate,
+     LoginService) {
 
-        $scope.pageTitle = "Login";
 
 
         $scope.showWarning = false;
@@ -240,6 +240,9 @@ angular.module('app.controllers.login', [])
             LoginService.toggleLoginState();
             $scope.showWarning = false;
             $scope.warningMessage = "";
+            $scope.login = !$scope.login;
+        var title = $scope.login ? 'Login' : 'Sign Up';
+        $ionicNavBarDelegate.title(title);
         };
 
         //
@@ -250,7 +253,9 @@ angular.module('app.controllers.login', [])
             LoginService.toggleRegisterState();
             $scope.showWarning = false;
             $scope.warningMessage = "";
-            $scope.pageTitle = "Register";
+           $scope.login = !$scope.login;
+        var title = $scope.login ? 'Login' : 'Sign Up';
+        $ionicNavBarDelegate.title(title);
         };
 
         //

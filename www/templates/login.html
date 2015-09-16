@@ -1,14 +1,17 @@
-<ion-view title="{{pageTitle}}">
-  <ion-content>
+<ion-view  ng-init="login = true">
+ <ion-nav-title>Login</ion-nav-title>
 
+  <ion-content>
+  
+  <div ng-bind-html="test.content">{{test.content}}</div>
     <div ng-controller="LoginCtrl">
       <div class="loginColumn" ng-Show="isLoggingIn()">
 
         <div class ="loginTitleDiv">
           <img class ="loginTitle" src="img/ipredictLogoStroke.png">
         </div>
-        <div class="warningSection_div" ng-show="showWarning">
-          <pre class="warningSection">{{ warningMessage }}</pre>
+        <div class="warningSection" ng-show="showWarning">
+          <a editable-text="warningMessage">{{ warningMessage }}</a>
         </div>
         <div class="main_div">
           <div>
@@ -33,21 +36,23 @@
 
           <div>
               <button class="Login_btn" ng-click="login()">
+
                 Login
               </button>
           </div>
 
-          <div class="sign_up_div">
-              <button class="sign_up" ng-click="changeToRegister()">
-               Sign Up
-              </button>
-          </div>
-        
-          <div class="forgot_pass_div">
-            <button class="forgot_pass" ng-click="changeToForgotPassword()">
-              Forgot password?
-            </button>
-          </div>
+           <div class="sign_up_div">
+                  <button class="sign_up" ng-click="changeToRegister()">
+
+                   Sign Up
+                  </button>
+              </div>
+          
+              <div class="forgot_pass_div">
+                  <button class="forgot_pass" ng-click="changeToForgotPassword()">
+                    Forgot password?
+                  </button>
+              </div>
 
              
             
@@ -65,13 +70,13 @@
 
           <div class="info_Header">Create An Account</div>
 
-          <div class="warningSection_div" ng-show="showWarning">
-            <pre class="warningSection">{{ warningMessage }}</pre>
+          <div class="warningSection" ng-show="showWarning">
+            <pre>{{ warningMessage }}</pre>
           </div>
 
 
 
-          <div class="main_div" ng-model="$pageTitle">
+          <div class="main_div" >
 
 
             <div>
@@ -112,7 +117,7 @@
             
              <div class="register_importantNotice" style="color: #7e7e7e">
               <div style="font-weight: bold">Important Notice For Your Protection!</div>
-              <p>1. The Website and the Markets are intended as a research and educational facility, not as an investment market or a gambling facility. The Market Provider has been authorised to act as a futures dealer and the contracts traded are treated as futures contracts under New Zealand law, in order to provide certainty as to the legal treatment of the contracts.</p>
+              <div style="text-align:justify">              <p>1. The Website and the Markets are intended as a research and educational facility, not as an investment market or a gambling facility. The Market Provider has been authorised to act as a futures dealer and the contracts traded are treated as futures contracts under New Zealand law, in order to provide certainty as to the legal treatment of the contracts.</p>
               
               <p>2. The Financial Markets Authority role in authorising futures dealers is limited and does not imply approval or endorsement of the business, trading or solvency of the company concerned.</p>
               
@@ -121,6 +126,7 @@
               <p>4. The email address you provide will only be used for the purposes of this website and will never be on-sold.</p>
               
               <p>5. Nothing on this Website constitutes an offer or invitation to trade with any person who is under 18 years of age and/or outside New Zealand. In trading on iPredict, traders warrant that they are complying with all laws in the jurisdiction in which they are present.</p>
+            </div>
             </div>
           </div>
         </div>

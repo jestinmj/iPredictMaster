@@ -38,6 +38,7 @@
 	vertical-align: left;
 	color: #7e7e7e;
 	margin-bottom:2%;
+	text-align:justify;
 }
 
 .info_Header 
@@ -45,6 +46,8 @@
 	vertical-align: middle;
 	color:#7e7e7e;
 	font-weight: bold;
+	height:30px;
+	
 }
 
 .viewContracts
@@ -84,8 +87,10 @@
 .loginTitleDiv
 {
 	position: relative;
-	margin-top: 5%;
-	margin-bottom: 5%;
+	margin-top: 10%;
+	margin-bottom: 10%;
+
+	display:block;
 }
 
 .email
@@ -214,3 +219,4 @@
 {
  	color:#7e7e7e
 }
+
