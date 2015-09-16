@@ -3,7 +3,7 @@ angular.module('app.controllers.login', [])
     .controller('LoginCtrl', function($scope,$ionicNavBarDelegate,
      LoginService) {
 
-
+        $scope.login = true;
 
         $scope.showWarning = false;
         $scope.warningMessage = '';
@@ -26,10 +26,14 @@ angular.module('app.controllers.login', [])
         //
         // User presses the login button
         //
-		$scope.login = function(){
+        $scope.login = function(){
             var INVALID_USERNAME_LENGTH = 0;
             var INVALID_PASSWORD_LENGTH = 1;
 
+            //console.log("Logging in...")
+            var tradename = $scope.details_username;
+            var password = $scope.details_password;
+            var rememberme = $scope.details_rememberme;
 
             // invalid will contain all invalid filled forms.
             var invalid = [];
@@ -79,7 +83,7 @@ angular.module('app.controllers.login', [])
                 // Prove that we are trying to sign up legitimately.
                 $scope.details_password = '';
                 $scope.details_passwordconfirm = '';
-                $ionicScrollDelegate.scrollTop(true);
+                //$ionicScrollDelegate.scrollTop(true);
             }
             else{
                 // Acceptable details entered
@@ -236,9 +240,7 @@ angular.module('app.controllers.login', [])
             LoginService.toggleLoginState();
             $scope.showWarning = false;
             $scope.warningMessage = "";
-            $scope.login = !$scope.login;
-            var title = $scope.login ? 'Login' : 'Sign Up';
-            $ionicNavBarDelegate.title(title);
+            $ionicNavBarDelegate.title("Login");
         };
 
         //
@@ -249,9 +251,7 @@ angular.module('app.controllers.login', [])
             LoginService.toggleRegisterState();
             $scope.showWarning = false;
             $scope.warningMessage = "";
-            $scope.login = !$scope.login;
-            var title = $scope.login ? 'Login' : 'Sign Up';
-            $ionicNavBarDelegate.title(title);
+            $ionicNavBarDelegate.title("Register");
         };
 
         //
@@ -262,6 +262,7 @@ angular.module('app.controllers.login', [])
             LoginService.toggleForgotPasswordState();
             $scope.showWarning = false;
             $scope.warningMessage = "";
+            $ionicNavBarDelegate.title("Forgot Password");
         };
 
         //
@@ -284,12 +285,12 @@ angular.module('app.controllers.login', [])
 
         // Function that returns true/false if we are currently logging in.
         $scope.isLoggingIn = function(){
-        	return LoginService.inLoginState();
+            return LoginService.inLoginState();
         };
 
         // Function that returns true/false if we are currently registating
         $scope.isRegistering = function(){
-        	return LoginService.inRegisterState();
+            return LoginService.inRegisterState();
         }
 
         // Function that returns true/false if we are currently getting our password

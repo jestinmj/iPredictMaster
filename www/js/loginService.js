@@ -141,4 +141,4 @@ angular.module('app.services.login', [])
         }
 
         return serviceFunctions;
-    });
+});
