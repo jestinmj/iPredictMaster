@@ -189,7 +189,7 @@ angular.module('app.controllers.predictions', ['ionic'])
                     category : 0,
                     img: stock.contractDetails.imageName,
                     imgPlaceholder: "test1"
-                }
+                };
 
                 if (stats.title.length > 70){
                     stats.title = stats.title.substr(0, 70) + "...";

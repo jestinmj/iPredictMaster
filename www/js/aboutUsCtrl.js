@@ -3,29 +3,51 @@
  */
 angular.module('app.controllers.aboutUs', ["ionic"])
 
-    .controller('AboutUsCtrl', function($scope, $ionicPopup, $timeout) {
+    .controller('AboutUsCtrl', function($scope, $ionicPopup) {
 
-        $scope.toggle={
-            ownStock:true,
-            shortStock: true,
-            graph: true
-        };
-
-        $scope.portfolio={
-            myRank:1,
-            changeInRank:2,
-            myWorth:20.05,
-            changeInWorth:0.07,
-            myWallet:12.74,
-            changeInWallet:"NC",
-            myPortfolio:7.39,
-            changeInPortfolio:0.07
-        };
-
-        $scope.onClickSubmit=function(){
-            var alertPopup = $ionicPopup.alert({
-                title: 'Messsage Sent!!',
-                subTitle: 'Will get back to you soon <i class="icon ion-person-stalker"></i>'
+        $scope.errorPopup = function(subtitle){
+            $ionicPopup.alert({
+                title: "Oops",
+                subTitle: subtitle
             });
         };
+
+        $scope.sendMessagePopup = function(){
+            $ionicPopup.alert({
+                title: "Sent",
+                subTitle: "Your message has be sent, we'll get back to you soon!"
+            });
+        };
+
+        $scope.people = [
+            { name: "DANIEL", position: "CEO", img: "" },
+            { name: "JESSICA", position: "Advertising", img: "" },
+            { name: "JACOB", position: "Support", img: "" },
+            { name: "TESS", position: "Product Development", img: "" }
+        ];
+
+        $scope.message = {
+            email: "",
+            text: ""
+        };
+
+
+        $scope.sendMessage = function(){
+            var indexOfAt = $scope.message.email.indexOf("@");
+            if ($scope.message.email === ""){
+                $scope.errorPopup("You forgot to enter your email address!");
+            }
+            else if (indexOfAt === -1 ||
+                $scope.message.email.substr(indexOfAt+1).length === 0){
+                $scope.errorPopup("Please enter a valid email address!");
+            }
+            else if ($scope.message.text === ""){
+                $scope.errorPopup("You forgot to enter your message!");
+            }
+            else {
+                $scope.sendMessagePopup();
+            }
+        }
+
+
     });
