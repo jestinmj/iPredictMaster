@@ -9,76 +9,181 @@
         font-size: 4vw;
     }
 
+
+    .aboutUsTextContainer {
+        width: 100%;
+        height: 470px;
+        background-color: #42A5F5;
+        padding: 50px 30px 30px 30px;
+    }
+
+    .aboutUsTextContainer h2 {
+        color: #fafafa;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .aboutUsTextContainer p {
+        color: #fafafa;
+    }
+
+
+    .peopleContainer {
+        width: 100%;
+        height: 530px;
+        padding-top: 30px;
+        background-color: #fafafa;
+    }
+
+    .peopleContainer h2 {
+        text-align: center;
+    }
+
+    .personContainer {
+        height: 200px;
+        width: 40%;
+        float: left;
+        margin: 10px 5% 10px 5%;
+    }
+
+    .personContainer h4 {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .personContainer h5 {
+        text-align: center;
+    }
+
+    .personImage {
+        width: 100px;
+        height: 100px;
+        -webkit-border-radius: 60px;
+        -moz-border-radius: 60px;
+        border-radius: 60px;
+        background-color: #42A5F5;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .contactUsContainer {
+        width: 100%;
+        height: 500px;
+        background-color: #42A5F5;
+        padding-top: 30px;
+    }
+
+    .contactUsContainer h2 {
+        text-align: center;
+        color: #fafafa;
+        margin-bottom: 20px;
+    }
+
+    .contactUsContainer p {
+        text-align: center;
+        color: #fafafa;
+    }
+
+    #emailInput {
+        width: 90%;
+        margin-left: 5%;
+        border: 2px solid #fafafa;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        height: 50px;
+        margin-bottom: 20px;
+    }
+
+    #emailInput input {
+        width: 90%;
+        margin-left: 5%;
+        height: 36px;
+        margin-top: 5px;
+        background-color: #42A5F5;
+        color: #fafafa;
+    }
+
+    #messageInput {
+        width: 90%;
+        margin-left: 5%;
+        border: 2px solid #fafafa;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        height: 150px;
+    }
+
+    #messageInput textarea{
+        width: 90%;
+        margin-left: 5%;
+        height: 136px;
+        margin-top: 5px;
+        background-color: #42A5F5;
+        color: #fafafa;
+    }
+
+
+    #messageSubmitButton {
+        border: none;
+        width: 90%;
+        margin-left: 5%;
+        margin-top: 20px;
+        border-radius: 10px;
+        color: #42A5F5;
+    }
+
 </style>
 
 <ion-view title="About Us">
-    <ion-content>
-        <div class="container">
-            <div class="card">
+    <ion-content style="background-color: #42A5F5;">
 
-                <div class="item item-body">
-                    <img style="height:50%;width:100%" src="img/iPredict_logo.jpg">
-                    <p>
-                        Established in 2008, iPredict ran as a political prediction market during the eight weeks prior to the election that year.
-                        It proved more accurate than three quarters of all political polls published in the run up to the election, confirming the effectiveness of money prediction markets.
+        <div class="aboutUsTextContainer">
+            <h2>ABOUT US</h2>
+            <p>
+                Established in 2008, iPredict ran as a political prediction market during the eight weeks prior to the election that year.
+                It proved more accurate than three quarters of all political polls published in the run up to the election, confirming the effectiveness of money prediction markets.
+            </p>
+            <p>
+                Since then, iPredict has accumulated over 4000 traders and has launched more than 7000 contracts, covering a wide variety of topics,
+                from monthly gold prices, to the discovery of extraterrestrial life..
+            </p>
+            <p>
+                So put your money where your mouth is and begin trading today!
+            </p>
+        </div>
 
-                        Since then, iPredict has accumulated over 4000 traders and has launched more than 7000 contracts, covering a wide variety of topics,
-                        from monthly gold prices, to the discovery of extraterrestrial life..
+        <div class="peopleContainer">
+            <h2>PEOPLE</h2>
+            <div class="personContainer" ng-repeat="person in people">
+                <div class="personImage">
 
-                        So put your money where your mouth is and begin trading today!
-                    </p>
                 </div>
-
-                <div class="card">
-                    <span class="style_text">People</span>
-                    <div class="row">
-                        <div class="col custom_col">
-                            <a class="item item-avatar">
-                                <img src="img/iPredict_logo.jpg">
-                                <h2>Staff 1</h2>
-                                <p>Position</p>
-                            </a>
-                        </div>
-                        <div class="col custom_col">
-                            <a class="item item-avatar" href="#">
-                                <img src="img/iPredict_logo.jpg">
-                                <h2>Staff 2</h2>
-                                <p>Position</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col custom_col">
-                            <a class="item item-avatar">
-                                <img src="img/iPredict_logo.jpg">
-                                <h2>Staff 3</h2>
-                                <p>Position</p>
-                            </a>
-                        </div>
-                        <div class="col custom_col">
-                            <a class="item item-avatar" href="#">
-                                <img src="img/iPredict_logo.jpg">
-                                <h2>Staff 4</h2>
-                                <p>Position</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <span class="style_text">Contact Us</span>
-                    <label class="item item-input">
-                        <input type="text" ng-model="subName" placeholder="Name">
-                    </label>
-                    <label class="item item-input">
-                        <input type="text" ng-model="subMsg" placeholder="Message">
-                    </label>
-                    <button class="button button-block button-stable" ng-click="onClickSubmit()">
-                        Submit
-                    </button>
-                </div>
+                <h4>{{person.name}}</h4>
+                <h5>{{person.position}}</h5>
             </div>
         </div>
+        <div class="contactUsContainer">
+            <h2>CONTACT US</h2>
+            <form ng-submit="sendMessage()">
+                <p>Email:</p>
+                <div id="emailInput">
+                    <input type="email" ng-model="message.email" ng-model-options="{allowInvalid: true}">
+                </div>
+                <p>Message:</p>
+                <div id="messageInput">
+                    <textarea ng-model="message.text" ng-model-options="{allowInvalid: true}"></textarea>
+
+                </div>
+                <button type="sendMessage" class="button button-light" id="messageSubmitButton">
+                    SUBMIT
+                </button>
+            </form>
+
+        </div>
+
     </ion-content>
 </ion-view>
 

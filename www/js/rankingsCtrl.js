@@ -6,73 +6,60 @@
 
 angular.module('app.controllers.rankings', ["ionic"])
 
-
-
     .controller('RankingsCtrl', function($scope) {
 
-
-
-        $scope.toggle={
-
-            ownStock:true,
-
-            shortStock: true,
-
-            graph: true
-
+        $scope.getListBackgroundColor = function(index){
+            var col = ""
+            if (index % 2 === 0){
+                col = "#eeeeee"
+            }
+            return { backgroundColor : col };
         };
 
-
-
-        $scope.portfolio={
-
-            myRank:1,
-
-            changeInRank:2,
-
-            myWorth:20.05,
-
-            changeInWorth:0.07,
-
-            myWallet:12.74,
-
-            changeInWallet:"NC",
-
-            myPortfolio:7.39,
-
-            changeInPortfolio:0.07
-
+        $scope.toggleRankingType = function(type){
+            $scope.rankingType = type;
         };
 
+        $scope.rankingType = "roi";
+
+        $scope.generateMockRankings = function(){
+            var names = [
+                "John", "Sarah", "Jake", "Bob", "Peter"
+            ];
+            var getChangeColor = function(change){
+                if (change < 0){ return "#D32F2F"; }
+                else if (change > 0){ return "#689F38"; }
+                else { return "#212121"; }
+            };
+            var formatNetWorth = function(x){
+                return x.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            };
+            var formatRoi = function(x){
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
 
 
-        $scope.traders=
+            $scope.traders = [];
+            for (var i = 0; i < 20; i++){
+                $scope.traders.push({
+                    rank: i+1,
+                    name: names[parseInt(Math.random()*5)],
+                    netWorth: parseInt(Math.random()*10000000),
+                    change: parseInt(Math.random()*200) - 100,
+                    roi: parseInt(Math.random()*20000000) - 10000000
+                });
+                $scope.traders[i].changeColor =
+                    getChangeColor($scope.traders[i].change);
+                $scope.traders[i].absChange =
+                    Math.abs($scope.traders[i].change);
+                $scope.traders[i].formattedNetWorth =
+                    formatNetWorth($scope.traders[i].netWorth);
+                $scope.traders[i].formattedRoi =
+                    formatRoi($scope.traders[i].roi);
+            }
+        };
 
-            [
-
-                {name:'John', prevRank:5, country: 'France', amount:585},
-
-                {name:'Jessie', prevRank:3, country: 'NZ', amount:506},
-
-                {name:'Johanna', prevRank:2, country: 'UK', amount:475},
-
-                {name:'Joy', prevRank:7, country: 'China', amount:423},
-
-                {name:'Mary', prevRank:8, country: 'Australia', amount:399},
-
-                {name:'Peter', prevRank:9, country: 'Moscow', amount:388},
-
-                {name:'Sebastian', prevRank:6, country: 'Germany', amount:345},
-
-                {name:'Erika', prevRank:1, country: 'Ukraine', amount:300},
-
-                {name:'Patrick', prevRank:12, country: 'Poland', amount:265},
-
-                {name:'Samantha', prevRank:17, country: 'Paraguay', amount:256}
-
-            ]
-
-
+        $scope.generateMockRankings();
 
     });
 
