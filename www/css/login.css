@@ -1,4 +1,5 @@
 
+
 .remember_me
 {
 	font-size: calc(vmax); 
@@ -8,24 +9,24 @@
 .loginColumn 
 {
 	vertical-align: middle;
-	margin-left: 20%;
-	margin-right: 20%;
+	margin-left: 10%;
+	margin-right: 10%;
 	margin-top:5%;
 }
 
 .registerColumn 
 {
 	vertical-align: middle;
-	margin-left: 20%;
-	margin-right: 20%;
+	margin-left: 10%;
+	margin-right: 10%;
 	margin-top:5%;
 }
 
 .forgotPasswordColumn 
 {
 	vertical-align: middle;
-	margin-left: 20%;
-	margin-right: 20%;
+	margin-left: 10%;
+	margin-right: 10%;
 	margin-top:5%;
 }
 
@@ -42,7 +43,8 @@
 {
 	vertical-align: left;
 	color: #7e7e7e;
-	margin-bottom:5%;
+	margin-bottom:2%;
+	text-align:justify;
 }
 
 .info_Header 
@@ -50,6 +52,8 @@
 	vertical-align: middle;
 	color:#7e7e7e;
 	font-weight: bold;
+	height:30px;
+	
 }
 
 .viewContracts
@@ -60,22 +64,38 @@
 .loginTitle 
 {
 	min-width: 200px;
-	width: 40%;
+	width: 30%;
 	display: block;
 	margin-left: auto;
-	margin-right: auto;	
+	margin-right: auto;
+
 }
 
+.warningSection_div
+{
+
+	border-width: 5;
+	border-color: red;
+	background-color: pink;
+	display: table;
+	width: 100%;
+}
 .warningSection
 {
 	color: black;
-	border-color: red;
 	background-color: pink;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-right: 10px;
 }
 
 .loginTitleDiv
 {
 	position: relative;
+	margin-top: 10%;
+	margin-bottom: 10%;
+	display:block;
 }
 
 .email
@@ -86,6 +106,7 @@
 .main_div
 {
 	border-radius: 15px 15px 15px 15px;
+	
 }
 
 .Login_btn
@@ -119,61 +140,63 @@
 	text-align: center;
 }
 
-.checkbox
+.Remember_me_div
 {
-	margin-bottom: 30px;
 	margin-left: -12px;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	width:100%;
 }
 
 .forgot_pass_div
 {		
-	width:80%;
-	margin-top:5%;
+	width:100%;
+	margin-top:2%;
 	float: center;
 }
 
 .sign_up_div
 {
-	width:50%;
-	margin-top:5%;
+	width:100%;
+	margin-top:3%;
 	float: center;
-}
-
-.remove-border
-{
-	border:5px solid white;
 }
 
 .have_account
 {
-	padding: 50px 50px 50px 0px;
+	padding: 10px 10px 10px 10px;
 	color: #428BCA;
 	font-family: Sans-serif;
-	font-size: 1vmax;
+	font-size: 2vmax;
 	line-height: 20px;
 	text-align: center;
-	margin-top: 10%;
-
+	background-color: white;
+	border-width: 0;
+	margin-top: 15px
 }
 
 .forgot_pass
 {
-	padding: 50px 50px 50px 0px;
+	padding: 10px 10px 10px 10px;
 	color: #428BCA;
 	font-family: Sans-serif;
-	font-size: 1vmax;
+	font-size: 2vmax;
 	line-height: 20px;
-	text-align: center;	
+	text-align: left;	
+	background-color: white;
+	border-width: 0;
 }
 
 .sign_up
 {
-	padding: 50px 50px 50px 0px;
+	padding: 10px 10px 10px 10px;
 	color: #428BCA;
 	font-family: Sans-serif;
-	font-size: 1vmax;
+	font-size: 2vmax;
 	line-height: 20px;
 	text-align: center;
+	background-color: white;
+	border-width: 0;
 }
 
 .iforgotMyPassword_SendButton
@@ -195,4 +218,9 @@
 
 	font-size: 1vw;
 	color:#7e7e7e;
+}
+
+.Remember_me
+{
+ 	color:#7e7e7e
 }

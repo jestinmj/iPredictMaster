@@ -1,6 +1,9 @@
 angular.module('app.controllers.login', [])
 
-    .controller('LoginCtrl', function($scope, LoginService) {
+    .controller('LoginCtrl', function($scope,$ionicNavBarDelegate,
+     LoginService) {
+
+
 
         $scope.showWarning = false;
         $scope.warningMessage = '';
@@ -24,11 +27,64 @@ angular.module('app.controllers.login', [])
         // User presses the login button
         //
 		$scope.login = function(){
+            var INVALID_USERNAME_LENGTH = 0;
+            var INVALID_PASSWORD_LENGTH = 1;
 
-            //console.log("Logging in...")
-            var tradename = $scope.details_username;
-            var password = $scope.details_password;
-            var rememberme = $scope.details_rememberme;
+
+            // invalid will contain all invalid filled forms.
+            var invalid = [];
+
+
+            // Username
+            if( $scope.checkUsernameValidity($scope.details_username) == false ){
+
+                // Invalid Username
+                invalid.push(INVALID_USERNAME_LENGTH);
+            }
+
+            // Passwords
+            if( password.length <= 0 ){
+                // Passwords are not equal
+                invalid.push(INVALID_PASSWORD_LENGTH);
+            }
+
+            // Check if we have a valid registration!
+            if( invalid.length > 0 ){
+
+                // FAILED LOGIN!
+                $scope.showWarning = true;
+                $scope.warningMessage = "ALERT! There are errors in your form!";
+
+                for(var i = 0; i < invalid.length; i++){
+
+                    // Add a new line
+                    $scope.warningMessage += '\n';
+
+                     // Warning message for THIS error
+                    var warning = "";
+                    if( invalid[i] == INVALID_USERNAME_LENGTH ){
+                        warning = "Your Tradename is too short."; 
+                    }
+                    if( invalid[i] == INVALID_PASSWORD_LENGTH ){
+                        warning = "You must enter a password.";
+                    }
+
+                    if( warning != "" ){
+                        $scope.warningMessage += (i+1) + ". " + warning;
+                    }
+
+                }
+
+                // Undo passwords and acceptance
+                // Prove that we are trying to sign up legitimately.
+                $scope.details_password = '';
+                $scope.details_passwordconfirm = '';
+                $ionicScrollDelegate.scrollTop(true);
+            }
+            else{
+                // Acceptable details entered
+                console.log("Acceptable form");
+            }
         };
 
         // 
@@ -63,15 +119,12 @@ angular.module('app.controllers.login', [])
 
             // Passwords
             if( $scope.checkPasswordValidity($scope.details_password) == false){
-                // Passwords are not equal
+                // Password does not meet the requirements
                 invalid.push(INVALID_PASSWORDS_INVALID);
-                console.log("Invalid Password: " + $scope.details_password);
             }
             if( $scope.details_password != $scope.details_passwordconfirm ){
                 // Passwords are not equal
                 invalid.push(INVALID_PASSWORDS_UNMATCH);
-
-                console.log("Unmatching Passwords: " + $scope.details_password + " " + $scope.details_passwordconfirm);
             }
 
             // Check emails
@@ -84,9 +137,8 @@ angular.module('app.controllers.login', [])
             if( invalid.length > 0 ){
 
                 // FAILED REGISTRATION!
-                //console.log("Invalid: " + invalid.length);
                 $scope.showWarning = true;
-                $scope.warningMessage = "WARNING! There are errors in your form!";
+                $scope.warningMessage = "ALERT! There are errors in your form!";
 
                 // Display each error
                 for(var i = 0; i < invalid.length; i++ ){
@@ -105,10 +157,12 @@ angular.module('app.controllers.login', [])
                         warning = "The passwords do not match!";
                     }
                     if( invalid[i] == INVALID_USERNAME ){
-                        warning = "That username is already being used!";
+                        warning = "The Trading Name is invalid:";
+                        var rules = $scope.getRulesForUsernameAsString();
+                        warning += rules;
                     }
                     if( invalid[i] == INVALID_PASSWORDS_INVALID ){
-                        warning = "Password must reach these requirements:\n";
+                        warning = "Password must reach these requirements:";
                         var rules = $scope.getRulesForPasswordAsString();
                         warning += rules;
                     }
@@ -140,6 +194,11 @@ angular.module('app.controllers.login', [])
         // Get rules of password
         $scope.getRulesForPasswordAsString = function(){
             return LoginService.getPasswordRuleString($scope.details_password);
+        };
+
+        // Get rules of username
+        $scope.getRulesForUsernameAsString = function(){
+            return LoginService.getUsernameRuleString($scope.details_username);
         };
 
         // Check if the given email is valid
@@ -177,6 +236,9 @@ angular.module('app.controllers.login', [])
             LoginService.toggleLoginState();
             $scope.showWarning = false;
             $scope.warningMessage = "";
+            $scope.login = !$scope.login;
+            var title = $scope.login ? 'Login' : 'Sign Up';
+            $ionicNavBarDelegate.title(title);
         };
 
         //
@@ -187,6 +249,9 @@ angular.module('app.controllers.login', [])
             LoginService.toggleRegisterState();
             $scope.showWarning = false;
             $scope.warningMessage = "";
+            $scope.login = !$scope.login;
+            var title = $scope.login ? 'Login' : 'Sign Up';
+            $ionicNavBarDelegate.title(title);
         };
 
         //
