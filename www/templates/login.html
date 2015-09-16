@@ -1,6 +1,9 @@
-<ion-view title="Login">
-  <ion-content>
+<ion-view  ng-init="login = true">
+ <ion-nav-title>Login</ion-nav-title>
 
+  <ion-content>
+  
+  <div ng-bind-html="test.content">{{test.content}}</div>
     <div ng-controller="LoginCtrl">
       <div class="loginColumn" ng-Show="isLoggingIn()">
 
@@ -13,19 +16,19 @@
         <div class="main_div">
           <div>
             <label class="item item-input item-floating-label" >
-              <span class="input-label">Trading Name</span>
+             
               <input type="text" placeholder="Trading Name" ng-model="details_username"/>
             </label>
           </div>
           <div >
             <label class="item item-input item-floating-label">
-              <span class="input-label">Password</span>
+              
               <input type="password" placeholder="Password" ng-model="details_password"/>
             </label>
           </div>
 
-          <div class="checkbox">
-            <ion-checkbox class="remove-border" type="checkbox" ng-model="details_acceptTerms"/>
+          <div class="Remember_me_div">
+            <ion-checkbox style="border:0px solid white" type="checkbox" ng-model="details_acceptTerms"/>
 
             <p style="font-size: vmax; color:#7e7e7e"> Remember me </p>
             </ion-checkbox>
@@ -38,19 +41,17 @@
           </div>
 
            <div class="sign_up_div">
-                  <a class="sign_up" ng-click="changeToRegister()">
+                  <button class="sign_up" ng-click="changeToRegister()">
+
                    Sign Up
-                  </a>
+                  </button>
               </div>
           
               <div class="forgot_pass_div">
-                  <a class="forgot_pass" ng-click="changeToForgotPassword()">
+                  <button class="forgot_pass" ng-click="changeToForgotPassword()">
                     Forgot password?
-                  </a>
+                  </button>
               </div>
-
-             
-            
         </div>
       </div>
 
@@ -69,39 +70,31 @@
             <pre>{{ warningMessage }}</pre>
           </div>
 
-
-
           <div class="main_div">
-
-
             <div>
               <label class="item item-input item-floating-label" >
-                <span class="input-label">Your Trading Name</span>
                 <input type="text" placeholder="Trading Name" ng-model="details_username"/>
               </label>
             </div>
             <div class="email">
               <label class="item item-input item-floating-label">
-                <span class="input-label">Email</span>
                 <input type="text" placeholder="Email" ng-model="details_email"/>
               </label>
             </div>
             <div class="pass">
               <label class="item item-input item-floating-label">
-                <span class="input-label">Password</span>
                 <input type="password" placeholder="Password" ng-model="details_password"/>
               </label>
             </div>
             <div class="passconfirm">
               <label class="item item-input item-floating-label">
-                <span class="input-label">Password Confirmation</span>
                 <input type="password" placeholder="Password Confirmation" ng-model="details_passwordconfirm"/>
               </label>
             </div>
 
-            <div class="checkbox">
-              <ion-checkbox class="remove-border" type="checkbox" ng-model="details_acceptTerms"/>
-                <p style="font-size: 0.75vmax;color:#7e7e7e"> I agree to the Terms and Conditions.</p>
+             <div class="Remember_me_div">
+              <ion-checkbox style="border:0px solid white" type="checkbox" ng-model="details_acceptTerms"/>
+                <div style="font-size: 1vmax; color:#7e7e7e;border-width: 100%, border:opx"> I agree to the Terms & Conditions.</div>
               </ion-checkbox>
             </div>
             <div class="btn_place2">
@@ -110,13 +103,13 @@
                 </button>
             </div>
             
-                <a class="have_account" ng-click="changeToLogin()">
+                <button class="have_account" ng-click="changeToLogin()">
                   I already have an account
-                </a>
+                </button>
             
              <div class="register_importantNotice" style="color: #7e7e7e">
               <div style="font-weight: bold">Important Notice For Your Protection!</div>
-              <p>1. The Website and the Markets are intended as a research and educational facility, not as an investment market or a gambling facility. The Market Provider has been authorised to act as a futures dealer and the contracts traded are treated as futures contracts under New Zealand law, in order to provide certainty as to the legal treatment of the contracts.</p>
+              <div style="text-align:justify">              <p>1. The Website and the Markets are intended as a research and educational facility, not as an investment market or a gambling facility. The Market Provider has been authorised to act as a futures dealer and the contracts traded are treated as futures contracts under New Zealand law, in order to provide certainty as to the legal treatment of the contracts.</p>
               
               <p>2. The Financial Markets Authority role in authorising futures dealers is limited and does not imply approval or endorsement of the business, trading or solvency of the company concerned.</p>
               
@@ -125,6 +118,7 @@
               <p>4. The email address you provide will only be used for the purposes of this website and will never be on-sold.</p>
               
               <p>5. Nothing on this Website constitutes an offer or invitation to trade with any person who is under 18 years of age and/or outside New Zealand. In trading on iPredict, traders warrant that they are complying with all laws in the jurisdiction in which they are present.</p>
+            </div>
             </div>
           </div>
         </div>
@@ -140,7 +134,6 @@
           <div class="info_Info">Enter the email address associated with your iPredict account, then click Send to get the reset password for your account.</div>
           <div class="email">
             <label class="item item-input item-floating-label">
-                <span class="input-label">Email</span>
                   <input type="text" placeholder="Email" ng-model="details_forgotmypassword_email"/>
             </label>
           </div>
@@ -150,9 +143,9 @@
               </button>
           </div>
           <div class="btn_place_account">
-                <a class="have_account" ng-click="changeToLogin()">
+                <button class="have_account" ng-click="changeToLogin()">
                   Go back to login
-                </a>
+                </button>
           </div>
 
         </div>

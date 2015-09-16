@@ -16,7 +16,7 @@
         height: 80px;
     }
 
-    .style_text {
+    .profileHeadText{
         margin: 10px;
         font-size: 4vw;
         display: block;
@@ -36,9 +36,8 @@
         font-size: 4.5vw;
         display: block;
         text-align: center;
-        /*color: #000;*/
-        color: #1976D2;
         font-weight: 500;
+        color: #42A5F5;
     }
 
     .contractLongDesc {
@@ -128,10 +127,10 @@
         <div class="contractProfile">
             <img class="contractImg"src="img/test1.png">
             <div>
-                <h4 class="style_text">{{id}}</h4>
+                <h4 class="profileHeadText">{{id}}</h4>
             </div>
             <div>
-                <span class="style_text">{{contract.shortDesc}}</span>
+                <span class="profileHeadText">{{contract.shortDesc}}</span>
             </div>
         </div>
 
@@ -198,55 +197,7 @@
                     <span class="contractLongDesc">{{contract.judgeStatement}}</span>
                 </div>
             </div>
-
-
-
-            <!--<div>-->
-                <!--<span class="customSpan" style="margin:0px; background-color: #fafafa"> Stock History </span>-->
-                <!--<canvas id="line" class="chart chart-line" data="data" labels="labels" style="background-color: #fafafa; margin 2%;">-->
-                <!--</canvas>-->
-            <!--</div>-->
-
-
-            <!--<div>-->
-                <!--<span class="customSpan">Current Orders</span>-->
-                <!--<div class="row">-->
-                    <!--<div class="coll stockColl">-->
-                        <!--<div class="stockSpan ordersHeading"> Current Top 10 Buy Orders</div>-->
-                        <!--<div class="stockSpan stockHeading"> Stocks     Price(ea)</div>-->
-                        <!--<div ng-repeat="buyOrder in topBuyOrders">-->
-                            <!--<span>-->
-                                <!--<div class="stockSpan stockInfo">-->
-                                    <!--{{buyOrder}}-->
-                                <!--</div>-->
-                            <!--</span>-->
-                        <!--</div>-->
-
-                    <!--</div>-->
-                    <!--<div class="coll stockColl">-->
-                        <!--<div class="stockSpan ordersHeading"> Current Top 10 Sell Orders</div>-->
-                        <!--<div class="stockSpan stockHeading"> Stocks     Price(ea)</div>-->
-                        <!--<div ng-repeat="sellOrder in topSellOrders">-->
-                            <!--<span>-->
-                                <!--<div class="stockSpan stockInfo">-->
-                                    <!--{{sellOrder}}-->
-                                <!--</div>-->
-                            <!--</span>-->
-                        <!--</div>-->
-
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--<div>-->
-                <!--<div class="customSpan"> Judging criteria </div>-->
-            <!--</div>-->
         </div>
 
     </ion-content>
-
-    <!--<div class="bar bar-footer" style="z-index: 10000; background-color: #1976D2">-->
-        <!--<button class="button button-clear" id="filterButton" ng-click="openModal()">-->
-           <!--| UNWATCH | BUY AS BUNDLE | TRADE |-->
-        <!--</button>-->
-    <!--</div>-->
 </ion-view>

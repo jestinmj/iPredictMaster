@@ -3,10 +3,18 @@ angular.module('app.controllers.deposit_withdrawal', [])
     .controller('Deposit_withdrawal', function($scope) {
 
         $scope.view = {
-            deposit: true,
-            withdrawal: true,
-            card_input: true,
-            payment_method: true
+            init_test: true,
+            deposit: false,
+            withdrawal: false,
+            card_view: false,
+            deposit_view: false,
+            payment_method: false
+
+        };
+
+        $scope.button_color ={
+            card: true,
+            deposit: true
         };
 
         $scope.card = {
@@ -27,7 +35,7 @@ angular.module('app.controllers.deposit_withdrawal', [])
         ];
 
         $scope.view_page = function(page){
-            if(page == "deposit"){
+            if(page === "deposit"){
                 $scope.view.deposit = true;
                 $scope.view.withdrawal = false;
             }else{
@@ -37,20 +45,56 @@ angular.module('app.controllers.deposit_withdrawal', [])
         };
 
         $scope.purchase_button_press = function (amount) {
-            if(amount != null) {
-                console.log(" Deposited $" + amount);
-            }
+            console.log(" Deposited $" + amount);
+            console.log($scope.view.deposit);
+
+            $scope.view.deposit = false;
+            $scope.view.withdrawal = false;
+            $scope.view.payment_method = true;
         };
 
         $scope.withdrawal_button_press = function (amount){
-            if(amount != null) {
+            if(amount !== null) {
                 console.log("Withdrawal $" + amount);
             }
         };
 
-        $scope.toggle_payment_method = function(bool){
-            $scope.view.payment_method = bool;
-        }
+        $scope.payment_method = function(val){
+            if(val === "credit_card"){
+                $scope.view.card_view = true;
+                $scope.view.deposit_view = false;
+                $scope.button_color.card = true;
+                $scope.button_color.deposit = false;
+            }else if(val === "direct_deposit"){
+                $scope.view.deposit_view = true;
+                $scope.view.card_view = false;
+                $scope.button_color.deposit = true;
+                $scope.button_color.card = false;
 
+            }
+        };
+
+        $scope.init_button = function(val){
+            if(val === "deposit_page"){
+                $scope.view.init_test = false;
+                $scope.view.deposit = true;
+                $scope.view.withdrawal = false;
+            }else if(val === "withdrawal_page"){
+                $scope.view.init_test = false;
+                $scope.view.withdrawal = true;
+                $scope.view.deposit = false;
+            }
+        };
+
+        $scope.finish_transaction = function(){
+            $scope.view.init_test = true;
+            $scope.view.deposit = false;
+            $scope.view.withdrawal = false;
+            $scope.view.card_view = false;
+            $scope.view.deposit_view = false;
+            $scope.view.payment_method = false;
+            $scope.button_color.card = true;
+            $scope.button_color.deposit = true;
+        };
 
     });
