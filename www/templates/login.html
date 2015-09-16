@@ -41,16 +41,17 @@
           </div>
 
            <div class="sign_up_div">
-                  <a class="sign_up" ng-click="changeToRegister()">
+                  <button class="sign_up" ng-click="changeToRegister()">
+
                    Sign Up
-                  </a>
+                  </button>
               </div>
           
               <div class="forgot_pass_div">
-                  <a class="forgot_pass" ng-click="changeToForgotPassword()">
+                  <button class="forgot_pass" ng-click="changeToForgotPassword()">
                     Forgot password?
-                  </a>
-              </div>           
+                  </button>
+              </div>
         </div>
       </div>
 
@@ -68,9 +69,8 @@
           <div class="warningSection" ng-show="showWarning">
             <pre>{{ warningMessage }}</pre>
           </div>
+
           <div class="main_div">
-
-
             <div>
               <label class="item item-input item-floating-label" >
                 <input type="text" placeholder="Trading Name" ng-model="details_username"/>
@@ -91,9 +91,10 @@
                 <input type="password" placeholder="Password Confirmation" ng-model="details_passwordconfirm"/>
               </label>
             </div>
-            <div class="checkbox">
-              <ion-checkbox class="remove-border" type="checkbox" ng-model="details_acceptTerms"/>
-                <p style="font-size: 0.75vmax;color:#7e7e7e"> I agree to the Terms and Conditions.</p>
+
+             <div class="Remember_me_div">
+              <ion-checkbox style="border:0px solid white" type="checkbox" ng-model="details_acceptTerms"/>
+                <div style="font-size: 1vmax; color:#7e7e7e;border-width: 100%, border:opx"> I agree to the Terms & Conditions.</div>
               </ion-checkbox>
             </div>
             <div class="btn_place2">
@@ -101,9 +102,11 @@
                   Create Account
                 </button>
             </div>
-                <a class="have_account" ng-click="changeToLogin()">
+            
+                <button class="have_account" ng-click="changeToLogin()">
                   I already have an account
-                </a>            
+                </button>
+            
              <div class="register_importantNotice" style="color: #7e7e7e">
               <div style="font-weight: bold">Important Notice For Your Protection!</div>
               <div style="text-align:justify">              <p>1. The Website and the Markets are intended as a research and educational facility, not as an investment market or a gambling facility. The Market Provider has been authorised to act as a futures dealer and the contracts traded are treated as futures contracts under New Zealand law, in order to provide certainty as to the legal treatment of the contracts.</p>
@@ -140,9 +143,9 @@
               </button>
           </div>
           <div class="btn_place_account">
-                <a class="have_account" ng-click="changeToLogin()">
+                <button class="have_account" ng-click="changeToLogin()">
                   Go back to login
-                </a>
+                </button>
           </div>
 
         </div>
