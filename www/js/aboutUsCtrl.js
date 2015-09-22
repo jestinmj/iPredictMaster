@@ -20,10 +20,10 @@ angular.module('app.controllers.aboutUs', ["ionic"])
         };
 
         $scope.people = [
-            { name: "DANIEL", position: "CEO", img: "" },
-            { name: "JESSICA", position: "Advertising", img: "" },
-            { name: "JACOB", position: "Support", img: "" },
-            { name: "TESS", position: "Product Development", img: "" }
+            { name: "EMILY", position: "Operations Manager", img: "emilyMabinSutton" },
+            { name: "KATE", position: "Board Member", img: "kateMcGrath" },
+            { name: "PROF LEWIS", position: "Board Member", img: "profLewisEvans" },
+            { name: "IAN", position: "Board Member", img: "ianMcIntosh" }
         ];
 
         $scope.message = {

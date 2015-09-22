@@ -67,6 +67,15 @@
         margin-right: auto;
     }
 
+    .personImage img {
+        height: 100%;
+        width: 100%;
+        -webkit-border-radius: 60px;
+        -moz-border-radius: 60px;
+        border-radius: 60px;
+        background-color: #42A5
+    }
+
 
     .contactUsContainer {
         width: 100%;
@@ -159,7 +168,7 @@
             <h2>PEOPLE</h2>
             <div class="personContainer" ng-repeat="person in people">
                 <div class="personImage">
-
+                    <img ng-src="img/{{person.img}}.jpg">
                 </div>
                 <h4>{{person.name}}</h4>
                 <h5>{{person.position}}</h5>
@@ -175,7 +184,6 @@
                 <p>Message:</p>
                 <div id="messageInput">
                     <textarea ng-model="message.text" ng-model-options="{allowInvalid: true}"></textarea>
-
                 </div>
                 <button type="sendMessage" class="button button-light" id="messageSubmitButton">
                     SUBMIT
