@@ -23,19 +23,19 @@ angular.module('app.services.contract', [])
         // contractID : contract obj
 
             "1" : {"buy": 1.20, "catId": 0, "dateModified": "00/00/00", "featuredText": "string", "id": "0001", "imageName": "gold", "judgeDate": "00/00/00",
-            "judgeStatement": "string", "last": 1.09, "longDesc": "string", "marketId": 0, "name": "GOLD.15APR15.HI","sell": 1.15, "shortDesc": "Will Gold prices rise", "startDate": "00/00/00",
+            "judgeStatement": "string", "last": 1.09, "longDesc": "string", "marketId": 0, "name": "GOLD.01DEC15.HI","sell": 1.15, "shortDesc": "Will the price of Gold prices rise by December 2015", "startDate": "00/00/00",
             "tagIds": {
                     "tagId": [0]}, "type": 0 },
             "2" : {"buy": 0.89, "catId": 0, "dateModified": "00/00/00", "featuredText": "string", "id": "0002", "imageName": "gold", "judgeDate": "00/00/00",
-                "judgeStatement": "string", "last": 0.88, "longDesc": "string", "marketId": 0, "name": "GOLD.15APR15.LOW","sell":0.92, "shortDesc": "Will Gold prices Fall", "startDate": "00/00/00",
+                "judgeStatement": "string", "last": 0.88, "longDesc": "string", "marketId": 0, "name": "GOLD.01DEC15.LOW","sell":0.92, "shortDesc": "Will the price of Gold Fall by December", "startDate": "00/00/00",
                 "tagIds": {
                     "tagId": [0]}, "type": 0 },
             "3" : {"buy": 0.89, "catId": 0, "dateModified": "00/00/00", "featuredText": "string", "id": "0003", "imageName": "gold", "judgeDate": "00/00/00",
-                "judgeStatement": "string", "last": 0.83, "longDesc": "string", "marketId": 0, "name": "GOLD.15APR15.MID","sell":0.75, "shortDesc": "Will Gold prices stay the same", "startDate": "00/00/00",
+                "judgeStatement": "string", "last": 0.83, "longDesc": "string", "marketId": 0, "name": "GOLD.15APR15.MID","sell":0.75, "shortDesc": "Will Gold prices stay the same until december", "startDate": "00/00/00",
                 "tagIds": {
                     "tagId": [0]}, "type": 0 },
             "4" : {"buy": 1.23, "catId": 0, "dateModified": "00/00/00", "featuredText": "string", "id": "0004", "imageName": "johnKey", "judgeDate": "00/00/00",
-                "judgeStatement": "string", "last": 1.20, "longDesc": "string", "marketId": 0, "name": "JOHN.KEY.REMAINS.2015","sell":1.24, "shortDesc": "Will John Key Remain New Zealands prime minister in 2016", "startDate": "00/00/00",
+                "judgeStatement": "string", "last": 1.20, "longDesc": "string", "marketId": 0, "name": "JOHN.KEY.REMAINS.2015","sell":1.24, "shortDesc": "Will John Key Remain as New Zealand's prime minister in 2016", "startDate": "00/00/00",
                 "tagIds": {
                     "tagId": [0]}, "type": 0 },
             "5" : {"buy": 0.49, "catId": 0, "dateModified": "00/00/00", "featuredText": "string", "id": "0005", "imageName": "money", "judgeDate": "00/00/00",
