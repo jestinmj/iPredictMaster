@@ -54,7 +54,6 @@ angular.module('app.controllers.predictions', ['ionic'])
         $scope.allPredictions = [];
         $scope.allContracts = ContractService.getAllContracts();
         $scope.filteredContracts = ContractService.getAllContracts();
-        console.log($scope.filteredContracts);
         $scope.refinedContracts = [];
 
 
@@ -133,7 +132,7 @@ angular.module('app.controllers.predictions', ['ionic'])
         $scope.searchPredictions = function(){
             if ($scope.predic.searchInput === ""){
                 $scope.filteredPredictions = $scope.allPredictions.slice(0, 10);
-                $scope.setupPredictionsForCards();
+                $scope.setupContractsForCards();
                 return;
             }
 
@@ -152,7 +151,7 @@ angular.module('app.controllers.predictions', ['ionic'])
             }
 
             $scope.filteredPredictions = foundBySearch;
-            $scope.setupPredictionsForCards();
+            $scope.setupContractsForCards();
         };
 
         $scope.loadMorePredictionCards = function(){
@@ -160,7 +159,7 @@ angular.module('app.controllers.predictions', ['ionic'])
             for (var i = listLength; i < (listLength + 10); i++){
                 $scope.filteredPredictions.push($scope.allPredictions[i]);
             }
-            $scope.setupPredictionsForCards();
+            $scope.setupContractsForCards();
             $scope.$broadcast('scroll.infiniteScrollComplete');
         };
 
@@ -202,16 +201,18 @@ angular.module('app.controllers.predictions', ['ionic'])
                 if (stats.title.length > 70){
                     stats.title = stats.title.substr(0, 70) + "...";
                 }
-                console.log(stats);
 
                 //var changePercent = calculateChangePercentage(stats.price, stock.todaysChange);
                 //stats.change = Math.abs(parseFloat(stats.change)) + " (" + changePercent + "%)";
                 //if (stats.change === "0 (0.00%)"){ stats.change = "NC (0.00%)" }
 
+                //console.log(stats);
+
                 $scope.refinedContracts.push(stats);
             }
-            console.log($scope.refinedContracts);
-            console.log($scope.filteredContracts);
+            $scope.predictionsLoaded = true;
+            //console.log($scope.refinedContracts);
+            //console.log($scope.filteredContracts);
         };
 
 
@@ -253,7 +254,7 @@ angular.module('app.controllers.predictions', ['ionic'])
         $rootScope.$on("predictionsUpdated", function(){
             //$scope.allPredictions = PredictionsService.getPredictions();
             $scope.filteredPredictions = $scope.allPredictions.slice(0, 10);
-            $scope.setupPredictionsForCards();
+            $scope.setupPContractsForCards();
             $scope.predictionsLoaded = true;
         });
 

@@ -32,56 +32,56 @@ angular.module('app.services.predictions', [])
                 return filteredPredictions;
             },
 
-            requestSinglePrediction: function(predictionCode){
-                return $http.get(
-                    "https://www.ipredict.co.nz/app.php?do=api&action=stock&results=extended&stock="
-                    + predictionCode
-                )
-                    .success(function (data) {
-
-                    })
-                    .error(function (data) {
-                        console.log(data);
-                    })
-            },
-
-            requestAllPredictions: function(){
-                return $http.get(
-                    "https://www.ipredict.co.nz/app.php?do=api&action=stock&allstock=true"
-                )
-                    .success(function(data){
-                        allPredictions = parseXML(data).contracts.contracts.contract;
-                        $rootScope.$broadcast("predictionsUpdated");
-                    })
-                    .error(function(data){
-                        console.log(data);
-                    })
-            },
-
-            requestAllPredictionPricing: function(){
-                return $http.get(
-                    "https://www.ipredict.co.nz/app.php?do=api&action=prices&allstock=true"
-                )
-                    .success(function(data){
-                        predictionsPricing = parseXML(data).prices.claims.claim;
-                    })
-                    .error(function(data){
-                        console.log(data);
-                    })
-            },
-
-            requestAllCategories: function(){
-                return $http.get(
-                    "https://www.ipredict.co.nz/app.php?do=api&action=category"
-                )
-                    .success(function(data){
-                        categories = parseXML(data).categories.categories.category;
-                        $rootScope.$broadcast("categoriesUpdated");
-                    })
-                    .error(function(data){
-                        console.log(data);
-                    })
-            },
+            //requestSinglePrediction: function(predictionCode){
+            //    return $http.get(
+            //        "https://www.ipredict.co.nz/app.php?do=api&action=stock&results=extended&stock="
+            //        + predictionCode
+            //    )
+            //        .success(function (data) {
+            //
+            //        })
+            //        .error(function (data) {
+            //            console.log(data);
+            //        })
+            //},
+            //
+            //requestAllPredictions: function(){
+            //    return $http.get(
+            //        "https://www.ipredict.co.nz/app.php?do=api&action=stock&allstock=true"
+            //    )
+            //        .success(function(data){
+            //            allPredictions = parseXML(data).contracts.contracts.contract;
+            //            $rootScope.$broadcast("predictionsUpdated");
+            //        })
+            //        .error(function(data){
+            //            console.log(data);
+            //        })
+            //},
+            //
+            //requestAllPredictionPricing: function(){
+            //    return $http.get(
+            //        "https://www.ipredict.co.nz/app.php?do=api&action=prices&allstock=true"
+            //    )
+            //        .success(function(data){
+            //            predictionsPricing = parseXML(data).prices.claims.claim;
+            //        })
+            //        .error(function(data){
+            //            console.log(data);
+            //        })
+            //},
+            //
+            //requestAllCategories: function(){
+            //    return $http.get(
+            //        "https://www.ipredict.co.nz/app.php?do=api&action=category"
+            //    )
+            //        .success(function(data){
+            //            categories = parseXML(data).categories.categories.category;
+            //            $rootScope.$broadcast("categoriesUpdated");
+            //        })
+            //        .error(function(data){
+            //            console.log(data);
+            //        })
+            //},
 
             getCategories: function() {
                 return categories;
