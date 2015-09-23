@@ -34,42 +34,42 @@
         <ion-list>
 
             <div class="card" style="margin: 10px;"
-                 ng-repeat="pred in refinedPredictions"
-                 ng-click="openContract(pred.id)">
+                 ng-repeat="contract in refinedContracts"
+                 ng-click="openContract(contract.id)">
                 <div class="item">
 
                     <div class="predCardUpper">
                         <div class="predCardImageContainer">
-                            <img class="predCardImage" ng-src="{{'https://www.ipredict.co.nz/files/' + pred.img}}">
+                            <img class="predCardImage" ng-src="{{'https://www.ipredict.co.nz/files/' + contract.img}}">
                         </div>
                         <div class="predCardImageTitle">
-                            <label class="predCardTitle"><b>{{pred.title}}</b></label>
+                            <label class="predCardTitle"><b>{{contract.title}}</b></label>
                         </div>
                     </div>
 
                     <div class="predCardLower">
                         <div class="predCardStat">
-                            <label style="font-size: 22px"><b>${{pred.price}}</b></label>
+                            <label style="font-size: 22px"><b>${{contract.price}}</b></label>
                         </div>
                         <div class="predCardStat" style="margin-left: 10px;">
-                            <label class="ion-arrow-up-a" style="color: #689F38;" ng-show="pred.changeType === 'pos'">
-                                ${{pred.change}}
+                            <label class="ion-arrow-up-a" style="color: #689F38;" ng-show="contract.changeType === 'pos'">
+                                ${{contract.change}}
                             </label>
-                            <label style="color: #455A64;" ng-show="pred.changeType === 'none'">
-                                {{pred.change}}
+                            <label style="color: #455A64;" ng-show="contract.changeType === 'none'">
+                                {{contract.change}}
                             </label>
-                            <label class="ion-arrow-down-a" style="color: #D32F2F;" ng-show="pred.changeType === 'neg'">
-                                ${{pred.change}}
+                            <label class="ion-arrow-down-a" style="color: #D32F2F;" ng-show="contract.changeType === 'neg'">
+                                ${{contract.change}}
                             </label>
                         </div>
                         <div class="predCardStat" style="width: 30%; float: right;">
-                            <label>Prob: {{pred.probability}}%</label>
+                            <label>Prob: {{contract.probability}}%</label>
                         </div>
                         <div class="predCardStat" style="width: 50%;">
-                            <label style="display: block; text-align: center;">Highest Buy: ${{pred.highestBuy}}</label>
+                            <label style="display: block; text-align: center;">Highest Buy: ${{contract.highestBuy}}</label>
                         </div>
                         <div class="predCardStat" style="width: 50%;">
-                            <label style="display: block; text-align: center;">Lowest Sell: ${{pred.lowestSell}}</label>
+                            <label style="display: block; text-align: center;">Lowest Sell: ${{contract.lowestSell}}</label>
                         </div>
                     </div>
 
