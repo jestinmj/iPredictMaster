@@ -16,8 +16,6 @@ angular.module('app', [
   'app.services.portfolio',
   'app.services.contract',
   'app.services.login'
-
-
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {

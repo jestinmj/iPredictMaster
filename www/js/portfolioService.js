@@ -9,7 +9,7 @@ angular.module('app.services.portfolio', [])
         var myInfo = [
             {title:"Rank", attr:1, changeInAttr:2},
             {title:"Worth", attr:20.05, changeInAttr:0.07},
-            {title:"Wallet", attr:12.74, changeInAttr:0.0},
+            {title:"Wallet", attr:12.74, changeInAttr:-4.0},
             {title:"Portfolio", attr:7.39, changeInAttr:0.07}
         ];
 
@@ -27,7 +27,7 @@ angular.module('app.services.portfolio', [])
             var contracts = [];
             for (var stockID in stocks){
                 var stock_contract = ContractService.getContract(stockID);
-                contracts.unshift({title: stock_contract.name, amount: stocks[stockID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
+                contracts.push({title: stock_contract.name, amount: stocks[stockID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
                     averageCost: 0.0, lastPrice: stock_contract.last, difference: stock_contract.buy - stock_contract.last});
             };
             return contracts;
@@ -47,11 +47,10 @@ angular.module('app.services.portfolio', [])
             var contracts = [];
             for (var shortID in shorts){
                 var stock_contract = ContractService.getContract(shortID);
-                contracts.unshift({title: stock_contract.name, amount: shorts[shortID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
+                contracts.push({title: stock_contract.name, amount: shorts[shortID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
                     averageCost: 0.0, lastPrice: stock_contract.last, difference: stock_contract.buy - stock_contract.last});
             };
             return contracts;
-
         };
 
         var serviceFunctions = {
