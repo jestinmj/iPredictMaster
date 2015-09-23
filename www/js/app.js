@@ -13,8 +13,8 @@ angular.module('app', [
   'app.controllers.trade',
   'app.controllers.deposit_withdrawal',
   'app.services.predictions',
-  'app.services.portfolioServices',
-  'app.services.contractServices',
+  'app.services.portfolio',
+  'app.services.contract',
   'app.services.login'
 
 

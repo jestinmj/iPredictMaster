@@ -1,11 +1,27 @@
 /**
  * Created by DanHenton on 23/09/15.
  */
-angular.module('app.services.contracts', [])
-    .factory('ContractServices', function($http, $rootScope){
+angular.module('app.services.contract', [])
+    .factory('ContractService', function($http, $rootScope){
 
         var contracts = {
-        //Key = contractID : Value = contract obj
+            // For contract viewing this should be /contract/{id}/view ==> {
+        //    "buy": 0,
+        //    "id": "string",
+        //    "imageName": "string",
+        //    "judgeStatement": "string",
+        //    "last": 0,
+        //    "longDesc": "string",
+        //    "marketId": 0,
+        //    "name": "string",
+        //    "sell": 0,
+        //    "shortDesc": "string",
+        //    "type": 0
+        //}
+        //   instead but all of the info is here for the entire contract instead.
+
+        // contractID : contract obj
+
             "0001" : {"buy": 1.20, "catId": 0, "dateModified": "00/00/00", "featuredText": "string", "id": "0001", "imageName": "string", "judgeDate": "00/00/00",
                 "judgeStatement": "string", "last": 1.09, "longDesc": "string", "marketId": 0, "name": "GOLD.15APR15.HI","sell": 1.15, "shortDesc": "Will Gold prices rise", "startDate": "00/00/00",
                 "tagIds": {
@@ -50,12 +66,11 @@ angular.module('app.services.contracts', [])
                 "judgeStatement": "string", "last": 0.35, "longDesc": "string", "marketId": 0, "name": "Wellington to receive an 5.5 to 5.8 Earthquake in 2015","sell":0.32, "shortDesc": "Wellington to receive a 5.5 to 5.8 Earthquake in before the end of 2015", "startDate": "00/00/00",
                 "tagIds": {
                     "tagId": [0]}, "type": 0 },
-            "0012" : {"buy":0.35, "catId": 0, "dateModified": "00/00/00", "featuredText": "string", "id": "0012", "imageName": "string", "judgeDate": "00/00/00",
+            "001" : {"buy":0.35, "catId": 0, "dateModified": "00/00/00", "featuredText": "string", "id": "0012", "imageName": "string", "judgeDate": "00/00/00",
                 "judgeStatement": "string", "last": 0.35, "longDesc": "string", "marketId": 0, "name": "Wellington to receive an Earthquake above 5.8 in 2015","sell":0.32, "shortDesc": "Wellington to receive an Earthquake above 5.8 in before the end of 2015", "startDate": "00/00/00",
                 "tagIds": {
                     "tagId": [0]}, "type": 0 }
         };
-
 
         var serviceFunctions = {
 

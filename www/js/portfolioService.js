@@ -2,7 +2,7 @@
  * Created by DanHenton on 23/09/15.
  */
 angular.module('app.services.portfolio', [])
-    .factory('PortfolioServices', function($http, $rootScope){
+    .factory('PortfolioService', function($http, $rootScope){
 
         //Vars go here
 
