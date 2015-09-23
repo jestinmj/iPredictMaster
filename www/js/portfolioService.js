@@ -17,6 +17,7 @@ angular.module('app.services.portfolio', [])
 
             var stocks = {
             //    ID : AMOUNT OF STOCK
+                0004 : 8,
                 0001 : 2,
                 0003 : 3,
                 0006 : 1,
@@ -37,9 +38,9 @@ angular.module('app.services.portfolio', [])
 
             var shorts = {
             //    ID : AMOUNT OF STOCK
+                0005 : 2,
                 0002 : 1,
                 0004 : 3,
-                0005 : 2,
                 0009 : 3,
                 0011 : 1
             };
