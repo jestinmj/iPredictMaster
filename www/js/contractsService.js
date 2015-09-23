@@ -80,7 +80,7 @@ angular.module('app.services.contract', [])
 
             getAllContracts: function() {
                 contract_list = [];
-                for(contact in contracts){
+                for(var contract in contracts){
                     contract_list.push(contracts[contract]);
                 }
                 return contract_list;
