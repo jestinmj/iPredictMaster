@@ -1,6 +1,6 @@
 angular.module('app.controllers.portfolio', ["chart.js"])
 
-    .controller('PortfolioCtrl', function($scope, $state) {
+    .controller('PortfolioCtrl', function($scope, $state, PortfolioService) {
 
         var generateColorStyle = function(val){
             if(val > 0){
@@ -36,22 +36,22 @@ angular.module('app.controllers.portfolio', ["chart.js"])
 
         // Gets stocks owned by user from service, generates background color based on
         // stock price change and does any other necessary formatting
-        $scope.getMyStocks = function(){
+        $scope.setupMyStocks = function(serviceStocks){
             var myStocks = [];
             var stock;
 
-            for (var i = 0; i < svcMyStocks.length; i++){
+            for (var i = 0; i < serviceStocks.length; i++){
                 stock = {};
-                stock.title = svcMyStocks[i].title;
-                stock.amount = svcMyStocks[i].amount;
-                stock.value = "$" + svcMyStocks[i].value;
-                stock.profit = "$" + svcMyStocks[i].profit;
-                stock.averageCost = "$" + svcMyStocks[i].averageCost;
-                stock.lastPrice = "$" + svcMyStocks[i].lastPrice;
-                stock.difference = "$" + svcMyStocks[i].difference;
+                stock.title = serviceStocks[i].title;
+                stock.amount = serviceStocks[i].amount;
+                stock.value = "$" + serviceStocks[i].value.toFixed(2);
+                stock.profit = "$" + serviceStocks[i].profit.toFixed(2);
+                stock.averageCost = "$" + serviceStocks[i].averageCost.toFixed(4);
+                stock.lastPrice = "$" + serviceStocks[i].lastPrice.toFixed(4);
+                stock.difference = "$" + serviceStocks[i].difference.toFixed(4);
                 stock.toggle = false;
-                stock.profitColor = generateColorStyle(svcMyStocks[i].profit);
-                stock.differenceColor = generateColorStyle(svcMyStocks[i].difference);
+                stock.profitColor = generateColorStyle(serviceStocks[i].profit);
+                stock.differenceColor = generateColorStyle(serviceStocks[i].difference);
                 myStocks.push(stock);
             }
             return myStocks;
@@ -67,11 +67,11 @@ angular.module('app.controllers.portfolio', ["chart.js"])
                 stock = {};
                 stock.title = svcMyShorts[i].title;
                 stock.amount = svcMyShorts[i].amount;
-                stock.value = "$" + svcMyShorts[i].value;
-                stock.profit = "$" + svcMyShorts[i].profit;
-                stock.averageCost = "$" + svcMyShorts[i].averageCost;
-                stock.lastPrice = "$" + svcMyShorts[i].lastPrice;
-                stock.difference = "$" + svcMyShorts[i].difference;
+                stock.value = "$" + svcMyShorts[i].value.toFixed(2);
+                stock.profit = "$" + svcMyShorts[i].profit.toFixed(2);
+                stock.averageCost = "$" + svcMyShorts[i].averageCost.toFixed(4);
+                stock.lastPrice = "$" + svcMyShorts[i].lastPrice.toFixed(4);
+                stock.difference = "$" + svcMyShorts[i].difference.toFixed(4);
                 stock.toggle = false;
                 stock.profitColor = generateColorStyle(svcMyShorts[i].profit);
                 stock.differenceColor = generateColorStyle(svcMyShorts[i].difference);
@@ -82,40 +82,40 @@ angular.module('app.controllers.portfolio', ["chart.js"])
 
         // Gets portfolio stats from service, generates background color based on
         // stat change and does any other necessary formatting
-        $scope.getPortfolioStats = function(){
+        $scope.setupPortfolioStats = function(serviceStats){
             var portfolio = [];
             var stat;
 
             for (var i = 0; i < 4; i++){
                 stat = {};
-                stat.title = svcPortfolio[i].title;
+                stat.title = serviceStats[i].title;
                 if (i === 0){
-                    stat.attr = "" + svcPortfolio[i].attr;
-                    if (svcPortfolio[i].changeInAttr === 0){
+                    stat.attr = "" + serviceStats[i].attr;
+                    if (serviceStats[i].changeInAttr === 0){
                         stat.changeInAttr = "NC";
                     }
                     else {
-                        stat.changeInAttr = "" + Math.abs(svcPortfolio[i].changeInAttr);
+                        stat.changeInAttr = "" + Math.abs(serviceStats[i].changeInAttr);
                     }
                 }
                 else {
-                    stat.attr = "$" + svcPortfolio[i].attr;
-                    if (svcPortfolio[i].changeInAttr === 0){
+                    stat.attr = "$" + serviceStats[i].attr;
+                    if (serviceStats[i].changeInAttr === 0){
                         stat.changeInAttr = "NC";
                     }
                     else {
-                        stat.changeInAttr = "$" + Math.abs(svcPortfolio[i].changeInAttr);
+                        stat.changeInAttr = "$" + Math.abs(serviceStats[i].changeInAttr);
                     }
                 }
-                stat.bgColor = generateColorStyle(svcPortfolio[i].changeInAttr);
+                stat.bgColor = generateColorStyle(serviceStats[i].changeInAttr);
                 portfolio.push(stat);
             };
             return portfolio;
         };
 
-        $scope.portfolioStats = $scope.getPortfolioStats();
-        $scope.myStocks = $scope.getMyStocks();
-        $scope.shortedStocks = $scope.getShortedStocks();
+        $scope.portfolioStats = $scope.setupPortfolioStats(PortfolioService.getMyInfo());
+        $scope.myStocks = $scope.setupMyStocks(PortfolioService.getMyStocks());
+        $scope.shortedStocks = $scope.getShortedStocks(PortfolioService.getMyShorts());
 
 
         $scope.toggle = {
@@ -123,6 +123,8 @@ angular.module('app.controllers.portfolio', ["chart.js"])
             shortStock: true,
             graph: true
         };
+
+
 
 
 

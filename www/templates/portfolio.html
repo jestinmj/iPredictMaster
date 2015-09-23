@@ -59,6 +59,9 @@
     .stockListField {
         line-height: 40px;
         float: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 40px;
     }
 
     .stockListItem {
@@ -163,11 +166,13 @@
                     <div class="stockListItem" ng-repeat="stock in myStocks">
                         <div style="width: 100%; height: 40px;" ng-click="toggleStockAttr(stock);">
                             <div class="stockListField" style="width: 50%; padding-left: 10px;"><b>{{stock.title}}</b></div>
-                            <div class="stockListField" style="width: 15%;"><b>{{stock.amount}}</b></div>
+                            <div class="stockListField" style="width: 15%; text-align: center"><b>{{stock.amount}}</b></div>
                             <div class="stockListField" style="width: 15%;"><b>{{stock.value}}</b></div>
                             <div class="stockListField" ng-style="{color: stock.profitColor}"
                                  style="width: 20%; text-align: right; padding-right: 10px">
                                 <b>{{stock.profit}}</b>
+                                <label class="ion-arrow-down-a" ng-show="stock.profitColor === '#D32F2F'"></label>
+                                <label class="ion-arrow-up-a" ng-show="stock.profitColor === '#689F38'"></label>
                             </div>
                         </div>
 
@@ -193,7 +198,11 @@
                                     <span style="margin-left: 10px;">Difference</span>
                                 </div>
                                 <div class="stockSubListField" style="text-align: right;"  ng-style="{color: stock.differenceColor}">
-                                    <span style="margin-right: 10px;"><b>{{stock.difference}}</b></span>
+                                    <span style="margin-right: 10px;">
+                                        <b>{{stock.difference}}</b>
+                                        <label class="ion-arrow-down-a" ng-show="stock.differenceColor === '#D32F2F'"></label>
+                                        <label class="ion-arrow-up-a" ng-show="stock.differenceColor === '#689F38'"></label>
+                                    </span>
                                 </div>
                             </div>
 
@@ -223,10 +232,12 @@
                     <div class="stockListItem" ng-repeat="stock in shortedStocks">
                         <div style="width: 100%; height: 40px;" ng-click="toggleStockAttr(stock)">
                             <div class="stockListField" style="width: 50%; padding-left: 10px;"><b>{{stock.title}}</b></div>
-                            <div class="stockListField" style="width: 15%;"><b>{{stock.amount}}</b></div>
+                            <div class="stockListField" style="width: 15%; text-align: center"><b>{{stock.amount}}</b></div>
                             <div class="stockListField" style="width: 15%;"><b>{{stock.value}}</b></div>
                             <div class="stockListField" style="width: 20%; text-align: right; padding-right: 10px" ng-style="{color: stock.profitColor}">
                                 <b>{{stock.profit}}</b>
+                                <label class="ion-arrow-down-a" ng-show="stock.profitColor === '#D32F2F'"></label>
+                                <label class="ion-arrow-up-a" ng-show="stock.profitColor === '#689F38'"></label>
                             </div>
                         </div>
 
@@ -252,7 +263,11 @@
                                     <span style="margin-left: 10px;">Difference</span>
                                 </div>
                                 <div class="stockSubListField" style="text-align: right;" ng-style="{color: stock.differenceColor}">
-                                    <span style="margin-right: 10px;"><b>{{stock.difference}}</b></span>
+                                    <span style="margin-right: 10px;">
+                                        <b>{{stock.difference}}</b>
+                                        <label class="ion-arrow-down-a" ng-show="stock.differenceColor === '#D32F2F'"></label>
+                                        <label class="ion-arrow-up-a" ng-show="stock.differenceColor === '#689F38'"></label>
+                                    </span>
                                 </div>
                             </div>
 
