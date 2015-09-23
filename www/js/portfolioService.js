@@ -2,7 +2,7 @@
  * Created by DanHenton on 23/09/15.
  */
 angular.module('app.services.portfolio', [])
-    .factory('PortfolioService', function($http, $rootScope){
+    .factory('PortfolioService', function($http, $rootScope, ContractService){
 
         //Vars go here
 
@@ -25,13 +25,11 @@ angular.module('app.services.portfolio', [])
             };
 
             var contracts = [];
-            for (stockID in stocks.keys()){
-                var stock_contract = contractServices.getContract(stockID);
-                console.log(stock_contract);
-                contracts.append({title: stock_contract.name, amount: stocks[stockID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
-                    averageCost: 0.0, lastPrice: stock_contract.last, difference: stock_contract.buy - stock_contract.last,toggle: false});
-            }
-            console.log(contracts);
+            for (var stockID in stocks){
+                var stock_contract = ContractService.getContract(stockID);
+                contracts.unshift({title: stock_contract.name, amount: stocks[stockID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
+                    averageCost: 0.0, lastPrice: stock_contract.last, difference: stock_contract.buy - stock_contract.last});
+            };
             return contracts;
         };
 
@@ -47,13 +45,11 @@ angular.module('app.services.portfolio', [])
             };
 
             var contracts = [];
-            for (shortID in stocks.keys()){
-                var stock_contract = contractServices.getContract(shortID);
-                console.log(stock_contract);
-                contracts.append({title: stock_contract.name, amount: stocks[shortID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
-                    averageCost: 0.0, lastPrice: stock_contract.last, difference: stock_contract.buy - stock_contract.last,toggle: false});
-            }
-            console.log(contracts);
+            for (var shortID in shorts){
+                var stock_contract = ContractService.getContract(shortID);
+                contracts.unshift({title: stock_contract.name, amount: shorts[shortID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
+                    averageCost: 0.0, lastPrice: stock_contract.last, difference: stock_contract.buy - stock_contract.last});
+            };
             return contracts;
 
         };
