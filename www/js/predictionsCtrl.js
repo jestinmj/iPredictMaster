@@ -1,6 +1,6 @@
 angular.module('app.controllers.predictions', ['ionic'])
 
-    .controller('PredictionsCtrl', function($scope, $ionicModal, PredictionsService, $http, $rootScope, $state) {
+    .controller('PredictionsCtrl', function($scope, $ionicModal, $http, $rootScope, $state, ContractService) {
 
         $scope.predic = {
             searchInput: "",
@@ -52,12 +52,20 @@ angular.module('app.controllers.predictions', ['ionic'])
         $scope.categories = [];
 
         $scope.allPredictions = [];
+        $scope.allContracts = ContractService.getAllContracts();
+        $scope.filteredContracts = ContractService.getAllContracts();
+        console.log($scope.filteredContracts);
+        $scope.refinedContracts = [];
+
+
+
+
         $scope.filteredPredictions = [];
         $scope.refinedPredictions = [];
         $scope.predictionsLoaded = false;
 
 
-        $scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
+        //$scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
 
 
         $scope.changeSelectedPredToggle = function(changeTo){
@@ -88,7 +96,7 @@ angular.module('app.controllers.predictions', ['ionic'])
         };
 
         $scope.refilterPredictions = function(){
-            $scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
+            //$scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
             $scope.closeModal();
         };
 
@@ -117,7 +125,7 @@ angular.module('app.controllers.predictions', ['ionic'])
         };
 
         $scope.refilterPredictions = function(){
-            $scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
+            //$scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
             $scope.closeModal();
         };
 
@@ -159,7 +167,7 @@ angular.module('app.controllers.predictions', ['ionic'])
 
 
 
-        $scope.setupPredictionsForCards = function(){
+        $scope.setupContractsForCards = function(){
             var getChangeType = function(change){
                 change = parseFloat(change);
                 if (change < 0){ return "neg"; }
@@ -174,33 +182,36 @@ angular.module('app.controllers.predictions', ['ionic'])
                 return Math.abs(price / (initialPrice / 100) - 100).toFixed(2);
             };
 
-            $scope.refinedPredictions = [];
-            for (var i = 0; i < $scope.filteredPredictions.length; i++){
-                var stock = $scope.filteredPredictions[i];
+            $scope.refinedContracts = [];
+            for (var i = 0; i < $scope.filteredContracts.length; i++){
+                var contract = $scope.filteredContracts[i];
                 var stats = {
-                    id: stock.name,
-                    title: stock.contractDetails.shortDesc,
-                    price: parseFloat(stock.bid).toFixed(2),
-                    change: parseFloat(stock.todaysChange).toFixed(2),
-                    changeType: getChangeType(stock.todaysChange),
-                    probability: parseFloat((stock.bid) * 100).toFixed(1),
-                    highestBuy: stock.bid,
-                    lowestSell: stock.ask,
-                    category : 0,
-                    img: stock.contractDetails.imageName,
+                    id: contract.id,
+                    title: contract.shortDesc,
+                    price: parseFloat(contract.buy).toFixed(2),
+                    change: parseFloat(contract.buy - contract.last).toFixed(2),
+                    changeType: getChangeType((contract.buy - contract.last)),
+                    probability: parseFloat(0).toFixed(1),
+                    highestBuy: contract.buy,
+                    lowestSell: contract.sell,
+                    category : contract.catId,
+                    img: contract.imageName,
                     imgPlaceholder: "test1"
                 };
 
                 if (stats.title.length > 70){
                     stats.title = stats.title.substr(0, 70) + "...";
                 }
+                console.log(stats);
 
-                var changePercent = calculateChangePercentage(stats.price, stock.todaysChange);
-                stats.change = Math.abs(parseFloat(stats.change)) + " (" + changePercent + "%)";
-                if (stats.change === "0 (0.00%)"){ stats.change = "NC (0.00%)" }
+                //var changePercent = calculateChangePercentage(stats.price, stock.todaysChange);
+                //stats.change = Math.abs(parseFloat(stats.change)) + " (" + changePercent + "%)";
+                //if (stats.change === "0 (0.00%)"){ stats.change = "NC (0.00%)" }
 
-                $scope.refinedPredictions.push(stats);
+                $scope.refinedContracts.push(stats);
             }
+            console.log($scope.refinedContracts);
+            console.log($scope.filteredContracts);
         };
 
 
@@ -235,21 +246,23 @@ angular.module('app.controllers.predictions', ['ionic'])
             // Execute action
         });
 
+        $scope.setupContractsForCards();
+
 
 
         $rootScope.$on("predictionsUpdated", function(){
-            $scope.allPredictions = PredictionsService.getPredictions();
+            //$scope.allPredictions = PredictionsService.getPredictions();
             $scope.filteredPredictions = $scope.allPredictions.slice(0, 10);
             $scope.setupPredictionsForCards();
             $scope.predictionsLoaded = true;
         });
 
         $rootScope.$on("categoriesUpdated", function(){
-            $scope.categories = PredictionsService.getCategories();
+            //$scope.categories = PredictionsService.getCategories();
         });
 
 
-        PredictionsService.requestAllPredictions();
-        PredictionsService.requestAllCategories();
+        //PredictionsService.requestAllPredictions();
+        //PredictionsService.requestAllCategories();
 
     });
