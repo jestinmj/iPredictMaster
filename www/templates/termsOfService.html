@@ -1,25 +1,265 @@
 <style>
 
+.container
+{
+	position: relative;
+}
+
+.header
+{
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.textIndex
+{
+	position: relative;
+	margin-left: 20px;
+}
+
+.text
+{
+	text-align:justify;
+	margin-left: 30px;
+	margin-right: 30px;
+	font-weight: normal;
+}
+
+.subtext
+{
+	text-align:justify;
+	margin-left: 60px;
+	margin-right: 30px;
+	font-weight: normal;
+}
+
+.subsubtext
+{
+	text-align:justify;
+	margin-left: 90px;
+	margin-right: 30px;
+	font-weight: normal;
+}
+
 </style>
 
 <ion-view title="Terms Of Service">
     <ion-content>
         <div class="container">
 
+			<br/><br/>
+			<label for="chklabl1" class="header"><input type="checkbox" ng-model="model1" name="chklabl1" id="chklabl1"> 
+			    1. Important Notice</label><br/>
+				<span ng-hide="model1">
 
-        	<div id="ImportantNotice">
-	        	<div style="font-weight: bold" class="ion-ios-arrow-forward">
-	        		Important Notice
-	        	</div>
+					<div class="text">
+	        		i. The Website and the Markets are intended as a research and educational facility, not as an investment market or a gambling facility, and the Market Provider has been authorised to act as a futures dealer, and the contracts traded are treated as futures contracts under New Zealand law, in order to provide certainty as to the legal treatment of the contracts.<br/><br/>
 
-	        	i.
-	        	<div style="margin-left: 10px">
-	        		The Website and the Markets are intended as a research and educational facility, not as an investment market or a gambling facility, and the Market Provider has been authorised to act as a futures dealer, and the contracts traded are treated as futures contracts under New Zealand law, in order to provide certainty as to the legal treatment of the contracts.
-	        	</div>
-        	</div>
+					ii. The Financial Markets Authority role in authorising futures dealers is limited and does not imply approval or endorsement of the business, trading or solvency of the company concerned.
+
+					<br/><br/>
+					iii. The Financial Markets Authority has not approved any documentation of the Market Provider, or the terms and conditions on which it carries out its business.
+
+					<br/><br/>
+					iv. No political party or other organisation referred to on the Website in connection with any Market has (or has had) any role in the promotion or operation of this Website or any Market.
+
+					<br/><br/>
+					v. Nothing on this Website constitutes an offer or invitation to trade with any person who is under 18 years of age and/or outside New Zealand. In trading on iPredict, traders warrant that they are complying with all laws in the jurisdiction in which they are present.
+	        		</div><br/><br/>
+	        	</span> 
 
 
+	        <label for="chklabl2" class="header"><input type="checkbox" ng-model="model2" name="chklab2" id="chklabl2"> 
+			    2. About these Terms of Use</label><br/>
+				<span ng-hide="model2">
 
+					<div class="text">
+	        		i. These Terms of Use set out the basis on which iPredict Limited offers you access to, and use of, the "iPredict" website and trading facility whose homepage is located at www.ipredict.co.nz (the "Website"). By accessing or connecting to the Website, you agree to abide by these Terms of Use.<br/><br/>
+
+					ii. We can change these Terms of Use at any time and in any way we consider appropriate. Our changes will take effect as soon as we publish an updated version of these Terms of Use on the Website. It is up to you to ensure that you are familiar with the latest version of these Terms of Use.<br/><br/>
+
+					iii. In these Terms of Use, words and phrases with capital initial letters have the particular meanings set out in clause 16.<br/><br/>
+
+					iv. Predictions Clearing Limited is also a party to these Terms of Use. The obligations of iPredict Limited and Predictions Clearing Limited under these Terms of Use are several (and not joint, or joint and several). Acceptance of your application for a User Account (see below) will constitute the establishment of an agreement between you, the Market Provider and the Clearing House under which (inter alia) the Market Provider allows you to use the Website (subject to these Terms of Use) and you agree to be bound by these Terms of Use and the Rules of any Market on which you trade.
+	        		</div><br/><br/>
+	        	</span> 
+
+
+	        <label for="chklabl3" class="header"><input type="checkbox" ng-model="model3" name="chklab3" id="chklabl3"> 
+			    3. About the Website</label><br/>
+				<span ng-hide="model3">
+
+					<div class="text">
+	        		i. The Website supports the operation of a "predictions market", a facility for buying and trading futures contracts linked to political, business, economic or social events or circumstances. More detail is available in the "About the Markets" section of the Website.<br/><br/>
+
+					ii. The Website is intended primarily as a tool for education, research and policy analysis; it is not a commercial trading facility or investment tool. If you intend to use the Website for a particular purpose, or to achieve a particular result, it is up to you to satisfy yourself that the Website will meet your needs.<br/><br/>
+
+					iii. In particular, we cannot (and do not) warrant that the Website will be fault free or available without interruption. Where faults and interruptions do occur, they may interfere with your ability to use the Website, and you acknowledge that your rights to use and take the benefit of the Website in accordance with these Terms of Use are all subject to the availability, functionality and performance of the Website. To the fullest extent allowed by law we exclude all representations and warranties on these matters.<br/><br/>
+
+					iv. The Website is not a stock exchange, and there are no controls on market manipulation or trading on the basis of "inside information". You confirm that you fully understand the risks that this entails, or, if you do not understand these risks, you agree to obtain appropriate independent advice before using the Website.
+	        		</div><br/><br/>
+	        	</span> 
+
+
+	        <label for="chklabl4" class="header"><input type="checkbox" ng-model="model4" name="chklab4" id="chklabl4"> 
+			    4. About the Website</label><br/>
+				<span ng-hide="model4">
+
+					<div class="text">
+	        		i. You agree that you will not use the Website (directly or indirectly) to:<br/>
+	        		</div>
+
+	        		<div class="subtext">
+					a. defame, threaten, harass, abuse or invade the privacy of any Users or any of our staff, or send or disseminate offensive, obscene or objectionable material;<br/><br/>
+
+					b. advertise goods, services or websites without our permission, or send or disseminate "spam", "junk mail", "chain letters" or any kind of malicious software such as "viruses" or "spyware"; or<br/><br/>
+
+					c. gather or aggregate personal information about other Users.<br/><br/>
+					</div>
+
+					<div class="text">
+					ii. You agree not to access or attempt to access any password-protected area of the Website except with our authorisation (for example, where we supply you with a username and password allowing you access to such an area).
+	        		</div><br/><br/>
+	        	</span> 
+
+
+	        <label for="chklabl5" class="header"><input type="checkbox" ng-model="model5" name="chklab5" id="chklabl5"> 
+			    5. Opening a User Account</label><br/>
+				<span ng-hide="model5">
+
+					<div class="text">
+	        		i. To use certain parts of the Website, you will need to have a User Account. Clauses 6 to 9 (inclusive) of these Terms of Use apply only while you have a User Account.<br/><br/>
+
+					ii. To open a User Account you will need to complete the online application process set out on the Website, ensuring that all the information you provide to us (through the Website or otherwise) is and continues to be complete and accurate. Whether we accept your application for a User Account is entirely up to us.<br/><br/>
+
+					iii. By applying for a User Account, you represent, warrant and undertake to us that you:
+					</div>
+
+					<div class="subtext">
+					a. are 18 years of age or older;<br/><br/>
+
+					b. do not already have (and will, at no time while you have the User Account for which you are applying, have) a User Account, whether directly or indirectly (including through any company or other legal entity which you directly or indirectly control);<br/><br/>
+
+					c. have not previously had a User Account that has since been cancelled by us;<br/><br/>
+
+					d. are (and will at all times be) acting solely for yourself and not on behalf of any other individual, company or other legal entity; and<br/><br/>
+
+					e. will abide by these Terms of Use, including each set of Rules.<br/><br/>
+
+					f. may not do anything which would result in you breaching any of these representations, warranties and undertakings.<br/><br/>
+
+					g. will comply with all laws in the jurisdiction in which you are present.<br/><br/>
+					</div>
+
+					<div class="text">
+					iv. If we accept your application for a User Account, we will notify you at the email address listed in your Account Details and supply you with a username and password.<br/><br/>
+
+					v. You agree that you will keep your password secret and secure at all times, and that you will not (intentionally or otherwise) allow anyone else to use the Website through your User Account.
+	        		</div><br/><br/>
+	        	</span> 
+	        
+
+	        <label for="chklabl6" class="header"><input type="checkbox" ng-model="model6" name="chklab6" id="chklabl6"> 
+			    6. Funds</label><br/>
+				<span ng-hide="model6">
+
+					<div class="text">
+	        		i. In order to trade on the Website, you will need to deposit funds with the Clearing House. You can make deposits with the Clearing House by electronic transfer or by credit card, in accordance with the applicable instructions set out in the "Your Account" section of the Website, as updated by us from time to time ("Deposit Instructions").<br/><br/>
+
+					ii. You must not deposit more than NZ$2,500 with the Clearing House in any 6 month period. You also must not deposit a cumulative total of $10,000, calculated as the total of all contributions paid by the participant less the total of all amounts reimbursed by the market provider. Where you deposit (or attempt to deposit) more than this amount, the Clearing House will be entitled to reject or return your payments.<br/><br/>
+
+					iii. Where you deposit funds in accordance with the Deposit Instructions, the Clearing House will hold those funds on trust for you as follows:
+
+					</div>
+					<div class="subtext">
+
+					a. the funds will be held in a Market Clearing Account;<br/><br/>
+
+					b. the Market Clearing Account will also contain funds deposited by other Users, but the Clearing House will maintain a separate ledger for the funds deposited by you (referred to as your "Ledger");<br/><br/>
+
+					c. funds credited to your Ledger may be debited from your Ledger in accordance with these Terms of Use (including where those funds are designated as Frozen Funds);<br/><br/>
+
+					d. the Clearing House will be entitled to any interest accumulated on the funds held in the Market Clearing Account; this interest will not be held on trust for you or anyone else, and the Clearing House is entitled to pay it over to the Market Provider;<br/><br/>
+
+					e. you can request withdrawal of funds from your Ledger by electronic transfer, in accordance with the applicable instructions set out in the "Your Account" section of the Website, as updated by us from time to time, and the Clearing House will be obliged to pay to you any funds in your Ledger (excluding, for the avoidance of doubt, any funds designated as Frozen Funds) as soon as practicable, and in any event no later than three working days after receiving a request or instruction from you to do so (except to the extent (if any) that funds in your Ledger consist of contributions from a "sponsor" of a Market which that "sponsor" has required not to be disbursed until after the liquidation date of that Market);<br/><br/>
+
+					f. where you withdraw funds, the Clearing House will be entitled to deduct a portion of the funds withdrawn and pay them to the Market Provider as a fee in accordance with clause 8 below;<br/><br/>
+
+					g. the Clearing House can debit funds from your Ledger to correct manifest errors, such as mistaken payments;<br/><br/>
+
+					h. the funds will cease to be held on trust for you if they are debited from your Ledger in accordance with these Terms of Use or you withdraw them in accordance with paragraph (e) above – provided that any funds which are debited as a result of the purchase of a Bundle, or debited and designated as Frozen Funds in accordance with these Terms of Use, will continue to be held in trust by the Clearing House to be credited to your Ledger and/or the Ledgers of other Users in accordance with these Terms of Use and the Rules applicable to the relevant Markets.<br/><br/>
+
+					</div>
+					<div class="text">
+
+					iv. You may not trade on the Website with funds credited to your Ledger that are not from one of the following sources:
+
+					</div>
+					<div class="subtext">
+
+					a. a payment made to the Clearing House by you for your own benefit;<br/><br/>
+
+					b. a payment made to the Clearing House by the "sponsor" of a Market as a "sponsor's contribution" (as defined in the Futures Contracts (iPredict Limited) Declaration and Exemption Notice 2008); or<br/><br/>
+
+					c. trading activities on the Website.<br/><br/>
+
+					</div>
+					<div class="text">
+
+					v. If the Clearing House becomes aware that a payment other than a payment of a kind referred to above has been credited to your Ledger, the Clearing House will refund it as soon as practicable. If a payment has been deposited by the "sponsor" of a Market, and credited to your Ledger, in excess of the maximum amount which that "sponsor" is permitted (in accordance with the terms agreed between that "sponsor" and the Market Provider) to deposit for credit to your Ledger, the Clearing House will refund it to that "sponsor" as soon as practicable.
+	        		</div><br/><br/>
+	        	</span> 
+
+
+			<label for="chklabl7" class="header"><input type="checkbox" ng-model="model7" name="chklab7" id="chklabl7"> 
+			    7. Trading and Settlement</label><br/>
+				<span ng-hide="model7">
+
+					<div class="text">
+	        		i. General<br/>
+	        		More information on the trading process is available in our Help and Tutorial sections. These sections are provided solely for your convenience, and do not form part of these Terms of Use. The following paragraphs in this clause 7.1 are by way of explanation only and do not form a binding part of these Terms of Use:
+					
+					</div>
+					<div class="subtext">
+					a. The Website facilitates the trading of futures contracts ("Claims") tied to the outcome of political, business, economic, sociological or demographic events and circumstances ("Factors"). A pool of associated Claims relating to the same Factor/s is called a "Market".<br/><br/>
+
+					b. The Market Provider creates Claims and makes them available:
+
+					</div>
+					<div class="subsubtext">
+					i. for Users to Short Sell individually to other Users, who can then trade them amongst themselves; or<br/><br/>
+
+					ii. for Users to purchase in bundles of two or more different Claims with mutually exclusive criteria for their respective Payouts ("Bundles" and "Bundled Claims"); once purchased, Bundled Claims can be unbundled and traded individually.<br/><br/>
+
+					</div>
+					<div class="subtext">
+					c. Each Claim entitles its holder to the payment of a specified amount ("Payout") if on its Expiry Date certain specified conditions are met. Whenever a Claim is traded through the Website, this Contingent Payment Right is transferred as part of the Claim.<br/><br/>
+
+					d. When you purchase a Bundle:
+
+					</div>
+					<div class="subsubtext">
+					i. you are, in respect of each Claim in that Bundle, entering into an agreement with the Market Provider and the Clearing House under which you acquire (as part of that Claim) a Contingent Payment Right in accordance with these Terms of Use and the Rules of the relevant Market; and<br/><br/>
+
+					ii. the Clearing House will debit the Maximum Payout of that Bundle from your Ledger, to be paid out in satisfaction of the Actual Payout/s which become/s payable to the relevant User/s holding the Claims in that Bundle on the Expiry Date.<br/><br/>
+
+					</div>
+					<div class="subtext">
+					e. When you Short Sell a Claim, you are:
+					</div>
+
+					</div>
+					<div class="subsubtext">
+						i. entering into an agreement with the Market Provider and the Clearing House under which you: (1) acquire the relevant Contingent Payment Right in accordance with these Terms of Use and the Rules of the relevant Market; and (2) undertake to pay the Clearing House the Actual Payout of that Claim (if the conditions of the Claim are satisfied), so that the Clearing House can pay the User who holds that Claim on the Expiry Date; and then
+
+						ii. immediately selling that Claim (including that Contingent Payment Right) to another User.<br/><br/>
+
+					</div>
+					<div class="subtext">
+						Accordingly, when you Short Sell a Claim the Clearing House will debit the Maximum Payout from your Ledger (and designate that amount as Frozen Funds) to ensure there are sufficient funds if a Payout results. Where the Actual Payout turns out to be less than the Maximum Payout, the difference between Actual Payout and Maximum Payout will be credited back to your Ledger out of the Frozen Funds.
+
+	        		</div><br/><br/>
+	        	</span> 
         </div>
 
     </ion-content>
