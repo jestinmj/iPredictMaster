@@ -112,7 +112,7 @@ angular.module('app', [
       url: '/deposit_withdrawal',
       views: {
           'menuContent': {
-              templateUrl: 'templates/deposit_withdrawal.html',
+              templateUrl: 'templates/transaction.html',
               controller: 'Deposit_withdrawal'
           }
       }

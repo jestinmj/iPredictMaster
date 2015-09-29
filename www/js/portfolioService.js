@@ -62,7 +62,7 @@ angular.module('app.services.portfolio', [])
                 }else{
                     stocks.push({contractID : amount});
                 }
-            }else{
+            }else{ // "short"
                 if(contractID in shorts){
                     shorts[contractID] += amount;
                 }else{
