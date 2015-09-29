@@ -15,19 +15,20 @@
 
   <ion-side-menu side="left">
     <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+      <h1 class="title">Menu</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
+      <ion-item menu-close href="#/app/login" ng-hide="userLoggedIn">
+          Login
+        </ion-item>
         <ion-item menu-close href="#/app/predictions">
           Predictions
         </ion-item>
         <ion-item menu-close href="#/app/portfolio">
           Portfolio
         </ion-item>
-        <ion-item menu-close href="#/app/login">
-          Login
-        </ion-item>
+        
         <ion-item menu-close href="#/app/contract">
           Contract
         </ion-item>
@@ -47,6 +48,13 @@
           About Us
         </ion-item>
       </ion-list>
+
     </ion-content>
+
+   <ion-footer-bar >
+          <ion-item menu-close href="#/app/login" style="left:0;right:0;margin:0; bottom:1px; width: 100%;position: fixed;" ng-show="userLoggedIn">
+          Log Out
+   </ion-item>
+       </ion-footer-bar>
   </ion-side-menu>
 </ion-side-menus>

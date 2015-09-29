@@ -106,6 +106,7 @@
 .main_div
 {
 	border-radius: 15px 15px 15px 15px;
+	height:700px;
 	
 }
 
@@ -157,9 +158,12 @@
 
 .sign_up_div
 {
-	width:100%;
-	margin-top:3%;
+	width:80%;
+	bottom:0px;
 	float: center;
+	position: fixed;
+height:80px;
+	
 }
 
 .have_account
@@ -182,21 +186,31 @@
 	font-family: Sans-serif;
 	font-size: 2vmax;
 	line-height: 20px;
-	text-align: left;	
+	text-align: center;	
 	background-color: white;
 	border-width: 0;
+	width: 100%; 
+	max-height: 10%; 
+
+	float: center; 
+	
 }
 
 .sign_up
 {
-	padding: 10px 10px 10px 10px;
-	color: #428BCA;
+	
 	font-family: Sans-serif;
-	font-size: 2vmax;
 	line-height: 20px;
-	text-align: center;
-	background-color: white;
+	text-align: left;
+	height: 60%;
 	border-width: 0;
+	width: 100%; 
+	bottom: 0px;
+	background: #428BCA;
+	color: #fff;
+	font-size: 20px;
+	height: 40%;
+	text-align: center;
 }
 
 .iforgotMyPassword_SendButton
@@ -211,6 +225,7 @@
 	line-height: 60px;
 	text-align: center;
 	border: 1;
+
 }
 
 .Terms_note

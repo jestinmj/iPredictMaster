@@ -1,6 +1,6 @@
 angular.module('app.controllers.login', [])
 
-    .controller('LoginCtrl', function($scope,$ionicNavBarDelegate,
+    .controller('LoginCtrl', function($scope,$ionicNavBarDelegate, $rootScope,
      LoginService) {
 
         $scope.login = true;
@@ -23,6 +23,7 @@ angular.module('app.controllers.login', [])
         // I Forgot my password
         $scope.details_forgotmypassword_email = '';
 
+       
         //
         // User presses the login button
         //
@@ -87,7 +88,8 @@ angular.module('app.controllers.login', [])
             }
             else{
                 // Acceptable details entered
-                console.log("Acceptable form");
+                console.log("Acceptable form");  
+                $rootScope.$broadcast("loginComplete");
             }
         };
 
