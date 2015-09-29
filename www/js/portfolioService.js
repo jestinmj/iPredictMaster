@@ -46,8 +46,6 @@ angular.module('app.services.portfolio', [])
 
         var myShorts = function(){
 
-
-
             var contracts = [];
             for (var shortID in shorts){
                 var stock_contract = ContractService.getContract(shortID);
@@ -72,7 +70,22 @@ angular.module('app.services.portfolio', [])
                 }
             }
         };
-        
+
+        var removeStock = function(type, contractID, amount){
+            if(type == "stock"){
+                if(contractID in stocks && (stocks[contractID] - amount) > 0){
+                    stocks[contractID] -= amount;
+                }else{
+                    delete stocks[contractID];
+                }
+            }else{
+                if(contractID in shorts && (shorts[contractID] - amount) > 0) {
+                    shorts[contractID] -= amount;
+                }else{
+                    delete shorts[contractID];
+                }
+            }
+        };
 
         var serviceFunctions = {
             //functions go in here
