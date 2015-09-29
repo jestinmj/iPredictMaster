@@ -1,13 +1,15 @@
 
 var app = angular.module('app.controllers.trade', []);
 
- app.controller('TradeCtrl', function($scope) {
+ app.controller('TradeCtrl', function($scope, ContractService) {
 
+        $scope.contract = {};
         $scope.quantityTrade = 1;
         $scope.quantityBundle = 1;
         $scope.rowCollection = [
          {bundName: 'OCR.10SEP15.U25', price: 10.56}
         ];
+
         $scope.parseFloat = parseFloat;
         $scope.toggle = {
             one: false,
@@ -28,7 +30,7 @@ var app = angular.module('app.controllers.trade', []);
             $scope.toggle.step1 = true;
             $scope.toggle.step2 = false;
             $scope.toggle.step3 = false;
-        }
+        };
 
         $scope.stockType = "";
 
@@ -39,7 +41,7 @@ var app = angular.module('app.controllers.trade', []);
             $scope.toggle.bunStep1 = true;
             $scope.toggle.bunStep2 = false;
 
-        }
+        };
 
         $scope.closeStep = function(){
             $scope.toggle.step1 = false;
@@ -48,13 +50,13 @@ var app = angular.module('app.controllers.trade', []);
             $scope.toggle.bunStep1 = false;
             $scope.toggle.bunStep2 = false;
             $scope.toggle.bunStep3 = false;
-        }
+        };
         $scope.enableStep2 = function() {
             $scope.toggle.confirmButtonDisabled = false;
             $scope.toggle.step1 = false;
             $scope.toggle.step2 = true;
 
-        }
+        };
 
          $scope.enableStep3 = function() {
              $scope.toggle.confirmButtonDisabled = false;
@@ -62,21 +64,25 @@ var app = angular.module('app.controllers.trade', []);
              $scope.toggle.step2 = false;
              $scope.toggle.step3 = true;
 
-         }
+         };
 
          $scope.enableBunStep2 = function() {
              $scope.toggle.bunStep1 = false;
              $scope.toggle.bunStep2 = true;
              $scope.toggle.bunStep3 = false;
 
-         }
+         };
 
          $scope.enableBunStep3 = function() {
              $scope.toggle.bunStep1 = false;
              $scope.toggle.bunStep2 = false;
              $scope.toggle.bunStep3 = true;
 
-         }
+         };
+
+        $scope.trade = function(id){
+            $scope.contract = ContractService.getContract(id);
+        };
     });
 
 app.directive('counter', function() {

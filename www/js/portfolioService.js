@@ -13,17 +13,27 @@ angular.module('app.services.portfolio', [])
             {title:"Portfolio", attr:7.39, changeInAttr:0.07}
         ];
 
-        var myStocks = function() {
 
-            var stocks = {
+        var stocks = {
             //    ID : AMOUNT OF STOCK
-                "0004" : 8,
-                "0001" : 2,
-                "0003" : 3,
-                "0006" : 1,
-                "0010" : 2,
-                "0012" : 4
-            };
+            "0004" : 8,
+            "0001" : 2,
+            "0003" : 3,
+            "0006" : 1,
+            "0010" : 2,
+            "0012" : 4
+        };
+
+        var shorts = {
+            //    ID : AMOUNT OF STOCK
+            "0005" : 2,
+            "0002" : 1,
+            "0004" : 3,
+            "0009" : 3,
+            "0011" : 1
+        };
+
+        var myStocks = function() {
 
             var contracts = [];
             for (var stockID in stocks){
@@ -36,14 +46,7 @@ angular.module('app.services.portfolio', [])
 
         var myShorts = function(){
 
-            var shorts = {
-            //    ID : AMOUNT OF STOCK
-                "0005" : 2,
-                "0002" : 1,
-                "0004" : 3,
-                "0009" : 3,
-                "0011" : 1
-            };
+
 
             var contracts = [];
             for (var shortID in shorts){
@@ -53,6 +56,23 @@ angular.module('app.services.portfolio', [])
             }
             return contracts;
         };
+
+        var addStock = function(type, contractID, amount){
+            if(type == "stock"){
+                if(contractID in stocks){
+                    stocks[contractID] += amount;
+                }else{
+                    stocks.push({contractID : amount});
+                }
+            }else{
+                if(contractID in shorts){
+                    shorts[contractID] += amount;
+                }else{
+                    shorts.push({contractID: amount})
+                }
+            }
+        };
+        
 
         var serviceFunctions = {
             //functions go in here
