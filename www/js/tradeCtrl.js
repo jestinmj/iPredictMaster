@@ -1,4 +1,3 @@
-//var app = angular.module('plunker', []);
 
 var app = angular.module('app.controllers.trade', []);
 
@@ -6,36 +5,91 @@ var app = angular.module('app.controllers.trade', []);
 
         $scope.quantityTrade = 1;
         $scope.quantityBundle = 1;
+        $scope.rowCollection = [
+         {bundName: 'OCR.10SEP15.U25', price: 10.56}
+        ];
+        $scope.parseFloat = parseFloat;
         $scope.toggle = {
             one: false,
             two: false,
+            step1:true,
+            step2:false,
+            step3:false,
+            bunStep1:true,
+            bunStep2:false,
+            bunStep3:false,
             confirmButtonDisabled: true
         };
         // Now have two functions that change the ng-show based on the click
-        $scope.showOne = function (){
+        $scope.showOne = function (type){
             $scope.toggle.one = true;
             $scope.toggle.two = false;
+            $scope.stockType = type;
+            $scope.toggle.step1 = true;
+            $scope.toggle.step2 = false;
+            $scope.toggle.step3 = false;
         }
 
-        $scope.showTwo = function () {
+        $scope.stockType = "";
+
+        $scope.showTwo = function (type) {
             $scope.toggle.one = false;
             $scope.toggle.two = true; // now show this one
+            $scope.stockType = type;
+            $scope.toggle.bunStep1 = true;
+            $scope.toggle.bunStep2 = false;
+
         }
 
-        $scope.enableConfirm = function() {
+        $scope.closeStep = function(){
+            $scope.toggle.step1 = false;
+            $scope.toggle.step2 = false;
+            $scope.toggle.step3 = false;
+            $scope.toggle.bunStep1 = false;
+            $scope.toggle.bunStep2 = false;
+            $scope.toggle.bunStep3 = false;
+        }
+        $scope.enableStep2 = function() {
             $scope.toggle.confirmButtonDisabled = false;
+            $scope.toggle.step1 = false;
+            $scope.toggle.step2 = true;
+
         }
 
-    });
+         $scope.enableStep3 = function() {
+             $scope.toggle.confirmButtonDisabled = false;
+             $scope.toggle.step1 = false;
+             $scope.toggle.step2 = false;
+             $scope.toggle.step3 = true;
 
+         }
+
+         $scope.enableBunStep2 = function() {
+             $scope.toggle.bunStep1 = false;
+             $scope.toggle.bunStep2 = true;
+             $scope.toggle.bunStep3 = false;
+
+         }
+
+         $scope.enableBunStep3 = function() {
+             $scope.toggle.bunStep1 = false;
+             $scope.toggle.bunStep2 = false;
+             $scope.toggle.bunStep3 = true;
+
+         }
+    });
 
 app.directive('counter', function() {
         return {
             restrict: 'A',
             scope: { value: '=value' },
-            template: '<a  href="javascript:;" class="counter-plus" ng-click="plus()">+</a>\
-                  <input type="text" class="counter-field" ng-model="value" ng-change="changed()" ng-readonly="readonly">\
-                  <a href="javascript:;" class="counter-minus" ng-click="minus()">-</a>',
+            template: '<div>'+
+                  '<button ng-click="plus()">+</button>'+
+                  '<input type="text" ng-model="value" ng-change="changed()" ng-readonly="readonly">'+
+                  '<button ng-click="minus()">-</button>'+
+                  '</div>',
+
+
             link: function( scope , element , attributes ) {
                 // Make sure the value attribute is not missing.
                 if ( angular.isUndefined(scope.value) ) {

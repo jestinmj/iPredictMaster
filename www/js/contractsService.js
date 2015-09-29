@@ -72,6 +72,7 @@ angular.module('app.services.contract', [])
                     "tagId": [0]}, "type": 0 }
         };
 
+
         var serviceFunctions = {
 
             getContract: function(id){
