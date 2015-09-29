@@ -17,12 +17,12 @@ angular.module('app.services.portfolio', [])
 
             var stocks = {
             //    ID : AMOUNT OF STOCK
-                0004 : 8,
-                0001 : 2,
-                0003 : 3,
-                0006 : 1,
-                0010 : 2,
-                0012 : 4
+                "0004" : 8,
+                "0001" : 2,
+                "0003" : 3,
+                "0006" : 1,
+                "0010" : 2,
+                "0012" : 4
             };
 
             var contracts = [];
@@ -30,7 +30,7 @@ angular.module('app.services.portfolio', [])
                 var stock_contract = ContractService.getContract(stockID);
                 contracts.push({title: stock_contract.name, amount: stocks[stockID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
                     averageCost: 0.0, lastPrice: stock_contract.last, difference: stock_contract.buy - stock_contract.last});
-            };
+            }
             return contracts;
         };
 
@@ -38,11 +38,11 @@ angular.module('app.services.portfolio', [])
 
             var shorts = {
             //    ID : AMOUNT OF STOCK
-                0005 : 2,
-                0002 : 1,
-                0004 : 3,
-                0009 : 3,
-                0011 : 1
+                "0005" : 2,
+                "0002" : 1,
+                "0004" : 3,
+                "0009" : 3,
+                "0011" : 1
             };
 
             var contracts = [];
@@ -50,7 +50,7 @@ angular.module('app.services.portfolio', [])
                 var stock_contract = ContractService.getContract(shortID);
                 contracts.push({title: stock_contract.name, amount: shorts[shortID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
                     averageCost: 0.0, lastPrice: stock_contract.last, difference: stock_contract.buy - stock_contract.last});
-            };
+            }
             return contracts;
         };
 
