@@ -2,16 +2,16 @@ angular.module('app.controllers.portfolio', ["chart.js"])
 
     .controller('PortfolioCtrl', function($scope) {
 
-        $scope.toggle={
-            ownStock:true,
+        $scope.toggle = {
+            ownStock: true,
             shortStock: true,
             graph: true
         };
 
-        $scope.portfolio=[
+        $scope.portfolio = [
             {title:"Rank", attr:1, changeInAttr:2},
-            {title:"Worth", attr:"$"+20.05, changeInAttr:"$"+0.07},
-            {title:"Wallet", attr:"$"+12.74, changeInAttr:"$"+0.0},
+            {title:"Worth", attr:20.05, changeInAttr:0.07},
+            {title:"Wallet", attr:12.74, changeInAttr:0.0},
             {title:"Portfolio", attr:7.39, changeInAttr:0.07}
         ];
 
@@ -46,15 +46,15 @@ angular.module('app.controllers.portfolio', ["chart.js"])
             $scope.toggle.shortStock = !$scope.toggle.shortStock;
         };
 
-        $scope.togglePerformanceGraph = function(){
+        $scope.toggleGraph = function(){
             $scope.toggle.graph = !$scope.toggle.graph;
         };
 
-        $scope.toggle_stock_attr = function (stock) {
+        $scope.toggleStockAttr = function(stock) {
           stock.toggle = !stock.toggle;
         };
 
-        $scope.trade_click = function (value) {
+        $scope.tradeClick = function (value) {
           console.log("Trade Click :" + value);
         };
 
