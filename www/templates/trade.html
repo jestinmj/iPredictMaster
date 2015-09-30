@@ -100,10 +100,10 @@
                     <h5> STEP 1: DETERMINE OUTCOME</h5>
                 </div>
                 <div style="width: 80%; margin: 20px 10% 20px 10%; text-align: center">
-                    <span style="color: #42A5F5;">Reserve Bank to REDUCE OCR by 25 basis points on 10 September 2015</span>
+                    <span style="color: #42A5F5;">{{contract.shortDesc}}</span>
                 </div>
                 <div style="width: 100%; text-align: center">
-                    <span>Is this outcome more likely than 92.0%?</span>
+                    <span>Is this outcome more likely than {{contract.probability}}%?</span>
                 </div>
                 <div class="row" style="margin-top: 20px;">
                     <div class="col">
@@ -119,8 +119,6 @@
 
 
             <div ng-show="toggle.step2">
-
-                <!--<button class="button icon-left ion-chevron-left button-positive button-clear" ng-click="showOne('stock')">Back</button>-->
 
                 <div style="width: 100%; text-align: center; margin-top: 20px;">
                     <h5> STEP 2: BUY OR SELL</h5>
@@ -149,7 +147,7 @@
                     <h5> STEP 3: CHOOSE NUMBER OF STOCKS</h5>
                 </div>
 
-                <div class="container">
+                <div style="margin-bottom: 20px;">
                     <div counter value="quantityTrade" min="1" step="1" editable></div>
                 </div>
 
@@ -158,8 +156,8 @@
                     <span style="color:#fafafa"> CONFIRM & PROCEED </span>
                 </button>
                 <button class="button button-clear" ng-click="showOne('stock')"
-                        style="width: 40%; margin-left: 30%; max-height: 10%; margin-top: 20px; background-color: #42A5F5">
-                    <span style="color:#fafafa"> BACK </span>
+                        style="width: 40%; margin-left: 30%; max-height: 10%; margin-top: 20px;">
+                    <b style="color: #42A5F5;"> BACK </b>
                 </button>
             </div>
 
@@ -181,82 +179,78 @@
 
         </div>
 
-        <div class="card" ng-show="toggle.two">
+        <div  ng-show="toggle.two">
 
             <div ng-show=toggle.bunStep1>
-                <span class="customSpan"> Step 1: CHOOSE NUMBER OF BUNDLES</span><br>
-                 <p>
-                    How many bundles would you like to buy?
-                </p>
+                <div style="width: 80%; text-align: center; margin: 20px;">
+                    <h5> STEP 1: CHOOSE NUMBER OF BUNDLES TO BUY</h5>
+                </div>
 
-                <div class="container">
-                    <div counter value="quantityBundle" min="1" step="1" editable></div>
+                <div>
+                    <div counter value="bundleQuantity" min="1" step="1" editable></div>
                 </div>
                 <div class="row">
-                    <p>
-                    Bundle Contents:
-                    <br>OCR.10SEP15.U25
-                    <br>OCR.10SEP15.U50
-                    <br>OCR.10SEP15.D25
-                    <br>OCR.10SEP15.D50
-                    <br>OCR.10SEP15.NC
-                    <br>OCR.10SEP15.OTH
+                    <div style="width: 80%; text-align: center; margin: 20px 10% 0 10%;">
+                        <h5>BUNDLE CONTENTS</h5>
+                        <div style="width: 100%;">
+                            <span>{{contract.name}}</span>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h4 align="center">Available Cash: $65.96</h4>
-                </div>
-                <button class="button button-clear"
-                        ng-click="enableBunStep2()"
-                        style="width: 100%; max-height: 10%; background-color: #0c63ee">
-                    <span style="color:#fafafa"> PROCEED </span>
+                <button class="button button-clear" ng-click="enableBunStep2()"
+                        style="width: 80%; margin-left: 10%; margin-top: 20px; max-height: 10%; background-color: #42A5F5">
+                    <span style="color:#fafafa"> CONFIRM & PROCEED </span>
                 </button>
             </div>
             <div ng-show="toggle.bunStep2">
 
-                <span class="customSpan"> Step 2: CONFIRM ORDER</span>
-                <br><br>
-                <table st-table="rowCollection" class="table table-striped">
+                <div style="width: 80%; text-align: center; margin: 20px;">
+                    <h5> STEP 2: CONFIRM ORDER</h5>
+                </div>
+
+                <table st-table="rowCollection" class="table table-striped" style="width: 100%;">
                     <thead>
                     <tr>
-                        <th align="center">Bundle Name</th>
-                        <th align="center">Quantity</th>
-                        <th align="right">Price</th>
+                        <th align="left" style="padding-left: 10px"><b>Bundle Name</b></th>
+                        <th align="right" style="padding-right: 10px"><b>Quantity</b></th>
+                        <th align="right" style="padding-right: 10px"><b>Price</b></th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="row in rowCollection">
-                        <td align="center">{{row.bundName}}</td>
-                        <td align="center">{{quantityBundle}}</td>
-                        <td align="center">{{row.price | currency}}</td>
+                    <tr style="height: 30px;">
+                        <td align="left" style="padding-left: 10px; line-height: 30px;">{{bundle.name}}</td>
+                        <td align="right" style="padding-right: 10px; line-height: 30px;">{{bundleQuantity}}</td>
+                        <td align="right" style="padding-right: 10px; line-height: 30px;">{{bundle.price | currency}}</td>
                     </tr>
                     </tbody>
                 </table>
-                <p>
-                    <h4 align="Right" ng-repeat="row in rowCollection"> Order Total: $ {{(row.price)*(quantityBundle)}}</h4>
-                </p>
-                <br><br><br><br><br><br>
-                <div>
-                    <h4 align="center">Available Cash: $65.96</h4>
-                </div>
-                <button class="button button-clear"
-                        ng-click="enableBunStep3()"
-                        style="width: 100%; max-height: 10%; background-color: #0c63ee">
-                    <span style="color:#fafafa"> CONFIRM </span>
+
+                <h4 align="Right" style="padding-right: 10px; margin: 15px 0 15px 0">
+                    Order Total: $ {{(bundle.price * bundleQuantity).toFixed(2)}}</h4>
+
+                <button class="button button-clear" ng-click="enableBunStep3()"
+                        style="width: 80%; margin-left: 10%; margin-top: 20px; max-height: 10%; background-color: #42A5F5">
+                    <span style="color:#fafafa"> CONFIRM & PROCEED </span>
                 </button>
 
             </div>
 
             <div ng-show="toggle.bunStep3">
-                <pr>
-                    <br>CONGRATULATIONS!<br>
-                    <br>You have successfully purchased
-                    <br>{{quantityBundle}} x OCR.10SEP15.U25
-                    <br>
-                    <br> The stocks in this bundle have been added to your portfolio.<br>
-                </pr>
-                <br>
+
+                <div style="width: 80%; text-align: center; margin: 20px;">
+                    <h5>CONGRATULATIONS</h5>
+                </div>
+
+                <div style="width: 80%; margin-left: 10%;">
+                    <h5>You have successfully purchased:</h5>
+                    <span>
+                        {{bundleQuantity}} x {{bundle.name}}
+                    </span>
+                    <h5>The stock in this bundle has been added to your portfolio</h5>
+                </div>
+
                 <button class="button button-clear" ng-click="closeStep()"
-                        style="width: 100%; max-height: 10%; background-color: #0c63ee">
+                        style="width: 80%; margin-left: 10%; margin-top: 20px; max-height: 10%; background-color: #42A5F5">
                     <span style="color:#fafafa"> CLOSE </span>
                 </button>
             </div>

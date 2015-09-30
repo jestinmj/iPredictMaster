@@ -5,15 +5,19 @@ var app = angular.module('app.controllers.trade', []);
 
     $scope.contract = {};
     $scope.quantityTrade = 1;
-    $scope.quantityBundle = 1;
-    $scope.rowCollection = [
-     {bundName: 'OCR.10SEP15.U25', price: 10.56}
-    ];
+    $scope.bundleQuantity = 1;
+    $scope.bundle = { name: 'OCR.10SEP15.U25', price: 10.56,
+        contracts: [
 
-     $scope.toggle = {
-         buy: false,
-         sell: false
-     };
+        ]
+    };
+
+
+
+    $scope.toggle = {
+     buy: false,
+     sell: false
+    };
     $scope.toggleBuy = function(){ $scope.toggle.sell = !$scope.toggle.buy; };
     $scope.toggleSell = function(){ $scope.toggle.buy = !$scope.toggle.sell; };
 
