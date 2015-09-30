@@ -3,7 +3,6 @@ angular.module('app.controllers.login', [])
     .controller('LoginCtrl', function($scope,$ionicNavBarDelegate, $rootScope,
      LoginService) {
 
-        $scope.login = true;
 
         $scope.showWarning = false;
         $scope.warningMessage = '';
@@ -88,9 +87,14 @@ angular.module('app.controllers.login', [])
             }
             else{
                 // Acceptable details entered
+                var clientFromServer = {};
+
                 console.log("Acceptable form");  
                 $rootScope.$broadcast("loginComplete");
+                console.log($rootScope.loggedInUser);
+                
             }
+           
         };
 
         // 
@@ -299,4 +303,17 @@ angular.module('app.controllers.login', [])
         $scope.isRetreivingPassword = function(){
             return LoginService.inForgotPasswordState();
         }
+
+        $scope.logout = function() {
+          Session.clear();
+          localStorage.clearAll();
+         // $window.localStorage.removeItem('e');
+         $scope.details_username = "";
+     $scope.details_password = "";
+     $scope.details_rememberme = false;
+     $scope.login = false;};
+      //destroyUserCredentials();}
+      
+     
+
     });
