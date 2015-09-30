@@ -304,16 +304,6 @@ angular.module('app.controllers.login', [])
             return LoginService.inForgotPasswordState();
         }
 
-        $scope.logout = function() {
-          Session.clear();
-          localStorage.clearAll();
-         // $window.localStorage.removeItem('e');
-         $scope.details_username = "";
-     $scope.details_password = "";
-     $scope.details_rememberme = false;
-     $scope.login = false;};
-      //destroyUserCredentials();}
-      
-     
+        
 
     });
