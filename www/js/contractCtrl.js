@@ -1,6 +1,6 @@
 angular.module('app.controllers.contract', ["chart.js"])
 
-    .controller('ContractCtrl', function($scope, $stateParams, ContractService) {
+    .controller('ContractCtrl', function($scope, $stateParams, $state, ContractService) {
 
         $scope.pageLoaded = false;
 
@@ -12,6 +12,8 @@ angular.module('app.controllers.contract', ["chart.js"])
         $scope.contract.status = "Active";
         $scope.pageLoaded = true;
 
-
+        $scope.tradeContract = function(){
+            $state.go("app.trade", {id: $scope.id})
+        };
 
     });

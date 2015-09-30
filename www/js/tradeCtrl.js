@@ -1,9 +1,9 @@
 
 var app = angular.module('app.controllers.trade', []);
 
- app.controller('TradeCtrl', function($scope, ContractService, $state, $ionicViewService) {
+ app.controller('TradeCtrl', function($scope, ContractService, $state, $stateParams, $ionicHistory) {
 
-    $scope.contract = {};
+    $scope.contract = ContractService.getContract($stateParams.id);
     $scope.quantityTrade = 1;
     $scope.bundleQuantity = 1;
     $scope.bundle = { name: 'OCR.10SEP15.U25', price: 10.56,
@@ -11,7 +11,6 @@ var app = angular.module('app.controllers.trade', []);
 
         ]
     };
-
 
 
     $scope.toggle = {
@@ -23,7 +22,7 @@ var app = angular.module('app.controllers.trade', []);
 
     $scope.parseFloat = parseFloat;
     $scope.toggle = {
-        one: false,
+        one: true,
         two: false,
         step1:true,
         step2:false,
@@ -33,6 +32,9 @@ var app = angular.module('app.controllers.trade', []);
         bunStep3:false,
         confirmButtonDisabled: true
     };
+
+    $scope.stockType = "stock";
+
     // Now have two functions that change the ng-show based on the click
     $scope.showOne = function (type){
         $scope.toggle.one = true;
@@ -42,8 +44,6 @@ var app = angular.module('app.controllers.trade', []);
         $scope.toggle.step2 = false;
         $scope.toggle.step3 = false;
     };
-
-    $scope.stockType = "";
 
     $scope.showTwo = function (type) {
         $scope.toggle.one = false;
@@ -61,7 +61,7 @@ var app = angular.module('app.controllers.trade', []);
         $scope.toggle.bunStep1 = true;
         $scope.toggle.bunStep2 = false;
         $scope.toggle.bunStep3 = false;
-        $ionicViewService.nextViewOptions({
+        $ionicHistory.nextViewOptions({
             disableBack: true
         });
 
@@ -96,10 +96,6 @@ var app = angular.module('app.controllers.trade', []);
          $scope.toggle.bunStep3 = true;
 
      };
-
-    $scope.trade = function(id){
-        $scope.contract = ContractService.getContract(id);
-    };
     });
 
 app.directive('counter', function() {

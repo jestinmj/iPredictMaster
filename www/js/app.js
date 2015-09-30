@@ -80,7 +80,7 @@ angular.module('app', [
   })
 
   .state('app.trade', {
-      url: '/trade',
+      url: '/trade/:id',
       views: {
           'menuContent': {
               templateUrl: 'templates/trade.html',
