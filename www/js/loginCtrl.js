@@ -138,9 +138,8 @@ angular.module('app.controllers.login', [])
                 $scope.details_password   = "";
                 $scope.details_rememberme = false;
 
-                // Redirect to another page
-                //window.location = "#/contract.html";
-                $state.go('app.aboutUs');
+                // Display notice of successfully logged in
+                $scope.displayNotice("Login Successful");
             }
            
         };
