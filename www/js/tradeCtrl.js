@@ -1,7 +1,7 @@
 
 var app = angular.module('app.controllers.trade', []);
 
- app.controller('TradeCtrl', function($scope, ContractService, $state, $stateParams, $ionicHistory) {
+ app.controller('TradeCtrl', function($scope, ContractService, $state, $stateParams, $ionicHistory, PortfolioService) {
 
     $scope.contract = ContractService.getContract($stateParams.id);
     $scope.quantityTrade = 1;
@@ -64,8 +64,7 @@ var app = angular.module('app.controllers.trade', []);
         $ionicHistory.nextViewOptions({
             disableBack: true
         });
-
-        $state.go('app.portfolio');
+        $state.go('app.portfolio',{}, {reload: true});
     };
     $scope.enableStep2 = function() {
         $scope.toggle.confirmButtonDisabled = false;
@@ -81,6 +80,13 @@ var app = angular.module('app.controllers.trade', []);
              $scope.toggle.step2 = false;
              $scope.toggle.step3 = true;
          }
+         $ionicHistory.clearCache();
+         if($scope.toggle.buy){
+             console.log($scope.quantityTrade)
+             PortfolioService.addStock("stock", $scope.contract.id, $scope.quantityTrade);
+         }else if($scope.toggle.sell){
+             PortfolioService.removeStock("stock", $scope.contract.id, $scope.quantityTrade);
+         }
      };
 
      $scope.enableBunStep2 = function() {
@@ -94,6 +100,8 @@ var app = angular.module('app.controllers.trade', []);
          $scope.toggle.bunStep1 = false;
          $scope.toggle.bunStep2 = false;
          $scope.toggle.bunStep3 = true;
+
+
 
      };
     });
@@ -135,7 +143,7 @@ app.directive('counter', function() {
                  */
                 var setValue = function( val ) {
                     scope.value = parseInt( val );
-                }
+                };
 
                 // Set the value initially, as an integer.
                 setValue( scope.value );
@@ -192,7 +200,7 @@ app.directive('counter', function() {
                     }
 
                     // Re-set the value as an integer.
-                    setValue( scope.value );
+                    setValue(scope.value);
                 };
             }
         }

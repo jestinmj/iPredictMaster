@@ -41,6 +41,7 @@ angular.module('app.services.portfolio', [])
                 contracts.push({id: stockID, title: stock_contract.name, amount: stocks[stockID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
                     averageCost: 0.0, lastPrice: stock_contract.last, difference: stock_contract.buy - stock_contract.last});
             }
+            console.log(contracts)
             return contracts;
         };
 
@@ -55,37 +56,7 @@ angular.module('app.services.portfolio', [])
             return contracts;
         };
 
-        var addStock = function(type, contractID, amount){
-            if(type == "stock"){
-                if(contractID in stocks){
-                    stocks[contractID] += amount;
-                }else{
-                    stocks.push({contractID : amount});
-                }
-            }else{ // "short"
-                if(contractID in shorts){
-                    shorts[contractID] += amount;
-                }else{
-                    shorts.push({contractID: amount})
-                }
-            }
-        };
 
-        var removeStock = function(type, contractID, amount){
-            if(type == "stock"){
-                if(contractID in stocks && (stocks[contractID] - amount) > 0){
-                    stocks[contractID] -= amount;
-                }else{
-                    delete stocks[contractID];
-                }
-            }else{
-                if(contractID in shorts && (shorts[contractID] - amount) > 0) {
-                    shorts[contractID] -= amount;
-                }else{
-                    delete shorts[contractID];
-                }
-            }
-        };
 
         var serviceFunctions = {
             //functions go in here
@@ -100,6 +71,41 @@ angular.module('app.services.portfolio', [])
 
             getMyShorts: function() {
                 return myShorts();
+            },
+
+            addStock : function(type, contractID, amount){
+                console.log(type, contractID, amount);
+                if(type == "stock"){
+                    if(contractID in stocks){
+                        stocks[contractID] += amount;
+                        console.log(stocks[contractID])
+                    }else{
+                        stocks.push({contractID : amount});
+                    }
+                }else{ // "short"
+                    if(contractID in shorts){
+                        shorts[contractID] += amount;
+                    }else{
+                        shorts.push({contractID: amount})
+                    }
+                }
+            },
+
+            removeStock : function(type, contractID, amount){
+                console.log(type, contractID, amount);
+                if(type == "stock"){
+                    if(contractID in stocks && (stocks[contractID] - amount) > 0){
+                        stocks[contractID] -= amount;
+                    }else{
+                        delete stocks[contractID];
+                    }
+                }else{
+                    if(contractID in shorts && (shorts[contractID] - amount) > 0) {
+                        shorts[contractID] -= amount;
+                    }else{
+                        delete shorts[contractID];
+                    }
+                }
             }
         };
         return serviceFunctions;

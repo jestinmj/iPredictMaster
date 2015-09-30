@@ -54,7 +54,8 @@ angular.module('app', [
     views: {
       'menuContent': {
         templateUrl: 'templates/portfolio.html',
-        controller: 'PortfolioCtrl'
+        controller: 'PortfolioCtrl',
+        cache: false
       }
     }
   })
