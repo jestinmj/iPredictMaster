@@ -113,32 +113,13 @@ angular.module('app.controllers.login', [])
 
                 console.log("User: " + $rootScope.loggedUser);
                 // Acceptable details entered
+                var clientFromServer = {};
+
                 console.log("Acceptable form");  
                 $rootScope.$broadcast("loginComplete");
-
-                // Temporary client that we will be given from the server
-                // Assuming the server sends us the correct information
-                var fakeClient = {
-                  "customData": "string",
-                  "email": "string",
-                  "id": "string",
-                  "marketId": 0,
-                  "newUser": "string",
-                  "password": "string",
-                  "privateKey": "string",
-                  "publicKey": "string",
-                  "roleGroups": "string",
-                  "userProfile": "string",
-                  "username": "string"
-                };
-
-                // Set the apps current logged in user
-                $rootScope.loggedUser = fakeClient;
-
-                // Display their stats
-                console.log("User: " + $rootScope.loggedUser);
-                console.log("Email: " + $rootScope.loggedUser.email);
+                console.log($rootScope.loggedInUser);
             }
+           
         };
 
         // 
@@ -372,4 +353,17 @@ angular.module('app.controllers.login', [])
         $scope.isRetreivingPassword = function(){
             return LoginService.inForgotPasswordState();
         }
+
+        $scope.logout = function() {
+          Session.clear();
+          localStorage.clearAll();
+         // $window.localStorage.removeItem('e');
+         $scope.details_username = "";
+     $scope.details_password = "";
+     $scope.details_rememberme = false;
+     $scope.login = false;};
+      //destroyUserCredentials();}
+      
+     
+
     });
