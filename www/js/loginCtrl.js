@@ -1,7 +1,6 @@
 angular.module('app.controllers.login', [])
 
-    .controller('LoginCtrl', function($scope,$ionicNavBarDelegate, $rootScope, $ionicPopup,
-     LoginService) {
+    .controller('LoginCtrl', function($scope,$ionicNavBarDelegate, $rootScope, $ionicPopup,$state, LoginService) {
 
         $scope.showWarning = false;
         $scope.warningMessage = '';
@@ -40,7 +39,7 @@ angular.module('app.controllers.login', [])
 
 
             // Already Logged in
-            if( $rootScope.loggedUser != undefined ){
+            if( $rootScope.loggedInUser != undefined ){
 
                 // Already logged in
                 invalid.push(INVALID_ALREADY_LOGGEDIN);
@@ -111,13 +110,37 @@ angular.module('app.controllers.login', [])
             }
             else{
 
-                console.log("User: " + $rootScope.loggedUser);
                 // Acceptable details entered
-                var clientFromServer = {};
 
-                console.log("Acceptable form");  
+                // Fake client that is received from the server 
+                var fakeClient = {
+                  "customData": "string",
+                  "email": "string",
+                  "id": "string",
+                  "marketId": 0,
+                  "newUser": "string",
+                  "password": "string",
+                  "privateKey": "string",
+                  "publicKey": "string",
+                  "roleGroups": "string",
+                  "userProfile": "string",
+                  "username": "string"
+                };
+
+                // Tell the app who is logged in
+                $rootScope.loggedInUser = fakeClient;
+
+                // Tell the app that we ARE logged in
                 $rootScope.$broadcast("loginComplete");
-                console.log($rootScope.loggedInUser);
+
+                // Remove entered details
+                $scope.details_username   = "";
+                $scope.details_password   = "";
+                $scope.details_rememberme = false;
+
+                // Redirect to another page
+                //window.location = "#/contract.html";
+                $state.go('app.aboutUs');
             }
            
         };
@@ -128,6 +151,7 @@ angular.module('app.controllers.login', [])
         $scope.register = function(scope, element){
             var INVALID_ACCEPT_TERMS = 0;
             var INVALID_PASSWORDS_UNMATCH = 1;
+            var INVALID_ALREADY_LOGGEDIN = 3;
             var INVALID_EMAIL_WRONG = 2;
             var INVALID_USERNAME = 4;
             var INVALID_PASSWORDS_INVALID = 5;
@@ -139,37 +163,46 @@ angular.module('app.controllers.login', [])
             // invalid will contain all invalid filled forms.
             var invalid = [];
 
-            // Check acceptTerms
-            if( $scope.details_acceptTerms == false ){
+            if( $rootScope.loggedInUser != undefined ){
 
-                // Must accept terms and conditions
-                invalid.push(INVALID_ACCEPT_TERMS);
+                // Already logged in
+                invalid.push(INVALID_ALREADY_LOGGEDIN);
             }
+            else{
+                // Not logged in alreyad!
 
-            // Username
-            if( $scope.checkUsernameValidity($scope.details_username) == false ){
+                // Check acceptTerms
+                if( $scope.details_acceptTerms == false ){
 
-                // Invalid Username
-                invalid.push(INVALID_USERNAME);
-            }
+                    // Must accept terms and conditions
+                    invalid.push(INVALID_ACCEPT_TERMS);
+                }
 
-            // Passwords
-            if( $scope.checkPasswordValidity($scope.details_password) == false){
+                // Username
+                if( $scope.checkUsernameValidity($scope.details_username) == false ){
 
-                // Password does not meet the requirements
-                invalid.push(INVALID_PASSWORDS_INVALID);
-            }
-            if( $scope.details_password != $scope.details_passwordconfirm ){
+                    // Invalid Username
+                    invalid.push(INVALID_USERNAME);
+                }
 
-                // Passwords are not equal
-                invalid.push(INVALID_PASSWORDS_UNMATCH);
-            }
+                // Passwords
+                if( $scope.checkPasswordValidity($scope.details_password) == false){
 
-            // Check emails
-            if( $scope.checkEmailValidity($scope.details_email) == false){
+                    // Password does not meet the requirements
+                    invalid.push(INVALID_PASSWORDS_INVALID);
+                }
+                if( $scope.details_password != $scope.details_passwordconfirm ){
 
-                // Email is not acceptable
-                invalid.push(INVALID_EMAIL_WRONG);
+                    // Passwords are not equal
+                    invalid.push(INVALID_PASSWORDS_UNMATCH);
+                }
+
+                // Check emails
+                if( $scope.checkEmailValidity($scope.details_email) == false){
+
+                    // Email is not acceptable
+                    invalid.push(INVALID_EMAIL_WRONG);
+                }
             }
 
             // Check if we have a valid registration!
@@ -197,6 +230,9 @@ angular.module('app.controllers.login', [])
                     }
                     if( invalid[i] == INVALID_EMAIL_WRONG ){
                         warning = "Email is valid!";
+                    }
+                    if( invalid[i] == INVALID_ALREADY_LOGGEDIN ){
+                        warning = 'You have already signed up!';
                     }
                     if( invalid[i] == INVALID_USERNAME ){
                         warning = 'Trading Name is invalid:';
@@ -229,6 +265,22 @@ angular.module('app.controllers.login', [])
             else{
                 // Successful registration!
                 $scope.showWarning = false;
+
+
+                // Send to server
+                // Waiting for API
+
+
+                // Reset details
+                $scope.details_acceptTerms = false;
+                $scope.details_username = "";
+                $scope.details_password = "";
+                $scope.details_passwordconfirm = "";
+                $scope.details_email = "";
+
+                // Redirect so we can log into our new account
+                $scope.changeToLogin();
+                $scope.displayNotice("An email has been sent to your email for confirmation.");
             }
         };
 
@@ -241,8 +293,16 @@ angular.module('app.controllers.login', [])
                 title: title,
                 template: errorMessage
             });
-            alertPopup.then(function(res) {
-                console.log('Thank you for not eating my delicious ice cream cone');
+        }
+
+        // Displays a popup error message when a form is displayed incorrectly
+        $scope.displayNotice = function(note){
+            var title = "Notice!";
+
+
+            var alertPopup = $ionicPopup.alert({
+                title: title,
+                template: note
             });
         }
 
@@ -277,11 +337,8 @@ angular.module('app.controllers.login', [])
             // If we haven't received any failed rules
             //    this is a valid password.
             if( getRules == undefined || getRules == ""){
-                console.log("Success");
                 return true;
             }
-
-            console.log("Failed");
 
             // We received some invalid rules about the string.
             //    this password is invalid.
@@ -359,9 +416,9 @@ angular.module('app.controllers.login', [])
           localStorage.clearAll();
          // $window.localStorage.removeItem('e');
          $scope.details_username = "";
-     $scope.details_password = "";
-     $scope.details_rememberme = false;
-     $scope.login = false;};
+        $scope.details_password = "";
+        $scope.details_rememberme = false;
+        $scope.login = false;};
       //destroyUserCredentials();}
       
      
