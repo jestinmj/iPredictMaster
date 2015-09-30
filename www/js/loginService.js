@@ -89,13 +89,13 @@ angular.module('app.services.login', [])
 
                 // Check password is within length requirements
                 if( username.length < USERNAME_MINCHARACTERS ){
-                    rules += "\n    - Trading Names must contain at least " + USERNAME_MINCHARACTERS + " characters.";
+                    rules += "<br>    - Trading Names must contain at least " + USERNAME_MINCHARACTERS + " characters.";
                 }   
 
                 // Check if the username is already in the database
                 var isInDatabase = false;
                 if( isInDatabase == true ){
-                    rules += "\n    - That Trading Name is already taken.";
+                    rules += "<br>    - That Trading Name is already taken.";
                 }                          
                 
                 return rules;
@@ -113,27 +113,27 @@ angular.module('app.services.login', [])
 
                 // Check password is within length requirements
                 if( password == undefined || password == ""){
-                    rules += "\n    - Password enter a password.";
+                    rules += "<br>    - Password enter a password.";
                 }                
                 else if( password.length < PASSWORD_MINCHARACTERS ){
-                    rules += "\n    - Password must be at least " + PASSWORD_MINCHARACTERS + " characters in length.";
+                    rules += "<br>    - Password must be at least " + PASSWORD_MINCHARACTERS + " characters in length.";
                 }
                 else if( password.length > PASSWORD_MAXCHARACTERS ){
-                    rules += "\n    - Password must be not exceed " + PASSWORD_MAXCHARACTERS + " characters in length.";
+                    rules += "<br>    - Password must be not exceed " + PASSWORD_MAXCHARACTERS + " characters in length.";
                 }
 
                 // Must have at least 1 letters in the password
                 var letters = password.replace(/[^A-Z]/gi, "");
                 var letterslength = letters.length-1;
                 if( letterslength < PASSWORD_MINLETTERS ){
-                    rules += "\n    - Password must contain at least " + PASSWORD_MINLETTERS + " letter.";
+                    rules += "<br>    - Password must contain at least " + PASSWORD_MINLETTERS + " letter.";
                 }
 
                 // Must have at least 1 numbers in the password
                 var numbers = password.replace(/[^0-9]/gi, "");
                 var numberslength = numbers.length-1;
                 if( numberslength < PASSWORD_MINNUMBERS ){
-                    rules += "\n    - Password must contain at least " + PASSWORD_MINNUMBERS + " number.";
+                    rules += "<br>    - Password must contain at least " + PASSWORD_MINNUMBERS + " number.";
                 }                
                 
                 return rules;
