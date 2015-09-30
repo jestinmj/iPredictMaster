@@ -82,7 +82,6 @@ var app = angular.module('app.controllers.trade', []);
          }
          $ionicHistory.clearCache();
          if($scope.toggle.buy){
-             console.log($scope.quantityTrade)
              PortfolioService.addStock("stock", $scope.contract.id, $scope.quantityTrade);
          }else if($scope.toggle.sell){
              PortfolioService.removeStock("stock", $scope.contract.id, $scope.quantityTrade);
