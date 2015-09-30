@@ -1,99 +1,118 @@
 
 var app = angular.module('app.controllers.trade', []);
 
- app.controller('TradeCtrl', function($scope, ContractService) {
+ app.controller('TradeCtrl', function($scope, ContractService, $state, $ionicViewService) {
 
-        $scope.contract = {};
-        $scope.quantityTrade = 1;
-        $scope.quantityBundle = 1;
-        $scope.rowCollection = [
-         {bundName: 'OCR.10SEP15.U25', price: 10.56}
-        ];
+    $scope.contract = {};
+    $scope.quantityTrade = 1;
+    $scope.quantityBundle = 1;
+    $scope.rowCollection = [
+     {bundName: 'OCR.10SEP15.U25', price: 10.56}
+    ];
 
-        $scope.parseFloat = parseFloat;
-        $scope.toggle = {
-            one: false,
-            two: false,
-            step1:true,
-            step2:false,
-            step3:false,
-            bunStep1:true,
-            bunStep2:false,
-            bunStep3:false,
-            confirmButtonDisabled: true
-        };
-        // Now have two functions that change the ng-show based on the click
-        $scope.showOne = function (type){
-            $scope.toggle.one = true;
-            $scope.toggle.two = false;
-            $scope.stockType = type;
-            $scope.toggle.step1 = true;
-            $scope.toggle.step2 = false;
-            $scope.toggle.step3 = false;
-        };
+     $scope.toggle = {
+         buy: false,
+         sell: false
+     };
+    $scope.toggleBuy = function(){ $scope.toggle.sell = !$scope.toggle.buy; };
+    $scope.toggleSell = function(){ $scope.toggle.buy = !$scope.toggle.sell; };
 
-        $scope.stockType = "";
+    $scope.parseFloat = parseFloat;
+    $scope.toggle = {
+        one: false,
+        two: false,
+        step1:true,
+        step2:false,
+        step3:false,
+        bunStep1:true,
+        bunStep2:false,
+        bunStep3:false,
+        confirmButtonDisabled: true
+    };
+    // Now have two functions that change the ng-show based on the click
+    $scope.showOne = function (type){
+        $scope.toggle.one = true;
+        $scope.toggle.two = false;
+        $scope.stockType = type;
+        $scope.toggle.step1 = true;
+        $scope.toggle.step2 = false;
+        $scope.toggle.step3 = false;
+    };
 
-        $scope.showTwo = function (type) {
-            $scope.toggle.one = false;
-            $scope.toggle.two = true; // now show this one
-            $scope.stockType = type;
-            $scope.toggle.bunStep1 = true;
-            $scope.toggle.bunStep2 = false;
+    $scope.stockType = "";
 
-        };
+    $scope.showTwo = function (type) {
+        $scope.toggle.one = false;
+        $scope.toggle.two = true; // now show this one
+        $scope.stockType = type;
+        $scope.toggle.bunStep1 = true;
+        $scope.toggle.bunStep2 = false;
 
-        $scope.closeStep = function(){
-            $scope.toggle.step1 = false;
-            $scope.toggle.step2 = false;
-            $scope.toggle.step3 = false;
-            $scope.toggle.bunStep1 = false;
-            $scope.toggle.bunStep2 = false;
-            $scope.toggle.bunStep3 = false;
-        };
-        $scope.enableStep2 = function() {
-            $scope.toggle.confirmButtonDisabled = false;
-            $scope.toggle.step1 = false;
-            $scope.toggle.step2 = true;
+    };
 
-        };
+    $scope.closeStep = function(){
+        $scope.toggle.step1 = true;
+        $scope.toggle.step2 = false;
+        $scope.toggle.step3 = false;
+        $scope.toggle.bunStep1 = true;
+        $scope.toggle.bunStep2 = false;
+        $scope.toggle.bunStep3 = false;
+        $ionicViewService.nextViewOptions({
+            disableBack: true
+        });
 
-         $scope.enableStep3 = function() {
+        $state.go('app.portfolio');
+    };
+    $scope.enableStep2 = function() {
+        $scope.toggle.confirmButtonDisabled = false;
+        $scope.toggle.step1 = false;
+        $scope.toggle.step2 = true;
+
+    };
+
+     $scope.enableStep3 = function() {
+         if ($scope.toggle.sell || $scope.toggle.buy){
              $scope.toggle.confirmButtonDisabled = false;
              $scope.toggle.step1 = false;
              $scope.toggle.step2 = false;
              $scope.toggle.step3 = true;
+         }
+     };
 
-         };
+     $scope.enableBunStep2 = function() {
+         $scope.toggle.bunStep1 = false;
+         $scope.toggle.bunStep2 = true;
+         $scope.toggle.bunStep3 = false;
 
-         $scope.enableBunStep2 = function() {
-             $scope.toggle.bunStep1 = false;
-             $scope.toggle.bunStep2 = true;
-             $scope.toggle.bunStep3 = false;
+     };
 
-         };
+     $scope.enableBunStep3 = function() {
+         $scope.toggle.bunStep1 = false;
+         $scope.toggle.bunStep2 = false;
+         $scope.toggle.bunStep3 = true;
 
-         $scope.enableBunStep3 = function() {
-             $scope.toggle.bunStep1 = false;
-             $scope.toggle.bunStep2 = false;
-             $scope.toggle.bunStep3 = true;
+     };
 
-         };
-
-        $scope.trade = function(id){
-            $scope.contract = ContractService.getContract(id);
-        };
+    $scope.trade = function(id){
+        $scope.contract = ContractService.getContract(id);
+    };
     });
 
 app.directive('counter', function() {
         return {
             restrict: 'A',
             scope: { value: '=value' },
-            template: '<div>'+
-                  '<button ng-click="plus()">+</button>'+
-                  '<input type="text" ng-model="value" ng-change="changed()" ng-readonly="readonly">'+
-                  '<button ng-click="minus()">-</button>'+
-                  '</div>',
+            template:
+                '<div style="height: 40px;">'+
+                    '<div ng-click="plus()"  style="float: left; height: 40px; width: 30%;">' +
+                        '<div style="font-size: 26px; width: 26px; margin-left: calc(50% - 26px); margin-top: 7px;" class="ion-plus"></div>' +
+                    '</div>'+
+                    '<input type="text" style="float: left; height: 40px; width: 40%; border: 2px solid #42A5F5; border-radius: 25px; text-align: center" ' +
+                        'ng-model="value" ng-change="changed()" ng-readonly="readonly">'+
+                    '<div ng-click="minus()" style="float: left; height: 40px; width: 30%;">' +
+                        '<div style="font-size: 26px; width: 26px; margin-left: 50%; margin-top: 7px;" class="ion-minus"></div>' +
+                    '</div>'+
+                '</div>',
 
 
             link: function( scope , element , attributes ) {

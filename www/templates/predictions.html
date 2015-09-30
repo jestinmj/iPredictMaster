@@ -8,7 +8,7 @@
 
     #searchBar {
         background-color: rgba(0,0,0,0);
-        margin: 10px;
+        margin: 10px 10px 0 10px;
     }
 
     .spinner svg {
@@ -22,8 +22,8 @@
 <ion-view title="Predictions">
     <ion-content style="background-color: #e5e5e5; bottom: 44px;">
 
-        <div class="card" id="searchBar">
-            <form class="item item-input" ng-submit="searchPredictions()">
+        <div id="searchBar">
+            <form class="item item-input" style="margin: 0;" ng-submit="searchPredictions()">
                 <i class="icon ion-search placeholder-icon"></i>
                 <input type="text" placeholder="Search" ng-model="predic.searchInput" ng-submit="searchPredictions()">
             </form>
@@ -33,7 +33,7 @@
 
         <ion-list>
 
-            <div class="card" style="margin: 10px;"
+            <div style="margin: 10px 0 10px 0;"
                  ng-repeat="contract in refinedContracts"
                  ng-click="openContract(contract.id)">
                 <div class="item">
@@ -53,13 +53,13 @@
                         </div>
                         <div class="predCardStat" style="margin-left: 10px;">
                             <label class="ion-arrow-up-a" style="color: #689F38;" ng-show="contract.changeType === 'pos'">
-                                ${{contract.change}}
+                                <b>${{contract.change}}</b>
                             </label>
                             <label style="color: #455A64;" ng-show="contract.changeType === 'none'">
-                                {{contract.change}}
+                                <b>NC</b>
                             </label>
                             <label class="ion-arrow-down-a" style="color: #D32F2F;" ng-show="contract.changeType === 'neg'">
-                                ${{contract.change}}
+                                <b>${{contract.change}}</b>
                             </label>
                         </div>
                         <div class="predCardStat" style="width: 30%; float: right;">

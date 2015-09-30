@@ -35,14 +35,13 @@
            </div>
 
           <div class="btn_place">
-              <button class="Login_btn" ng-click="login()">
+              <div class="Login_btn" ng-click="login()">
                 Login
-              </button>
+              </div>
           </div>
 
            <div class="sign_up_div">
                   <button class="sign_up" ng-click="changeToRegister()">
-
                    Sign Up
                   </button>
               </div>
@@ -63,8 +62,6 @@
           <div class ="loginTitleDiv">
             <img class ="loginTitle" src="img/ipredictLogoStroke.png">
           </div>
-
-          <div class="info_Header">Create An Account</div>
 
           <div class="warningSection" ng-show="showWarning">
             <pre>{{ warningMessage }}</pre>
@@ -92,24 +89,28 @@
               </label>
             </div>
 
-             <div class="Remember_me_div">
+            <div class="Remember_me_div">
               <ion-checkbox style="border:0px solid white" type="checkbox" ng-model="details_acceptTerms"/>
-                <div style="font-size: 1vmax; color:#7e7e7e;border-width: 100%, border:opx"> I agree to the Terms & Conditions.</div>
+
+              <p style="font-size: vmax; color:#7e7e7e"> Agree to terms and conditions</p>
               </ion-checkbox>
             </div>
+
             <div class="btn_place2">
-                <button class="Register_btn" ng-click="register()">
+                <div class="Register_btn" ng-click="register()">
                   Create Account
-                </button>
+                </div>
             </div>
             
-                <button class="have_account" ng-click="changeToLogin()">
-                  I already have an account
-                </button>
+            <button class="have_account" ng-click="changeToLogin()">
+              I already have an account
+            </button>
             
              <div class="register_importantNotice" style="color: #7e7e7e">
-              <div style="font-weight: bold">Important Notice For Your Protection!</div>
-              <div style="text-align:justify">              <p>1. The Website and the Markets are intended as a research and educational facility, not as an investment market or a gambling facility. The Market Provider has been authorised to act as a futures dealer and the contracts traded are treated as futures contracts under New Zealand law, in order to provide certainty as to the legal treatment of the contracts.</p>
+              <div style="font-weight: bold">Important Notice For Your Protection</div>
+              <div style="text-align:justify">
+
+              <p>1. The Website and the Markets are intended as a research and educational facility, not as an investment market or a gambling facility. The Market Provider has been authorised to act as a futures dealer and the contracts traded are treated as futures contracts under New Zealand law, in order to provide certainty as to the legal treatment of the contracts.</p>
               
               <p>2. The Financial Markets Authority role in authorising futures dealers is limited and does not imply approval or endorsement of the business, trading or solvency of the company concerned.</p>
               
@@ -131,20 +132,20 @@
             <img class ="loginTitle" src="img/ipredictLogoStroke.png">
           </div>
           <div class="info_Header">Reset Forgotten Password</div>
-          <div class="info_Info">Enter the email address associated with your iPredict account, then click Send to get the reset password for your account.</div>
+          <div class="info_Info">Enter the email address associated with your iPredict account</div>
           <div class="email">
             <label class="item item-input item-floating-label">
                   <input type="text" placeholder="Email" ng-model="details_forgotmypassword_email"/>
             </label>
           </div>
           <div class="btn_place_account">
-              <button class="iforgotMyPassword_SendButton" ng-click="retrievePassword()">
+              <div class="iforgotMyPassword_SendButton" ng-click="retrievePassword()">
                 Send
-              </button>
+              </div>
           </div>
           <div class="btn_place_account">
                 <button class="have_account" ng-click="changeToLogin()">
-                  Go back to login
+                  Back to login
                 </button>
           </div>
 

@@ -125,9 +125,9 @@
         <ion-spinner class="loadingSpinner" icon="android" ng-hide="pageLoaded"></ion-spinner>
 
         <div class="contractProfile">
-            <img class="contractImg"src="img/test1.png">
+            <img class="contractImg"src="img/contractIcons/{{contract.imageName}}.jpg">
             <div>
-                <h4 class="profileHeadText">{{id}}</h4>
+                <h4 class="profileHeadText">{{contract.name}}</h4>
             </div>
             <div>
                 <span class="profileHeadText">{{contract.shortDesc}}</span>
@@ -145,14 +145,14 @@
                 </div>
                 <div class="col stat">
                     <span class="contractStatTitle">Last Trade Time</span>
-                    <span class="contractStatField">{{contract.lastTrade.toDateString().substring(4)}}</span>
+                    <span class="contractStatField">Unknown</span>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col stat">
                     <span class="contractStatTitle">Todays Volume</span>
-                    <span class="contractStatField">{{contract.todaysVol}}</span>
+                    <span class="contractStatField">Unknown</span>
                 </div>
                 <div class="col stat">
                     <span class="contractStatTitle">Average Daily Volume</span>
@@ -163,7 +163,7 @@
             <div class="row">
                 <div class="col stat">
                     <span class="contractStatTitle">Todays Change</span>
-                    <span class="contractStatField">${{contract.todaysChange}}</span>
+                    <span class="contractStatField">${{contract.change}}</span>
                 </div>
                 <div class="col stat">
                     <span class="contractStatTitle">Status</span>
@@ -174,11 +174,11 @@
             <div class="row">
                 <div class="col stat">
                     <span class="contractStatTitle">Start Date</span>
-                    <span class="contractStatField">{{contract.dateCreated.toDateString().substring(4)}}</span>
+                    <span class="contractStatField">{{contract.startDate}}</span>
                 </div>
                 <div class="col stat">
                     <span class="contractStatTitle">End Date</span>
-                    <span class="contractStatField">{{contract.dateDue.toDateString().substring(4)}}</span>
+                    <span class="contractStatField">{{contract.startDate}}</span>
                 </div>
             </div>
 
