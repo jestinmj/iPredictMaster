@@ -1,6 +1,6 @@
 angular.module('app.controllers.deposit_withdrawal', [])
 
-    .controller('Deposit_withdrawal', function($scope) {
+    .controller('Deposit_withdrawal', function($scope, $state, $ionicHistory, $ionicPopup) {
 
         $scope.view = {
             init_test: true,
@@ -24,8 +24,10 @@ angular.module('app.controllers.deposit_withdrawal', [])
             ccv: ""
         };
 
-        $scope.deposit_amount = null;
-        $scope.withdrawal_amount = null;
+        $scope.amount = {
+            deposit_amount: null,
+            withdrawal_amount: null
+        };
 
         $scope.portfolio=[
             {title:"Rank", attr:1, changeInAttr:2},
@@ -45,12 +47,11 @@ angular.module('app.controllers.deposit_withdrawal', [])
         };
 
         $scope.purchase_button_press = function (amount) {
-            console.log(" Deposited $" + amount);
-            console.log($scope.view.deposit);
-
-            $scope.view.deposit = false;
-            $scope.view.withdrawal = false;
-            $scope.view.payment_method = true;
+            if (amount && amount > 0){
+                $scope.view.deposit = false;
+                $scope.view.withdrawal = false;
+                $scope.view.payment_method = true;
+            }
         };
 
         $scope.withdrawal_button_press = function (amount){
@@ -87,6 +88,57 @@ angular.module('app.controllers.deposit_withdrawal', [])
         };
 
         $scope.finish_transaction = function(){
+            $scope.view.init_test = true;
+            $scope.view.deposit = false;
+            $scope.view.withdrawal = false;
+            $scope.view.card_view = false;
+            $scope.view.deposit_view = false;
+            $scope.view.payment_method = false;
+            $scope.button_color.card = true;
+            $scope.button_color.deposit = true;
+            $ionicHistory.nextViewOptions({
+                disableBack: true
+            });
+            $state.go("app.portfolio");
+        };
+
+        $scope.withdraw = function(){
+            if ($scope.amount.withdrawal_amount && $scope.amount.withdrawal_amount > 0){
+
+                $ionicPopup.alert({
+                    title: "$" + $scope.amount.withdrawal_amount + " withdrawn successfully.",
+                    buttons: [
+                        {
+                            text: 'OK',
+                            type: 'button-calm button-clear',
+                            onTap: function(){
+                                $scope.finish_transaction();
+                            }
+                        }
+                    ]
+                });
+            }
+        };
+
+        $scope.confirmPayment = function(){
+            if ($scope.amount.deposit_amount && $scope.amount.deposit_amount > 0){
+
+                $ionicPopup.alert({
+                    title: "Transaction complete",
+                    buttons: [
+                        {
+                            text: 'OK',
+                            type: 'button-calm button-clear',
+                            onTap: function(){
+                                $scope.finish_transaction();
+                            }
+                        }
+                    ]
+                });
+            }
+        }
+
+        $scope.back = function(){
             $scope.view.init_test = true;
             $scope.view.deposit = false;
             $scope.view.withdrawal = false;
