@@ -84,12 +84,21 @@
                 <input ng-model="deposit_amount" type="number" placeholder="$0.00" style="text-align: center">
             </label>
             <button class="button button-clear" style="background-color: #0c63ee;" ng-click="purchase_button_press(deposit_amount)">
-                <h5 class="button_text">PURCHASE</h5>
+                <h5 class="button_text">PROCESS</h5>
             </button>
             <div style="text-align: center; margin:5%;">
                 <p2>
                    The maximum daily deposited amount is $2,500
                 </p2>
+                <div>
+                    <div class="toggleButton" style="background-color: #0c63ee; width: 25%;"
+                         ng-click="finish_transaction()">
+                        <h5 class="button_text">BACK</h5>
+                    </div>
+                    <!--<button class="button button-clear" style="background-color: #0c63ee; width: 50%; float: left;" ng-click="purchase_button_press(deposit_amount)">-->
+                        <!--<h5 class="button_text">BACK</h5>-->
+                    <!--</button>-->
+                </div>
             </div>
         </div>
 
@@ -147,13 +156,10 @@
             <span class="manual_deposit" ng-hide="view.payment_method"></span>
                 <span style="text-align: center; margin:5%; white-space: pre-line">
                     Deposit money into the following account
-                    referencing your account name
-
-                    <h3>XX-XXXX-XXXXXXX-XXX</h3>
-                    Money will be credited to your account within 1-2 days
-                    after we have received the payment
+                    referencing your iPredict account name.
+                    <h3 style="margin: 5%;">XX-XXXX-XXXXXXX-XXX</h3>
+                    Money will be credited to your account within 1-2 days after we have received the payment.
                 </span>
-
                 <button class="button button-clear" style="background-color: #0c63ee; width:90%; margin:5%;" ng-click="finish_transaction()">
                     <h5 class="button_text"> FINISHED </h5>
                 </button>

@@ -1,5 +1,5 @@
 <style>
-    @import url(http://fonts.googleapis.com/css?family=Merriweather+Sans:300);
+    /*@import url(http://fonts.googleapis.com/css?family=Merriweather+Sans:300);*/
 
     * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
@@ -29,18 +29,18 @@
         float: left;
         border-radius: 20px;
         text-align: center;
-        border: 2px solid #1976D2;
+        border: 2px solid #42A5F5;
         cursor: pointer;
     }
 
     .toggleButton h4 {
         margin-top: 8px;
         margin-bottom: 8px;
-        color: #1976D2;
+        color: #42A5F5;
     }
 
     .selectedButton {
-        background-color: #1976D2;
+        background-color: #42A5F5;
     }
 
     .selectedButton h4 {
@@ -77,113 +77,182 @@
 
 </style>
 
-<ion-view title="Buy/Sell Trade">
+<ion-view title="Trade">
     <ion-content>
 
         <div class="toggleContainer">
             <div class="toggleButton"
-                 ng-click='showOne()'>
-                <h4>TRADE</h4>
+                 ng-class="stockType === 'stock' ? 'selectedButton' : ''"
+                 ng-click="showOne('stock')">
+                <h4>BUY STOCK</h4>
             </div>
             <div class="toggleButton"
-                 ng-click='showTwo()'>
-                <h4>BUY AS BUNDLE</h4>
+                 ng-class="stockType === 'bundle' ? 'selectedButton' : ''"
+                 ng-click="showTwo('bundle')">
+                <h4>BUY BUNDLE</h4>
             </div>
         </div>
 
-        <div class="card" ng-show="toggle.one" >
-            <span class="style_text">Stocks</span>
-            <br>
-            <br>
-            <div ng-show="true">
-                <span class="customSpan"> Step 1: Determine Outcome?</span>
-                <br>
-                <p>
-                    <br>Reserve Bank to REDUCE OCR by 25 basis points on 10 September 2015.
-                    <br>Is this outcome more likely than 92.0%?
-                </p>
-                <div class="row">
+        <div ng-show="toggle.one">
+
+            <div ng-show="toggle.step1">
+                <div style="width: 100%; text-align: center; margin-top: 20px;">
+                    <h5> STEP 1: DETERMINE OUTCOME</h5>
+                </div>
+                <div style="width: 80%; margin: 20px 10% 20px 10%; text-align: center">
+                    <span style="color: #42A5F5;">{{contract.shortDesc}}</span>
+                </div>
+                <div style="width: 100%; text-align: center">
+                    <span>Is this outcome more likely than {{contract.probability}}%?</span>
+                </div>
+                <div class="row" style="margin-top: 20px;">
                     <div class="col">
-                        <button class="button button-clear" ng-click="enableConfirm()" style="width: 45%; max-height: 10%; background-color: #0c63ee; float: left; margin-right: 2.5%; margin-left: 2.5%" >
-                            <span style="color:#fafafa"> Agree </span></button>
-                        <button class="button button-clear" ng-click="enableConfirm()" style="width: 45%; max-height: 10%; background-color: #0c63ee; float: left; margin-right: 2.5%; margin-left: 2.5%">
-                            <span style="color:#fafafa"> Disagree </span></button>
+                        <button class="button button-clear button-positive" ng-click="enableStep2()"
+                                style="width: 45%; max-height: 10%; float: left; margin-right: 2.5%; margin-left: 2.5%" >
+                            <b style="color: #42A5F5;">YES</b></button>
+                        <button class="button button-clear button-positive" ng-click="enableStep2()"
+                                style="width: 45%; max-height: 10%; float: left; margin-right: 2.5%; margin-left: 2.5%">
+                            <b style="color: #42A5F5;">NO</b></button>
                     </div>
                 </div>
             </div>
-            <div>
-                <span class="customSpan"> Step 2: Buy or Sell ?</span>
-                <br>
-                <div class="list">
 
-                    <label class="item item-radio">
-                        <input type="radio" name="group" checked="checked">
-                        <div class="item-content">
-                            Buy
-                        </div>
-                        <i class="radio-icon ion-checkmark"></i>
-                    </label>
-                    <label class="item item-radio">
-                        <input type="radio" name="group">
-                        <div class="item-content">
-                            Sell
-                        </div>
-                        <i class="radio-icon ion-checkmark"></i>
-                    </label>
 
+            <div ng-show="toggle.step2">
+
+                <div style="width: 100%; text-align: center; margin-top: 20px;">
+                    <h5> STEP 2: BUY OR SELL</h5>
                 </div>
-            </div>
-            <div ng-show="true">
-                <span class="customSpan"> Step 3: Choose number of stocks</span>
 
-                <!--<div ng-app>-->
-                    <!---->
-                    <!--&lt;!&ndash;<label class="item item-input">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<input type="text" placeholder="****Number of Stocks****" style="text-align: center">&ndash;&gt;-->
-                    <!--&lt;!&ndash;</label>&ndash;&gt;-->
-                <!--</div>-->
-                <div class="container">
+                <div style="width: 100%; height: 80px;">
+                    <div style="width: 50%; height: 40px; float: left;">
+                        <label class="checkbox" style="display: block; margin-left: auto; margin-right: auto;">
+                            <input style="display: block; margin-left: auto; margin-right: auto;" ng-model="toggle.buy" ng-click="toggleBuy()" type="checkbox">
+                        </label>
+                        <h5 style="line-height: 40px; margin: 0; width: 100%; text-align: center;">
+                            BUY
+                        </h5>
+                    </div>
+                    <div style="width: 50%; height: 80px; float: left;">
+                        <label class="checkbox" style="display: block; margin-left: auto; margin-right: auto;">
+                            <input style="display: block; margin-left: auto; margin-right: auto;" ng-model="toggle.sell" ng-click="toggleSell()" type="checkbox">
+                        </label>
+                        <h5 style="line-height: 40px; margin: 0; width: 100%; text-align: center;">
+                            SELL
+                        </h5>
+                    </div>
+                </div>
 
+                <div style="width: 80%; text-align: center; margin: 20px;">
+                    <h5> STEP 3: CHOOSE NUMBER OF STOCKS</h5>
+                </div>
+
+                <div style="margin-bottom: 20px;">
                     <div counter value="quantityTrade" min="1" step="1" editable></div>
-
                 </div>
 
-                <button class="button button-clear" ng-disabled="toggle.confirmButtonDisabled" style="width: 100%; max-height: 10%; background-color: #0c63ee">
-                    <span style="color:#fafafa"> CONFIRM TRADE </span></button>
+                <button class="button button-clear" ng-click="enableStep3()"
+                        style="width: 80%; margin-left: 10%; max-height: 10%; background-color: #42A5F5">
+                    <span style="color:#fafafa"> CONFIRM & PROCEED </span>
+                </button>
+                <button class="button button-clear" ng-click="showOne('stock')"
+                        style="width: 40%; margin-left: 30%; max-height: 10%; margin-top: 20px;">
+                    <b style="color: #42A5F5;"> BACK </b>
+                </button>
+            </div>
+
+            <div ng-show="toggle.step3">
+
+                <div style="width: 100%; text-align: center; margin-top: 20px;">
+                    <h5>CONGRATULATIONS</h5>
+                </div>
+
+                <div style="width: 80%; margin: 20px 10% 20px 10%; text-align: center">
+                    <span>Your sell order was matched with another trader's Buy order and the trade was completed.</span>
+                </div>
+
+                <button class="button button-clear" ng-click="closeStep()"
+                        style="width: 80%; margin-left: 10%; max-height: 10%; background-color: #42A5F5">
+                    <span style="color:#fafafa"> CLOSE </span>
+                </button>
             </div>
 
         </div>
 
-        <div class="card" ng-show="toggle.two">
-            <span class="style_text">Buy as a Bundle</span>
-           <br>
-            <div ng-show="true">
-                <br>
-                <span class="customSpan"> Step 1: Choose Number of Bundles</span>
-                 <p>
-                    How many bundles would you like to buy?
-                </p>
+        <div  ng-show="toggle.two">
 
-                <div class="container">
-                    <div counter value="quantityBundle" min="1" step="1" editable></div>
+            <div ng-show=toggle.bunStep1>
+                <div style="width: 80%; text-align: center; margin: 20px;">
+                    <h5> STEP 1: CHOOSE NUMBER OF BUNDLES TO BUY</h5>
+                </div>
+
+                <div>
+                    <div counter value="bundleQuantity" min="1" step="1" editable></div>
                 </div>
                 <div class="row">
-                    <p>
-                    Bundle Contents:
-                    <br>OCR.10SEP15.U25
-                    <br>OCR.10SEP15.U50
-                    <br>OCR.10SEP15.D25
-                    <br>OCR.10SEP15.D50
-                    <br>OCR.10SEP15.NC
-                    <br>OCR.10SEP15.OTH
+                    <div style="width: 80%; text-align: center; margin: 20px 10% 0 10%;">
+                        <h5>BUNDLE CONTENTS</h5>
+                        <div style="width: 100%;">
+                            <span>{{contract.name}}</span>
+                        </div>
+                    </div>
                 </div>
+                <button class="button button-clear" ng-click="enableBunStep2()"
+                        style="width: 80%; margin-left: 10%; margin-top: 20px; max-height: 10%; background-color: #42A5F5">
+                    <span style="color:#fafafa"> CONFIRM & PROCEED </span>
+                </button>
             </div>
-            <div ng-show="true" >
-                <span class="customSpan"> Step 2: Confirm Bundle Order?</span>
-                <br>
-                <br>
-                <button class="button button-clear" style="width: 100%; max-height: 10%; background-color: #0c63ee">
-                    <span style="color:#fafafa"> CONFIRM BUNDLE </span></button>
+            <div ng-show="toggle.bunStep2">
+
+                <div style="width: 80%; text-align: center; margin: 20px;">
+                    <h5> STEP 2: CONFIRM ORDER</h5>
+                </div>
+
+                <table st-table="rowCollection" class="table table-striped" style="width: 100%;">
+                    <thead>
+                    <tr>
+                        <th align="left" style="padding-left: 10px"><b>Bundle Name</b></th>
+                        <th align="right" style="padding-right: 10px"><b>Quantity</b></th>
+                        <th align="right" style="padding-right: 10px"><b>Price</b></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="height: 30px;">
+                        <td align="left" style="padding-left: 10px; line-height: 30px;">{{bundle.name}}</td>
+                        <td align="right" style="padding-right: 10px; line-height: 30px;">{{bundleQuantity}}</td>
+                        <td align="right" style="padding-right: 10px; line-height: 30px;">{{bundle.price | currency}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4 align="Right" style="padding-right: 10px; margin: 15px 0 15px 0">
+                    Order Total: $ {{(bundle.price * bundleQuantity).toFixed(2)}}</h4>
+
+                <button class="button button-clear" ng-click="enableBunStep3()"
+                        style="width: 80%; margin-left: 10%; margin-top: 20px; max-height: 10%; background-color: #42A5F5">
+                    <span style="color:#fafafa"> CONFIRM & PROCEED </span>
+                </button>
+
+            </div>
+
+            <div ng-show="toggle.bunStep3">
+
+                <div style="width: 80%; text-align: center; margin: 20px;">
+                    <h5>CONGRATULATIONS</h5>
+                </div>
+
+                <div style="width: 80%; margin-left: 10%;">
+                    <h5>You have successfully purchased:</h5>
+                    <span>
+                        {{bundleQuantity}} x {{bundle.name}}
+                    </span>
+                    <h5>The stock in this bundle has been added to your portfolio</h5>
+                </div>
+
+                <button class="button button-clear" ng-click="closeStep()"
+                        style="width: 80%; margin-left: 10%; margin-top: 20px; max-height: 10%; background-color: #42A5F5">
+                    <span style="color:#fafafa"> CLOSE </span>
+                </button>
             </div>
         </div>
 

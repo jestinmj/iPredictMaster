@@ -113,14 +113,14 @@
 .Login_btn
 {
 	border-radius: 5px 5px 5px  5px;
-	background: #428BCA;
-	color: #fff;
-	font-family: Sans-serif;
+	background: #42A5F5;
+	color: #fafafa;
 	font-size: 20px;
-	height: 60%;
-	width:100%;
+	height: 60px;
+	width: 100%;
 	line-height: 60px;
 	text-align: center;
+	cursor: pointer;
 }
 
 .Register_div
@@ -131,21 +131,20 @@
 .Register_btn
 {
 	border-radius: 5px 5px 5px  5px;
-	background: #428BCA;
-	color: #fff;
-	font-family: Sans-serif;
+	background: #42A5F5;
+	color: #fafafa;
 	font-size: 20px;
-	height: 60%;
-	width:100%;
+	height: 60px;
+	width: 100%;
 	line-height: 60px;
 	text-align: center;
+	cursor: pointer;
 }
 
 .Remember_me_div
 {
-	margin-left: -12px;
-	margin-top: 2%;
-	margin-bottom: 2%;
+	margin-top: 5px;
+	margin-bottom: 5px;
 	width:100%;
 }
 
@@ -170,8 +169,6 @@ height:80px;
 {
 	padding: 10px 10px 10px 10px;
 	color: #428BCA;
-	font-family: Sans-serif;
-	font-size: 2vmax;
 	line-height: 20px;
 	text-align: center;
 	background-color: white;
@@ -183,8 +180,6 @@ height:80px;
 {
 	padding: 10px 10px 10px 10px;
 	color: #428BCA;
-	font-family: Sans-serif;
-	font-size: 2vmax;
 	line-height: 20px;
 	text-align: center;	
 	background-color: white;
@@ -198,34 +193,27 @@ height:80px;
 
 .sign_up
 {
-	
-	font-family: Sans-serif;
-	line-height: 20px;
-	text-align: left;
-	height: 60%;
-	border-width: 0;
-	width: 100%; 
-	bottom: 0px;
-	background: #428BCA;
-	color: #fff;
+	border-radius: 5px 5px 5px  5px;
+	background: #42A5F5;
+	color: #fafafa;
 	font-size: 20px;
-	height: 40%;
+	height: 40px;
+	width: 100%;
+	border:0;
 	text-align: center;
+	cursor: pointer;
 }
 
 .iforgotMyPassword_SendButton
 {
 	border-radius: 5px 5px 5px  5px;
-	background: #428BCA;
-	color: #fff;
-	font-family: Sans-serif;
+	background: #42A5F5;
+	color: #fafafa;
 	font-size: 20px;
-	height: 60%;
-	width:100%;
+	height: 60px;
+	width: 100%;
 	line-height: 60px;
 	text-align: center;
-	border: 1;
-
 }
 
 .Terms_note

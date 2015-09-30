@@ -13,9 +13,9 @@ angular.module('app', [
   'app.controllers.trade',
   'app.controllers.deposit_withdrawal',
   'app.services.predictions',
+  'app.services.portfolio',
+  'app.services.contract',
   'app.services.login'
-
-
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -112,7 +112,7 @@ angular.module('app', [
       url: '/deposit_withdrawal',
       views: {
           'menuContent': {
-              templateUrl: 'templates/deposit_withdrawal.html',
+              templateUrl: 'templates/transaction.html',
               controller: 'Deposit_withdrawal'
           }
       }
