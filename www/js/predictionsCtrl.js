@@ -56,9 +56,6 @@ angular.module('app.controllers.predictions', ['ionic'])
         $scope.filteredContracts = ContractService.getAllContracts();
         $scope.refinedContracts = [];
 
-
-
-
         $scope.filteredPredictions = [];
         $scope.refinedPredictions = [];
         $scope.predictionsLoaded = false;

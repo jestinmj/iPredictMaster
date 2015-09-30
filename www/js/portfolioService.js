@@ -38,7 +38,7 @@ angular.module('app.services.portfolio', [])
             var contracts = [];
             for (var stockID in stocks){
                 var stock_contract = ContractService.getContract(stockID);
-                contracts.push({title: stock_contract.name, amount: stocks[stockID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
+                contracts.push({id: stockID, title: stock_contract.name, amount: stocks[stockID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
                     averageCost: 0.0, lastPrice: stock_contract.last, difference: stock_contract.buy - stock_contract.last});
             }
             return contracts;
@@ -49,7 +49,7 @@ angular.module('app.services.portfolio', [])
             var contracts = [];
             for (var shortID in shorts){
                 var stock_contract = ContractService.getContract(shortID);
-                contracts.push({title: stock_contract.name, amount: shorts[shortID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
+                contracts.push({id: shortID, title: stock_contract.name, amount: shorts[shortID], value:stock_contract.buy, profit: stock_contract.buy-stock_contract.sell,
                     averageCost: 0.0, lastPrice: stock_contract.last, difference: stock_contract.buy - stock_contract.last});
             }
             return contracts;
