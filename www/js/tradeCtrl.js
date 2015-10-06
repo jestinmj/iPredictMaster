@@ -77,7 +77,7 @@ var app = angular.module('app.controllers.trade', []);
              $scope.toggle.step3 = true;
          }
          $ionicHistory.clearCache();
-         console.log(tradeAmount);
+
          if($scope.toggle.buy){
              PortfolioService.buyStock($scope.tradeType, $scope.contract.id, tradeAmount);
          }else if($scope.toggle.sell){

@@ -111,10 +111,10 @@ angular.module('app.services.portfolio', [])
                         if (contractID == stocks[i].id) {
                             if (stocks[i].amount  - amount > 0) {
                                 stocks[i].amount -= amount;
-                                return
+                                return;
                             } else {
-                                delete stocks[i];
-                                return
+                                stocks.splice(i, 1);
+                                return;
                             }
                         }
                     }
@@ -124,10 +124,10 @@ angular.module('app.services.portfolio', [])
                         if (contractID == shorts[i].id) {
                             if (shorts[i].amount  - amount > 0) {
                                 shorts[i].amount -= amount;
-                                return
+                                return;
                             } else {
-                                delete shorts[i];
-                                return
+                                shorts.splice(i, 1);
+                                return;
                             }
                         }
                     }
