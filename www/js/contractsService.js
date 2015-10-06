@@ -7,10 +7,26 @@ angular.module('app.services.contract', [])
         var contracts = {
         // contractID : contract obj
 
-            "0001" : {"buy": 1.20, "catId": 0, "dateModified": "00/00/00", "featuredText": "string", "id": "0001", "imageName": "gold", "judgeDate": "00/00/00",
-            "judgeStatement": "JUST DO IT", "last": 1.09, "longDesc": "Will the price of Gold prices rise by December 2015", "marketId": 0, "name": "GOLD.01DEC15.HI","sell": 1.15, "shortDesc": "Will the price of Gold prices rise by December 2015", "startDate": "00/00/00",
-            "tagIds": {
-                    "tagId": [0]}, "type": 0 },
+            "0001" : {
+                "buy"            : 1.20,
+                "catId"          : 0,
+                "dateModified"   : "00/00/00",
+                "featuredText"   : "string",
+                "id"             : "0001",
+                "imageName"      : "gold",
+                "judgeDate"      : "00/00/00",
+                "judgeStatement" : "JUST DO IT",
+                "last"           : 1.09,
+                "longDesc"       : "Will the price of Gold prices rise by December 2015",
+                "marketId"       : 0,
+                "name"           : "GOLD.01DEC15.HI",
+                "sell"           : 1.15,
+                "shortDesc"      : "Will the price of Gold prices rise by December 2015",
+                "startDate"      : "00/00/00",
+                    "tagIds"     : {"tagId": [0]},
+                                        "type" : 0
+            },
+
             "0002" : {"buy": 0.89, "catId": 0, "dateModified": "00/00/00", "featuredText": "string", "id": "0002", "imageName": "gold", "judgeDate": "00/00/00",
                 "judgeStatement": "JUST DO IT", "last": 0.88, "longDesc": "Will the price of Gold Fall by December", "marketId": 0, "name": "GOLD.01DEC15.LOW","sell":0.92, "shortDesc": "Will the price of Gold Fall by December", "startDate": "00/00/00",
                 "tagIds": {
@@ -72,6 +88,7 @@ angular.module('app.services.contract', [])
             },
 
             makeBundle: function(){
+                console.log("Make test earthquake bundle");
                 var contracts = [getContract("0009"),getContract("0010"),getContract("0011"),getContract("0012")];
                 var price = 0;
                 for(contract in contracts){

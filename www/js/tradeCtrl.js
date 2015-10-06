@@ -82,9 +82,9 @@ var app = angular.module('app.controllers.trade', []);
          }
          $ionicHistory.clearCache();
          if($scope.toggle.buy){
-             PortfolioService.addStock("stock", $scope.contract.id, $scope.quantityTrade);
+             PortfolioService.buyStock("stock", $scope.contract.id, $scope.quantityTrade);
          }else if($scope.toggle.sell){
-             PortfolioService.removeStock("stock", $scope.contract.id, $scope.quantityTrade);
+             PortfolioService.sellStock("stock", $scope.contract.id, $scope.quantityTrade);
          }
      };
 
