@@ -6,11 +6,9 @@ var app = angular.module('app.controllers.trade', []);
     $scope.contract = ContractService.getContract($stateParams.id);
     $scope.quantityTrade = 1;
     $scope.bundleQuantity = 1;
-    $scope.tradeType = ""
+    $scope.tradeType = "";
     $scope.bundle = { name: 'OCR.10SEP15.U25', price: 10.56,
-        contracts: [
-
-        ]
+        contracts: [ ]
     };
 
 
@@ -34,13 +32,10 @@ var app = angular.module('app.controllers.trade', []);
         confirmButtonDisabled: true
     };
 
-    $scope.stockType = "stock";
-
     // Now have two functions that change the ng-show based on the click
     $scope.showOne = function (type){
         $scope.toggle.one = true;
         $scope.toggle.two = false;
-        $scope.stockType = type;
         $scope.toggle.step1 = true;
         $scope.toggle.step2 = false;
         $scope.toggle.step3 = false;
@@ -48,8 +43,7 @@ var app = angular.module('app.controllers.trade', []);
 
     $scope.showTwo = function (type) {
         $scope.toggle.one = false;
-        $scope.toggle.two = true; // now show this one
-        $scope.stockType = type;
+        $scope.toggle.two = true; // now show this one$scope.stockType = type;
         $scope.toggle.bunStep1 = true;
         $scope.toggle.bunStep2 = false;
 
@@ -75,7 +69,7 @@ var app = angular.module('app.controllers.trade', []);
 
     };
 
-     $scope.enableStep3 = function() {
+     $scope.enableStep3 = function(tradeAmount) {
          if ($scope.toggle.sell || $scope.toggle.buy){
              $scope.toggle.confirmButtonDisabled = false;
              $scope.toggle.step1 = false;
@@ -83,10 +77,11 @@ var app = angular.module('app.controllers.trade', []);
              $scope.toggle.step3 = true;
          }
          $ionicHistory.clearCache();
+         console.log(tradeAmount);
          if($scope.toggle.buy){
-             PortfolioService.buyStock($scope.tradeType, $scope.contract.id, $scope.quantityTrade);
+             PortfolioService.buyStock($scope.tradeType, $scope.contract.id, tradeAmount);
          }else if($scope.toggle.sell){
-             PortfolioService.sellStock($scope.tradeType, $scope.contract.id, $scope.quantityTrade);
+             PortfolioService.sellStock($scope.tradeType, $scope.contract.id, tradeAmount);
          }
      };
 
@@ -116,15 +111,17 @@ app.directive('counter', function() {
                     '<div ng-click="plus()"  style="float: left; height: 40px; width: 30%;">' +
                         '<div style="font-size: 26px; width: 26px; margin-left: calc(50% - 26px); margin-top: 7px;" class="ion-plus"></div>' +
                     '</div>'+
-                    '<input type="text" style="float: left; height: 40px; width: 40%; border: 2px solid #42A5F5; border-radius: 25px; text-align: center" ' +
+
+                    '<input type="text" id="tradeAmount" style="float: left; height: 40px; width: 40%; border: 2px solid #42A5F5; border-radius: 25px; text-align: center" ' +
                         'ng-model="value" ng-change="changed()" ng-readonly="readonly">'+
+
                     '<div ng-click="minus()" style="float: left; height: 40px; width: 30%;">' +
                         '<div style="font-size: 26px; width: 26px; margin-left: 50%; margin-top: 7px;" class="ion-minus"></div>' +
                     '</div>'+
                 '</div>',
 
 
-            link: function( scope , element , attributes ) {
+            link: function(scope , element , attributes ) {
                 // Make sure the value attribute is not missing.
                 if ( angular.isUndefined(scope.value) ) {
                     throw "Missing the value attribute on the counter directive.";

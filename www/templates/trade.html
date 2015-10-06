@@ -79,7 +79,6 @@
 
 <ion-view title="Trade">
     <ion-content>
-
         <div class="toggleContainer">
             <div class="toggleButton"
                  ng-class="stockType === 'stock' ? 'selectedButton' : ''"
@@ -159,7 +158,7 @@
                         style="width: 80%; margin-left: 10%; max-height: 10%; background-color: #42A5F5">
                     <span style="color:#fafafa"> CONFIRM & PROCEED </span>
                 </button>
-                <button class="button button-clear" ng-click="showOne('stock')"
+                <button class="button button-clear" ng-click="showOne()"
                         style="width: 40%; margin-left: 30%; max-height: 10%; margin-top: 20px;">
                     <b style="color: #42A5F5;"> BACK </b>
                 </button>
@@ -222,7 +221,7 @@
                     </thead>
                     <tbody>
                     <tr style="height: 30px;">
-                        <td align="left" style="padding-left: 10px; line-height: 30px;">{{bundle.name}}</td>
+                        <td align="left" style="padding-left: 10px; line-height: 30px;">{{contract.name}}</td>
                         <td align="right" style="padding-right: 10px; line-height: 30px;">{{bundleQuantity}}</td>
                         <td align="right" style="padding-right: 10px; line-height: 30px;">{{bundle.price | currency}}</td>
                     </tr>
