@@ -6,6 +6,7 @@ var app = angular.module('app.controllers.trade', []);
     $scope.contract = ContractService.getContract($stateParams.id);
     $scope.quantityTrade = 1;
     $scope.bundleQuantity = 1;
+    $scope.tradeType = ""
     $scope.bundle = { name: 'OCR.10SEP15.U25', price: 10.56,
         contracts: [
 
@@ -66,10 +67,11 @@ var app = angular.module('app.controllers.trade', []);
         });
         $state.go('app.portfolio',{}, {reload: true});
     };
-    $scope.enableStep2 = function() {
+    $scope.enableStep2 = function(type) {
         $scope.toggle.confirmButtonDisabled = false;
         $scope.toggle.step1 = false;
         $scope.toggle.step2 = true;
+        $scope.tradeType = type;
 
     };
 
@@ -82,9 +84,9 @@ var app = angular.module('app.controllers.trade', []);
          }
          $ionicHistory.clearCache();
          if($scope.toggle.buy){
-             PortfolioService.buyStock("stock", $scope.contract.id, $scope.quantityTrade);
+             PortfolioService.buyStock($scope.tradeType, $scope.contract.id, $scope.quantityTrade);
          }else if($scope.toggle.sell){
-             PortfolioService.sellStock("stock", $scope.contract.id, $scope.quantityTrade);
+             PortfolioService.sellStock($scope.tradeType, $scope.contract.id, $scope.quantityTrade);
          }
      };
 
