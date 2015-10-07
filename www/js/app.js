@@ -25,7 +25,7 @@ angular.module('app', [
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'MenuCtrl'
+    controller : 'MenuCtrl'
   })
 
   .state('app.login', {
@@ -33,7 +33,7 @@ angular.module('app', [
     views: {
       'menuContent': {
         templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl',
+        controller : 'LoginCtrl',
         cache: false
       }
     }
@@ -44,7 +44,7 @@ angular.module('app', [
     views: {
       'menuContent': {
         templateUrl: 'templates/predictions.html',
-        controller: 'PredictionsCtrl'
+        controller : 'PredictionsCtrl'
       }
     }
   })
@@ -54,7 +54,7 @@ angular.module('app', [
     views: {
       'menuContent': {
         templateUrl: 'templates/portfolio.html',
-        controller: 'PortfolioCtrl',
+        controller : 'PortfolioCtrl',
         cache: false
       }
     }
@@ -75,7 +75,7 @@ angular.module('app', [
      views: {
         'menuContent': {
         templateUrl: 'templates/rankings.html',
-        controller: 'RankingsCtrl'
+        controller : 'RankingsCtrl'
        }
      }
   })
@@ -85,7 +85,7 @@ angular.module('app', [
       views: {
           'menuContent': {
               templateUrl: 'templates/trade.html',
-              controller: 'TradeCtrl'
+              controller : 'TradeCtrl'
           }
       }
   })
@@ -94,7 +94,7 @@ angular.module('app', [
       views: {
           'menuContent': {
               templateUrl: 'templates/termsOfService.html',
-              controller: 'TermsOfServiceCtrl'
+              controller : 'TermsOfServiceCtrl'
           }
       }
   })
@@ -104,7 +104,7 @@ angular.module('app', [
       views: {
           'menuContent': {
               templateUrl: 'templates/aboutUs.html',
-              controller: 'AboutUsCtrl'
+              controller : 'AboutUsCtrl'
           }
       }
   })
@@ -114,7 +114,7 @@ angular.module('app', [
       views: {
           'menuContent': {
               templateUrl: 'templates/transaction.html',
-              controller: 'Deposit_withdrawal'
+              controller : 'Deposit_withdrawal'
           }
       }
   });
