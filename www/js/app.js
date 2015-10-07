@@ -11,8 +11,7 @@ angular.module('app', [
   'app.controllers.rankings',
   'app.controllers.termsOfService',
   'app.controllers.trade',
-  'app.controllers.deposit_withdrawal',
-  'app.services.predictions',
+  'app.controllers.transaction',
   'app.services.portfolio',
   'app.services.contract',
   'app.services.login'

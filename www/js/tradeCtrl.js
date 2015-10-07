@@ -71,8 +71,8 @@ app.controller('TradeCtrl', function($scope, ContractService, $state, $statePara
      $scope.enableStep3 = function() {
          var totalCost = $scope.contract.buy * $scope.quantity.stock;
 
-         if (totalCost <= PortfolioService.getMyInfo()[2].attr &&
-                ($scope.toggle.sell || $scope.toggle.buy)) {
+         // Ensures user has enough money in their account to buy stock
+         if (totalCost <= PortfolioService.getMyInfo()[2].attr) {
              $scope.toggle.confirmButtonDisabled = false;
              $scope.toggle.step1 = false;
              $scope.toggle.step2 = false;
