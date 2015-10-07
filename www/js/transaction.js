@@ -1,6 +1,6 @@
 angular.module('app.controllers.deposit_withdrawal', [])
 
-    .controller('Deposit_withdrawal', function($scope, $state, $ionicHistory, $ionicPopup) {
+    .controller('Deposit_withdrawal', function($scope, PortfolioService,$state, $ionicHistory, $ionicPopup) {
 
         $scope.view = {
             init_test      : true,
@@ -46,7 +46,7 @@ angular.module('app.controllers.deposit_withdrawal', [])
             }
         };
 
-        $scope.purchase_button_press = function (amount) {
+        $scope.processDeposit = function (amount) {
             if (amount && amount > 0){
                 $scope.view.deposit        = false;
                 $scope.view.withdrawal     = false;
@@ -54,7 +54,7 @@ angular.module('app.controllers.deposit_withdrawal', [])
             }
         };
 
-        $scope.withdrawal_button_press = function (amount){
+        $scope.processWithdrawal = function (amount){
             if(amount !== null) {
                 console.log("Withdrawal $" + amount);
             }

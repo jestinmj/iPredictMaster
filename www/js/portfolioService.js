@@ -120,14 +120,14 @@ angular.module('app.services.portfolio', [])
                                 text: 'OK',
                                 type: 'button-calm button-clear',
                                 onTap: function(){
-                                    $state.go("app.portfolio")
+                                    $state.go("app.portfolio");
                                 }
                             },
                             {
                                 text: 'Top Up',
                                 type: 'button-calm button-clear',
                                 onTap: function(){
-                                    $state.go("app.deposit_withdrawal")
+                                    $state.go("app.deposit_withdrawal");
                                 }
                             }
                         ]
