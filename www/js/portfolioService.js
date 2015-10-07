@@ -130,7 +130,6 @@ angular.module('app.services.portfolio', [])
                 if (type == "stock") {
                     for (i = 0; i < stocks.length; i++) {
                         if (contractID == stocks[i].id) {
-                            console.log("Amount i Have :"+stocks[i].amount+"  Amount i want to sell "+amount);
                             if (stocks[i].amount  - amount > 0) {
                                 stocks[i].amount -= amount;
                                 myInfo[2].attr += sale_cost;
@@ -147,7 +146,6 @@ angular.module('app.services.portfolio', [])
                 }else {
                     for (i = 0; i < shorts.length; i++) {
                         if (contractID == shorts[i].id) {
-                            console.log("Amount i Have :"+stocks[i].amount+"  Amount i want to sell "+amount);
                             if (shorts[i].amount  - amount > 0) {
                                 shorts[i].amount -= amount;
                                 myInfo[2].attr += sale_cost;
