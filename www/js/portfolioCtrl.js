@@ -79,7 +79,7 @@ angular.module('app.controllers.portfolio', ["chart.js"])
                     }
                 }
                 else {
-                    stat.attr = "$" + serviceStats[i].attr;
+                    stat.attr = "$" + serviceStats[i].attr.toFixed(2);
                     if (serviceStats[i].changeInAttr === 0){
                         stat.changeInAttr = "NC";
                     }

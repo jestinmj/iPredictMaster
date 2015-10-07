@@ -69,7 +69,7 @@ var app = angular.module('app.controllers.trade', []);
 
     };
 
-     $scope.enableStep3 = function(tradeAmount) {
+     $scope.enableStep3 = function() {
          if ($scope.toggle.sell || $scope.toggle.buy){
              $scope.toggle.confirmButtonDisabled = false;
              $scope.toggle.step1 = false;
@@ -79,9 +79,9 @@ var app = angular.module('app.controllers.trade', []);
          $ionicHistory.clearCache();
 
          if($scope.toggle.buy){
-             PortfolioService.buyStock($scope.tradeType, $scope.contract.id, tradeAmount);
+             PortfolioService.buyStock($scope.tradeType, $scope.contract.id, $scope.quantityTrade);
          }else if($scope.toggle.sell){
-             PortfolioService.sellStock($scope.tradeType, $scope.contract.id, tradeAmount);
+             PortfolioService.sellStock($scope.tradeType, $scope.contract.id, $scope.quantityTrade);
          }
      };
 

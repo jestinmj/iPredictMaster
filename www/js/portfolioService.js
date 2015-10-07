@@ -2,7 +2,7 @@
  * Created by DanHenton on 23/09/15.
  */
 angular.module('app.services.portfolio', [])
-    .factory('PortfolioService', function($http, $rootScope, ContractService){
+    .factory('PortfolioService', function($http, $rootScope, ContractService, $state, $ionicPopup){
 
         //Vars go here
 
@@ -84,37 +84,78 @@ angular.module('app.services.portfolio', [])
                 return myShorts();
             },
 
+            /**
+             * Check if the user has enough money in their account, if they do
+             * @param type
+             * @param contractID
+             * @param amount
+             */
             buyStock : function(type, contractID, amount){
-                if(type == "stock"){
-                    for(i = 0; i < stocks.length; i++) {
-                        if(contractID == stocks[i].id) {
-                            stocks[i].amount += amount;
-                            return;
+                var purchase_cost = ContractService.getContract(contractID).buy * amount;
+                if(myInfo[2].title === "Wallet" && (myInfo[2].attr - purchase_cost >= 0)){
+                    myInfo[2].attr -= purchase_cost;
+                    if(type == "stock"){
+                        for(i = 0; i < stocks.length; i++) {
+                            if(contractID == stocks[i].id) {
+                                stocks[i].amount += amount;
+                                return;
+                            }
                         }
-                    }
-                    stocks.push({id: String(contractID), amount: amount});
+                        stocks.push({id: String(contractID), amount: amount});
 
-                }else if(type == "short"){
-                    for(i = 0 ; i < shorts.length; i++) {
-                        if (contractID == shorts[i].id) {
-                            shorts[i].amount += amount;
-                            return;
+                    }else if(type == "short"){
+                        for(i = 0 ; i < shorts.length; i++) {
+                            if (contractID == shorts[i].id) {
+                                shorts[i].amount += amount;
+                                return;
+                            }
                         }
+                        shorts.push({id: String(contractID), amount: amount});
                     }
-                    shorts.push({id: String(contractID), amount: amount});
+                }else{
+                    $ionicPopup.alert({
+                        title: "Not enough credit in you wallet",
+                        buttons: [
+                            {
+                                text: 'OK',
+                                type: 'button-calm button-clear',
+                                onTap: function(){
+                                    $state.go("app.portfolio")
+                                }
+                            },
+                            {
+                                text: 'Top Up',
+                                type: 'button-calm button-clear',
+                                onTap: function(){
+                                    $state.go("app.deposit_withdrawal")
+                                }
+                            }
+                        ]
+                    });
                 }
+
+
             },
 
+            /**
+             *
+             * @param type
+             * @param contractID
+             * @param amount
+             * @returns the amount of stock being removed, if the amount being removed is greater than the amount of stock
+             * Return the amount of stock that the user had.
+             */
             sellStock : function(type, contractID, amount) {
                 if (type == "stock") {
                     for (i = 0; i < stocks.length; i++) {
                         if (contractID == stocks[i].id) {
                             if (stocks[i].amount  - amount > 0) {
                                 stocks[i].amount -= amount;
-                                return;
+                                return amount;
                             } else {
+                                var amt = stocks[i].amount;
                                 stocks.splice(i, 1);
-                                return;
+                                return amt;
                             }
                         }
                     }
@@ -124,10 +165,11 @@ angular.module('app.services.portfolio', [])
                         if (contractID == shorts[i].id) {
                             if (shorts[i].amount  - amount > 0) {
                                 shorts[i].amount -= amount;
-                                return;
+                                return amount;
                             } else {
+                                var amt = stocks[i].amount;
                                 shorts.splice(i, 1);
-                                return;
+                                return amt;
                             }
                         }
                     }
