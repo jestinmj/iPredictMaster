@@ -3,38 +3,34 @@ angular.module('app.controllers.transaction', [])
     .controller('TransactionCtrl', function($scope, PortfolioService,$state, $ionicHistory, $ionicPopup) {
 
         $scope.view = {
-            init_test      : true,
-            deposit        : false,
-            withdrawal     : false,
-            card_view      : false,
-            deposit_view   : false,
-            payment_method : false
+            init_test: true,
+            deposit: false,
+            withdrawal: false,
+            card_view: false,
+            deposit_view: false,
+            payment_method: false
 
         };
 
-        $scope.button_color ={
-            card    : true,
-            deposit : true
+        $scope.button_color = {
+            card: true,
+            deposit: true
         };
 
         $scope.card = {
-            name   : "",
-            number : "",
-            date   : "",
-            ccv    : ""
+            name: "",
+            number: "",
+            date: "",
+            ccv: ""
         };
 
         $scope.amount = {
-            deposit_amount    : null,
-            withdrawal_amount : null
+            deposit_amount: null,
+            withdrawal_amount: null
         };
 
-        $scope.portfolio=[
-            {title:     "Rank", attr:     1, changeInAttr: 2   },
-            {title:    "Worth", attr: 20.05, changeInAttr: 0.07},
-            {title:   "Wallet", attr: 12.74, changeInAttr: 0.00},
-            {title:"Portfolio", attr:  7.39, changeInAttr: 0.07}
-        ];
+        $scope.avaibleFunds = {value : PortfolioService.getMyInfo()[2].attr} ;
+
 
         $scope.view_page = function(page){
             if(page === "deposit"){
@@ -104,39 +100,76 @@ angular.module('app.controllers.transaction', [])
 
         $scope.withdraw = function(){
             if ($scope.amount.withdrawal_amount && $scope.amount.withdrawal_amount > 0){
+                if(PortfolioService.getMyInfo()[2].title && PortfolioService.getMyInfo()[2].title == "Wallet"
+                    && PortfolioService.getMyInfo()[2].attr && PortfolioService.getMyInfo()[2].attr - $scope.amount.withdrawal_amount > 0) {
+                    PortfolioService.getMyInfo()[2].attr -= $scope.amount.withdrawal_amount;
 
-                $ionicPopup.alert({
-                    title: "$" + $scope.amount.withdrawal_amount + " withdrawn successfully.",
-                    buttons: [
-                        {
-                            text: 'OK',
-                            type: 'button-calm button-clear',
-                            onTap: function(){
-                                $scope.finish_transaction();
+                    $ionicPopup.alert({
+                        title: "$" + $scope.amount.withdrawal_amount + " withdrawn successfully",
+                        buttons: [
+                            {
+                                text: 'OK',
+                                type: 'button-calm button-clear',
+                                onTap: function () {
+                                    $scope.finish_transaction();
+                                }
                             }
-                        }
-                    ]
-                });
+                        ]
+                    });
+                }else{
+                    $ionicPopup.alert({
+                        title: "Withdrawal Failed",
+                        buttons: [
+                            {
+                                text: 'OK',
+                                type: 'button-calm button-clear',
+                                onTap: function () {
+                                    $scope.finish_transaction();
+                                }
+                            }
+                        ]
+                    });
+                }
             }
+            $ionicHistory.clearCache();
         };
 
         $scope.confirmPayment = function(){
             if ($scope.amount.deposit_amount && $scope.amount.deposit_amount > 0){
+                if(PortfolioService.getMyInfo()[2].title && PortfolioService.getMyInfo()[2].title == "Wallet"
+                    && PortfolioService.getMyInfo()[2].attr){
 
-                $ionicPopup.alert({
-                    title: "Transaction complete",
-                    buttons: [
-                        {
-                            text: 'OK',
-                            type: 'button-calm button-clear',
-                            onTap: function(){
-                                $scope.finish_transaction();
+                    PortfolioService.getMyInfo()[2].attr += $scope.amount.deposit_amount;
+
+                    $ionicPopup.alert({
+                        title: "Transaction complete",
+                        buttons: [
+                            {
+                                text: 'OK',
+                                type: 'button-calm button-clear',
+                                onTap: function(){
+                                    $scope.finish_transaction();
+                                }
                             }
-                        }
-                    ]
-                });
+                        ]
+                    });
+                } else {
+                    $ionicPopup.alert({
+                        title: "Transaction Failed",
+                        buttons: [
+                            {
+                                text: 'OK',
+                                type: 'button-calm button-clear',
+                                onTap: function () {
+                                    $scope.finish_transaction();
+                                }
+                            }
+                        ]
+                    });
+                }
             }
-        }
+            $ionicHistory.clearCache();
+        };
 
         $scope.back = function(){
             $scope.view.init_test       = true;
