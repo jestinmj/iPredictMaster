@@ -2,43 +2,18 @@ angular.module('app.controllers.predictions', ['ionic'])
 
     .controller('PredictionsCtrl', function($scope, $ionicModal, $http, $rootScope, $state, ContractService) {
 
+        $scope.setupCategories = function(){
+            var allCats = ContractService.getAllCatgegories();
+            for (var i = 0; i < allCats.length; i++){
+                allCats[i].isSelected = false;
+            }
+            return allCats;
+        };
+
         $scope.predic = {
             searchInput: "",
             selectedToggle: "sortBy",
-            selectedFilters: [ 0, 1 ]
         };
-
-        $scope.browseOptions = [
-            { title: "NZ Foreign Affairs" },
-            { title: "NZ Politics" },
-            { title: "NZ Economics" },
-            { title: "NZ Election 2017" },
-            { title: "NZ Property" },
-            { title: "NZ Vote Share 2017" },
-            { title: "International Politics" },
-            { title: "NZ Head of State" },
-            { title: "NZ Pay Gaps" },
-            { title: "NZ Misc Issues" },
-            { title: "Pay-the-Searcher" },
-            { title: "Commodities" },
-            { title: "Financial Markets" },
-            { title: "US Politics" },
-            { title: "US Election 2016" },
-            { title: "US President 2016" },
-            { title: "US Economics" },
-            { title: "AUS Politics" },
-            { title: "Argentina Election" },
-            { title: "Canadian Election" },
-            { title: "European Election" },
-            { title: "British Election" },
-            { title: "British Politics" },
-            { title: "Eurozone Crisis" },
-            { title: "Science & Tech" },
-            { title: "North Korea" },
-            { title: "Student Issues" },
-            { title: "NZ Long-Term Econ" },
-            { title: "NZ Fonterra" }
-        ];
 
         $scope.sortByOptions = [
             { title: "Featured" },
@@ -49,114 +24,86 @@ angular.module('app.controllers.predictions', ['ionic'])
             { title: "All" }
         ];
 
-        $scope.categories = [];
+        $scope.noContractsToDisplay = 5;
 
-        $scope.allPredictions = [];
-        $scope.allContracts = ContractService.getAllContracts();
-        $scope.filteredContracts = ContractService.getAllContracts();
+        $scope.allContracts = ContractService.getContractsInRange(0, $scope.noContractsToDisplay);
+        $scope.filteredContracts = $scope.allContracts;
         $scope.refinedContracts = [];
 
-        $scope.filteredPredictions = [];
-        $scope.refinedPredictions = [];
-        $scope.predictionsLoaded = false;
+        $scope.contractsLoaded = false;
+
+        $scope.categories = $scope.setupCategories();
 
 
-        //$scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
 
-
-        $scope.changeSelectedPredToggle = function(changeTo){
-            $scope.predic.selectedToggle = changeTo;
-        };
 
         $scope.sortBy = function(index){
-            console.log($scope.sortByOptions[index].title);
             $scope.closeModal();
         };
 
-        $scope.filterIsSelected = function(index){
-            if ($scope.predic.selectedFilters.indexOf(index) !== -1){
-                return true;
+        $scope.toggleCategoryFilter = function(id){
+            for (var i = 0; i < $scope.categories.length; i++){
+                var catId = $scope.categories[i].id;
+                if (catId === id){
+                    $scope.categories[i].isSelected = !$scope.categories[i].isSelected;
+                }
             }
-            return false;
         };
 
-        $scope.toggleFilterSelector = function(index){
-            var indexOfVal = $scope.predic.selectedFilters.indexOf(index);
+        $scope.updateContractFilters = function(){
+            $scope.filteredContracts = [];
+            var i, catIds = [];
 
-            if (indexOfVal === -1){
-                $scope.predic.selectedFilters.push(index);
+            for (i = 0; i < $scope.categories.length; i++){
+                if ($scope.categories[i].isSelected){
+                    catIds.push($scope.categories[i].id);
+                }
+            }
+
+            if (catIds.length > 0){
+                for (i = 0; i < $scope.allContracts.length; i++){
+                    var catId = $scope.allContracts[i].catId;
+                    if (catIds.indexOf(catId) > -1){
+                        $scope.filteredContracts.push($scope.allContracts[i]);
+                    }
+                }
             }
             else {
-                $scope.predic.selectedFilters.splice(indexOfVal, 1);
+                $scope.filteredContracts = $scope.allContracts;
             }
+
+            $scope.setupContractsForCards();
         };
 
-        $scope.refilterPredictions = function(){
-            //$scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
-            $scope.closeModal();
-        };
-
-        $scope.sortBy = function(index){
-            console.log($scope.sortByOptions[index].title);
-            $scope.closeModal();
-        };
-
-
-        $scope.filterIsSelected = function(index){
-            if ($scope.predic.selectedFilters.indexOf(index) !== -1){
-                return true;
-            }
-            return false;
-        };
-
-        $scope.toggleFilterSelector = function(index){
-            var indexOfVal = $scope.predic.selectedFilters.indexOf(index);
-
-            if (indexOfVal === -1){
-                $scope.predic.selectedFilters.push(index);
-            }
-            else {
-                $scope.predic.selectedFilters.splice(indexOfVal, 1);
-            }
-        };
-
-        $scope.refilterPredictions = function(){
-            //$scope.filteredPredictions = PredictionsService.getFilteredPredictions($scope.predic.selectedFilters);
-            $scope.closeModal();
-        };
-
-
-        $scope.searchPredictions = function(){
-            if ($scope.predic.searchInput === ""){
-                $scope.filteredPredictions = $scope.allPredictions.slice(0, 10);
-                $scope.setupContractsForCards();
+        $scope.searchContracts = function(){
+            if (!$scope.predic.searchInput){
+                $scope.updateContractFilters();
                 return;
             }
 
             var searchTerm = $scope.predic.searchInput.toLowerCase();
 
-            var predictionTitlesToSearch = [];
-            for (var i = 0; i < $scope.allPredictions.length; i++){
-                predictionTitlesToSearch.push($scope.allPredictions[i].contractDetails.shortDesc.toLowerCase());
+            var contractTitlesToSearch = [];
+            for (var i = 0; i < $scope.allContracts.length; i++){
+                contractTitlesToSearch.push($scope.allContracts[i].shortDesc.toLowerCase());
             }
 
             var foundBySearch = [];
-            for (var i = 0; i < predictionTitlesToSearch.length; i++){
-                if (predictionTitlesToSearch[i].indexOf(searchTerm) !== -1){
-                    foundBySearch.push($scope.allPredictions[i]);
+            for (var i = 0; i < contractTitlesToSearch.length; i++){
+                if (contractTitlesToSearch[i].indexOf(searchTerm) !== -1){
+                    foundBySearch.push($scope.allContracts[i]);
                 }
             }
 
-            $scope.filteredPredictions = foundBySearch;
+            $scope.filteredContracts = foundBySearch;
+            console.log($scope.filteredContracts)
             $scope.setupContractsForCards();
         };
 
         $scope.loadMorePredictionCards = function(){
-            var listLength = $scope.refinedPredictions.length;
-            for (var i = listLength; i < (listLength + 10); i++){
-                $scope.filteredPredictions.push($scope.allPredictions[i]);
-            }
-            $scope.setupContractsForCards();
+            $scope.noContractsToDisplay += 5;
+            $scope.allContracts = ContractService.getContractsInRange(0, $scope.noContractsToDisplay);
+            $scope.updateContractFilters();
             $scope.$broadcast('scroll.infiniteScrollComplete');
         };
 
@@ -207,7 +154,7 @@ angular.module('app.controllers.predictions', ['ionic'])
 
                 $scope.refinedContracts.push(stats);
             }
-            $scope.predictionsLoaded = true;
+            $scope.contractsLoaded = true;
             //console.log($scope.refinedContracts);
             //console.log($scope.filteredContracts);
         };
@@ -251,16 +198,13 @@ angular.module('app.controllers.predictions', ['ionic'])
         $rootScope.$on("predictionsUpdated", function(){
             //$scope.allPredictions = PredictionsService.getPredictions();
             $scope.filteredPredictions = $scope.allPredictions.slice(0, 10);
-            $scope.setupPContractsForCards();
-            $scope.predictionsLoaded = true;
+            $scope.setupContractsForCards();
+            $scope.contractsLoaded = true;
         });
 
         $rootScope.$on("categoriesUpdated", function(){
             //$scope.categories = PredictionsService.getCategories();
         });
 
-
-        //PredictionsService.requestAllPredictions();
-        //PredictionsService.requestAllCategories();
 
     });

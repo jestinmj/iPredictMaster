@@ -1,6 +1,6 @@
 angular.module('app.controllers.login', [])
 
-    .controller('LoginCtrl', function($scope,$ionicNavBarDelegate, $rootScope, $ionicPopup,$state, LoginService) {
+    .controller('LoginCtrl', function($scope,$ionicNavBarDelegate, $rootScope, $ionicPopup,$state, LoginService,$ionicHistory) {
 
         $scope.showWarning = false;
         $scope.warningMessage = '';
@@ -139,7 +139,7 @@ angular.module('app.controllers.login', [])
                 $scope.details_rememberme = false;
 
                 // Display notice of successfully logged in
-                $scope.displayNotice("Login Successful");
+                $scope.displayNotice("Login Successful", "portfolio");
             }
            
         };
@@ -279,7 +279,7 @@ angular.module('app.controllers.login', [])
 
                 // Redirect so we can log into our new account
                 $scope.changeToLogin();
-                $scope.displayNotice("An email has been sent to your email for confirmation.");
+                $scope.displayNotice("An email has been sent to your email for confirmation.", "predictions");
             }
         };
 
@@ -294,14 +294,34 @@ angular.module('app.controllers.login', [])
             });
         }
 
+
         // Displays a popup error message when a form is displayed incorrectly
-        $scope.displayNotice = function(note){
-            var title = "Notice!";
+        $scope.displayNotice = function(note, changeView){
+            var title = "";
 
 
             var alertPopup = $ionicPopup.alert({
-                title: title,
-                template: note
+                title: note,
+                buttons: [
+                    {
+                        text: "OK",
+                        type: "button-positive button-clear",
+                        onTap: function(){
+                            if (changeView === "portfolio"){
+                                $state.go("app.portfolio");
+                                $ionicHistory.nextViewOptions({
+                                    disableBack: true
+                                });
+                            }
+                            else if (changeView === "predictions"){
+                                $state.go("app.predictions");
+                                $ionicHistory.nextViewOptions({
+                                    disableBack: true
+                                });
+                            }
+                        }
+                    }
+                ]
             });
         }
 
