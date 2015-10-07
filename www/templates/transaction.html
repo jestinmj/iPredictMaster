@@ -58,7 +58,7 @@
 
 </style>
 
-<ion-view title="Deposit / Withdrawal ">
+<ion-view title="Deposit | Withdrawal ">
     <ion-content>
         <div class="init_test_page" ng-show="view.init_test">
 
@@ -84,7 +84,7 @@
             <label class="item item-input" >
                 <input ng-model="amount.deposit_amount" type="number" placeholder="$0.00" style="text-align: center">
             </label>
-            <button class="button button-clear" style="background-color: #42A5F5; margin-top: 20px;" ng-click="purchase_button_press(amount.deposit_amount)">
+            <button class="button button-clear" style="background-color: #42A5F5; margin-top: 20px;" ng-click="processDeposit(amount.deposit_amount)">
                 <h5 class="button_text">PROCESS</h5>
             </button>
             <div style="text-align: center; margin:5%;">

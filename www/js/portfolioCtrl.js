@@ -20,16 +20,16 @@ angular.module('app.controllers.portfolio', ["chart.js"])
 
             for (var i = 0; i < serviceStocks.length; i++){
                 stock = {};
-                stock.id = serviceStocks[i].id
-                stock.title = serviceStocks[i].title;
-                stock.amount = serviceStocks[i].amount;
-                stock.value = "$" + serviceStocks[i].value.toFixed(2);
-                stock.profit = "$" + serviceStocks[i].profit.toFixed(2);
-                stock.averageCost = "$" + serviceStocks[i].averageCost.toFixed(4);
-                stock.lastPrice = "$" + serviceStocks[i].lastPrice.toFixed(4);
-                stock.difference = "$" + serviceStocks[i].difference.toFixed(4);
-                stock.toggle = false;
-                stock.profitColor = generateColorStyle(serviceStocks[i].profit);
+                stock.id              = serviceStocks[i].id;
+                stock.title           = serviceStocks[i].title;
+                stock.amount          = serviceStocks[i].amount;
+                stock.value           = "$" + serviceStocks[i].value.toFixed(2);
+                stock.profit          = "$" + serviceStocks[i].profit.toFixed(2);
+                stock.averageCost     = "$" + serviceStocks[i].averageCost.toFixed(4);
+                stock.lastPrice       = "$" + serviceStocks[i].lastPrice.toFixed(4);
+                stock.difference      = "$" + serviceStocks[i].difference.toFixed(4);
+                stock.toggle          = false;
+                stock.profitColor     = generateColorStyle(serviceStocks[i].profit);
                 stock.differenceColor = generateColorStyle(serviceStocks[i].difference);
                 myStocks.push(stock);
             }
@@ -44,16 +44,16 @@ angular.module('app.controllers.portfolio', ["chart.js"])
 
             for (var i = 0; i < serviceStocks.length; i++){
                 stock = {};
-                stock.id = serviceStocks[i].id;
-                stock.title = serviceStocks[i].title;
-                stock.amount = serviceStocks[i].amount;
-                stock.value = "$" + serviceStocks[i].value.toFixed(2);
-                stock.profit = "$" + serviceStocks[i].profit.toFixed(2);
-                stock.averageCost = "$" + serviceStocks[i].averageCost.toFixed(4);
-                stock.lastPrice = "$" + serviceStocks[i].lastPrice.toFixed(4);
-                stock.difference = "$" + serviceStocks[i].difference.toFixed(4);
-                stock.toggle = false;
-                stock.profitColor = generateColorStyle(serviceStocks[i].profit);
+                stock.id              = serviceStocks[i].id;
+                stock.title           = serviceStocks[i].title;
+                stock.amount          = serviceStocks[i].amount;
+                stock.value           = "$" + serviceStocks[i].value.toFixed(2);
+                stock.profit          = "$" + serviceStocks[i].profit.toFixed(2);
+                stock.averageCost     = "$" + serviceStocks[i].averageCost.toFixed(4);
+                stock.lastPrice       = "$" + serviceStocks[i].lastPrice.toFixed(4);
+                stock.difference      = "$" + serviceStocks[i].difference.toFixed(4);
+                stock.toggle          = false;
+                stock.profitColor     = generateColorStyle(serviceStocks[i].profit);
                 stock.differenceColor = generateColorStyle(serviceStocks[i].difference);
                 shortedStocks.push(stock);
             }
@@ -79,7 +79,7 @@ angular.module('app.controllers.portfolio', ["chart.js"])
                     }
                 }
                 else {
-                    stat.attr = "$" + serviceStats[i].attr;
+                    stat.attr = "$" + serviceStats[i].attr.toFixed(2);
                     if (serviceStats[i].changeInAttr === 0){
                         stat.changeInAttr = "NC";
                     }

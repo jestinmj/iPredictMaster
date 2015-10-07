@@ -23,8 +23,8 @@ angular.module('app.services.contract', [])
                 "sell"           : 1.15,
                 "shortDesc"      : "Will the price of Gold prices rise by December 2015",
                 "startDate"      : "00/00/00",
-                    "tagIds"     : {"tagId": [0]},
-                                        "type" : 0
+                "tagIds"         : {"tagId": [0]},
+                "type"           : 0
             },
 
             "0002" : {"buy": 0.89, "catId": 0, "dateModified": "00/00/00", "featuredText": "string", "id": "0002", "imageName": "gold", "judgeDate": "00/00/00",
@@ -74,16 +74,16 @@ angular.module('app.services.contract', [])
         };
 
         var categories = [
-            { id: 0, title: "NZ Foreign Affairs" },
-            { id: 1, title: "NZ Politics" },
-            { id: 2, title: "NZ Economics" },
-            { id: 3, title: "NZ Election 2017" },
-            { id: 4, title: "NZ Property" },
-            { id: 5, title: "NZ Vote Share 2017" },
-            { id: 6, title: "International Politics" },
-            { id: 7, title: "NZ Head of State" },
-            { id: 8, title: "NZ Pay Gaps" },
-            { id: 9, title: "NZ Misc Issues" },
+            { id:  0, title: "NZ Foreign Affairs" },
+            { id:  1, title: "NZ Politics" },
+            { id:  2, title: "NZ Economics" },
+            { id:  3, title: "NZ Election 2017" },
+            { id:  4, title: "NZ Property" },
+            { id:  5, title: "NZ Vote Share 2017" },
+            { id:  6, title: "International Politics" },
+            { id:  7, title: "NZ Head of State" },
+            { id:  8, title: "NZ Pay Gaps" },
+            { id:  9, title: "NZ Misc Issues" },
             { id: 10, title: "Pay-the-Searcher" },
             { id: 11, title: "Commodities" },
             { id: 12, title: "Financial Markets" },
@@ -144,9 +144,9 @@ angular.module('app.services.contract', [])
                 ];
                 var price = 0;
                 for(var contract in contracts){
-                    price += contract.buy
+                    price += contract.buy;
                 }
-               return { name : "BUNDLE.WELL.EARTHQUAKE", price : price, contracts : contracts}
+               return { name : "BUNDLE.WELL.EARTHQUAKE", price : price, contracts : contracts};
             }
 
 
