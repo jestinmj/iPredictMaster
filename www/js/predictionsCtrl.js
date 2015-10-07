@@ -26,8 +26,8 @@ angular.module('app.controllers.predictions', ['ionic'])
 
         $scope.noContractsToDisplay = 5;
 
-        $scope.allContracts = ContractService.getContractsInRange(0, $scope.noContractsToDisplay);
-        $scope.filteredContracts = $scope.allContracts;
+        $scope.allContracts = ContractService.getAllContracts();
+        $scope.filteredContracts = ContractService.getContractsInRange(0, $scope.noContractsToDisplay);
         $scope.refinedContracts = [];
 
         $scope.contractsLoaded = false;
@@ -69,7 +69,7 @@ angular.module('app.controllers.predictions', ['ionic'])
                 }
             }
             else {
-                $scope.filteredContracts = $scope.allContracts;
+                $scope.filteredContracts = ContractService.getContractsInRange(0, $scope.noContractsToDisplay);
             }
 
             $scope.setupContractsForCards();
@@ -96,14 +96,18 @@ angular.module('app.controllers.predictions', ['ionic'])
             }
 
             $scope.filteredContracts = foundBySearch;
-            console.log($scope.filteredContracts)
             $scope.setupContractsForCards();
         };
 
         $scope.loadMorePredictionCards = function(){
             $scope.noContractsToDisplay += 5;
-            $scope.allContracts = ContractService.getContractsInRange(0, $scope.noContractsToDisplay);
-            $scope.updateContractFilters();
+            $scope.filteredContracts = ContractService.getContractsInRange(0, $scope.noContractsToDisplay);
+            if (!$scope.predic.searchInput) {
+                $scope.updateContractFilters();
+            }
+            else {
+                $scope.searchContracts();
+            }
             $scope.$broadcast('scroll.infiniteScrollComplete');
         };
 
@@ -196,8 +200,6 @@ angular.module('app.controllers.predictions', ['ionic'])
 
 
         $rootScope.$on("predictionsUpdated", function(){
-            //$scope.allPredictions = PredictionsService.getPredictions();
-            $scope.filteredPredictions = $scope.allPredictions.slice(0, 10);
             $scope.setupContractsForCards();
             $scope.contractsLoaded = true;
         });
