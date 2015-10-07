@@ -75,18 +75,41 @@
         width: 40px;
     }
 
+    .tradeAmount {
+        float: left;
+        height: 40px;
+        width: 40%;
+        border: 2px solid #42A5F5;
+        border-radius: 25px;
+        text-align: center
+    }
+
+    .tradePlusButton {
+        font-size: 26px;
+        width: 26px;
+        margin-left: calc(50% - 26px);
+        margin-top: 7px;
+    }
+
+    .tradeMinusButton {
+        font-size: 26px;
+        width: 26px;
+        margin-left: 50%;
+        margin-top: 7px;
+    }
+
 </style>
 
 <ion-view title="Trade">
     <ion-content>
         <div class="toggleContainer">
             <div class="toggleButton"
-                 ng-class="stockType === 'stock' ? 'selectedButton' : ''"
+                 ng-class="tradeType === 'stock' ? 'selectedButton' : ''"
                  ng-click="showOne('stock')">
                 <h4>BUY STOCK</h4>
             </div>
             <div class="toggleButton"
-                 ng-class="stockType === 'bundle' ? 'selectedButton' : ''"
+                 ng-class="tradeType === 'bundle' ? 'selectedButton' : ''"
                  ng-click="showTwo('bundle')">
                 <h4>BUY BUNDLE</h4>
             </div>
@@ -151,7 +174,21 @@
                 </div>
 
                 <div style="margin-bottom: 20px;">
-                    <div counter value="quantityTrade" min="1" step="1" editable></div>
+                    <div style="height: 40px;">
+                        <div ng-click="incrStockQuantity()"  style="float: left; height: 40px; width: 30%;">
+                            <div class="tradePlusButton ion-plus" class=""></div>
+                        </div>
+
+                        <input class="tradeAmount" ng-model="stockQuantity" ng-readonly="true">
+
+                        <div ng-click="decrStockQuantity()" style="float: left; height: 40px; width: 30%;">
+                            <div class="tradeMinusButton ion-minus" class=""></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width: 80%; text-align: center; margin: 20px 10% 20px 10%;">
+                    <h4> $ {{(contract.buy * stockQuantity).toFixed(2)}}</h4>
                 </div>
 
                 <button class="button button-clear" ng-click="enableStep3()"
@@ -190,7 +227,15 @@
                 </div>
 
                 <div>
-                    <div counter value="bundleQuantity" min="1" step="1" editable></div>
+                    <div ng-click="incrBundleQuantity()"  style="float: left; height: 40px; width: 30%;">
+                        <div class="tradePlusButton ion-plus" class=""></div>
+                    </div>
+
+                    <input class="tradeAmount" ng-model="bundleQuantity" ng-readonly="true">
+
+                    <div ng-click="decrBundleQuantity()" style="float: left; height: 40px; width: 30%;">
+                        <div class="tradeMinusButton ion-minus" class=""></div>
+                    </div>
                 </div>
                 <div class="row">
                     <div style="width: 80%; text-align: center; margin: 20px 10% 0 10%;">
