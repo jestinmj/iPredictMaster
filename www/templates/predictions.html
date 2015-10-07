@@ -19,17 +19,17 @@
     }
 </style>
 
-<ion-view title="Predictions">
-    <ion-content style="background-color: #e5e5e5; bottom: 44px;">
+<ion-view title="Predictions" style="background-color: #e5e5e5;">
+    <ion-content style="bottom: 44px;">
 
         <div id="searchBar">
-            <form class="item item-input" style="margin: 0;" ng-submit="searchPredictions()">
+            <form class="item item-input" style="margin: 0;" ng-submit="searchContracts()">
                 <i class="icon ion-search placeholder-icon"></i>
-                <input type="text" placeholder="Search" ng-model="predic.searchInput" ng-submit="searchPredictions()">
+                <input type="text" placeholder="Search" ng-model="predic.searchInput" ng-submit="searchContracts()">
             </form>
         </div>
 
-        <ion-spinner class="predictionsLoading" ng-hide="predictionsLoaded"></ion-spinner>
+        <ion-spinner class="predictionsLoading" ng-hide="contractsLoaded"></ion-spinner>
 
         <ion-list>
 
@@ -79,7 +79,7 @@
         </ion-list>
 
         <ion-infinite-scroll
-                ng-if="predictionsLoaded"
+                ng-if="contractsLoaded"
                 on-infinite="loadMorePredictionCards()"
                 distance="1%">
         </ion-infinite-scroll>

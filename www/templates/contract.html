@@ -3,7 +3,7 @@
         width: 100%;
         background-color: #fafafa;
         padding-top: 30px;
-        padding-bottom: 30px;
+        padding-bottom: 10px;
     }
 
     .contractImg {
@@ -87,7 +87,7 @@
     }
 
     .ordersHeading{
-        background-color: #007aff;
+        background-color: #42A5F5;
 
     }
 
@@ -131,6 +131,12 @@
             </div>
             <div>
                 <span class="profileHeadText">{{contract.shortDesc}}</span>
+            </div>
+            <div style="width: 100%;">
+                <button class="button button-clear" ng-click="tradeContract()"
+                        style="width: 90%; margin-left: 5%; max-height: 10%; background-color: #42A5F5">
+                    <span style="color:#fafafa">TRADE</span>
+                </button>
             </div>
         </div>
 

@@ -21,6 +21,7 @@ angular.module('app.controllers.aboutUs', ["ionic"])
 
         $scope.people = [
             { name: "EMILY", position: "Operations Manager", img: "emilyMabinSutton" },
+            { name: "DONALD", position: "Development", img: "donaldDingwall" },
             { name: "KATE", position: "Board Member", img: "kateMcGrath" },
             { name: "PROF LEWIS", position: "Board Member", img: "profLewisEvans" },
             { name: "IAN", position: "Board Member", img: "ianMcIntosh" }

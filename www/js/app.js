@@ -11,8 +11,7 @@ angular.module('app', [
   'app.controllers.rankings',
   'app.controllers.termsOfService',
   'app.controllers.trade',
-  'app.controllers.deposit_withdrawal',
-  'app.services.predictions',
+  'app.controllers.transaction',
   'app.services.portfolio',
   'app.services.contract',
   'app.services.login'
@@ -25,7 +24,7 @@ angular.module('app', [
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
-    controller: 'MenuCtrl'
+    controller : 'MenuCtrl'
   })
 
   .state('app.login', {
@@ -33,7 +32,7 @@ angular.module('app', [
     views: {
       'menuContent': {
         templateUrl: 'templates/login.html',
-        controller: 'LoginCtrl',
+        controller : 'LoginCtrl',
         cache: false
       }
     }
@@ -44,7 +43,7 @@ angular.module('app', [
     views: {
       'menuContent': {
         templateUrl: 'templates/predictions.html',
-        controller: 'PredictionsCtrl'
+        controller : 'PredictionsCtrl'
       }
     }
   })
@@ -54,7 +53,8 @@ angular.module('app', [
     views: {
       'menuContent': {
         templateUrl: 'templates/portfolio.html',
-        controller: 'PortfolioCtrl'
+        controller : 'PortfolioCtrl',
+        cache: false
       }
     }
   })
@@ -74,17 +74,17 @@ angular.module('app', [
      views: {
         'menuContent': {
         templateUrl: 'templates/rankings.html',
-        controller: 'RankingsCtrl'
+        controller : 'RankingsCtrl'
        }
      }
   })
 
   .state('app.trade', {
-      url: '/trade',
+      url: '/trade/:id',
       views: {
           'menuContent': {
               templateUrl: 'templates/trade.html',
-              controller: 'TradeCtrl'
+              controller : 'TradeCtrl'
           }
       }
   })
@@ -93,7 +93,7 @@ angular.module('app', [
       views: {
           'menuContent': {
               templateUrl: 'templates/termsOfService.html',
-              controller: 'TermsOfServiceCtrl'
+              controller : 'TermsOfServiceCtrl'
           }
       }
   })
@@ -103,17 +103,17 @@ angular.module('app', [
       views: {
           'menuContent': {
               templateUrl: 'templates/aboutUs.html',
-              controller: 'AboutUsCtrl'
+              controller : 'AboutUsCtrl'
           }
       }
   })
 
-  .state('app.deposit_withdrawal', {
-      url: '/deposit_withdrawal',
+  .state('app.transaction', {
+      url: '/transaction',
       views: {
           'menuContent': {
               templateUrl: 'templates/transaction.html',
-              controller: 'Deposit_withdrawal'
+              controller : 'TransactionCtrl'
           }
       }
   });
