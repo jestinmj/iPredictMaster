@@ -7,8 +7,9 @@ angular.module('app.services.login', [])
         var PASSWORD_MINLETTERS = 1;
         var PASSWORD_MINNUMBERS = 1;
 
-        // Username
+        // Username requirements
         var USERNAME_MINCHARACTERS = 3;
+
 
         // Possible states for the page to be in
         var STATES_LOGIN = 1;
@@ -16,7 +17,7 @@ angular.module('app.services.login', [])
         var STATES_FORGOTPASSWORD = 3;
 
         // Which state the page is currently in ( login/register/forgotpassword )
-        var state = STATES_LOGIN;
+        var state = STATES_REGISTER;
 
         var serviceFunctions = {
 
@@ -54,7 +55,8 @@ angular.module('app.services.login', [])
             checkUsernameValidity: function(username){
 
                 // Must have at least 3 characters
-                if( username.length < USERNAME_MINCHARACTERS ){
+                if( username == undefined || Object.prototype.toString.call(username) !== '[object String]'
+                        || username == "" || username.length < USERNAME_MINCHARACTERS ){
                     return false;
                 }
 
@@ -66,14 +68,39 @@ angular.module('app.services.login', [])
 
                 // Must contain @
                 // must contain 1 full stop ( name@server.domtain )
-                if( email.length <= 0 ){
+                if( email == undefined || Object.prototype.toString.call(email) !== '[object String]' 
+                        || email == "" || email.length <= 0){
+                    // Make sure we are given an email
+                    return false;
+                }
+                else if( (email.match(new RegExp("@", "g")) || []).length != 1){ 
+                    // Make sure we only have 1 @
                     return false;
                 }
                 else if( email.indexOf("@") < 1 ){
+                    // If @ is in the first position of the array
+                    // We require something before the @ symbol
                     return false;
                 }
-                else if( email.indexOf(".") < 1 ){
+                else if( email.indexOf(".") == 0 ){
+                    // Should not have a fullstop at the start of the email
                     return false;
+                }
+                else if( email.lastIndexOf(".") == email.length-1 ){
+                    // Should not have a fullstop at the end of the email
+                    return false;
+                }
+                else if( email.indexOf("..") > -1 ){
+                    // Should not have 2 full stops
+                    return false;
+                }
+                else if( email.substring(email.indexOf("@")).indexOf(".") < 0 ){
+                    // We require having a full stop after @
+                    return false;
+                }
+                else if( email.substring(email.indexOf("@")).indexOf(".") == email.substring(email.indexOf("@")).length-1){
+                    // Can not have a full stop as the last character in an email
+                    return false; 
                 }
 
                 return true;
@@ -87,8 +114,12 @@ angular.module('app.services.login', [])
                 
                 var rules = "";
 
+                if( username == undefined || Object.prototype.toString.call(username) !== '[object String]' 
+                                          || username == ""){
+                    rules += "<br>    - Must enter a Username.";
+                }       
                 // Check password is within length requirements
-                if( username.length < USERNAME_MINCHARACTERS ){
+                else if( username == undefined || username == "" || username.length < USERNAME_MINCHARACTERS ){
                     rules += "<br>    - Trading Names must contain at least " + USERNAME_MINCHARACTERS + " characters.";
                 }   
 
@@ -112,28 +143,29 @@ angular.module('app.services.login', [])
                 var rules = "";
 
                 // Check password is within length requirements
-                if( password == undefined || password == ""){
-                    rules += "<br>    - Password enter a password.";
+                if( password == undefined || Object.prototype.toString.call(password) !== '[object String]'
+                                          || password == ""){
+                    rules += "<br>    - Must enter a password.";
                 }                
                 else if( password.length < PASSWORD_MINCHARACTERS ){
-                    rules += "<br>    - Password must be at least " + PASSWORD_MINCHARACTERS + " characters in length.";
+                    rules += "<br>    - Must be at least " + PASSWORD_MINCHARACTERS + " characters in length.";
                 }
                 else if( password.length > PASSWORD_MAXCHARACTERS ){
-                    rules += "<br>    - Password must be not exceed " + PASSWORD_MAXCHARACTERS + " characters in length.";
+                    rules += "<br>    - Must be not exceed " + PASSWORD_MAXCHARACTERS + " characters in length.";
                 }
 
                 // Must have at least 1 letters in the password
                 var letters = password.replace(/[^A-Z]/gi, "");
-                var letterslength = letters.length-1;
+                var letterslength = letters.length;
                 if( letterslength < PASSWORD_MINLETTERS ){
-                    rules += "<br>    - Password must contain at least " + PASSWORD_MINLETTERS + " letter.";
+                    rules += "<br>    - Must contain at least " + PASSWORD_MINLETTERS + " letter.";
                 }
 
                 // Must have at least 1 numbers in the password
                 var numbers = password.replace(/[^0-9]/gi, "");
-                var numberslength = numbers.length-1;
+                var numberslength = numbers.length;
                 if( numberslength < PASSWORD_MINNUMBERS ){
-                    rules += "<br>    - Password must contain at least " + PASSWORD_MINNUMBERS + " number.";
+                    rules += "<br>    - Must contain at least " + PASSWORD_MINNUMBERS + " number.";
                 }                
                 
                 return rules;

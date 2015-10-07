@@ -15,7 +15,7 @@ angular.module('app.controllers.login', [])
         // Register
         $scope.details_email = '';
         $scope.details_acceptTerms = false;
-        $scope.details_passwordconfirm = ""; // Modify login.html to use this!
+        $scope.details_passwordconfirm = $scope.details_password; // Modify login.html to use this!
 
         // I Forgot my password
         $scope.details_forgotmypassword_email = '';
@@ -113,19 +113,7 @@ angular.module('app.controllers.login', [])
                 // Acceptable details entered
 
                 // Fake client that is received from the server 
-                var fakeClient = {
-                  "customData": "string",
-                  "email": "string",
-                  "id": "string",
-                  "marketId": 0,
-                  "newUser": "string",
-                  "password": "string",
-                  "privateKey": "string",
-                  "publicKey": "string",
-                  "roleGroups": "string",
-                  "userProfile": "string",
-                  "username": "string"
-                };
+                var fakeClient = {};
 
                 // Tell the app who is logged in
                 $rootScope.loggedInUser = fakeClient;
