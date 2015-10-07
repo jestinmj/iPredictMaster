@@ -75,6 +75,7 @@ var app = angular.module('app.controllers.trade', []);
              $scope.toggle.step1 = false;
              $scope.toggle.step2 = false;
              $scope.toggle.step3 = true;
+
              $ionicHistory.clearCache();
 
              if ($scope.toggle.buy) {
