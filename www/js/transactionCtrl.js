@@ -1,6 +1,6 @@
-angular.module('app.controllers.deposit_withdrawal', [])
+angular.module('app.controllers.transaction', [])
 
-    .controller('Deposit_withdrawal', function($scope, PortfolioService,$state, $ionicHistory, $ionicPopup) {
+    .controller('TransactionCtrl', function($scope, PortfolioService,$state, $ionicHistory, $ionicPopup) {
 
         $scope.view = {
             init_test: true,

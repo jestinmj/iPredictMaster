@@ -2,7 +2,7 @@
  * Created by DanHenton on 23/09/15.
  */
 angular.module('app.services.portfolio', [])
-    .factory('PortfolioService', function($http, $rootScope, ContractService){
+    .factory('PortfolioService', function($http, $rootScope, ContractService, $state, $ionicPopup){
 
         //Vars go here
 
