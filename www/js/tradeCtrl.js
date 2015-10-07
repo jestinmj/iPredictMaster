@@ -72,7 +72,7 @@ app.controller('TradeCtrl', function($scope, ContractService, $state, $statePara
          var totalCost = $scope.contract.buy * $scope.quantity.stock;
 
          // Ensures user has enough money in their account to buy stock
-         if (totalCost <= PortfolioService.getMyInfo()[2].attr) {
+         if (totalCost <= PortfolioService.getMyInfo()[2].attr || $scope.toggle.sell) {
              $scope.toggle.confirmButtonDisabled = false;
              $scope.toggle.step1 = false;
              $scope.toggle.step2 = false;
@@ -93,11 +93,6 @@ app.controller('TradeCtrl', function($scope, ContractService, $state, $statePara
                      $scope.contract.id,
                      $scope.quantity.stock
                  );
-             }
-             if ($scope.toggle.buy) {
-                 PortfolioService.buyStock($scope.tradeType, $scope.contract.id, $scope.quantity.stock);
-             } else if ($scope.toggle.sell) {
-                 PortfolioService.sellStock($scope.tradeType, $scope.contract.id, $scope.quantity.stock);
              }
              $scope.quantity = { stock: 1, bundle: 1 };
          }
