@@ -126,15 +126,19 @@ angular.module('app.services.portfolio', [])
              * Return the amount of stock that the user had.
              */
             sellStock : function(type, contractID, amount) {
+                var sale_cost = ContractService.getContract(contractID).buy * amount;
                 if (type == "stock") {
                     for (i = 0; i < stocks.length; i++) {
                         if (contractID == stocks[i].id) {
+                            console.log("Amount i Have :"+stocks[i].amount+"  Amount i want to sell "+amount);
                             if (stocks[i].amount  - amount > 0) {
                                 stocks[i].amount -= amount;
+                                myInfo[2].attr += sale_cost;
                                 return amount;
                             } else {
                                 var amt = stocks[i].amount;
                                 stocks.splice(i, 1);
+                                myInfo[2].attr += sale_cost;
                                 return amt;
                             }
                         }
@@ -143,12 +147,15 @@ angular.module('app.services.portfolio', [])
                 }else {
                     for (i = 0; i < shorts.length; i++) {
                         if (contractID == shorts[i].id) {
+                            console.log("Amount i Have :"+stocks[i].amount+"  Amount i want to sell "+amount);
                             if (shorts[i].amount  - amount > 0) {
                                 shorts[i].amount -= amount;
+                                myInfo[2].attr += sale_cost;
                                 return amount;
                             } else {
                                 var amt = stocks[i].amount;
                                 shorts.splice(i, 1);
+                                myInfo[2].attr += sale_cost;
                                 return amt;
                             }
                         }
