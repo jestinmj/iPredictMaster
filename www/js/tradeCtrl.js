@@ -108,7 +108,7 @@ app.controller('TradeCtrl', function($scope, ContractService, $state, $statePara
                          text: 'Top Up',
                          type: 'button-calm button-clear',
                          onTap: function(){
-                             $state.go("app.deposit_withdrawal");
+                             $state.go("app.transaction");
                              $scope.quantity = { stock: 1, bundle: 1 };
                          }
                      }

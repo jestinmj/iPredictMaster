@@ -108,12 +108,12 @@ angular.module('app', [
       }
   })
 
-  .state('app.deposit_withdrawal', {
-      url: '/deposit_withdrawal',
+  .state('app.transaction', {
+      url: '/transaction',
       views: {
           'menuContent': {
               templateUrl: 'templates/transaction.html',
-              controller : 'Deposit_withdrawal'
+              controller : 'TransactionCtrl'
           }
       }
   });
