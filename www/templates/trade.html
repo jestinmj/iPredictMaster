@@ -1,18 +1,7 @@
 <style>
-    /*@import url(http://fonts.googleapis.com/css?family=Merriweather+Sans:300);*/
 
     * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-    .customSpan{
-        font-style: italic;
-        font-size: 4vw;
-        text-align-last: center;
-    }
-
-    .style_text {
-        font-style: italic;
-        font-size: 5vw;
-    }
 
     .toggleContainer {
         width: 90%;
@@ -179,7 +168,7 @@
                             <div class="tradePlusButton ion-plus" class=""></div>
                         </div>
 
-                        <input class="tradeAmount" ng-model="stockQuantity" ng-readonly="true">
+                        <input class="tradeAmount" ng-model="quantity.stock" ng-readonly="true">
 
                         <div ng-click="decrStockQuantity()" style="float: left; height: 40px; width: 30%;">
                             <div class="tradeMinusButton ion-minus" class=""></div>
@@ -188,7 +177,7 @@
                 </div>
 
                 <div style="width: 80%; text-align: center; margin: 20px 10% 20px 10%;">
-                    <h4> $ {{(contract.buy * stockQuantity).toFixed(2)}}</h4>
+                    <h4> $ {{(contract.buy * quantity.stock).toFixed(2)}}</h4>
                 </div>
 
                 <button class="button button-clear" ng-click="enableStep3()"
@@ -231,7 +220,7 @@
                         <div class="tradePlusButton ion-plus" class=""></div>
                     </div>
 
-                    <input class="tradeAmount" ng-model="bundleQuantity" ng-readonly="true">
+                    <input class="tradeAmount" ng-model="quantity.bundle" ng-readonly="true">
 
                     <div ng-click="decrBundleQuantity()" style="float: left; height: 40px; width: 30%;">
                         <div class="tradeMinusButton ion-minus" class=""></div>

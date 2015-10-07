@@ -2,7 +2,7 @@
  * Created by DanHenton on 23/09/15.
  */
 angular.module('app.services.portfolio', [])
-    .factory('PortfolioService', function($http, $rootScope, ContractService, $state, $ionicPopup){
+    .factory('PortfolioService', function($http, $rootScope, ContractService){
 
         //Vars go here
 
@@ -112,26 +112,6 @@ angular.module('app.services.portfolio', [])
                         }
                         shorts.push({id: String(contractID), amount: amount});
                     }
-                }else{
-                    $ionicPopup.alert({
-                        title: "Not enough credit in you wallet",
-                        buttons: [
-                            {
-                                text: 'OK',
-                                type: 'button-calm button-clear',
-                                onTap: function(){
-                                    $state.go("app.portfolio");
-                                }
-                            },
-                            {
-                                text: 'Top Up',
-                                type: 'button-calm button-clear',
-                                onTap: function(){
-                                    $state.go("app.deposit_withdrawal");
-                                }
-                            }
-                        ]
-                    });
                 }
 
 

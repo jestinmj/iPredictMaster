@@ -1,33 +1,34 @@
 
 var app = angular.module('app.controllers.trade', []);
 
- app.controller('TradeCtrl', function($scope, ContractService, $state, $stateParams, $ionicHistory, PortfolioService) {
+app.controller('TradeCtrl', function($scope, ContractService, $state, $stateParams,
+                      $ionicHistory, PortfolioService, $ionicPopup) {
 
     $scope.contract = ContractService.getContract($stateParams.id);
-    $scope.stockQuantity = 1;
-    $scope.bundleQuantity = 1;
+    $scope.quantity = { stock: 1, bundle: 1 };
     $scope.tradeType = "stock";
     $scope.bundle = { name: 'OCR.10SEP15.U25', price: 10.56,
         contracts: [ ]
     };
-    $scope.toggle = {
-     buy: false,
-     sell: false
-    };
-    $scope.toggleBuy = function(){ $scope.toggle.sell = !$scope.toggle.buy; };
-    $scope.toggleSell = function(){ $scope.toggle.buy = !$scope.toggle.sell; };
 
     $scope.toggle = {
         one: true,
         two: false,
-        step1:true,
-        step2:false,
-        step3:false,
-        bunStep1:true,
-        bunStep2:false,
-        bunStep3:false,
-        confirmButtonDisabled: true
+        step1: true,
+        step2: false,
+        step3: false,
+        bunStep1: true,
+        bunStep2: false,
+        bunStep3: false,
+        confirmButtonDisabled: true,
+        buy: true,
+        sell: false
     };
+
+    $scope.toggleBuy = function(){ $scope.toggle.sell = !$scope.toggle.buy; };
+    $scope.toggleSell = function(){ $scope.toggle.buy = !$scope.toggle.sell; };
+
+
 
     // Now have two functions that change the ng-show based on the click
     $scope.showOne = function (type){
@@ -68,9 +69,10 @@ var app = angular.module('app.controllers.trade', []);
     };
 
      $scope.enableStep3 = function() {
-         var totalCost = $scope.contract.buy * $scope.stockQuantity;
+         var totalCost = $scope.contract.buy * $scope.quantity.stock;
+
          if (totalCost <= PortfolioService.getMyInfo()[2].attr &&
-                    $scope.toggle.sell || $scope.toggle.buy) {
+                ($scope.toggle.sell || $scope.toggle.buy)) {
              $scope.toggle.confirmButtonDisabled = false;
              $scope.toggle.step1 = false;
              $scope.toggle.step2 = false;
@@ -82,21 +84,41 @@ var app = angular.module('app.controllers.trade', []);
                  PortfolioService.buyStock(
                      $scope.tradeType,
                      $scope.contract.id,
-                     $scope.stockQuantity
+                     $scope.quantity.stock
                  );
              }
              else {
                  PortfolioService.sellStock(
                      $scope.tradeType,
                      $scope.contract.id,
-                     $scope.stockQuantity
+                     $scope.quantity.stock
                  );
              }
              if ($scope.toggle.buy) {
-                 PortfolioService.buyStock($scope.tradeType, $scope.contract.id, $scope.stockQuantity);
+                 PortfolioService.buyStock($scope.tradeType, $scope.contract.id, $scope.quantity.stock);
              } else if ($scope.toggle.sell) {
-                 PortfolioService.sellStock($scope.tradeType, $scope.contract.id, $scope.stockQuantity);
+                 PortfolioService.sellStock($scope.tradeType, $scope.contract.id, $scope.quantity.stock);
              }
+             $scope.quantity = { stock: 1, bundle: 1 };
+         }
+         else {
+             $ionicPopup.alert({
+                 title: "Not enough credit in your wallet",
+                 buttons: [
+                     {
+                         text: 'OK',
+                         type: 'button-calm button-clear'
+                     },
+                     {
+                         text: 'Top Up',
+                         type: 'button-calm button-clear',
+                         onTap: function(){
+                             $state.go("app.deposit_withdrawal");
+                             $scope.quantity = { stock: 1, bundle: 1 };
+                         }
+                     }
+                 ]
+             });
          }
      };
 
@@ -104,33 +126,31 @@ var app = angular.module('app.controllers.trade', []);
          $scope.toggle.bunStep1 = false;
          $scope.toggle.bunStep2 = true;
          $scope.toggle.bunStep3 = false;
-
      };
 
      $scope.enableBunStep3 = function() {
          $scope.toggle.bunStep1 = false;
          $scope.toggle.bunStep2 = false;
          $scope.toggle.bunStep3 = true;
-
      };
 
      $scope.incrStockQuantity = function(){
-         $scope.stockQuantity++;
+         $scope.quantity.stock++;
      };
 
      $scope.decrStockQuantity = function(){
-        if ($scope.stockQuantity > 1){
-            $scope.stockQuantity--;
+        if ($scope.quantity.stock > 1){
+            $scope.quantity.stock--;
         }
      };
 
      $scope.incrBundleQuantity = function(){
-         $scope.bundleQuantity++;
+         $scope.quantity.bundle++;
      };
 
      $scope.decrBundleQuantity = function(){
-         if ($scope.bundleQuantity > 1){
-             $scope.bundleQuantity--;
+         if ($scope.quantity.bundle > 1){
+             $scope.quantity.bundle--;
          }
      };
 
