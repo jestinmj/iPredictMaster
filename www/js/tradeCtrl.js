@@ -4,6 +4,31 @@ var app = angular.module('app.controllers.trade', []);
 app.controller('TradeCtrl', function($scope, ContractService, $state, $stateParams,
                       $ionicHistory, PortfolioService, $ionicPopup) {
 
+    var tradeError = function(message, tradeType){
+        var buttons = [
+            { text: 'OK', type: 'button-calm button-clear' }
+        ];
+
+        if (tradeType === "buy"){
+            buttons.push({
+                text: 'Top Up',
+                type: 'button-calm button-clear',
+                onTap: function(){
+                    $ionicHistory.nextViewOptions({
+                        disableBack: true
+                    });
+                    $state.go("app.transaction");
+                    $scope.quantity = { stock: 1, bundle: 1 };
+                }
+            });
+        }
+
+        $ionicPopup.alert({
+            title: message,
+            buttons: buttons
+        });
+    };
+
     $scope.contract = ContractService.getContract($stateParams.id);
     $scope.quantity = { stock: 1, bundle: 1 };
     $scope.tradeType = "stock";
@@ -69,51 +94,52 @@ app.controller('TradeCtrl', function($scope, ContractService, $state, $statePara
     };
 
      $scope.enableStep3 = function() {
-         var totalCost = $scope.contract.buy * $scope.quantity.stock;
 
-         // Ensures user has enough money in their account to buy stock
-         if (totalCost <= PortfolioService.getMyInfo()[2].attr || $scope.toggle.sell) {
+         var tradeSuccessful = function(){
              $scope.toggle.confirmButtonDisabled = false;
              $scope.toggle.step1 = false;
              $scope.toggle.step2 = false;
              $scope.toggle.step3 = true;
 
              $ionicHistory.clearCache();
+         };
 
-             if ($scope.toggle.buy) {
+         if ($scope.toggle.buy){
+             var totalCost = $scope.contract.buy * $scope.quantity.stock;
+
+             if (totalCost <= PortfolioService.getMyInfo()[2].attr){
                  PortfolioService.buyStock(
                      $scope.tradeType,
                      $scope.contract.id,
                      $scope.quantity.stock
                  );
+                 tradeSuccessful();
              }
              else {
+                 tradeError("Not enough credit in your wallet", "buy");
+             }
+         }
+         else if ($scope.toggle.sell){
+             var numStockOwned;
+
+             if ($scope.tradeType === "stock"){
+                 numStockOwned = PortfolioService.getOwnedStockById($scope.contract.id).amount;
+             }
+             else if ($scope.tradeType === "short"){
+                 numStockOwned = PortfolioService.getShortedStockById($scope.contract.id).amount;
+             }
+
+             if (numStockOwned >= $scope.quantity.stock){
                  PortfolioService.sellStock(
                      $scope.tradeType,
                      $scope.contract.id,
                      $scope.quantity.stock
                  );
+                 tradeSuccessful()
              }
-             $scope.quantity = { stock: 1, bundle: 1 };
-         }
-         else {
-             $ionicPopup.alert({
-                 title: "Not enough credit in your wallet",
-                 buttons: [
-                     {
-                         text: 'OK',
-                         type: 'button-calm button-clear'
-                     },
-                     {
-                         text: 'Top Up',
-                         type: 'button-calm button-clear',
-                         onTap: function(){
-                             $state.go("app.transaction");
-                             $scope.quantity = { stock: 1, bundle: 1 };
-                         }
-                     }
-                 ]
-             });
+             else {
+                 tradeError("You cannot sell more stocks than you own", "sell");
+             }
          }
      };
 
@@ -148,5 +174,7 @@ app.controller('TradeCtrl', function($scope, ContractService, $state, $statePara
              $scope.quantity.bundle--;
          }
      };
+
+
 
 });

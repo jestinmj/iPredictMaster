@@ -2,15 +2,15 @@
  * Created by DanHenton on 23/09/15.
  */
 angular.module('app.services.portfolio', [])
-    .factory('PortfolioService', function($http, $rootScope, ContractService, $state, $ionicPopup){
+    .factory('PortfolioService', function($http, $rootScope, ContractService){
 
         //Vars go here
 
         var myInfo = [
-            { title : "Rank",      attr:1,     changeInAttr: 2    },
-            { title : "Worth",     attr:20.05, changeInAttr: 0.07 },
-            { title : "Wallet",    attr:12.74, changeInAttr: -4.0 },
-            { title : "Portfolio", attr:7.39,  changeInAttr: 0.07 }
+            { title: "Rank",      attr: 1,     changeInAttr: 2    },
+            { title: "Worth",     attr: 20.05, changeInAttr: 0.07 },
+            { title: "Wallet",    attr: 12.74, changeInAttr: -4.0 },
+            { title: "Portfolio", attr: 7.39,  changeInAttr: 0.07 }
         ];
 
 
@@ -85,81 +85,90 @@ angular.module('app.services.portfolio', [])
             },
 
             /**
-             * Check if the user has enough money in their account, if they do
+             * Iterates through list of myStocks and returns the stock that matches the given ID
+             * @param id - contract ID
+             */
+            getOwnedStockById: function(id){
+                var stocks = myStocks();
+                for (var i = 0; i < stocks.length; i++){
+                    if (stocks[i].id === id){
+                        return stocks[i];
+                    }
+                }
+            },
+
+            /**
+             * Iterates through list of myShorts and returns the stock that matches the given ID
+             * @param id - contract ID
+             */
+            getShortedStockById: function(id){
+                var stocks = myShorts();
+                for (var i = 0; i < stocks.length; i++){
+                    if (stocks[i].id === id){
+                        return stocks[i];
+                    }
+                }
+            },
+
+            /**
+             * Checks if the user has enough money in their account, then buys stock
+             *
+             * API call will need to be added here
+             *
              * @param type
              * @param contractID
              * @param amount
              */
             buyStock : function(type, contractID, amount){
-                var purchase_cost = ContractService.getContract(contractID).buy * amount;
-                if(myInfo[2].title === "Wallet" && (myInfo[2].attr - purchase_cost >= 0)){
-                    myInfo[2].attr -= purchase_cost;
-                    if(type == "stock"){
-                        for(i = 0; i < stocks.length; i++) {
-                            if(contractID == stocks[i].id) {
-                                stocks[i].amount += amount;
-                                return;
-                            }
-                        }
-                        stocks.push({id: String(contractID), amount: amount});
+                var purchaseCost = ContractService.getContract(contractID).buy * amount;
+                var stock, stockList;
 
-                    }else if(type == "short"){
-                        for(i = 0 ; i < shorts.length; i++) {
-                            if (contractID == shorts[i].id) {
-                                shorts[i].amount += amount;
-                                return;
-                            }
-                        }
-                        shorts.push({id: String(contractID), amount: amount});
+                if (myInfo[2].attr >= purchaseCost){
+                    myInfo[2].attr -= purchaseCost;
+
+                    if (type === "stock"){
+                        stock = serviceFunctions.getOwnedStockById(contractID);
+                        stockList = stocks;
                     }
+                    else if (type === "short"){
+                        stock = serviceFunctions.getShortedStockById(contractID);
+                        stockList = shorts;
+                    }
+
+                    // User already owns some of this stock
+                    if (stock){ stock.amount += amount; }
+                    // User doesn't own any of this stock
+                    else { stockList.push({id: String(contractID), amount: amount}); }
                 }
-
-
             },
 
             /**
+             * Checks if user has enough stock to sell, then sells stock
+             *
+             * API call will need to be added here
              *
              * @param type
              * @param contractID
              * @param amount
-             * @returns the amount of stock being removed, if the amount being removed is greater than the amount of stock
-             * Return the amount of stock that the user had.
              */
             sellStock : function(type, contractID, amount) {
-                var sale_cost = ContractService.getContract(contractID).buy * amount;
-                if (type == "stock") {
-                    for (i = 0; i < stocks.length; i++) {
-                        if (contractID == stocks[i].id) {
-                            if (stocks[i].amount  - amount > 0) {
-                                stocks[i].amount -= amount;
-                                myInfo[2].attr += sale_cost;
-                                return amount;
-                            } else {
-                                var amt = stocks[i].amount;
-                                stocks.splice(i, 1);
-                                myInfo[2].attr += sale_cost;
-                                return amt;
-                            }
-                        }
-                    }
+                var saleCost = ContractService.getContract(contractID).buy * amount;
+                var stock;
 
-                }else {
-                    for (i = 0; i < shorts.length; i++) {
-                        if (contractID == shorts[i].id) {
-                            if (shorts[i].amount  - amount > 0) {
-                                shorts[i].amount -= amount;
-                                myInfo[2].attr += sale_cost;
-                                return amount;
-                            } else {
-                                var amt = stocks[i].amount;
-                                shorts.splice(i, 1);
-                                myInfo[2].attr += sale_cost;
-                                return amt;
-                            }
-                        }
-                    }
+                if (type === "stock") {
+                    stock = serviceFunctions.getOwnedStockById(contractID);
+                }
+                else if (type === "short") {
+                    stock = serviceFunctions.getShortedStockById(contractID);
+                }
+
+                if (stock.amount >= amount) {
+                    stock.amount -= amount;
+                    myInfo[2].attr += saleCost;
                 }
             }
+
+
         };
 
         return serviceFunctions;

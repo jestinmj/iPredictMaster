@@ -122,13 +122,6 @@ angular.module('app.controllers.predictions', ['ionic'])
                 else { return "none"; }
             };
 
-            var calculateChangePercentage = function(price, change){
-                price = parseFloat(price);
-                change = parseFloat(change);
-                var initialPrice = price - change;
-                return Math.abs(price / (initialPrice / 100) - 100).toFixed(2);
-            };
-
             $scope.refinedContracts = [];
             for (var i = 0; i < $scope.filteredContracts.length; i++){
                 var contract = $scope.filteredContracts[i];
@@ -150,17 +143,9 @@ angular.module('app.controllers.predictions', ['ionic'])
                     stats.title = stats.title.substr(0, 70) + "...";
                 }
 
-                //var changePercent = calculateChangePercentage(stats.price, stock.todaysChange);
-                //stats.change = Math.abs(parseFloat(stats.change)) + " (" + changePercent + "%)";
-                //if (stats.change === "0 (0.00%)"){ stats.change = "NC (0.00%)" }
-
-                //console.log(stats);
-
                 $scope.refinedContracts.push(stats);
             }
             $scope.contractsLoaded = true;
-            //console.log($scope.refinedContracts);
-            //console.log($scope.filteredContracts);
         };
 
 
@@ -182,18 +167,18 @@ angular.module('app.controllers.predictions', ['ionic'])
         $scope.closeModal = function() {
             $scope.modal.hide();
         };
-        //Cleanup the modal when we're done with it!
-        $scope.$on('$destroy', function() {
-            $scope.modal.remove();
-        });
-        // Execute action on hide modal
-        $scope.$on('modal.hidden', function() {
-            // Execute action
-        });
-        // Execute action on remove modal
-        $scope.$on('modal.removed', function() {
-            // Execute action
-        });
+        ////Cleanup the modal when we're done with it!
+        //$scope.$on('$destroy', function() {
+        //    $scope.modal.remove();
+        //});
+        //// Execute action on hide modal
+        //$scope.$on('modal.hidden', function() {
+        //    // Execute action
+        //});
+        //// Execute action on remove modal
+        //$scope.$on('modal.removed', function() {
+        //    // Execute action
+        //});
 
         $scope.setupContractsForCards();
 
