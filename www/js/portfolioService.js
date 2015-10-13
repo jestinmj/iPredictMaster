@@ -89,7 +89,6 @@ angular.module('app.services.portfolio', [])
              * @param id - contract ID
              */
             getOwnedStockById: function(id){
-                var stocks = myStocks();
                 for (var i = 0; i < stocks.length; i++){
                     if (stocks[i].id === id){
                         return stocks[i];
@@ -102,10 +101,9 @@ angular.module('app.services.portfolio', [])
              * @param id - contract ID
              */
             getShortedStockById: function(id){
-                var stocks = myShorts();
-                for (var i = 0; i < stocks.length; i++){
-                    if (stocks[i].id === id){
-                        return stocks[i];
+                for (var i = 0; i < shorts.length; i++){
+                    if (shorts[i].id === id){
+                        return shorts[i];
                     }
                 }
             },
