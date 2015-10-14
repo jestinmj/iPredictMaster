@@ -4,8 +4,6 @@
 angular.module('app.services.portfolio', [])
     .factory('PortfolioService', function($http, $rootScope, ContractService){
 
-        //Vars go here
-
         var myInfo = [
             { title: "Rank",      attr: 1,     changeInAttr: 2    },
             { title: "Worth",     attr: 20.05, changeInAttr: 0.07 },
@@ -86,7 +84,7 @@ angular.module('app.services.portfolio', [])
 
             /**
              * Iterates through list of myStocks and returns the stock that matches the given ID
-             * @param id - contract ID
+             * @param id - Stock ID
              */
             getOwnedStockById: function(id){
                 for (var i = 0; i < stocks.length; i++){
@@ -98,12 +96,31 @@ angular.module('app.services.portfolio', [])
 
             /**
              * Iterates through list of myShorts and returns the stock that matches the given ID
-             * @param id - contract ID
+             * @param id - Stock ID
              */
             getShortedStockById: function(id){
                 for (var i = 0; i < shorts.length; i++){
                     if (shorts[i].id === id){
                         return shorts[i];
+                    }
+                }
+            },
+
+            /**
+             * Used to remove stock item from owned/shorted stocks
+             * when user sells all of the given stock
+             *
+             * @param id - Stock ID
+             * @param stockType - 'stock' or 'short'
+             */
+            removeStockFromStocksOrShorts: function(id, stockType){
+                var stockList;
+                if (stockType === "stock"){ stockList = stocks; }
+                else if (stockType === "short"){ stockList === shorts; }
+
+                for (var i = 0; i < stockList.length; i++){
+                    if (stockList[i].id === id){
+                        stockList.splice(i, 1);
                     }
                 }
             },
@@ -162,6 +179,11 @@ angular.module('app.services.portfolio', [])
 
                 if (stock.amount >= amount) {
                     stock.amount -= amount;
+
+                    if (stock.amount === 0){
+                        serviceFunctions.removeStockFromStocksOrShorts(stock.id, type);
+                    }
+
                     myInfo[2].attr += saleCost;
                 }
             }

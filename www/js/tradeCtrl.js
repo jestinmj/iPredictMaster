@@ -31,129 +31,101 @@ app.controller('TradeCtrl', function($scope, ContractService, $state, $statePara
 
     $scope.contract = ContractService.getContract($stateParams.id);
     $scope.quantity = { stock: 1, bundle: 1 };
-    $scope.tradeType = "stock";
-    $scope.bundle = { name: 'OCR.10SEP15.U25', price: 10.56,
-        contracts: [ ]
-    };
+    $scope.tradeType = "";
+
+    $scope.bundles = [
+        { name: 'OCR.10SEP15.U25', price: 10.56,
+            contracts: [ ] }
+    ];
+
+    $scope.selectedBundle = $scope.bundles[0];
 
     $scope.toggle = {
+        buy: true
+    };
+
+    $scope.singleTrade = true;
+
+    $scope.step = {
         one: true,
         two: false,
-        step1: true,
-        step2: false,
-        step3: false,
-        bunStep1: true,
-        bunStep2: false,
-        bunStep3: false,
-        confirmButtonDisabled: true,
-        buy: true,
-        sell: false
+        three: false
     };
 
-    $scope.toggleBuy = function(){ $scope.toggle.sell = !$scope.toggle.buy; };
-    $scope.toggleSell = function(){ $scope.toggle.buy = !$scope.toggle.sell; };
-
-
-
-    // Now have two functions that change the ng-show based on the click
-    $scope.showOne = function (type){
-        $scope.toggle.one = true;
-        $scope.toggle.two = false;
-        $scope.toggle.step1 = true;
-        $scope.toggle.step2 = false;
-        $scope.toggle.step3 = false;
-        $scope.tradeType = type;
+    $scope.stepOne = function(){
+        $scope.step = { one: true, two: false, three: false };
+        $scope.tradeType = "";
     };
 
-    $scope.showTwo = function (type) {
-        $scope.toggle.one = false;
-        $scope.toggle.two = true; // now show this one$scope.stockType = type;
-        $scope.toggle.bunStep1 = true;
-        $scope.toggle.bunStep2 = false;
-        $scope.tradeType = type;
+    $scope.stepTwo = function(tradeType){
+        $scope.step = { one: false, two: true, three: false };
+        $scope.tradeType = tradeType;
     };
 
-    $scope.closeStep = function(){
-        $scope.toggle.step1 = true;
-        $scope.toggle.step2 = false;
-        $scope.toggle.step3 = false;
-        $scope.toggle.bunStep1 = true;
-        $scope.toggle.bunStep2 = false;
-        $scope.toggle.bunStep3 = false;
+    $scope.stepThree = function(){
+        $scope.step = { one: false, two: false, three: true };
+    };
+
+    $scope.tradeComplete = function(){
+        $scope.stepOne();
         $ionicHistory.nextViewOptions({
             disableBack: true
         });
         $state.go('app.portfolio',{}, {reload: true});
     };
-    $scope.enableStep2 = function(type) {
-        $scope.toggle.confirmButtonDisabled = false;
-        $scope.toggle.step1 = false;
-        $scope.toggle.step2 = true;
-        $scope.tradeType = type;
 
+    $scope.attemptStockTrade = function(){
+        var tradeSuccessful = function(){
+            $scope.toggle.confirmButtonDisabled = false;
+            $scope.toggle.step1 = false;
+            $scope.toggle.step2 = false;
+            $scope.toggle.step3 = true;
+
+            $ionicHistory.clearCache();
+        };
+
+        if ($scope.toggle.buy){
+            var totalCost = $scope.contract.buy * $scope.quantity.stock;
+
+            if (totalCost <= PortfolioService.getMyInfo()[2].attr){
+                PortfolioService.buyStock(
+                    $scope.tradeType,
+                    $scope.contract.id,
+                    $scope.quantity.stock
+                );
+                tradeSuccessful();
+                $scope.stepThree();
+            }
+            else {
+                tradeError("Not enough credit in your wallet", "buy");
+            }
+        }
+        else if ($scope.toggle.sell){
+            var numStockOwned;
+
+            if ($scope.tradeType === "stock"){
+                numStockOwned = PortfolioService.getOwnedStockById($scope.contract.id).amount;
+            }
+            else if ($scope.tradeType === "short"){
+                numStockOwned = PortfolioService.getShortedStockById($scope.contract.id).amount;
+            }
+
+            if (numStockOwned >= $scope.quantity.stock){
+                PortfolioService.sellStock(
+                    $scope.tradeType,
+                    $scope.contract.id,
+                    $scope.quantity.stock
+                );
+                tradeSuccessful()
+                $scope.stepThree();
+            }
+            else {
+                tradeError("You cannot sell more stocks than you own", "sell");
+            }
+        }
     };
 
-     $scope.enableStep3 = function() {
 
-         var tradeSuccessful = function(){
-             $scope.toggle.confirmButtonDisabled = false;
-             $scope.toggle.step1 = false;
-             $scope.toggle.step2 = false;
-             $scope.toggle.step3 = true;
-
-             $ionicHistory.clearCache();
-         };
-
-         if ($scope.toggle.buy){
-             var totalCost = $scope.contract.buy * $scope.quantity.stock;
-
-             if (totalCost <= PortfolioService.getMyInfo()[2].attr){
-                 PortfolioService.buyStock(
-                     $scope.tradeType,
-                     $scope.contract.id,
-                     $scope.quantity.stock
-                 );
-                 tradeSuccessful();
-             }
-             else {
-                 tradeError("Not enough credit in your wallet", "buy");
-             }
-         }
-         else if ($scope.toggle.sell){
-             var numStockOwned;
-
-             if ($scope.tradeType === "stock"){
-                 numStockOwned = PortfolioService.getOwnedStockById($scope.contract.id).amount;
-             }
-             else if ($scope.tradeType === "short"){
-                 numStockOwned = PortfolioService.getShortedStockById($scope.contract.id).amount;
-             }
-
-             if (numStockOwned >= $scope.quantity.stock){
-                 PortfolioService.sellStock(
-                     $scope.tradeType,
-                     $scope.contract.id,
-                     $scope.quantity.stock
-                 );
-                 tradeSuccessful()
-             }
-             else {
-                 tradeError("You cannot sell more stocks than you own", "sell");
-             }
-         }
-     };
-
-     $scope.enableBunStep2 = function() {
-         $scope.toggle.bunStep1 = false;
-         $scope.toggle.bunStep2 = true;
-         $scope.toggle.bunStep3 = false;
-     };
-
-     $scope.enableBunStep3 = function() {
-         $scope.toggle.bunStep1 = false;
-         $scope.toggle.bunStep2 = false;
-         $scope.toggle.bunStep3 = true;
-     };
 
      $scope.incrStockQuantity = function(){
          $scope.quantity.stock++;

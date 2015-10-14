@@ -91,22 +91,22 @@
 
 <ion-view title="Trade">
     <ion-content>
-        <div class="toggleContainer">
+        <div class="toggleContainer" ng-show="step.one">
             <div class="toggleButton"
-                 ng-class="tradeType === 'stock' ? 'selectedButton' : ''"
-                 ng-click="showOne('stock')">
+                 ng-class="singleTrade ? 'selectedButton' : ''"
+                 ng-click="singleTrade = true">
                 <h4>BUY STOCK</h4>
             </div>
             <div class="toggleButton"
-                 ng-class="tradeType === 'bundle' ? 'selectedButton' : ''"
-                 ng-click="showTwo('bundle')">
+                 ng-class="!singleTrade ? 'selectedButton' : ''"
+                 ng-click="singleTrade = false">
                 <h4>BUY BUNDLE</h4>
             </div>
         </div>
 
-        <div ng-show="toggle.one">
+        <div ng-show="singleTrade">
 
-            <div ng-show="toggle.step1">
+            <div ng-show="step.one">
                 <div style="width: 100%; text-align: center; margin-top: 20px;">
                     <h5> STEP 1: DETERMINE OUTCOME</h5>
                 </div>
@@ -118,18 +118,17 @@
                 </div>
                 <div class="row" style="margin-top: 20px;">
                     <div class="col">
-                        <button class="button button-clear button-positive" ng-click="enableStep2('stock')"
+                        <button class="button button-clear button-positive" ng-click="stepTwo('stock')"
                                 style="width: 45%; max-height: 10%; float: left; margin-right: 2.5%; margin-left: 2.5%" >
                             <b style="color: #42A5F5;">YES</b></button>
-                        <button class="button button-clear button-positive" ng-click="enableStep2('short')"
+                        <button class="button button-clear button-positive" ng-click="stepTwo('short')"
                                 style="width: 45%; max-height: 10%; float: left; margin-right: 2.5%; margin-left: 2.5%">
                             <b style="color: #42A5F5;">NO</b></button>
                     </div>
                 </div>
             </div>
 
-
-            <div ng-show="toggle.step2">
+            <div ng-show="step.two">
 
                 <div style="width: 100%; text-align: center; margin-top: 20px;">
                     <h5> STEP 2: BUY OR SELL</h5>
@@ -138,7 +137,7 @@
                 <div style="width: 100%; height: 80px;">
                     <div style="width: 50%; height: 40px; float: left;">
                         <label class="checkbox" style="display: block; margin-left: auto; margin-right: auto;">
-                            <input style="display: block; margin-left: auto; margin-right: auto;" ng-model="toggle.buy" ng-click="toggleBuy()" type="checkbox">
+                            <input style="display: block; margin-left: auto; margin-right: auto;" ng-model="toggle.buy" ng-click="toggle.buy = true" type="checkbox">
                         </label>
                         <h5 style="line-height: 40px; margin: 0; width: 100%; text-align: center;">
                             BUY
@@ -146,7 +145,8 @@
                     </div>
                     <div style="width: 50%; height: 80px; float: left;">
                         <label class="checkbox" style="display: block; margin-left: auto; margin-right: auto;">
-                            <input style="display: block; margin-left: auto; margin-right: auto;" ng-model="toggle.sell" ng-click="toggleSell()" type="checkbox">
+                            <input style="display: block; margin-left: auto; margin-right: auto;" ng-model="toggle.buy" ng-true-value="false" ng-false-value="true"
+                                   ng-click="toggle.buy = false" type="checkbox">
                         </label>
                         <h5 style="line-height: 40px; margin: 0; width: 100%; text-align: center;">
                             SELL
@@ -180,17 +180,17 @@
                     <h4> $ {{(contract.buy * quantity.stock).toFixed(2)}}</h4>
                 </div>
 
-                <button class="button button-clear" ng-click="enableStep3()"
+                <button class="button button-clear" ng-click="attemptStockTrade()"
                         style="width: 80%; margin-left: 10%; max-height: 10%; background-color: #42A5F5">
                     <span style="color:#fafafa"> CONFIRM & PROCEED </span>
                 </button>
-                <button class="button button-clear" ng-click="showOne()"
+                <button class="button button-clear" ng-click="stepOne()"
                         style="width: 40%; margin-left: 30%; max-height: 10%; margin-top: 20px;">
                     <b style="color: #42A5F5;"> BACK </b>
                 </button>
             </div>
 
-            <div ng-show="toggle.step3">
+            <div ng-show="step.three">
 
                 <div style="width: 100%; text-align: center; margin-top: 20px;">
                     <h5>CONGRATULATIONS</h5>
@@ -200,7 +200,7 @@
                     <span>Your sell order was matched with another trader's Buy order and the trade was completed.</span>
                 </div>
 
-                <button class="button button-clear" ng-click="closeStep()"
+                <button class="button button-clear" ng-click="tradeComplete()"
                         style="width: 80%; margin-left: 10%; max-height: 10%; background-color: #42A5F5">
                     <span style="color:#fafafa"> CLOSE </span>
                 </button>
@@ -208,9 +208,9 @@
 
         </div>
 
-        <div  ng-show="toggle.two">
+        <div  ng-show="!singleTrade">
 
-            <div ng-show=toggle.bunStep1>
+            <div ng-show="step.one">
                 <div style="width: 80%; text-align: center; margin: 20px;">
                     <h5> STEP 1: CHOOSE NUMBER OF BUNDLES TO BUY</h5>
                 </div>
@@ -234,12 +234,12 @@
                         </div>
                     </div>
                 </div>
-                <button class="button button-clear" ng-click="enableBunStep2()"
+                <button class="button button-clear" ng-click="stepTwo()"
                         style="width: 80%; margin-left: 10%; margin-top: 20px; max-height: 10%; background-color: #42A5F5">
                     <span style="color:#fafafa"> CONFIRM & PROCEED </span>
                 </button>
             </div>
-            <div ng-show="toggle.bunStep2">
+            <div ng-show="step.two">
 
                 <div style="width: 80%; text-align: center; margin: 20px;">
                     <h5> STEP 2: CONFIRM ORDER</h5>
@@ -256,23 +256,27 @@
                     <tbody>
                     <tr style="height: 30px;">
                         <td align="left" style="padding-left: 10px; line-height: 30px;">{{contract.name}}</td>
-                        <td align="right" style="padding-right: 10px; line-height: 30px;">{{bundleQuantity}}</td>
-                        <td align="right" style="padding-right: 10px; line-height: 30px;">{{bundle.price | currency}}</td>
+                        <td align="right" style="padding-right: 10px; line-height: 30px;">{{quantity.bundle}}</td>
+                        <td align="right" style="padding-right: 10px; line-height: 30px;">{{selectedBundle.price | currency}}</td>
                     </tr>
                     </tbody>
                 </table>
 
                 <h4 align="Right" style="padding-right: 10px; margin: 15px 0 15px 0">
-                    Order Total: $ {{(bundle.price * bundleQuantity).toFixed(2)}}</h4>
+                    Order Total: $ {{(selectedBundle.price * quantity.bundle).toFixed(2)}}</h4>
 
-                <button class="button button-clear" ng-click="enableBunStep3()"
+                <button class="button button-clear" ng-click="stepThree()"
                         style="width: 80%; margin-left: 10%; margin-top: 20px; max-height: 10%; background-color: #42A5F5">
                     <span style="color:#fafafa"> CONFIRM & PROCEED </span>
+                </button>
+                <button class="button button-clear" ng-click="stepOne()"
+                        style="width: 40%; margin-left: 30%; max-height: 10%; margin-top: 20px;">
+                    <b style="color: #42A5F5;"> BACK </b>
                 </button>
 
             </div>
 
-            <div ng-show="toggle.bunStep3">
+            <div ng-show="step.three">
 
                 <div style="width: 80%; text-align: center; margin: 20px;">
                     <h5>CONGRATULATIONS</h5>
@@ -281,12 +285,12 @@
                 <div style="width: 80%; margin-left: 10%;">
                     <h5>You have successfully purchased:</h5>
                     <span>
-                        {{bundleQuantity}} x {{bundle.name}}
+                        {{quantity.bundle}} x {{selectedBundle.name}}
                     </span>
                     <h5>The stock in this bundle has been added to your portfolio</h5>
                 </div>
 
-                <button class="button button-clear" ng-click="closeStep()"
+                <button class="button button-clear" ng-click="tradeComplete()"
                         style="width: 80%; margin-left: 10%; margin-top: 20px; max-height: 10%; background-color: #42A5F5">
                     <span style="color:#fafafa"> CLOSE </span>
                 </button>
