@@ -45,13 +45,18 @@ angular.module('app.controllers.rankings', ["ionic"])
                     rank: i+1,
                     name: names[parseInt(Math.random()*5)],
                     netWorth: parseInt(Math.random()*10000000),
-                    change: parseInt(Math.random()*200) - 100,
-                    roi: parseInt(Math.random()*20000000) - 10000000
+                    roi: parseInt(Math.random()*20000000) - 10000000,
+                    roiChange: parseInt(Math.random()*200) - 100,
+                    netChange: parseInt(Math.random()*200) - 100
                 });
-                $scope.traders[i].changeColor =
-                    getChangeColor($scope.traders[i].change);
-                $scope.traders[i].absChange =
-                    Math.abs($scope.traders[i].change);
+                $scope.traders[i].changeRoiColor =
+                    getChangeColor($scope.traders[i].roiChange);
+                $scope.traders[i].changeNetColor =
+                    getChangeColor($scope.traders[i].netChange);
+                $scope.traders[i].absRoiChange =
+                    Math.abs($scope.traders[i].roiChange);
+                $scope.traders[i].absNetChange =
+                    Math.abs($scope.traders[i].netChange);
                 $scope.traders[i].formattedNetWorth =
                     formatNetWorth($scope.traders[i].netWorth);
                 $scope.traders[i].formattedRoi =

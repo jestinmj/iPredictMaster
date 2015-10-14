@@ -100,17 +100,19 @@ app.controller('TradeCtrl', function($scope, ContractService, $state, $statePara
                 tradeError("Not enough credit in your wallet", "buy");
             }
         }
-        else if ($scope.toggle.sell){
-            var numStockOwned;
-
+        else {
+            var stock;
             if ($scope.tradeType === "stock"){
-                numStockOwned = PortfolioService.getOwnedStockById($scope.contract.id).amount;
+                stock = PortfolioService.getOwnedStockById($scope.contract.id);
             }
             else if ($scope.tradeType === "short"){
-                numStockOwned = PortfolioService.getShortedStockById($scope.contract.id).amount;
+                stock = PortfolioService.getShortedStockById($scope.contract.id);
             }
 
-            if (numStockOwned >= $scope.quantity.stock){
+            if (!stock){
+                tradeError("You cannot sell stock that you don't own");
+            }
+            else if (stock.amount >= $scope.quantity.stock){
                 PortfolioService.sellStock(
                     $scope.tradeType,
                     $scope.contract.id,
@@ -120,7 +122,7 @@ app.controller('TradeCtrl', function($scope, ContractService, $state, $statePara
                 $scope.stepThree();
             }
             else {
-                tradeError("You cannot sell more stocks than you own", "sell");
+                tradeError("You cannot sell more stock than you own", "sell");
             }
         }
     };

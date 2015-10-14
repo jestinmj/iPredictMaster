@@ -11,7 +11,6 @@ angular.module('app.services.portfolio', [])
             { title: "Portfolio", attr: 7.39,  changeInAttr: 0.07 }
         ];
 
-
         var stocks = [
             { id : "0004", amount : 8 },
             { id : "0001", amount : 2 },
@@ -116,7 +115,7 @@ angular.module('app.services.portfolio', [])
             removeStockFromStocksOrShorts: function(id, stockType){
                 var stockList;
                 if (stockType === "stock"){ stockList = stocks; }
-                else if (stockType === "short"){ stockList === shorts; }
+                else if (stockType === "short"){ stockList = shorts; }
 
                 for (var i = 0; i < stockList.length; i++){
                     if (stockList[i].id === id){

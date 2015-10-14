@@ -1,6 +1,6 @@
 angular.module('app.controllers.portfolio', ["chart.js"])
 
-    .controller('PortfolioCtrl', function($scope, $state, PortfolioService) {
+    .controller('PortfolioCtrl', function($scope, $state, PortfolioService, $ionicScrollDelegate) {
 
         var generateColorStyle = function(val){
             if(val > 0){
@@ -114,10 +114,12 @@ angular.module('app.controllers.portfolio', ["chart.js"])
 
         $scope.toggleOwnStock = function() {
             $scope.toggle.ownStock = !$scope.toggle.ownStock;
+            $ionicScrollDelegate.resize();
         };
 
         $scope.toggleShortStock = function(){
             $scope.toggle.shortStock = !$scope.toggle.shortStock;
+            $ionicScrollDelegate.resize();
         };
 
         $scope.toggleGraph = function(){
@@ -126,6 +128,7 @@ angular.module('app.controllers.portfolio', ["chart.js"])
 
         $scope.toggleStockAttr = function(stock) {
           stock.toggle = !stock.toggle;
+            $ionicScrollDelegate.resize();
         };
 
         $scope.tradeClick = function (contractId) {
@@ -134,6 +137,7 @@ angular.module('app.controllers.portfolio', ["chart.js"])
 
         $scope.toggle_short_attr = function (short) {
             short.toggle = !short.toggle;
+            $ionicScrollDelegate.resize();
         };
 
         $scope.goToRankPage = function(index){

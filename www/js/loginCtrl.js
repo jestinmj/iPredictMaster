@@ -1,6 +1,7 @@
 angular.module('app.controllers.login', [])
 
-    .controller('LoginCtrl', function($scope,$ionicNavBarDelegate, $rootScope, $ionicPopup,$state, LoginService,$ionicHistory) {
+    .controller('LoginCtrl', function($scope, $ionicNavBarDelegate, $rootScope, $ionicPopup, $state,
+                          $ionicScrollDelegate, LoginService,$ionicHistory) {
 
         $scope.showWarning = false;
         $scope.warningMessage = '';
@@ -373,6 +374,7 @@ angular.module('app.controllers.login', [])
             $scope.showWarning = false;
             $scope.warningMessage = "";
             $ionicNavBarDelegate.title("Login");
+            $ionicScrollDelegate.resize();
         };
 
         //
@@ -384,6 +386,7 @@ angular.module('app.controllers.login', [])
             $scope.showWarning = false;
             $scope.warningMessage = "";
             $ionicNavBarDelegate.title("Register");
+            $ionicScrollDelegate.resize();
         };
 
         //
@@ -395,6 +398,7 @@ angular.module('app.controllers.login', [])
             $scope.showWarning = false;
             $scope.warningMessage = "";
             $ionicNavBarDelegate.title("Forgot Password");
+            $ionicScrollDelegate.resize();
         };
 
         //

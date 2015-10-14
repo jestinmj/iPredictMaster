@@ -8,14 +8,20 @@ angular.module('app.controllers.aboutUs', ["ionic"])
         $scope.errorPopup = function(subtitle){
             $ionicPopup.alert({
                 title: "Oops",
-                subTitle: subtitle
+                subTitle: subtitle,
+                buttons: [
+                    { text: 'OK', type: 'button-calm button-clear' }
+                ]
             });
         };
 
         $scope.sendMessagePopup = function(){
             $ionicPopup.alert({
                 title: "Sent",
-                subTitle: "Your message has be sent, we'll get back to you soon!"
+                subTitle: "Your message has be sent, we'll get back to you soon!",
+                buttons: [
+                    { text: 'OK', type: 'button-calm button-clear' }
+                ]
             });
         };
 
@@ -34,12 +40,12 @@ angular.module('app.controllers.aboutUs', ["ionic"])
 
 
         $scope.sendMessage = function(){
-            var indexOfAt = $scope.message.email.indexOf("@");
+            var indexOfAtSymbol = $scope.message.email.indexOf("@");
             if ($scope.message.email === ""){
                 $scope.errorPopup("You forgot to enter your email address!");
             }
-            else if (indexOfAt === -1 ||
-                $scope.message.email.substr(indexOfAt+1).length === 0){
+            else if (indexOfAtSymbol === -1 ||
+                $scope.message.email.substr(indexOfAtSymbol+1).length === 0){
                 $scope.errorPopup("Please enter a valid email address!");
             }
             else if ($scope.message.text === ""){

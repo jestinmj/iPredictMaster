@@ -95,12 +95,12 @@
             <div class="toggleButton"
                  ng-class="singleTrade ? 'selectedButton' : ''"
                  ng-click="singleTrade = true">
-                <h4>BUY STOCK</h4>
+                <h4>STOCK</h4>
             </div>
             <div class="toggleButton"
                  ng-class="!singleTrade ? 'selectedButton' : ''"
                  ng-click="singleTrade = false">
-                <h4>BUY BUNDLE</h4>
+                <h4>BUNDLE</h4>
             </div>
         </div>
 
@@ -130,7 +130,14 @@
 
             <div ng-show="step.two">
 
-                <div style="width: 100%; text-align: center; margin-top: 20px;">
+                <div style="width: 100%; text-align: center; margin-top: 10px;">
+                    <h4 style="color: #42A5F5; margin: 0;">
+                        <b ng-show="tradeType === 'stock'">BUY STOCK</b>
+                        <b ng-show="tradeType === 'short'">SHORT STOCK</b>
+                    </h4>
+                </div>
+
+                <div style="width: 100%; text-align: center; margin-top: 10px;">
                     <h5> STEP 2: BUY OR SELL</h5>
                 </div>
 
@@ -155,7 +162,7 @@
                 </div>
 
                 <div style="width: 80%; text-align: center; margin: 20px 10% 10px 10%;">
-                    <h5> STEP 3: CHOOSE NUMBER OF STOCKS</h5>
+                    <h5> STEP 3: CHOOSE NUMBER OF STOCK</h5>
                 </div>
 
                 <div style="width: 80%; text-align: center; margin: 0 10% 20px 10%">
