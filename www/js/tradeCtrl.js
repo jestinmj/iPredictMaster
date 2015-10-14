@@ -110,7 +110,7 @@ app.controller('TradeCtrl', function($scope, ContractService, $state, $statePara
             }
 
             if (!stock){
-                tradeError("You cannot sell stock that you don't own");
+                tradeError("You cannot sell stock that you do not own");
             }
             else if (stock.amount >= $scope.quantity.stock){
                 PortfolioService.sellStock(
